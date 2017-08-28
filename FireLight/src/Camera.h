@@ -4,7 +4,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-
 class Camera
 {
 public:
@@ -14,8 +13,10 @@ public:
 	void Translate(glm::vec3 transform);
 	void Rotate(float Yaw, float Pitch);
 
+	//TODO:: change Names
 	glm::vec3 get_VectorForward();
 	glm::vec3 get_VectorRight();
+
 
 	glm::mat4 get_ViewMatrix();
 	glm::mat4 getCameraProjection();

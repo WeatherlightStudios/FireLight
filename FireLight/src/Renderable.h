@@ -17,6 +17,14 @@ public:
 
 	void Init();
 
+	void generateQuad();
+	void generateTriangle();
+	void generateCircle();
+
+	void Translate(glm::vec3 transform);
+	void setColor(glm::vec3 color);
+	void Scale(glm::vec3 scale);
+
 	void Render(Camera cam);
 
 	~Renderable();
@@ -24,13 +32,9 @@ public:
 
 private:
 
-	GLuint VBO, VAO, IBO;
-
+	GLuint VBO, VAO;
+	glm::vec3 m_color;
 	glm::mat4 model;
-	glm::mat4 view;
-	glm::mat4 projection;
-
-	vertex_buffer m_buffer[6000 * 6000];
 
 };
 

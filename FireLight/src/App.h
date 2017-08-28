@@ -10,14 +10,14 @@
 
 //test
 #include "Camera.h"
-
-namespace fl
+namespace FL
 {
+
 	class App
 	{
 	public:
 		App(const std::string name, int Width, int Height);
-		~App();
+		virtual ~App();
 
 
 		//Init Engine
@@ -27,12 +27,16 @@ namespace fl
 		void MainLoop();
 
 		//inizialize a Game
-		void Init();
+		virtual void Init() = 0;
 		//Update a GameLogic
-		void Update(double deltaT);
+		virtual void Update(double deltaT) = 0;
+		//game render
+		virtual void Draw() = 0;
+		//close game
+		virtual void Close() = 0;
 		//RenderStuff
 		void Render();
-		//free memory and close
+		//free memory and close Engine
 		void ShutDown();
 
 	private:
@@ -60,4 +64,5 @@ namespace fl
 	};
 
 }
+
 #endif

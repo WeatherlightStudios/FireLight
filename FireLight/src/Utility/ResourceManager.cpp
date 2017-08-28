@@ -4,6 +4,8 @@
 #include <sstream>
 #include <fstream>
 
+namespace FL
+{
 
 std::map<std::string, Shader>		ResourceManager::m_Shaders;
 
@@ -69,4 +71,6 @@ Shader ResourceManager::loadShaderFromFile(const GLchar *vShaderFile, const GLch
 	Shader shader;
 	shader.Compile(vShaderCode, fShaderCode, gShaderFile != nullptr ? gShaderCode : nullptr);
 	return shader;
+}
+
 }
