@@ -71,13 +71,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)ThirdParty\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty\lib\Debug;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)libBUILD\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)libBUILD\intermediate\$(Configuration)\</IntDir>
+    <LibraryPath>$(SolutionDir)ThirdParty\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)libBUILD</OutDir>
+    <IntDir>$(SolutionDir)libBUILD\intermediate</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)ThirdParty\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty\lib\Release;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)ThirdParty\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -126,7 +126,7 @@
     </Link>
     <Lib>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -73,7 +73,7 @@
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\intermediate$(Platform)\$(Configuration)\</IntDir>
     <IncludePath>$(SolutionDir)FireLight;$(SolutionDir)ThirdParty\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)libBUILD\Debug;$(SolutionDir)ThirdParty\lib\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)libBUILD;$(SolutionDir)ThirdParty\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
