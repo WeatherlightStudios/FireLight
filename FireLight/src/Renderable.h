@@ -17,13 +17,20 @@ public:
 
 	void Init();
 
-	void generateQuad();
-	void generateTriangle();
-	void generateCircle();
+	void gen_quad();
+	void gen_triangle();
+	void gen_circle();
 
-	void Translate(glm::vec3 transform);
-	void setColor(glm::vec3 color);
-	void Scale(glm::vec3 scale);
+	glm::vec3 get_position() { return m_position; }
+	glm::vec3 get_scale() { return m_scale; }
+
+	void set_color(glm::vec3 color);
+
+	void set_trasform(glm::vec3 transform);
+	void set_scale(glm::vec3 scale);
+
+	void translate(glm::vec3 transform);
+	void scale(glm::vec3 scale);
 
 	void Render(Camera cam);
 
@@ -33,6 +40,11 @@ public:
 private:
 
 	GLuint VBO, VAO;
+
+	glm::vec3 m_position;
+	glm::vec3 m_scale;
+	glm::quat m_rotation;
+
 	glm::vec3 m_color;
 	glm::mat4 model;
 

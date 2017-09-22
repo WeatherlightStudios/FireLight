@@ -4,37 +4,41 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+enum projType
+{
+	ORTHO,
+	PROSPECTIVE
+};
+
 class Camera
 {
 public:
-	Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch);
-	void Update();
+	Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch, projType projtype);
+	void update();
 
-	void Translate(glm::vec3 transform);
-	void Rotate(float Yaw, float Pitch);
+	void translate(glm::vec3 trans);
+	void rotate(float yaw, float pitch);
 
-	//TODO:: change Names
-	glm::vec3 get_VectorForward();
-	glm::vec3 get_VectorRight();
+	void set_transform(glm::vec3 trans);
+	void set_rotation(glm::vec3 rot);
 
+	glm::vec3 get_forwardVec();
+	glm::vec3 get_rightVec();
 
-	glm::mat4 get_ViewMatrix();
-	glm::mat4 getCameraProjection();
-
-
+	glm::mat4 get_viewMatrix();
+	glm::mat4 get_projectionMatrix();
 
 	~Camera();
 private:
 
-	glm::vec3 m_Position;
-	glm::vec3 m_Front;
-	glm::vec3 m_Right;
-	glm::vec3 m_Up;
-	glm::vec3 m_WorldUp;
+	glm::vec3 m_position;
+	glm::vec3 m_front;
+	glm::vec3 m_right;
+	glm::vec3 m_up;
+	glm::vec3 m_worldUp;
 
-	float m_Yaw;
-	float m_Pitch;
+	float m_yaw;
+	float m_pitch;
 
-	float m_sensitivity;
+	projType m_projType;
 };
-

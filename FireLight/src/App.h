@@ -19,25 +19,25 @@ namespace FL
 		App(const std::string name, int Width, int Height);
 		virtual ~App();
 
-
 		//Init Engine
-		void Start();
-
+		void start();
 		//the game LOOP
-		void MainLoop();
-
+		void mainLoop();
 		//inizialize a Game
 		virtual void Init() = 0;
+
+		//---Like Unity system---
 		//Update a GameLogic
 		virtual void Update(double deltaT) = 0;
 		//game render
 		virtual void Draw() = 0;
 		//close game
 		virtual void Close() = 0;
+
 		//RenderStuff
-		void Render();
+		void render();
 		//free memory and close Engine
-		void ShutDown();
+		void shutDown();
 
 	private:
 
@@ -48,10 +48,6 @@ namespace FL
 		int			m_width;
 		int			m_height;
 
-
-		double		m_mouseX, m_mouseY;
-		float OldmouseX;
-		float OldmouseY;
 		const double	FRAME_LIMIT = 1.0 / 60.0;
 
 
@@ -60,7 +56,7 @@ namespace FL
 		Window			*m_window;
 
 		Renderable m_rend;
-		Camera m_camera;
+		//Camera m_camera;
 	};
 
 }

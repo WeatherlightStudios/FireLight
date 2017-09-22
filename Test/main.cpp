@@ -4,7 +4,7 @@
 int main()
 {
 	Game *game = new Game();
-	game->Start();
+	game->start();
 
 	return 0;
 }

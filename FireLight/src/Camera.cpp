@@ -2,59 +2,76 @@
 
 
 
-Camera::Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = -90.f, float pitch = 0.f)
+Camera::Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = -90.f, float pitch = 0.f, projType projtype = projType::PROSPECTIVE)
 {
-	m_Position = position;
-	m_WorldUp = up;
-	m_Yaw = yaw;
-	m_Pitch = pitch;
-	Update();
+	m_position = position;
+	m_projType = projtype;
+	m_worldUp = up;
+	m_pitch = pitch;
+	m_yaw = yaw;
+
+	update();
 }
 
-
-void Camera::Update()
+void Camera::update()
 {
 	glm::vec3 front;
 
-	front.x = cos(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
-	front.y = sin(glm::radians(m_Pitch));
-	front.z = sin(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
+	front.x = cos(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
+	front.y = sin(glm::radians(m_pitch));
+	front.z = sin(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
 
-	m_Front = glm::normalize(front);
-
-	m_Right = glm::normalize(glm::cross(m_Front, m_WorldUp));
-	m_Up = glm::normalize(glm::cross(m_Right, m_Front));
+	m_front = glm::normalize(front);
+	m_right = glm::normalize(glm::cross(m_front, m_worldUp));
+	m_up	= glm::normalize(glm::cross(m_right, m_front));
 }
 
-void Camera::Translate(glm::vec3 transform)
+void Camera::translate(glm::vec3 trans)
 {
-	m_Position += transform;
+	m_position += trans;
 }
 
-glm::vec3 Camera::get_VectorForward()
+void Camera::rotate(float yaw, float pitch)
 {
-	return m_Front;
-}
-glm::vec3 Camera::get_VectorRight()
-{
-	return m_Right;
+	m_yaw += yaw;
+	m_pitch += pitch;
 }
 
-
-void Camera::Rotate(float Yaw, float Pitch)
+void Camera::set_transform(glm::vec3 trans)
 {
-	m_Yaw += Yaw;
-	m_Pitch += Pitch;
+	m_position = trans;
+}
+void Camera::set_rotation(glm::vec3 rot)
+{
+	m_yaw = rot.x;
+	m_pitch = rot.y;
 }
 
-glm::mat4 Camera::get_ViewMatrix()
+glm::vec3 Camera::get_forwardVec()
 {
-	return glm::lookAt(m_Position, m_Position + m_Front, m_Up);
+	return m_front;
 }
 
-glm::mat4 Camera::getCameraProjection()
+glm::vec3 Camera::get_rightVec()
 {
-	return glm::perspective(glm::radians(45.f), 800.f / 600.f, 0.1f, 10000.f);
+	return m_right;
+}
+
+glm::mat4 Camera::get_viewMatrix()
+{
+	return glm::lookAt(m_position, m_position + m_front, m_up);
+}
+
+glm::mat4 Camera::get_projectionMatrix()
+{
+	if (m_projType == projType::PROSPECTIVE)
+	{
+		return glm::perspective(glm::radians(60.f), 800.f / 600.f, 0.1f, 10000.f);
+	}
+	else if (m_projType == projType::ORTHO)
+	{
+		return glm::ortho(-800.0f / 600.0f, 800.0f / 600.0f, -1.0f, 1.0f,0.001f,10000.0f); 
+	}
 }
 
 Camera::~Camera()

@@ -4,7 +4,7 @@
 
 namespace FL
 {
-	App::App(const std::string name, int Width, int Height) : m_camera(glm::vec3(0,0,0), glm::vec3(0, 1.f, 0), -90,0)
+	App::App(const std::string name, int Width, int Height)
 	{
 		m_title = name;
 		m_width = Width;
@@ -12,9 +12,8 @@ namespace FL
 		m_window = new Window(m_width, m_height, m_title.c_str());
 	}
 
-	void App::Start() 
+	void App::start() 
 	{
-
 		//Init GLFW/GL3W and start MainLoop
 		glfwInit();
 		m_window->Init();
@@ -23,11 +22,10 @@ namespace FL
 			std::cout << "OpenGL failde to inizialize" << std::endl;
 		}
 		glEnable(GL_DEPTH_TEST);
-		MainLoop();
-
+		mainLoop();
 	}
 
-	void App::MainLoop()
+	void App::mainLoop()
 	{
 
 		//init a game
@@ -57,22 +55,22 @@ namespace FL
 			}
 
 			//render game
-			Render();
+			render();
 		
 			m_window->Update();
 
 		}
-		ShutDown();
+		shutDown();
 	}
 
-	void App::Render()
+	void App::render()
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 		Draw();
 	}
 
-	void App::ShutDown() 
+	void App::shutDown() 
 	{
 		Close();
 		delete(m_window);
