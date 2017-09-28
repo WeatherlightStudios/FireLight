@@ -48,8 +48,7 @@ namespace FL
 		int			m_width;
 		int			m_height;
 
-		const double	FRAME_LIMIT = 1.0 / 60.0;
-
+		double lag;
 
 
 		std::string		m_title;

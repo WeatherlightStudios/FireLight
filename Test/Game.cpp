@@ -10,19 +10,22 @@ Game::Game() : FL::App("Hello", 800,600), m_camera(glm::vec3(0,0,-3), glm::vec3(
 void Game::Init()
 {
 	m_paddle1.Init();
-	m_paddle1.gen_quad();
 	m_paddle1.set_trasform(glm::vec3(1.3f, 0.0f,0.0f));
+	m_paddle1.set_color(glm::vec3(0.0,1.0,0.0));
 	m_paddle1.set_scale(glm::vec3( 0.05f, 800.f/600.f / 4, 1.0f));
+	m_paddle1.gen_quad();
 
 	m_paddle2.Init();
-	m_paddle2.gen_quad();
 	m_paddle2.set_trasform(glm::vec3(-1.3f, 0.0f, 0.0f));
+	m_paddle2.set_color(glm::vec3(0.0, 1.0, 0.0));
 	m_paddle2.set_scale(glm::vec3(0.05f, 800.f / 600.f / 4, 1.0f));
+	m_paddle2.gen_quad();
 
 	m_ball.Init();
-	m_ball.gen_quad();
 	m_ball.set_trasform(glm::vec3(0.0f, 0.0f, 0.0f));
+	m_ball.set_color(glm::vec3(1.0, 0.0, 0.0));
 	m_ball.set_scale(glm::vec3(0.05f, 0.05f, 1.0f));
+	m_ball.gen_quad();
 
 	FL::ResourceManager::loadShader("shader.vert", "fragshader.frag", nullptr, "shader");
 }
@@ -40,7 +43,7 @@ void Game::Update(double deltaT)
 	//OldmouseX = m_mouseX;
 	//OldmouseY = m_mouseY;
 
-
+	//std::cout << deltaT << std::endl;
 	
 
 	if (Window::isKeyDown(GLFW_KEY_W))

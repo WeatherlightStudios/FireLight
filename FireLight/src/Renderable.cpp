@@ -11,7 +11,6 @@ Renderable::Renderable()
 void Renderable::Init()
 {
 	m_position = glm::vec3(0, 0, 0);
-	//model = glm::translate(model, glm::vec3(0,0,0));
 	glGenBuffers(1, &VBO);
 	glGenVertexArrays(1, &VAO);
 
@@ -23,17 +22,17 @@ void Renderable::gen_quad()
 	vertex_buffer m_buffer[6];
 
 	m_buffer[0].position = glm::vec3(0.5,0.5,0);
-	m_buffer[0].color = glm::vec3(0, 0, 0);
+	m_buffer[0].color = m_color;
 	m_buffer[1].position = glm::vec3(0.5, -0.5, 0);
-	m_buffer[1].color = glm::vec3(0, 0, 0);
+	m_buffer[1].color = m_color;
 	m_buffer[2].position = glm::vec3(-0.5, -0.5, 0);
-	m_buffer[2].color = glm::vec3(0, 0, 0);
+	m_buffer[2].color = m_color;
 	m_buffer[3].position = glm::vec3(-0.5, -0.5, 0);
-	m_buffer[3].color = glm::vec3(0, 0, 0);
+	m_buffer[3].color = m_color;
 	m_buffer[4].position = glm::vec3(-0.5, 0.5, 0);
-	m_buffer[4].color = glm::vec3(0, 0, 0);
+	m_buffer[4].color = m_color;
 	m_buffer[5].position = glm::vec3(0.5, 0.5, 0);
-	m_buffer[5].color = glm::vec3(0, 0, 0);
+	m_buffer[5].color = m_color;
 
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -46,8 +45,6 @@ void Renderable::gen_quad()
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
-	// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
 	glBindVertexArray(0);
 }
 
@@ -57,11 +54,11 @@ void Renderable::gen_triangle()
 	vertex_buffer m_buffer[3];
 
 	m_buffer[0].position = glm::vec3(0.5, 0.5, 0);
-	m_buffer[0].color = glm::vec3(0.5, 0.5, 0);
+	m_buffer[0].color = m_color;
 	m_buffer[1].position = glm::vec3(0, 0.5, 0);
-	m_buffer[1].color = glm::vec3(0, 0, 0);
+	m_buffer[1].color = m_color;
 	m_buffer[2].position = glm::vec3(-0.5, -0.5, 0);
-	m_buffer[2].color = glm::vec3(0, 0, 0);
+	m_buffer[2].color = m_color;
 
 
 	glBindVertexArray(VAO);

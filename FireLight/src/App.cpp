@@ -22,6 +22,7 @@ namespace FL
 			std::cout << "OpenGL failde to inizialize" << std::endl;
 		}
 		glEnable(GL_DEPTH_TEST);
+		glfwSwapInterval(0);
 		mainLoop();
 	}
 
@@ -33,7 +34,8 @@ namespace FL
 
 		//Time Handling
 		double old_time = glfwGetTime();
-		double lag = 0.0;
+		double dt = 1.0 / 60.0;
+		lag = 0.0;
 
 		//MainLoop
 		while (!m_window->isClosed())
@@ -48,10 +50,10 @@ namespace FL
 			m_window->UpdateInput();
 
 			//FixedFrame Update game
-			while(lag >= FRAME_LIMIT)
+			while(lag >= dt)
 			{
-				Update(elapsed);
-				lag -= FRAME_LIMIT;
+				Update(dt);
+				lag -= dt;
 			}
 
 			//render game
