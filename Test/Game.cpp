@@ -44,6 +44,11 @@ void Game::Update(double deltaT)
 	//OldmouseY = m_mouseY;
 
 	//std::cout << deltaT << std::endl;
+
+	//ball movement
+	glm::vec3 direction = glm::vec3(ball_dx * deltaT, ball_dy * deltaT, 0);
+	m_ball.translate(direction);
+
 	
 
 	if (Window::isKeyDown(GLFW_KEY_W))
@@ -67,29 +72,79 @@ void Game::Update(double deltaT)
 		m_paddle2.translate(glm::vec3(0.0, -2 * deltaT, 0));
 	}
 
+	////PHYSICS SETUP////
 
+	//half wall position
+	float wall_pos_half_y = 1.0 - 800.f / 600.f / 4 * 0.5f;
+	float wall_pos_half_x = 1.0 - 600.f / 800.f / 4 * 0.5f;
 
+	//ball pos
+	glm::vec3 ballPos = m_ball.get_position();
 
-	// border collision first paddlesw
-	if (m_paddle1.get_position().y > 1.0 - 800.f / 600.f / 4 * 0.5f)
+	std::cout << ballPos.y << std::endl;
+
+	////BALL PHYSICS////
+
+	////sfera contro muri
+
+	//muro sopra
+	if(m_ball.get_position().y > wall_pos_half_y)
 	{
-		m_paddle1.set_trasform(glm::vec3(1.3, 1.0 - 800.f / 600.f / 4 * 0.5f, 0));
+		//mette palla nella posizione giusta
+		m_ball.set_trasform(glm::vec3(ballPos.x, wall_pos_half_y, ballPos.z));
+		//inverte velocità in asse y
+		ball_dy *= -1;
 	}
 
-	if (m_paddle1.get_position().y < (1.0 - 800.f / 600.f / 4 * 0.5f) * -1)
+	//muro sotto
+	if (m_ball.get_position().y < wall_pos_half_y * -1)
 	{
-		m_paddle1.set_trasform(glm::vec3(1.3, (1.0 - 800.f / 600.f / 4 * 0.5f) * -1, 0));
+		//mette palla nella posizione giusta
+		m_ball.set_trasform(glm::vec3(ballPos.x, wall_pos_half_y * -1, ballPos.z));
+		//inverte velocità in asse y
+		ball_dy *= -1;
+	}
+
+	//muro destro
+	if (m_ball.get_position().x > wall_pos_half_x)
+	{
+		//mette palla nella posizione giusta
+		m_ball.set_trasform(glm::vec3(wall_pos_half_x, ballPos.y, ballPos.z));
+		//inverte velocità in asse y
+		ball_dx *= -1;
+	}
+
+	//muro sinistro
+	if (m_ball.get_position().x < wall_pos_half_x * -1)
+	{
+		//mette palla nella posizione giusta
+		m_ball.set_trasform(glm::vec3(wall_pos_half_x * -1, ballPos.y, ballPos.z));
+		//inverte velocità in asse y
+		ball_dx *= -1;
+	}
+
+	////racchetta contro muri
+
+	// border collision first paddle
+	if (m_paddle1.get_position().y > wall_pos_half_y)
+	{
+		m_paddle1.set_trasform(glm::vec3(1.3, wall_pos_half_y, 0));
+	}
+
+	if (m_paddle1.get_position().y < wall_pos_half_y * -1)
+	{
+		m_paddle1.set_trasform(glm::vec3(1.3, wall_pos_half_y * -1, 0));
 	}
 
 	//border collision second paddle
-	if (m_paddle2.get_position().y > 1.0 - 800.f / 600.f / 4 * 0.5f)
+	if (m_paddle2.get_position().y > wall_pos_half_y)
 	{
-		m_paddle2.set_trasform(glm::vec3(-1.3, 1.0 - 800.f / 600.f / 4 * 0.5f, 0));
+		m_paddle2.set_trasform(glm::vec3(-1.3, wall_pos_half_y, 0));
 	}
 
-	if (m_paddle2.get_position().y < (1.0 - 800.f / 600.f / 4 * 0.5f) * -1)
+	if (m_paddle2.get_position().y < wall_pos_half_y * -1)
 	{
-		m_paddle2.set_trasform(glm::vec3(-1.3, (1.0 - 800.f / 600.f / 4 * 0.5f) * -1, 0));
+		m_paddle2.set_trasform(glm::vec3(-1.3, wall_pos_half_y * -1, 0));
 	}
 
 }

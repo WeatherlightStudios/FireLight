@@ -28,6 +28,8 @@ private:
 	float m_ball_pos_x;
 	float m_ball_pos_y;
 
+	float ball_dx = 1;
+	float ball_dy = 1;
 
 	Renderable m_paddle1;
 	Renderable m_paddle2;
