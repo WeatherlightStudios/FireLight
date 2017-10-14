@@ -72,6 +72,10 @@ glm::mat4 Camera::get_projectionMatrix()
 	{
 		return glm::ortho(-800.0f / 600.0f, 800.0f / 600.0f, -1.0f, 1.0f,0.001f,10000.0f); 
 	}
+	else
+	{
+		return glm::perspective(glm::radians(60.f), 800.f / 600.f, 0.1f, 10000.f);
+	}
 }
 
 Camera::~Camera()
