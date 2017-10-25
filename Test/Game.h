@@ -15,7 +15,9 @@ public:
 
 	~Game();
 private:
-
+	Camera m_camera;
+	SceneNode* m_root;
+	SceneNode* obj1;
+	SceneNode* obj2;
 
 };
-

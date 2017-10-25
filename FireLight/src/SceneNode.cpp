@@ -1,6 +1,10 @@
 #include "SceneNode.h"
 
 
+std::map<std::string, SceneNode*>	SceneNode::m_nodes;
+std::vector<Renderable*>			SceneNode::m_renderable_objects;
+SceneNode*							SceneNode::m_root;
+
 
 SceneNode::SceneNode()
 {
@@ -18,8 +22,29 @@ SceneNode* SceneNode::get_parent()
 	return m_parent;
 }
 
+void SceneNode::destroy()
+{
+	m_parent->detuch_childern(this);
+	if (dynamic_cast<const Renderable*>(this)) 
+	{
+		m_renderable_objects.erase(std::find(m_renderable_objects.begin(), m_renderable_objects.end(),this)); 
+	}
+	std::vector<SceneNode*>::iterator it;
+	for (it = m_childrens.begin(); it != m_childrens.end(); ++it)
+	{
+		if (dynamic_cast<const Renderable*>(*it))
+		{
+			m_renderable_objects.erase(std::find(m_renderable_objects.begin(), m_renderable_objects.end(), *it));
+		}
+		delete(*it);
+	}
+	delete(this);
+}
+
 void SceneNode::atuch_children(SceneNode* children)
 {
+	children->set_parent(this);
+	children->init_this();
 	m_childrens.push_back(children);
 }
 
@@ -43,6 +68,7 @@ void SceneNode::detuch_childern(SceneNode* children)
 
 void SceneNode::init_this()
 {
+	if (dynamic_cast<const Renderable*>(this)){	m_renderable_objects.push_back((Renderable*)this);}
 	init();
 	init_children();
 }
@@ -53,7 +79,7 @@ void SceneNode::init_children()
 
 	for (it = m_childrens.begin(); it != m_childrens.end(); ++it)
 	{
-		(*it)->init();
+		(*it)->init_this();
 	}
 
 }

@@ -7,3 +7,4 @@
 #include "src\Renderable.h"
 #include "src\Camera.h"
 #include "src\SimpleRenderSystem.h"
+#include "src\SceneNode.h"
