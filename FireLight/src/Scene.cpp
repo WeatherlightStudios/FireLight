@@ -9,31 +9,21 @@ Scene::Scene()
 
 void Scene::Init_Scene()
 {
-
+	Init();
 }
 void Scene::Update_Scene(double dt)
 {
-
+	Update(dt);
 }
+
+void Scene::Render()
+{
+	//m_rendersystem->Render();
+}
+
 void Scene::Close_Scene()
 {
-
-}
-
-
-void Scene::instantiate_node(SceneNode* node, string node_name)
-{
-
-}
-
-void Scene::detuch_node(string node_name)
-{
-
-}
-
-void Scene::destroy_node(string node_name)
-{
-
+	Close();
 }
 
 Scene::~Scene()

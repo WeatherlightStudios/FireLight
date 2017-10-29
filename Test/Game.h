@@ -1,7 +1,7 @@
 #pragma once
 
 #include <FireLight.h>
-
+#include "TestScene.h"
 
 class Game : public FL::App
 {
@@ -19,5 +19,7 @@ private:
 	SceneNode* m_root;
 	SceneNode* obj1;
 	SceneNode* obj2;
+
+	TestScene *m_testScene;
 
 };

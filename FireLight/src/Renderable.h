@@ -1,37 +1,31 @@
-#pragma once
+#ifndef RENDERABLE_H
+#define RENDERABLE_H
 
 #include "GL\gl3w.h"
 #include "Camera.h"
+#include <glm\vec2.hpp>
+#include <glm\vec3.hpp>
+#include <glm\vec4.hpp>
+#include "SceneNode.h"
 
 struct vertex_buffer
 {
 	glm::vec3 position;
 	glm::vec3 color;
+	glm::vec2 uv;
 };
 
 
-class Renderable
+class Renderable : public SceneNode
 {
 public:
 	Renderable();
 
-	void Init();
-
-	void gen_quad();
-	void gen_triangle();
-	void gen_circle();
-
-	glm::vec3 get_position() { return m_position; }
-	glm::vec3 get_scale() { return m_scale; }
+	void init_sprite();
 
 	void set_color(glm::vec3 color);
-
-	void set_trasform(glm::vec3 transform);
-	void set_scale(glm::vec3 scale);
-
-	void translate(glm::vec3 transform);
-	void scale(glm::vec3 scale);
-
+	void set_texture();
+	void set_texture_offset();
 	void Render(Camera cam);
 
 	~Renderable();
@@ -41,12 +35,11 @@ private:
 
 	GLuint VBO, VAO;
 
-	glm::vec3 m_position;
-	glm::vec3 m_scale;
-	glm::quat m_rotation;
-
 	glm::vec3 m_color;
 	glm::mat4 model;
+	GLuint m_texture;
 
 };
+
+#endif
 

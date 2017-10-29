@@ -1,6 +1,7 @@
 #include "App.h"
 #include <iostream>
 #include "Utility\ResourceManager.h"
+#include "SceneManager.h"
 
 namespace FL
 {
@@ -31,7 +32,7 @@ namespace FL
 
 		//init a game
 		Init();
-
+		SceneManager::init_current_scene();
 		//Time Handling
 		double old_time = glfwGetTime();
 		double dt = 1.0 / 60.0;
@@ -53,6 +54,7 @@ namespace FL
 			while(lag >= dt)
 			{
 				Update(dt);
+				SceneManager::update_current_scene(dt);
 				lag -= dt;
 			}
 
@@ -67,8 +69,8 @@ namespace FL
 
 	void App::render()
 	{
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+		SceneManager::render_current_scene();
 		Draw();
 	}
 

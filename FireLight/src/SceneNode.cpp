@@ -1,5 +1,5 @@
 #include "SceneNode.h"
-
+#include "Renderable.h"
 
 std::map<std::string, SceneNode*>	SceneNode::m_nodes;
 std::vector<Renderable*>			SceneNode::m_renderable_objects;
@@ -27,14 +27,14 @@ void SceneNode::destroy()
 	m_parent->detuch_childern(this);
 	if (dynamic_cast<const Renderable*>(this)) 
 	{
-		m_renderable_objects.erase(std::find(m_renderable_objects.begin(), m_renderable_objects.end(),this)); 
+		m_renderable_objects.erase(std::find(m_renderable_objects.begin(), m_renderable_objects.end(),(Renderable*)this)); 
 	}
 	std::vector<SceneNode*>::iterator it;
 	for (it = m_childrens.begin(); it != m_childrens.end(); ++it)
 	{
 		if (dynamic_cast<const Renderable*>(*it))
 		{
-			m_renderable_objects.erase(std::find(m_renderable_objects.begin(), m_renderable_objects.end(), *it));
+			m_renderable_objects.erase(std::find(m_renderable_objects.begin(), m_renderable_objects.end(), (Renderable*)*it));
 		}
 		delete(*it);
 	}

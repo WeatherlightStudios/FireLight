@@ -1,7 +1,6 @@
 #ifndef SCENENODE_H
 #define SCENENODE_H
 
-#include "Renderable.h"
 
 #include <glm\vec3.hpp>
 #include <glm\vec4.hpp>
@@ -10,6 +9,8 @@
 #include <memory>
 #include <map>
 #include <vector>
+
+class Renderable;
 
 class SceneNode
 {
@@ -55,7 +56,7 @@ public:
 	glm::vec3 get_local_scale() { return m_local_scale; }
 	glm::vec3 get_world_scale() { return m_parent != nullptr ? m_parent->get_world_scale() + m_local_scale : m_local_scale; }
 
-	int get_renderables_Size() { return m_renderable_objects.size(); };
+	//static int get_renderables_Size() { return m_renderable_objects.size(); }
 
 	float get_local_rotation() { return m_local_rotation; }
 	//TODO: Da sistemare!
@@ -79,6 +80,7 @@ private:
 	std::vector<SceneNode*> m_childrens;
 	static std::map<std::string ,SceneNode*> m_nodes;
 	static std::vector<Renderable*> m_renderable_objects;
+	//FL::Graphic::SimpleRenderSystem m_rendersystem;
 
 };
 
