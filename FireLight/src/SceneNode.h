@@ -28,15 +28,11 @@ public:
 
 	SceneNode* getChildren(std::string name) { return m_nodes[name]; }
 
-
-	//void atuch_children_to(SceneNode* parent,SceneNode* children);
-	//void detuch_childern_from(SceneNode* parent, SceneNode* children);
-	//void detuch_childern_from(std::string name_parent, std::string name_children);
-
 	virtual void init() {}
 	virtual void update(double dt) {}
 
 	void destroy();
+	void destroyChildrens();
 
 	void init_this();
 	void init_children();
@@ -55,8 +51,6 @@ public:
 
 	glm::vec3 get_local_scale() { return m_local_scale; }
 	glm::vec3 get_world_scale() { return m_parent != nullptr ? m_parent->get_world_scale() + m_local_scale : m_local_scale; }
-
-	//static int get_renderables_Size() { return m_renderable_objects.size(); }
 
 	float get_local_rotation() { return m_local_rotation; }
 	//TODO: Da sistemare!
@@ -79,8 +73,6 @@ private:
 	SceneNode* m_parent;
 	std::vector<SceneNode*> m_childrens;
 	static std::map<std::string ,SceneNode*> m_nodes;
-	static std::vector<Renderable*> m_renderable_objects;
-	//FL::Graphic::SimpleRenderSystem m_rendersystem;
 
 };
 

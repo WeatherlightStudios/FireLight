@@ -21,7 +21,7 @@ class Renderable : public SceneNode
 public:
 	Renderable();
 
-	void init_sprite();
+	void init();
 
 	void set_color(glm::vec3 color);
 	void set_texture();

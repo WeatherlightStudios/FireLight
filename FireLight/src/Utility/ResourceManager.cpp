@@ -1,86 +1,70 @@
-﻿#include "ResourceManager.h"
+﻿
+#include "ResourceManager.h"
 
 #include <iostream>
 #include <sstream>
 #include <fstream>
 
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+#include <SOIL/SOIL.h>
 
-namespace FL
+std::map<std::string, Texture>    ResourceManager::Textures;
+std::map<std::string, Shader>       ResourceManager::Shaders;
+
+
+Shader ResourceManager::LoadShader(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile, std::string name)
 {
-
-std::map<std::string, Shader>		ResourceManager::m_Shaders;
-std::map<std::string, Texture>		ResourceManager::m_Texture;
-
-
-Shader ResourceManager::loadShader(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile, std::string name)
-{
-	m_Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
-	return m_Shaders[name];
+	Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
+	return Shaders[name];
 }
 
-Shader ResourceManager::getShader(std::string name)
+Shader ResourceManager::GetShader(std::string name)
 {
-	return m_Shaders[name];
+	return Shaders[name];
 }
 
-
-Texture ResourceManager::loadTexture(const char *filePath, bool alpha, std::string name)
+Texture ResourceManager::LoadTexture(const GLchar *file, GLboolean alpha, std::string name)
 {
-	m_Texture[name] = loadTextureFromFile(filePath, alpha);
-	return m_Texture[name];
+	Textures[name] = loadTextureFromFile(file, alpha);
+	return Textures[name];
 }
 
-Texture ResourceManager::getTexture(std::string name)
+Texture ResourceManager::GetTexture(std::string name)
 {
-	return m_Texture[name];
+	return Textures[name];
 }
 
 void ResourceManager::Clear()
 {
-
-	for (auto iter : m_Shaders)
+	
+	for (auto iter : Shaders)
 		glDeleteProgram(iter.second.ID);
+	
+	for (auto iter : Textures)
+		glDeleteTextures(1, &iter.second.ID);
 }
-
-Texture	ResourceManager::loadTextureFromFile(const char *filePath, bool alpha)
-{
-	Texture texture;
-
-	if (alpha)
-	{
-		texture.m_internal_format = GL_RGBA;
-		texture.m_image_format = GL_RGBA;
-	}
-
-	int width, height;
-	unsigned char* data = stbi_load(filePath, &width, &height,0, texture.m_image_format == GL_RGBA ? STBI_rgb_alpha : STBI_rgb);
-	return texture;
-}
-
 
 Shader ResourceManager::loadShaderFromFile(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile)
 {
+	
 	std::string vertexCode;
 	std::string fragmentCode;
 	std::string geometryCode;
 	try
 	{
-
+		
 		std::ifstream vertexShaderFile(vShaderFile);
 		std::ifstream fragmentShaderFile(fShaderFile);
 		std::stringstream vShaderStream, fShaderStream;
-
+		
 		vShaderStream << vertexShaderFile.rdbuf();
 		fShaderStream << fragmentShaderFile.rdbuf();
-
+		
 		vertexShaderFile.close();
 		fragmentShaderFile.close();
-
+		
 		vertexCode = vShaderStream.str();
 		fragmentCode = fShaderStream.str();
-
+		
 		if (gShaderFile != nullptr)
 		{
 			std::ifstream geometryShaderFile(gShaderFile);
@@ -97,11 +81,26 @@ Shader ResourceManager::loadShaderFromFile(const GLchar *vShaderFile, const GLch
 	const GLchar *vShaderCode = vertexCode.c_str();
 	const GLchar *fShaderCode = fragmentCode.c_str();
 	const GLchar *gShaderCode = geometryCode.c_str();
-
-
+	
 	Shader shader;
 	shader.Compile(vShaderCode, fShaderCode, gShaderFile != nullptr ? gShaderCode : nullptr);
 	return shader;
 }
 
+Texture ResourceManager::loadTextureFromFile(const GLchar *file, GLboolean alpha)
+{
+	
+	Texture texture;
+	if (alpha)
+	{
+		texture.Internal_Format = GL_RGBA;
+		texture.Image_Format = GL_RGBA;
+	}
+	
+	int width, height;
+	unsigned char* image = SOIL_load_image(file, &width, &height, 0, texture.Image_Format == GL_RGBA ? SOIL_LOAD_RGBA : SOIL_LOAD_RGB);
+	texture.Generate(width, height, image);
+
+	SOIL_free_image_data(image);
+	return texture;
 }

@@ -1,8 +1,8 @@
 #include "SceneNode.h"
 #include "Renderable.h"
+#include "SimpleRenderSystem.h"
 
 std::map<std::string, SceneNode*>	SceneNode::m_nodes;
-std::vector<Renderable*>			SceneNode::m_renderable_objects;
 SceneNode*							SceneNode::m_root;
 
 
@@ -27,24 +27,29 @@ void SceneNode::destroy()
 	m_parent->detuch_childern(this);
 	if (dynamic_cast<const Renderable*>(this)) 
 	{
-		m_renderable_objects.erase(std::find(m_renderable_objects.begin(), m_renderable_objects.end(),(Renderable*)this)); 
+		SimpleRenderSystem::remove((Renderable*)this);
 	}
+	destroyChildrens();
+}
+
+void SceneNode::destroyChildrens()
+{
 	std::vector<SceneNode*>::iterator it;
 	for (it = m_childrens.begin(); it != m_childrens.end(); ++it)
 	{
 		if (dynamic_cast<const Renderable*>(*it))
 		{
-			m_renderable_objects.erase(std::find(m_renderable_objects.begin(), m_renderable_objects.end(), (Renderable*)*it));
+			SimpleRenderSystem::remove((Renderable*)*it);
 		}
+		(*it)->destroyChildrens();
 		delete(*it);
 	}
-	delete(this);
 }
 
 void SceneNode::atuch_children(SceneNode* children)
 {
 	children->set_parent(this);
-	children->init_this();
+	//children->init_this();
 	m_childrens.push_back(children);
 }
 
@@ -68,7 +73,7 @@ void SceneNode::detuch_childern(SceneNode* children)
 
 void SceneNode::init_this()
 {
-	if (dynamic_cast<const Renderable*>(this)){	m_renderable_objects.push_back((Renderable*)this);}
+	//if (dynamic_cast<const Renderable*>(this)) { SimpleRenderSystem::Add((Renderable*)this); }
 	init();
 	init_children();
 }

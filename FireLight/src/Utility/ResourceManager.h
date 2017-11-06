@@ -1,42 +1,40 @@
+
 #ifndef RESOURCE_MANAGER_H
 #define RESOURCE_MANAGER_H
-
 
 #include <map>
 #include <string>
 
-#include <GL\gl3w.h>
+#include <GL/gl3w.h>
 
-#include "Resources\Shader.h"
-#include "Resources\Texture.h"
+#include "Resources/Texture.h"
+#include "Resources/Shader.h"
 
-namespace FL
+
+
+class ResourceManager
 {
-	class ResourceManager
-	{
-	public:
+public:
 	
-		static std::map<std::string, Shader> m_Shaders;
-		static std::map<std::string, Texture> m_Texture;
+	static std::map<std::string, Shader>    Shaders;
+	static std::map<std::string, Texture> Textures;
+	
+	static Shader   LoadShader(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile, std::string name);
 
-		static Shader loadShader(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile, std::string name);
-		static Shader getShader(std::string name);
+	static Shader   GetShader(std::string name);
 
-		static Texture loadTexture(const char *filePath, bool alpha, std::string name);
-		static Texture getTexture(std::string name);
+	static Texture LoadTexture(const GLchar *file, GLboolean alpha, std::string name);
 	
-		static void Clear();
+	static Texture GetTexture(std::string name);
+
+	static void      Clear();
+private:
 	
-	
-	
-	private:
-	
-		ResourceManager(){}
-	
-		static Shader   loadShaderFromFile(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile = nullptr);
-		static Texture	loadTextureFromFile(const char *filePath, bool alpha);
-	};
-}
+	ResourceManager() { }
+
+	static Shader    loadShaderFromFile(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile = nullptr);
+
+	static Texture loadTextureFromFile(const GLchar *file, GLboolean alpha);
+};
 
 #endif
-

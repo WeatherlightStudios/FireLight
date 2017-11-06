@@ -11,6 +11,6 @@ public:
 	void Close();
 	~TestScene();
 private:
-
+	Renderable *m_rend;
 };
 

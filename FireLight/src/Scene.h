@@ -25,21 +25,16 @@ public:
 	virtual void Update(double dt){}
 	virtual void Close(){}
 
-	void addObject();
-	void removeObject();
+	void addObject(SceneNode *node);
+	void addObjectTo(SceneNode *parentNode, SceneNode *node);
+	void removeObject(SceneNode *node);
+	void removeObjectFrom(SceneNode *parentNode, SceneNode *node);
 
-
-
-	SceneNode* get_node(string name);
-
-
+	SceneNode* get_Object(string name);
 
 private:
 
 	SceneNode *m_root;
-	//FL::Graphic::SimpleRenderSystem *m_rendersystem;
-	std::vector<Renderable> m_renderable_objects;
-
 };
 
 #endif

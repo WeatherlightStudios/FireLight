@@ -1,14 +1,14 @@
 #include "Renderable.h"
 #include <GL\gl3w.h> 
 #include "Utility\ResourceManager.h"
-
+#include "SimpleRenderSystem.h"
 
 Renderable::Renderable()
 {
 
 }
 
-void Renderable::init_sprite()
+void Renderable::init()
 {
 	
 	glGenBuffers(1, &VBO);
@@ -50,19 +50,24 @@ void Renderable::init_sprite()
 
 	glBindVertexArray(0);
 
+
+	SimpleRenderSystem::Add(this);
 }
 
 
 void Renderable::Render(Camera cam)
 {
-	//model = glm::scale(glm::translate(glm::mat4(1.0f), this->get_world_position()), this->get_world_scale());
+	model = glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(0,0,0)), glm::vec3(1, 1, 1));
 	//model = glm::translate(glm::mat4(1.0f), m_position);
 
-	FL::ResourceManager::getShader("shader").SetMatrix4("model", model, false);
-	FL::ResourceManager::getShader("shader").SetMatrix4("view", cam.get_viewMatrix(), false);
-	FL::ResourceManager::getShader("shader").SetMatrix4("projection", cam.get_projectionMatrix(), false);
+	ResourceManager::GetShader("shader").SetMatrix4("model", model, false);
+	ResourceManager::GetShader("shader").SetMatrix4("view", cam.get_viewMatrix(), false);
+	ResourceManager::GetShader("shader").SetMatrix4("projection", cam.get_projectionMatrix(), false);
 
-	FL::ResourceManager::getShader("shader").Use();
+//	ResourceManager::GetShader("shader").SetVector2f("offset", glm::vec2(0,0), false);
+
+	ResourceManager::GetShader("shader").Use();
+	ResourceManager::GetTexture("sprite").Bind();
 	glBindVertexArray(VAO);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 

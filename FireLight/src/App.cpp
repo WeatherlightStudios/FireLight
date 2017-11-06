@@ -32,7 +32,6 @@ namespace FL
 
 		//init a game
 		Init();
-		SceneManager::init_current_scene();
 		//Time Handling
 		double old_time = glfwGetTime();
 		double dt = 1.0 / 60.0;
@@ -53,7 +52,7 @@ namespace FL
 			//FixedFrame Update game
 			while(lag >= dt)
 			{
-				Update(dt);
+				//Update(dt);
 				SceneManager::update_current_scene(dt);
 				lag -= dt;
 			}
@@ -71,12 +70,10 @@ namespace FL
 	{
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 		SceneManager::render_current_scene();
-		Draw();
 	}
 
 	void App::shutDown() 
 	{
-		Close();
 		delete(m_window);
 		glfwTerminate();
 	}

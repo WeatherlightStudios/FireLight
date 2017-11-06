@@ -16,6 +16,7 @@ void SceneManager::add_scene(Scene* scene, std::string name)
 void SceneManager::set_current_scene(std::string name)
 {
 	m_current_scene = m_scenes[name];
+	m_current_scene->Init();
 }
 
 void SceneManager::init_current_scene()
@@ -35,12 +36,11 @@ void SceneManager::close_current_scene()
 	m_current_scene->Close();
 }
 
-void SceneManager::change_current_scene(std::string name)
+void SceneManager::change_current_scene_to(std::string name)
 {
 	SceneManager::close_current_scene();
 	m_current_scene = m_scenes[name];
 	SceneManager::init_current_scene();
-
 }
 
 SceneManager::~SceneManager()

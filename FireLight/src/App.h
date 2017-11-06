@@ -26,13 +26,13 @@ namespace FL
 		//inizialize a Game
 		virtual void Init() = 0;
 
-		//---Like Unity system---
+		//---Like Unity system---\\
 		//Update a GameLogic
-		virtual void Update(double deltaT) = 0;
+		//virtual void Update(double deltaT) = 0;
 		//game render
-		virtual void Draw() = 0;
+		//virtual void Draw() = 0;
 		//close game
-		virtual void Close() = 0;
+		//virtual void Close() = 0;
 
 		//RenderStuff
 		void render();
