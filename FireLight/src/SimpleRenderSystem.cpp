@@ -28,7 +28,7 @@ void SimpleRenderSystem::Render()
 		m_renderables[i]->Render(*m_camera);
 	}
 
-	std::cout << m_renderables.size() << std::endl;
+	//std::cout << m_renderables.size() << std::endl;
 }
 
 void SimpleRenderSystem::set_Camera(Camera *camera)
