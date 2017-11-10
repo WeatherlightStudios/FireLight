@@ -17,17 +17,34 @@ private:
 	const float COLUMNS = 6;
 	const float ANIM_SPEED = 4;
 	
+	//INPUT VARIABLES
 	const float GRAVITY = 0.1;
 	const float AXIS_CENTER = 0;
 	const float AXIS_EDGE = 1;
-	float currentCenterAxis = 0;
+	float currentCenterAxisX = 0;
+	float currentCenterAxisY = 0;
+	//INPUT FUNCTION
+	float GetAxis(int PosKey, int NegKey, float Gravity, float x);
 	
-	float GetAxis(int PosKey, int NegKey, float Gravity, float dt);
-	
-	float x, y;
+	//ANIMATION VARIABLES
+	//x divisions
+	const int IDLE_X = 0;
+	const int WALK_START_X = 1;
+	const int WALK_END_X = 4;
+	//y divisions
+	const int DOWN_Y = 0;
+	const int DL_Y = 1;
+	const int DR_Y = 2;
+	const int UP_Y = 3;
+	const int UL_Y = 4;
+	const int UR_Y = 5;
+
 	float xSpeed = 1;
 	float ySpeed = 1;
 
-	float xx, yy;
+	float xAnim, yAnim;
+	float xAnimSpeed = 4;
+	float yAnimSpeed = 1;
+
 };
 
