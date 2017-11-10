@@ -6,7 +6,9 @@
 #include <glm\vec2.hpp>
 #include <glm\vec3.hpp>
 #include <glm\vec4.hpp>
+#include <string>
 #include "SceneNode.h"
+#include "Utility\Resources\Texture.h"
 
 struct vertex_buffer
 {
@@ -23,9 +25,10 @@ public:
 
 	void init();
 
-	void set_color(glm::vec3 color);
-	void set_texture();
-	void set_texture_offset();
+	//void set_color(glm::vec3 color);
+	void set_texture(std::string texture);
+	void set_texture_offset(glm::vec2 offset);
+	void set_texture_row(glm::vec2 rows);
 	void Render(Camera cam);
 
 	~Renderable();
@@ -37,7 +40,13 @@ private:
 
 	glm::vec3 m_color;
 	glm::mat4 model;
-	GLuint m_texture;
+
+	std::string m_texture;
+
+	glm::vec2 m_offset;
+	glm::vec2 m_rows;
+
+
 
 };
 

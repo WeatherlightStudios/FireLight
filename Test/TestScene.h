@@ -12,5 +12,10 @@ public:
 	~TestScene();
 private:
 	Renderable *m_rend;
+
+
+	float x, y;
+
+	float xx, yy;
 };
 

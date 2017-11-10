@@ -70,7 +70,7 @@ glm::mat4 Camera::get_projectionMatrix()
 	}
 	else if (m_projType == projType::ORTHO)
 	{
-		return glm::ortho(-800.0f / 600.0f, 800.0f / 600.0f, -1.0f, 1.0f,0.001f,10000.0f); 
+		return glm::ortho(800.0f / 600.0f, -800.0f / 600.0f, -1.0f, 1.0f,0.001f,10000.0f); 
 	}
 	else
 	{
