@@ -16,32 +16,44 @@ private:
 	Renderable *slime;
 
 	//constants for animations
-		//player
-	const float ROW = 5;
-	const float COLUMNS = 6;
-	const float ANIM_SPEED = 4;
-		//slime
-	//still nothing
+	///player
+	const short ROW = 5;
+	const short COLUMNS = 6;
+	const short ANIM_SPEED = 4;
+	///slime
+	const short SLIME_ROW = 2;
+	const short SLIME_COLUMNS = 1;
+	const short SLIME_ANIM_SPEED = 4;
 
 	//ANIMATION VARIABLES
-		//player
+	///player
 	//x divisions
-	const int IDLE_X = 0;
-	const int WALK_START_X = 1;
-	const int WALK_END_X = 4;
+	const short IDLE_X = 0;
+	const short WALK_START_X = 1;
+	const short WALK_END_X = 4;
 	//y divisions
-	const int DOWN_Y = 0;
-	const int DL_Y = 1;
-	const int DR_Y = 2;
-	const int UP_Y = 3;
-	const int UL_Y = 4;
-	const int UR_Y = 5;
+	const short DOWN_Y = 0;
+	const short DL_Y = 1;
+	const short DR_Y = 2;
+	const short UP_Y = 3;
+	const short UL_Y = 4;
+	const short UR_Y = 5;
 	//speed variables
 	float xAnim, yAnim;
 	float xAnimSpeed = 4;
 	float yAnimSpeed = 1;
-		//slime
-	//still nothing
+	///slime
+	//x division
+	const short SLIME_IDLE = 0;
+	const short SLIME_DMG = 1;
+	//y division
+	const short SLIME_ANIM_Y = 0;
+	//anim current values
+	short slimeXAnim;
+	short slimeYAnim;
+	//timer values
+	float damagedTimer = 1;
+	double timer_dmg;
 
 	//INPUT VARIABLES
 	const float GRAVITY = 0.1;
@@ -52,16 +64,24 @@ private:
 	//INPUT FUNCTION
 	float GetAxis(int PosKey, int NegKey, float Gravity, float x);
 	//player speed
-	float xSpeed = 1;
-	float ySpeed = 1;
+	float playerSpd = 1;
+	//float ySpeed = 1;
+	//player direction of moovement
+	glm::vec3 playerDir;
 	
+	//player dmg area
+	float damageRadius = 0.01;
+	float damageDistance = 0.5;
+	glm::vec3 dmgCoords;
+
 	//slime
 	float slimeSpeed = 0.8;
 	float slimeChangingSpeed;
 	float speedDecrease = 0.75;
 	double slimeLaunchTimer = 0.5;
 	double timer = 0;
-	glm::vec3 playerDir;
+	glm::vec3 slimeToPlayerDir;
+	float slimeHitboxRadius = 0.01;
 
 
 };

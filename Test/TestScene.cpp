@@ -24,7 +24,7 @@ void TestScene::Init()
 	slime->set_texture("slime");
 	//numero di righe e colonne per ogni sprite
 	player->set_texture_row(glm::vec2(ROW, COLUMNS));
-	slime->set_texture_row(glm::vec2(1, 1));//per ora c'è solo 1 riga e 1 colonna
+	slime->set_texture_row(glm::vec2(2, 1));//per ora c'è solo 1 riga e 1 colonna
 	//aggiunge a scena
 	addObject(player);
 	addObject(slime);
@@ -36,22 +36,34 @@ void TestScene::Init()
 
 	//slime setup
 	slimeChangingSpeed = slimeSpeed;
+	//slime anim setup
+	slimeXAnim = SLIME_IDLE;
+	slimeYAnim = SLIME_ANIM_Y;
 }
 void TestScene::Update(double dt)
 {
 	
 	///PLAYER///
 
-	//player movement
+	//player Pos
 	glm::vec3 playerPos = player->get_world_position();
+
+	//slime pos
+	glm::vec3 slimePos = slime->get_world_position();
 	
+	//player movement
 	currentCenterAxisX = GetAxis(GLFW_KEY_D, GLFW_KEY_A, GRAVITY, currentCenterAxisX);
 	currentCenterAxisY = GetAxis(GLFW_KEY_W, GLFW_KEY_S, GRAVITY, currentCenterAxisY);
 
-	//std::cout << currentCenterAxisX << std::endl;
+	playerDir = glm::vec3(currentCenterAxisX, currentCenterAxisY, 0);
+	if (glm::length(playerDir) != 0) {
+		playerDir = glm::normalize(playerDir);
+	}
 
-	playerPos.x += currentCenterAxisX * xSpeed * dt;
-	playerPos.y += currentCenterAxisY * ySpeed * dt;
+	playerPos = playerPos + playerDir * playerSpd * (float)dt;
+
+	//playerPos.x += currentCenterAxisX * xSpeed * dt;
+	//playerPos.y += currentCenterAxisY * ySpeed * dt;
 
 	//animazione sulla stessa riga
 	if (currentCenterAxisX == 0 && currentCenterAxisY == 0) {
@@ -86,6 +98,38 @@ void TestScene::Update(double dt)
 		}
 	}
 
+	//player attack
+	
+	if (Window::isKeyDown(GLFW_KEY_SPACE)) {
+		//where damage is applied
+		dmgCoords = playerDir * damageDistance;
+		
+		//distance from 2 points = Pitagora's theorem
+		//non serve valore assoluto perché al quadrato è sempre positivo
+		float xDist = slimePos.x - dmgCoords.x;
+		float yDist = slimePos.y - dmgCoords.y;
+		float pitTheorem = glm::sqrt(xDist * xDist + yDist * yDist);
+
+		std::cout << pitTheorem << std::endl;
+
+		//if distance from enemy + hitboxRadius to this point <= damageRadius
+		//then enemy takes damage
+		if (pitTheorem < damageRadius + slimeHitboxRadius) {
+			//colora di rosso
+			slimeXAnim = SLIME_DMG;
+			//avvia timer
+			timer_dmg = damagedTimer;
+		}
+
+	}
+
+	//update timer colore slime
+	timer_dmg -= dt;
+	if (timer_dmg <= 0) {
+		slimeXAnim = SLIME_IDLE;
+	}
+
+	
 	//update position
 	player->set_local_position(playerPos);
 	//animazione
@@ -93,8 +137,6 @@ void TestScene::Update(double dt)
 
 
 	///SLIME///
-	//posizione slime
-	glm::vec3 slimePos = slime->get_world_position();
 
 	//constantemente diminuisce la velocità dello slime
 	slimeChangingSpeed -= speedDecrease * dt;
@@ -109,29 +151,32 @@ void TestScene::Update(double dt)
 		timer -= dt;
 	}
 
-	std::cout << "slimeChangingSpeed: " << slimeChangingSpeed << " timer: " << timer <<
-		"speedDecrease: " << speedDecrease << std::endl;
+	//std::cout << "slimeChangingSpeed: " << slimeChangingSpeed << " timer: " << timer <<
+	//	"speedDecrease: " << speedDecrease << std::endl;
 
 	//quando timer è sotto a 0 fa uno scatto, quindi resetta la velocità dello slime
 	if (timer <= 0) {
 
 		//direzione da slime a giocatore
-		playerDir = playerPos - slimePos;
+		slimeToPlayerDir = playerPos - slimePos;
 
 		//glm::project()
 		//ignora asse z
-		playerDir.z = 0;
+		slimeToPlayerDir.z = 0;
 		//proiezione sul piano con modulo 1 (se tutti diversi da 0)
-		if (glm::length(playerDir) != 0)
-			playerDir = glm::normalize(playerDir);
+		if (glm::length(slimeToPlayerDir) != 0)
+			slimeToPlayerDir = glm::normalize(slimeToPlayerDir);
 
 
 		slimeChangingSpeed = slimeSpeed;
 	}
 
 	//aggiornamento posizione slime
-	glm::vec3 newSlimePos = slimePos + playerDir * slimeChangingSpeed * (float)dt;
+	glm::vec3 newSlimePos = slimePos + slimeToPlayerDir * slimeChangingSpeed * (float)dt;
 	slime->set_local_position(newSlimePos);
+
+	//aggiornamento animazione slime
+	slime->set_texture_offset(glm::vec2(slimeXAnim, slimeYAnim));
 
 
 }
