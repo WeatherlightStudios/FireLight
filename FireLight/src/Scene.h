@@ -16,25 +16,34 @@ public:
 	~Scene();
 
 
-	void Init_Scene();
-	void Update_Scene(double dt);
-	void Render();
-	void Close_Scene();
+	void init_scene();
+	void update_scene(double dt);
+	void render();
+	void close_scene();
 
 	virtual void Init(){}
+	//virtual void CameraUpdate(Camera *camera) {}
 	virtual void Update(double dt){}
 	virtual void Close(){}
 
-	void addObject(SceneNode *node);
-	void addObjectTo(SceneNode *parentNode, SceneNode *node);
-	void removeObject(SceneNode *node);
-	void removeObjectFrom(SceneNode *parentNode, SceneNode *node);
+	void add_object(SceneNode *node);
+	//void add_objectTo(SceneNode *parentNode, SceneNode *node);
+	void remove_object(SceneNode *node);
+	//void remove_objectFrom(SceneNode *parentNode, SceneNode *node);
 
-	SceneNode* get_Object(string name);
+	void init_objects();
+	void init_render();
+	void check_renderable_node(SceneNode* node);
+
+
+	SceneNode* get_object(string name);
 
 private:
+	bool isInizialized;
 
-	SceneNode *m_root;
+	SimpleRenderSystem m_render_system;
+	std::vector<SceneNode*> m_graph_objects;
+	//Camera *m_camera;
 };
 
 #endif

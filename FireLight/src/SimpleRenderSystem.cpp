@@ -3,7 +3,6 @@
 
 Camera* SimpleRenderSystem::m_camera;
 
-std::vector<Renderable*> SimpleRenderSystem::m_renderables;
 
 SimpleRenderSystem::SimpleRenderSystem()
 {
@@ -13,7 +12,6 @@ SimpleRenderSystem::SimpleRenderSystem()
 
 void SimpleRenderSystem::Add(Renderable *rend)
 {
-	//m_renderables = renderables;
 	m_renderables.push_back(rend);
 }
 void SimpleRenderSystem::remove(Renderable *rend)
@@ -27,8 +25,6 @@ void SimpleRenderSystem::Render()
 	{
 		m_renderables[i]->Render(*m_camera);
 	}
-
-	//std::cout << m_renderables.size() << std::endl;
 }
 
 void SimpleRenderSystem::set_Camera(Camera *camera)

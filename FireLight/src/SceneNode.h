@@ -10,13 +10,11 @@
 #include <map>
 #include <vector>
 
-class Renderable;
-
 class SceneNode
 {
 public:
 
-
+	
 	SceneNode();
 	~SceneNode();
 	
@@ -40,6 +38,8 @@ public:
 	void update_this(double dt);
 	void update_children(double dt);
 
+	size_t get_children_size() { return m_childrens.size(); }
+	SceneNode *getChildren(size_t i) { return m_childrens[i]; }
 
 	void set_local_position(glm::vec3 pos);
 	void set_local_scale(glm::vec3 scale);
@@ -69,7 +69,6 @@ private:
 
 
 
-	static SceneNode* m_root;
 	SceneNode* m_parent;
 	std::vector<SceneNode*> m_childrens;
 	static std::map<std::string ,SceneNode*> m_nodes;

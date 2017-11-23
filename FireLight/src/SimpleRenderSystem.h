@@ -12,9 +12,9 @@ class SimpleRenderSystem
 public:
 	SimpleRenderSystem();
 
-	static void Add(Renderable *rend);
-	static void remove(Renderable *rend);
-	static void Render();
+	void Add(Renderable *rend);
+	void remove(Renderable *rend);
+	void Render();
 
 	static void set_Camera(Camera *camera);
 	static Camera* m_camera;
@@ -22,7 +22,7 @@ public:
 	~SimpleRenderSystem();
 private:
 
-	static std::vector<Renderable*> m_renderables;
+	 std::vector<Renderable*> m_renderables;
 
 };
 #endif SIMPLERENDERSYSTEM_H

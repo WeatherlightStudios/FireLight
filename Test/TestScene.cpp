@@ -26,8 +26,8 @@ void TestScene::Init()
 	player->set_texture_row(glm::vec2(ROW, COLUMNS));
 	slime->set_texture_row(glm::vec2(1, 1));//per ora c'è solo 1 riga e 1 colonna
 	//aggiunge a scena
-	addObject(player);
-	addObject(slime);
+	add_object(player);
+	add_object(slime);
 
 	player->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
 	slime->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
@@ -109,8 +109,8 @@ void TestScene::Update(double dt)
 		timer -= dt;
 	}
 
-	std::cout << "slimeChangingSpeed: " << slimeChangingSpeed << " timer: " << timer <<
-		"speedDecrease: " << speedDecrease << std::endl;
+	/*std::cout << "slimeChangingSpeed: " << slimeChangingSpeed << " timer: " << timer <<
+		"speedDecrease: " << speedDecrease << std::endl;*/
 
 	//quando timer è sotto a 0 fa uno scatto, quindi resetta la velocità dello slime
 	if (timer <= 0) {
@@ -135,6 +135,7 @@ void TestScene::Update(double dt)
 
 
 }
+
 
 ///INPUT SYSTEM///
 float TestScene::GetAxis(int PosKey, int NegKey, float Gravity, float x) {

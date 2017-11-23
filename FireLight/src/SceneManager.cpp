@@ -16,20 +16,21 @@ void SceneManager::add_scene(Scene* scene, std::string name)
 void SceneManager::set_current_scene(std::string name)
 {
 	m_current_scene = m_scenes[name];
-	m_current_scene->Init();
+	m_current_scene->init_scene();
 }
 
 void SceneManager::init_current_scene()
 {
-	m_current_scene->Init_Scene();
+	m_current_scene->init_scene();
 }
 void SceneManager::update_current_scene(double dt)
 {
-	m_current_scene->Update_Scene(dt);
+	m_current_scene->update_scene(dt);
+
 }
 void SceneManager::render_current_scene()
 {
-	m_current_scene->Render();
+	m_current_scene->render();
 }
 void SceneManager::close_current_scene()
 {
