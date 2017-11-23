@@ -9,7 +9,7 @@ Game::Game() : FL::App("Hello", 800,600), m_camera(glm::vec3(0,0,-3), glm::vec3(
 	obj2 = new SceneNode();
 	obj1->set_local_position(glm::vec3(1, 0, 0));
 	obj2->set_local_position(glm::vec3(1, 0, 0));*/
-	SimpleRenderSystem::set_Camera(&m_camera);
+	//SimpleRenderSystem::set_Camera(&m_camera);
 }
 
 void Game::Init()

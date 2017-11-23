@@ -6,11 +6,12 @@ TestScene::TestScene()
 {
 	player = new Renderable;
 	slime = new Renderable;
+	m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
 }
 
 void TestScene::Init()
 {
-
+	SimpleRenderSystem::set_Camera(m_camera);
 
 	//gl3wInit();
 	//ResourceManager::LoadTexture("sprite.png", true, "sprite");
@@ -42,6 +43,8 @@ void TestScene::Init()
 }
 void TestScene::Update(double dt)
 {
+
+	//m_camera->update();
 	
 	///PLAYER///
 

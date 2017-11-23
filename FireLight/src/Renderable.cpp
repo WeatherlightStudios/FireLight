@@ -69,7 +69,7 @@ void Renderable::set_texture_row(glm::vec2 rows)
 
 void Renderable::Render(Camera cam)
 {
-	model = glm::scale(glm::translate(glm::mat4(1.0f), this->get_world_position()), this->get_local_scale());
+	model = glm::scale(glm::translate(glm::mat4(1.0f), this->get_world_position()), this->get_world_scale());
 	//model = glm::scale(glm::translate(glm::mat4(1.0f), this->get_world_position()), this->get_world_scale());
 	//model = glm::translate(glm::mat4(1.0f), m_position);
 

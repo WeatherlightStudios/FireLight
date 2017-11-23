@@ -84,6 +84,7 @@ private:
 	glm::vec3 slimeToPlayerDir;
 	float slimeHitboxRadius = 0.01;
 
+	Camera *m_camera;
 
 };
 

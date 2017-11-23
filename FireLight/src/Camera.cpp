@@ -25,8 +25,6 @@ void Camera::update()
 	m_right = glm::normalize(glm::cross(m_front, m_worldUp));
 	m_up	= glm::normalize(glm::cross(m_right, m_front));
 
-	std::cout << "camera Update" << std::endl;
-
 }
 
 void Camera::translate(glm::vec3 trans)
