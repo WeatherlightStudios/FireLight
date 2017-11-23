@@ -24,10 +24,10 @@ void TestScene::Init()
 	slime->set_texture("slime");
 	//numero di righe e colonne per ogni sprite
 	player->set_texture_row(glm::vec2(ROW, COLUMNS));
-	slime->set_texture_row(glm::vec2(2, 1));//per ora c'è solo 1 riga e 1 colonna
+	slime->set_texture_row(glm::vec2(2, 1));//per ora c'ï¿½ solo 1 riga e 1 colonna
 	//aggiunge a scena
-	addObject(player);
-	addObject(slime);
+	add_object(player);
+	add_object(slime);
 
 	player->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
 	slime->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
@@ -105,7 +105,7 @@ void TestScene::Update(double dt)
 		dmgCoords = playerDir * damageDistance;
 		
 		//distance from 2 points = Pitagora's theorem
-		//non serve valore assoluto perché al quadrato è sempre positivo
+		//non serve valore assoluto perchï¿½ al quadrato ï¿½ sempre positivo
 		float xDist = slimePos.x - dmgCoords.x;
 		float yDist = slimePos.y - dmgCoords.y;
 		float pitTheorem = glm::sqrt(xDist * xDist + yDist * yDist);
@@ -138,10 +138,10 @@ void TestScene::Update(double dt)
 
 	///SLIME///
 
-	//constantemente diminuisce la velocità dello slime
+	//constantemente diminuisce la velocitï¿½ dello slime
 	slimeChangingSpeed -= speedDecrease * dt;
 
-	//se la velocità dello slime è sotto lo zero fa partire il timer e blocca il valore
+	//se la velocitï¿½ dello slime ï¿½ sotto lo zero fa partire il timer e blocca il valore
 	//altrimenti resetta timer
 	if (slimeChangingSpeed > 0) {
 		timer = slimeLaunchTimer;
@@ -154,7 +154,7 @@ void TestScene::Update(double dt)
 	//std::cout << "slimeChangingSpeed: " << slimeChangingSpeed << " timer: " << timer <<
 	//	"speedDecrease: " << speedDecrease << std::endl;
 
-	//quando timer è sotto a 0 fa uno scatto, quindi resetta la velocità dello slime
+	//quando timer ï¿½ sotto a 0 fa uno scatto, quindi resetta la velocitï¿½ dello slime
 	if (timer <= 0) {
 
 		//direzione da slime a giocatore
@@ -180,6 +180,7 @@ void TestScene::Update(double dt)
 
 
 }
+
 
 ///INPUT SYSTEM///
 float TestScene::GetAxis(int PosKey, int NegKey, float Gravity, float x) {

@@ -1,5 +1,5 @@
 #include "Camera.h"
-
+#include <iostream>
 
 
 Camera::Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = -90.f, float pitch = 0.f, projType projtype = projType::PROSPECTIVE)
@@ -24,6 +24,9 @@ void Camera::update()
 	m_front = glm::normalize(front);
 	m_right = glm::normalize(glm::cross(m_front, m_worldUp));
 	m_up	= glm::normalize(glm::cross(m_right, m_front));
+
+	std::cout << "camera Update" << std::endl;
+
 }
 
 void Camera::translate(glm::vec3 trans)

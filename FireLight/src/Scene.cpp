@@ -4,52 +4,88 @@
 
 Scene::Scene()
 {
-	m_root = new SceneNode();
+	isInizialized = false;
+	//m_camera = new Camera(glm::vec3(0.0f, 0.0f, -3.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.f, 0.f, projType::ORTHO);
 }
 
 
-void Scene::Init_Scene()
+void Scene::init_scene()
 {
 
 	Init();
+	init_objects();
+	//m_render_system.set_Camera(m_camera);
+	init_render();
+
+	isInizialized = true;
+	std::cout << m_graph_objects.size() << std::endl;
 }
-void Scene::Update_Scene(double dt)
+void Scene::update_scene(double dt)
 {
+	//m_camera->update();
+	//CameraUpdate(m_camera);
 	Update(dt);
 }
 
-void Scene::Render()
+void Scene::render()
 {
-	SimpleRenderSystem::Render();
+	m_render_system.Render();
 }
 
-void Scene::Close_Scene()
+void Scene::init_objects()
+{
+	for (int i = 0; i < m_graph_objects.size(); i++)
+	{
+		m_graph_objects[i]->init_this();
+	}
+}
+
+void Scene::init_render()
+{
+	for (int i = 0; i < m_graph_objects.size(); i++)
+	{
+		check_renderable_node(m_graph_objects[i]);
+	}
+	//m_render_system.set_Camera(m_camera);
+}
+
+void Scene::check_renderable_node(SceneNode* node)
+{
+	if (static_cast<const Renderable*>(node) == nullptr)
+	{
+		for (int i = 0; i < node->get_children_size(); i++)
+		{
+			check_renderable_node(node->getChildren(i));
+		}
+	}
+	else
+	{
+		m_render_system.Add((Renderable*)node);
+	}
+}
+
+void Scene::close_scene()
 {
 	Close();
 }
 
-
-
-void Scene::addObject(SceneNode *node)
+void Scene::add_object(SceneNode *node)
 {
-	node->init_this();
-	m_root->atuch_children(node);
+	m_graph_objects.push_back(node);
+	if (isInizialized)
+	{
+		node->init_this();
+	}
 }
-void Scene::addObjectTo(SceneNode *parentNode, SceneNode *node)
-{
 
-}
-void Scene::removeObject(SceneNode *node)
+void Scene::remove_object(SceneNode *node)
 {
 
 }
-void Scene::removeObjectFrom(SceneNode *parentNode, SceneNode *node)
-{
-}
 
-SceneNode* Scene::get_Object(string name)
+SceneNode* Scene::get_object(string name)
 {
-	return m_root->getChildren(name);
+	return nullptr; //m_root->getChildren(name);
 }
 
 

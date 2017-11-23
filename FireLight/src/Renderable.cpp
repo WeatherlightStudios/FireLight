@@ -2,6 +2,7 @@
 #include <GL\gl3w.h> 
 #include "Utility\ResourceManager.h"
 #include "SimpleRenderSystem.h"
+#include <iostream>
 
 Renderable::Renderable()
 {
@@ -49,9 +50,6 @@ void Renderable::init()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glBindVertexArray(0);
-
-
-	SimpleRenderSystem::Add(this);
 }
 
 void Renderable::set_texture(std::string texture)

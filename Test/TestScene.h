@@ -8,6 +8,7 @@ public:
 	TestScene();
 	void Init();
 	void Update(double dt);
+	//void CameraUpdate(Camera *camera);
 	void Close();
 	~TestScene();
 private:
