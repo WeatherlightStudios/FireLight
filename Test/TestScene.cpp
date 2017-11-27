@@ -1,5 +1,7 @@
 #include "TestScene.h"
 #include <iostream>
+#include <glm\gtx\vector_angle.inl>
+#include <glm\gtc\constants.hpp>
 
 TestScene::TestScene()
 {
@@ -49,6 +51,7 @@ void TestScene::Init()
 	runner->set_texture_row(glm::vec2(RUNNER_ROW, RUNNER_COLUMNS));
 	add_object(runner);
 	runner->set_local_scale(runnerScale);
+
 
 
 }
@@ -207,22 +210,78 @@ void TestScene::Update(double dt)
 	//posizione runner
 	glm::vec3 runnerPos = runner->get_local_position();
 
-	//vettore da runner a giocatore
-	glm::vec3 runnerToPlayerVec = playerPos - runnerPos;
+	glm::vec3 objectiveDir = glm::vec3(0, 0, 0);
 
-	//normalyzation
-	runnerToPlayerVec.z = 0;
-	if(glm::length(runnerToPlayerVec) != 0)
-		runnerToPlayerVec = glm::normalize(runnerToPlayerVec);
 
-	if (glm::distance(runnerPos, playerPos) < radiusFromPlayer){
+
+	//i due if sono una threshold, quindi il cerchio è diventato un toroide
+	//questo imposta l'obbiettivo principale, entrare nel toroide
+	if (glm::distance(runnerPos, playerPos) < radiusFromPlayer - radiusThreshold){
 		//enemy è dentro cerchio, quindi allontanati
 		//quindi vettore = da player a enemy
 		//quindi inverti il vettore
-		runnerToPlayerVec = -runnerToPlayerVec;
+		objectiveDir = runnerPos - playerPos;
+	}
+	else if (glm::distance(runnerPos, playerPos) > radiusFromPlayer + radiusThreshold) {
+		//se enemy è fuori cerchio avvicinati
+		//quindi objectivDir è vettore da runner a player
+		objectiveDir = playerPos - runnerPos;
+	}
+	//ora bisogna guardare se si è dentro il toroide e in quel caso correre in senso orario
+	if( glm::distance(runnerPos, playerPos) > radiusFromPlayer - radiusThreshold &&
+		glm::distance(runnerPos, playerPos) < radiusFromPlayer + radiusThreshold) {
+		/*
+		in questo caso si è dentro il toroide e bisogna correre in tondo
+		per "correre in tondo" si intende:
+		1) continuare a muoversi dritto
+		2) curvare in modo da restare dentro il cerchio
+		restare dentro il cerchio vuol dire:
+		1) guardare dove si stà andando
+		2) correggere la traiettoia in modo che objectiveDir punti verso la circonferenza
+
+
+		centro = posizione giocatore
+		offset = ragio * vettore con sin e cos
+		vettore = sin(angle), cos(angle),0
+		angle = angolo corrente + un valore fisso
+		angolo corrente = angolo fra asse x e vettore direzione da player a runner
+
+		infine posizione dove andare = centro + offset
+		*/
+
+		glm::vec3 circleCenter = playerPos;
+
+		//vettore da player a runner + normalizzazione
+		glm::vec3 playerToRunnerDir = runnerPos - playerPos;
+		playerToRunnerDir = glm::normalize(playerToRunnerDir);
+		//calcolo angolo fra asse x e giocatore
+		//se y runner < y player angolo = 2pi - calcolo
+		float currentAngle = 0;
+		if(runnerPos.y < playerPos.y)
+			currentAngle = glm::two_pi<float>() - glm::angle(glm::vec3(1, 0, 0), playerToRunnerDir);
+		else
+			currentAngle = glm::angle(glm::vec3(1, 0, 0), playerToRunnerDir);
+		//aggiungi un po' di angolo
+		float newAngle = currentAngle + angleIncrement;
+		//calcola quanto andare avanti nel cerchio grazie all'angolo
+		glm::vec3 normalyzedPos = glm::vec3(glm::cos(newAngle), glm::sin(newAngle), 0);
+		//aumenta lunghezza vettore del raggio attorno al player
+		glm::vec3 offset = radiusFromPlayer * normalyzedPos;
+		//somma al vettore posizione cerchio per centrarlo, quel punto è dove deve andare il runner
+		glm::vec3 whereToGo = circleCenter + offset;
+		//obbiettivo = modulo vettore tra runner e dove andare
+		objectiveDir = glm::normalize(whereToGo - runnerPos);
+
 	}
 
-	glm::vec3 newRunnerPos = runnerPos + runnerToPlayerVec * runnerSpeed * (float)dt;
+
+	//normalyzation
+	objectiveDir.z = 0;
+	if(glm::length(objectiveDir) != 0)
+		objectiveDir = glm::normalize(objectiveDir);
+
+
+	glm::vec3 newRunnerPos = runnerPos + objectiveDir * runnerSpeed * (float)dt;
 	runner->set_local_position(newRunnerPos);
 
 	
