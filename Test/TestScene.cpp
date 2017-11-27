@@ -1,11 +1,12 @@
 #include "TestScene.h"
 #include <iostream>
 
-
 TestScene::TestScene()
 {
 	player = new Renderable;
 	slime = new Renderable;
+	//m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
+	runner = new Renderable;
 	//m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
 }
 
@@ -28,10 +29,10 @@ void TestScene::Init()
 	slime->set_texture_row(glm::vec2(2, 1));//per ora c'� solo 1 riga e 1 colonna
 	//aggiunge a scena
 	add_object(player);
-	add_object(slime);
+	//add_object(slime);
 
 	player->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
-	slime->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
+	//slime->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
 
 	//slime->set_local_position(glm::vec3(0.5, 0.5, 0));
 
@@ -40,6 +41,16 @@ void TestScene::Init()
 	//slime anim setup
 	slimeXAnim = SLIME_IDLE;
 	slimeYAnim = SLIME_ANIM_Y;
+
+
+	///RUNNER SETUP
+	ResourceManager::LoadTexture("Sprites/PixelEnemy_PlaceHolder.png", true, "runner");
+	runner->set_texture("runner");
+	runner->set_texture_row(glm::vec2(RUNNER_ROW, RUNNER_COLUMNS));
+	add_object(runner);
+	runner->set_local_scale(runnerScale);
+
+
 }
 void TestScene::Update(double dt)
 {
@@ -113,7 +124,7 @@ void TestScene::Update(double dt)
 		float yDist = slimePos.y - dmgCoords.y;
 		float pitTheorem = glm::sqrt(xDist * xDist + yDist * yDist);
 
-		std::cout << pitTheorem << std::endl;
+		//std::cout << pitTheorem << std::endl;
 
 		//if distance from enemy + hitboxRadius to this point <= damageRadius
 		//then enemy takes damage
@@ -139,6 +150,7 @@ void TestScene::Update(double dt)
 	player->set_texture_offset(glm::vec2(glm::round(xAnim),glm::round(yAnim)));
 
 
+	/*
 	///SLIME///
 
 	//constantemente diminuisce la velocit� dello slime
@@ -181,13 +193,46 @@ void TestScene::Update(double dt)
 	//aggiornamento animazione slime
 	slime->set_texture_offset(glm::vec2(slimeXAnim, slimeYAnim));
 
+	*/
+
+
+
+	///RUNNER
+
+	//per vedere se è dentro o fuori dal cerchio basta vedere la distanza dal giocatore
+	//se questa è minore di radiusFromPlayer allora runner è troppo vicino, sennò troppo lontano
+	//per posizionarsi sul cerchio deve fare una retta da player a runner e spostarsi lungo
+	//la retta verso o via dal player
+
+	//posizione runner
+	glm::vec3 runnerPos = runner->get_local_position();
+
+	//vettore da runner a giocatore
+	glm::vec3 runnerToPlayerVec = playerPos - runnerPos;
+
+	//normalyzation
+	runnerToPlayerVec.z = 0;
+	if(glm::length(runnerToPlayerVec) != 0)
+		runnerToPlayerVec = glm::normalize(runnerToPlayerVec);
+
+	if (glm::distance(runnerPos, playerPos) < radiusFromPlayer){
+		//enemy è dentro cerchio, quindi allontanati
+		//quindi vettore = da player a enemy
+		//quindi inverti il vettore
+		runnerToPlayerVec = -runnerToPlayerVec;
+	}
+
+	glm::vec3 newRunnerPos = runnerPos + runnerToPlayerVec * runnerSpeed * (float)dt;
+	runner->set_local_position(newRunnerPos);
+
+	
 
 }
 
 
 void TestScene::Debug()
 {
-	ImGui::Text("io");
+	//ImGui::Text("io");
 }
 
 

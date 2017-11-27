@@ -87,5 +87,16 @@ private:
 
 	//Camera *m_camera;
 
+
+	///RUNNER
+	Renderable *runner;
+
+	const short RUNNER_ROW = 1;
+	const short RUNNER_COLUMNS = 1;
+	glm::vec3 runnerScale = glm::vec3(0.2, 0.25, 0.25);
+
+	float radiusFromPlayer = 1;
+	float runnerSpeed = 1;
+
 };
 
