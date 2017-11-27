@@ -16,13 +16,13 @@ public:
 	void remove(Renderable *rend);
 	void Render();
 
-	static void set_Camera(Camera *camera);
-	static Camera* m_camera;
+	void set_Camera(Camera *camera);
 
 	~SimpleRenderSystem();
 private:
 
-	 std::vector<Renderable*> m_renderables;
+	Camera* m_camera;
+	std::vector<Renderable*> m_renderables;
 
 };
 #endif SIMPLERENDERSYSTEM_H

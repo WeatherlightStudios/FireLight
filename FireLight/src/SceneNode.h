@@ -50,7 +50,7 @@ public:
 	glm::vec3 get_world_position() { return m_parent != nullptr ? m_parent->get_world_position() + m_local_position : m_local_position; }
 
 	glm::vec3 get_local_scale() { return m_local_scale; }
-	glm::vec3 get_world_scale() { return m_parent != nullptr ? m_parent->get_world_scale() + m_local_scale : m_local_scale; }
+	glm::vec3 get_world_scale() { return m_parent != nullptr ? m_parent->get_world_scale() * m_local_scale : m_local_scale; }
 
 	float get_local_rotation() { return m_local_rotation; }
 	//TODO: Da sistemare!

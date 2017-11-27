@@ -32,6 +32,12 @@ void SceneManager::render_current_scene()
 {
 	m_current_scene->render();
 }
+
+void SceneManager::debug_current_scene()
+{
+	m_current_scene->Debug();
+}
+
 void SceneManager::close_current_scene()
 {
 	m_current_scene->Close();

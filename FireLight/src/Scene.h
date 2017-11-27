@@ -22,8 +22,9 @@ public:
 	void close_scene();
 
 	virtual void Init(){}
-	//virtual void CameraUpdate(Camera *camera) {}
+	virtual void CameraUpdate(Camera *camera) {}
 	virtual void Update(double dt){}
+	virtual void Debug(){}
 	virtual void Close(){}
 
 	void add_object(SceneNode *node);
@@ -41,9 +42,10 @@ public:
 private:
 	bool isInizialized;
 
+
 	SimpleRenderSystem m_render_system;
 	std::vector<SceneNode*> m_graph_objects;
-	//Camera *m_camera;
+	Camera *m_camera;
 };
 
 #endif

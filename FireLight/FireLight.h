@@ -10,3 +10,5 @@
 #include "src\SceneNode.h"
 #include "src\Scene.h"
 #include "src\SceneManager.h"
+#include "src\Debug.h"
+#include "imgui\imgui.h"

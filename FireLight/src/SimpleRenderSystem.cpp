@@ -1,7 +1,7 @@
 #include "SimpleRenderSystem.h"
 #include <iostream>
 
-Camera* SimpleRenderSystem::m_camera;
+//Camera* SimpleRenderSystem::m_camera;
 
 
 SimpleRenderSystem::SimpleRenderSystem()

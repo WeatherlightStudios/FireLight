@@ -8,7 +8,8 @@ public:
 	TestScene();
 	void Init();
 	void Update(double dt);
-	//void CameraUpdate(Camera *camera);
+	void CameraUpdate(Camera *camera);
+	void Debug();
 	void Close();
 	~TestScene();
 private:
@@ -84,7 +85,7 @@ private:
 	glm::vec3 slimeToPlayerDir;
 	float slimeHitboxRadius = 0.01;
 
-	Camera *m_camera;
+	//Camera *m_camera;
 
 };
 

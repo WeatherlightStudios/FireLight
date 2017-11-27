@@ -5,7 +5,7 @@
 Scene::Scene()
 {
 	isInizialized = false;
-	//m_camera = new Camera(glm::vec3(0.0f, 0.0f, -3.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.f, 0.f, projType::ORTHO);
+	m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
 }
 
 
@@ -14,7 +14,7 @@ void Scene::init_scene()
 
 	Init();
 	init_objects();
-	//m_render_system.set_Camera(m_camera);
+	m_render_system.set_Camera(m_camera);
 	init_render();
 
 	isInizialized = true;
@@ -22,8 +22,8 @@ void Scene::init_scene()
 }
 void Scene::update_scene(double dt)
 {
-	//m_camera->update();
-	//CameraUpdate(m_camera);
+	m_camera->update();
+	CameraUpdate(m_camera);
 	Update(dt);
 }
 
@@ -46,7 +46,6 @@ void Scene::init_render()
 	{
 		check_renderable_node(m_graph_objects[i]);
 	}
-	//m_render_system.set_Camera(m_camera);
 }
 
 void Scene::check_renderable_node(SceneNode* node)

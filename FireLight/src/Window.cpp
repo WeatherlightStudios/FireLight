@@ -1,5 +1,8 @@
 #include "Window.h"
 #include <iostream>
+#include "../imgui/imgui_impl_glfw_gl3.h"
+#include "../imgui/imgui.h"
+
 
 int Window::m_width = 0;
 int Window::m_height = 0;
@@ -35,6 +38,7 @@ void Window::Init()
 	glfwSetMouseButtonCallback(m_window, mouse_button_callback);
 	glfwSetCursorPosCallback(m_window, cursor_position_callback);
 	glfwSetWindowSizeCallback(m_window, window_size_callback);
+	ImGui_ImplGlfwGL3_Init(m_window, false);
 	//glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 

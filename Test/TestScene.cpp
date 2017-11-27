@@ -6,12 +6,12 @@ TestScene::TestScene()
 {
 	player = new Renderable;
 	slime = new Renderable;
-	m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
+	//m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
 }
 
 void TestScene::Init()
 {
-	SimpleRenderSystem::set_Camera(m_camera);
+	//SimpleRenderSystem::set_Camera(m_camera);
 
 	//gl3wInit();
 	//ResourceManager::LoadTexture("sprite.png", true, "sprite");
@@ -182,6 +182,36 @@ void TestScene::Update(double dt)
 	slime->set_texture_offset(glm::vec2(slimeXAnim, slimeYAnim));
 
 
+}
+
+
+void TestScene::Debug()
+{
+	ImGui::Text("io");
+}
+
+
+void TestScene::CameraUpdate(Camera *camera)
+{
+	if (Window::isKeyDown(GLFW_KEY_UP))
+	{
+		camera->translate(glm::vec3(0,1 * 0.16f,0));
+	}
+
+	if (Window::isKeyDown(GLFW_KEY_DOWN))
+	{
+		camera->translate(glm::vec3(0, -1 * 0.16f, 0));
+	}
+
+	if (Window::isKeyDown(GLFW_KEY_LEFT))
+	{
+		camera->translate(glm::vec3(-1 * 0.16f, 0, 0));
+	}
+
+	if (Window::isKeyDown(GLFW_KEY_RIGHT))
+	{
+		camera->translate(glm::vec3(1 * 0.16f, 0, 0));
+	}
 }
 
 

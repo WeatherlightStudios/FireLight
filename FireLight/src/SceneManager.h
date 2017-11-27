@@ -16,6 +16,7 @@ public:
 	static void set_current_scene(std::string name);
 	static void init_current_scene();
 	static void update_current_scene(double dt);
+	static void debug_current_scene();
 	static void render_current_scene();
 	static void close_current_scene();
 

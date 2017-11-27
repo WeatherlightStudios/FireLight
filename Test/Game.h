@@ -11,7 +11,7 @@ public:
 	void Init();
 	~Game();
 private:
-	Camera m_camera;
+	//Camera m_camera;
 
 	Renderable m_render;
 

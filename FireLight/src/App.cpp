@@ -2,13 +2,16 @@
 #include <iostream>
 #include "Utility\ResourceManager.h"
 #include "SceneManager.h"
+#include "../imgui/imgui_impl_glfw_gl3.h"
+#include "../imgui/imgui.h"
+#include "Debug.h"
 
 namespace FL
 {
 	App::App(const std::string name, int Width, int Height)
 	{
 		m_title = name;
-		m_width = Width;
+		m_width = Width; 
 		m_height = Height;
 		m_window = new Window(m_width, m_height, m_title.c_str());
 	}
@@ -48,6 +51,7 @@ namespace FL
 
 			//updateting windows stuff
 			m_window->UpdateInput();
+			ImGui_ImplGlfwGL3_NewFrame();
 
 			//FixedFrame Update game
 			while(lag >= dt)
@@ -57,8 +61,10 @@ namespace FL
 				lag -= dt;
 			}
 
+			SceneManager::debug_current_scene();
 			//render game
 			render();
+			ImGui::Render();
 		
 			m_window->Update();
 
@@ -76,6 +82,7 @@ namespace FL
 	{
 		delete(m_window);
 		glfwTerminate();
+		ImGui_ImplGlfwGL3_Shutdown();
 	}
 
 	App::~App()
