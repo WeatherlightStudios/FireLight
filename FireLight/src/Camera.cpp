@@ -58,6 +58,10 @@ glm::vec3 Camera::get_rightVec()
 	return m_right;
 }
 
+glm::vec3 Camera::get_cameraPos() {
+	return m_position;
+}
+
 glm::mat4 Camera::get_viewMatrix()
 {
 	return glm::lookAt(m_position, m_position + m_front, m_up);

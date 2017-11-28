@@ -1,5 +1,6 @@
 #include "TestScene.h"
 #include <iostream>
+#include <string>
 #include <glm\gtx\vector_angle.inl>
 #include <glm\gtc\constants.hpp>
 
@@ -31,12 +32,12 @@ void TestScene::Init()
 	slime->set_texture_row(glm::vec2(2, 1));//per ora c'� solo 1 riga e 1 colonna
 	//aggiunge a scena
 	add_object(player);
-	//add_object(slime);
+	add_object(slime);
 
 	player->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
-	//slime->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
+	slime->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
 
-	//slime->set_local_position(glm::vec3(0.5, 0.5, 0));
+	slime->set_local_position(glm::vec3(0.5, 0.5, 0));
 
 	//slime setup
 	slimeChangingSpeed = slimeSpeed;
@@ -72,12 +73,19 @@ void TestScene::Update(double dt)
 	currentCenterAxisX = GetAxis(GLFW_KEY_D, GLFW_KEY_A, GRAVITY, currentCenterAxisX);
 	currentCenterAxisY = GetAxis(GLFW_KEY_W, GLFW_KEY_S, GRAVITY, currentCenterAxisY);
 
-	playerDir = glm::vec3(currentCenterAxisX, currentCenterAxisY, 0);
-	if (glm::length(playerDir) != 0) {
-		playerDir = glm::normalize(playerDir);
+	//direction used for movement
+	playerMoveDir = glm::vec3(currentCenterAxisX, currentCenterAxisY, 0);
+	if (glm::length(playerMoveDir) != 0) {
+		playerMoveDir = glm::normalize(playerMoveDir);
+		
+		//where the player is facing
+		//this gets updated only when playerMoveDir != 0
+		playerFacingDir = playerMoveDir;
 	}
 
-	playerPos = playerPos + playerDir * playerSpd * (float)dt;
+	
+
+	playerPos = playerPos + playerMoveDir * playerSpd * (float)dt;
 
 	//playerPos.x += currentCenterAxisX * xSpeed * dt;
 	//playerPos.y += currentCenterAxisY * ySpeed * dt;
@@ -117,16 +125,16 @@ void TestScene::Update(double dt)
 
 	//player attack
 	
+	debug_playerDir = playerFacingDir;
 	if (Window::isKeyDown(GLFW_KEY_SPACE)) {
 		//where damage is applied
-		dmgCoords = playerDir * damageDistance;
-		
+		dmgCoords = playerPos + playerFacingDir * damageDistance;
 		//distance from 2 points = Pitagora's theorem
-		//non serve valore assoluto perch� al quadrato � sempre positivo
+		//non serve valore assoluto perché al quadrato è sempre positivo
 		float xDist = slimePos.x - dmgCoords.x;
 		float yDist = slimePos.y - dmgCoords.y;
 		float pitTheorem = glm::sqrt(xDist * xDist + yDist * yDist);
-
+		dmgDist = pitTheorem;
 		//std::cout << pitTheorem << std::endl;
 
 		//if distance from enemy + hitboxRadius to this point <= damageRadius
@@ -153,13 +161,13 @@ void TestScene::Update(double dt)
 	player->set_texture_offset(glm::vec2(glm::round(xAnim),glm::round(yAnim)));
 
 
-	/*
+	
 	///SLIME///
 
 	//constantemente diminuisce la velocit� dello slime
 	slimeChangingSpeed -= speedDecrease * dt;
 
-	//se la velocit� dello slime � sotto lo zero fa partire il timer e blocca il valore
+	//se la velocità dello slime è sotto lo zero fa partire il timer e blocca il valore
 	//altrimenti resetta timer
 	if (slimeChangingSpeed > 0) {
 		timer = slimeLaunchTimer;
@@ -169,10 +177,7 @@ void TestScene::Update(double dt)
 		timer -= dt;
 	}
 
-	//std::cout << "slimeChangingSpeed: " << slimeChangingSpeed << " timer: " << timer <<
-	//	"speedDecrease: " << speedDecrease << std::endl;
-
-	//quando timer � sotto a 0 fa uno scatto, quindi resetta la velocit� dello slime
+	//quando timer è sotto a 0 fa uno scatto, quindi resetta la velocità dello slime
 	if (timer <= 0) {
 
 		//direzione da slime a giocatore
@@ -196,8 +201,8 @@ void TestScene::Update(double dt)
 	//aggiornamento animazione slime
 	slime->set_texture_offset(glm::vec2(slimeXAnim, slimeYAnim));
 
-	*/
-
+	
+	
 
 
 	///RUNNER
@@ -230,24 +235,7 @@ void TestScene::Update(double dt)
 	//ora bisogna guardare se si è dentro il toroide e in quel caso correre in senso orario
 	if( glm::distance(runnerPos, playerPos) > radiusFromPlayer - radiusThreshold &&
 		glm::distance(runnerPos, playerPos) < radiusFromPlayer + radiusThreshold) {
-		/*
-		in questo caso si è dentro il toroide e bisogna correre in tondo
-		per "correre in tondo" si intende:
-		1) continuare a muoversi dritto
-		2) curvare in modo da restare dentro il cerchio
-		restare dentro il cerchio vuol dire:
-		1) guardare dove si stà andando
-		2) correggere la traiettoia in modo che objectiveDir punti verso la circonferenza
-
-
-		centro = posizione giocatore
-		offset = ragio * vettore con sin e cos
-		vettore = sin(angle), cos(angle),0
-		angle = angolo corrente + un valore fisso
-		angolo corrente = angolo fra asse x e vettore direzione da player a runner
-
-		infine posizione dove andare = centro + offset
-		*/
+		
 
 		glm::vec3 circleCenter = playerPos;
 
@@ -291,31 +279,52 @@ void TestScene::Update(double dt)
 
 void TestScene::Debug()
 {
-	//ImGui::Text("io");
+	/*
+	std::string vx = std::to_string(cameraPos.x);
+	std::string vy = std::to_string(cameraPos.y);
+	std::string vz = std::to_string(cameraPos.z);
+	ImGui::Text(("cameraPos: " + vx + " " + vy + " " + vz).c_str());
+	*/
+	std::string dmgNumb = std::to_string(dmgDist);
+	ImGui::Text(("distance from slime to dmgPoint: " + dmgNumb).c_str());
+
+	std::string vx = std::to_string(debug_playerDir.x);
+	std::string vy = std::to_string(debug_playerDir.y);
+	std::string vz = std::to_string(debug_playerDir.z);
+	ImGui::Text(("debug_playerDir: " + vx + " " + vy + " " + vz).c_str());
+
+	
+
 }
 
 
 void TestScene::CameraUpdate(Camera *camera)
 {
+	//cameraPos = camera->get_cameraPos();
 	if (Window::isKeyDown(GLFW_KEY_UP))
 	{
-		camera->translate(glm::vec3(0,1 * 0.16f,0));
+		camera->translate(glm::vec3(0, 1 * 0.06f,0));
 	}
 
 	if (Window::isKeyDown(GLFW_KEY_DOWN))
 	{
-		camera->translate(glm::vec3(0, -1 * 0.16f, 0));
+		camera->translate(glm::vec3(0, -1 * 0.06f, 0));
 	}
 
 	if (Window::isKeyDown(GLFW_KEY_LEFT))
 	{
-		camera->translate(glm::vec3(-1 * 0.16f, 0, 0));
+		camera->translate(glm::vec3(-1 * 0.06f, 0, 0));
 	}
 
 	if (Window::isKeyDown(GLFW_KEY_RIGHT))
 	{
-		camera->translate(glm::vec3(1 * 0.16f, 0, 0));
+		camera->translate(glm::vec3(1 * 0.06f, 0, 0));
 	}
+
+	//if (Window::isKeyDown(GLFW_KEY_SPACE)) {
+	//	camera->set_transform(glm::vec3(0, 0, -3) + player->get_local_position());
+	//	//camera->set_transform(player->get_world_position());
+	//}
 }
 
 

@@ -69,11 +69,12 @@ private:
 	float playerSpd = 1;
 	//float ySpeed = 1;
 	//player direction of moovement
-	glm::vec3 playerDir;
+	glm::vec3 playerMoveDir;
+	glm::vec3 playerFacingDir;
 	
 	//player dmg area
-	float damageRadius = 0.01;
-	float damageDistance = 0.5;
+	float damageRadius = 0.1;
+	float damageDistance = 0.2;
 	glm::vec3 dmgCoords;
 
 	//slime
@@ -83,7 +84,7 @@ private:
 	double slimeLaunchTimer = 0.5;
 	double timer = 0;
 	glm::vec3 slimeToPlayerDir;
-	float slimeHitboxRadius = 0.01;
+	float slimeHitboxRadius = 0.1;
 
 	//Camera *m_camera;
 
@@ -101,6 +102,13 @@ private:
 
 	float runnerSpeed = 1;
 
+
+	//camera pos to update it when space is pressed
+	glm::vec3 cameraPos;
+
+	//debugging variables
+	glm::vec3 debug_playerDir;
+	float dmgDist;
 
 };
 

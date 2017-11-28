@@ -24,6 +24,7 @@ public:
 
 	glm::vec3 get_forwardVec();
 	glm::vec3 get_rightVec();
+	glm::vec3 get_cameraPos();
 
 	glm::mat4 get_viewMatrix();
 	glm::mat4 get_projectionMatrix();
