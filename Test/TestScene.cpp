@@ -6,6 +6,7 @@
 
 TestScene::TestScene()
 {
+	m_player_test = new Player;
 	player = new Renderable;
 	slime = new Renderable;
 	//m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
@@ -33,10 +34,10 @@ void TestScene::Init()
 	//aggiunge a scena
 	add_object(player);
 	add_object(slime);
-
+	add_object(m_player_test);
 	player->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
 	slime->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
-
+	m_player_test->set_local_scale(glm::vec3(1, 1, 1));
 	slime->set_local_position(glm::vec3(0.5, 0.5, 0));
 
 	//slime setup

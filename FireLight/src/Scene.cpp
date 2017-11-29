@@ -50,7 +50,7 @@ void Scene::init_render()
 
 void Scene::check_renderable_node(SceneNode* node)
 {
-	if (static_cast<const Renderable*>(node) == nullptr)
+	if (dynamic_cast<const Renderable*>(node) == nullptr)
 	{
 		for (int i = 0; i < node->get_children_size(); i++)
 		{

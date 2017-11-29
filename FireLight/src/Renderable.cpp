@@ -11,7 +11,6 @@ Renderable::Renderable()
 
 void Renderable::init()
 {
-	
 	glGenBuffers(1, &VBO);
 	glGenVertexArrays(1, &VAO);
 	vertex_buffer m_buffer[6];

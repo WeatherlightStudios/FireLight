@@ -1,7 +1,7 @@
 #pragma once
 
 #include <FireLight.h>
-
+#include "Player.h"
 class TestScene : public Scene
 {
 public:
@@ -109,6 +109,8 @@ private:
 	//debugging variables
 	glm::vec3 debug_playerDir;
 	float dmgDist;
+
+	Player* m_player_test;
 
 };
 
