@@ -33,8 +33,6 @@ void Player::update(double dt)
 	currentCenterAxisX = GetAxis(GLFW_KEY_D, GLFW_KEY_A, GRAVITY, currentCenterAxisX);
 	currentCenterAxisY = GetAxis(GLFW_KEY_W, GLFW_KEY_S, GRAVITY, currentCenterAxisY);
 
-	std::cout << "Hello" << std::endl;
-
 	//direction used for movement
 	playerMoveDir = glm::vec3(currentCenterAxisX, currentCenterAxisY, 0);
 	if (glm::length(playerMoveDir) != 0) {

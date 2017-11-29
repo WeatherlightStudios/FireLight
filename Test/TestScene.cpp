@@ -6,7 +6,8 @@
 
 TestScene::TestScene()
 {
-	m_player_test = new Player;
+	m_player = new Player;
+	m_slime = new Slime;
 	//player = new Renderable;
 	slime = new Renderable;
 	runner = new Renderable;
@@ -16,29 +17,34 @@ void TestScene::Init()
 {
 	//imposta sfondo della finestra
 	glClearColor(192.f/255, 192.f/255, 192.f/255, 1);
+
 	//carica sprites e salva con un nome
 	ResourceManager::LoadTexture("Sprites/Paladino_Walk_OLD.png", true, "player");
 	ResourceManager::LoadTexture("Sprites/Slime.png", true, "slime");
+	
 	//applica texture a un Renderable
 	//player->set_texture("player");
-	slime->set_texture("slime");
+	//slime->set_texture("slime");
+	
 	//numero di righe e colonne per ogni sprite
 	//player->set_texture_row(glm::vec2(ROW, COLUMNS));
-	slime->set_texture_row(glm::vec2(2, 1));//per ora c'� solo 1 riga e 1 colonna
+	//slime->set_texture_row(glm::vec2(2, 1));//per ora c'è solo 1 riga e 1 colonna
+	
 	//aggiunge a scena
-	//add_object(player);
-	add_object(slime);
-	add_object(m_player_test);
-	//player->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
-	slime->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
-	m_player_test->set_local_scale(glm::vec3(1, 1, 1));
-	slime->set_local_position(glm::vec3(0.5, 0.5, 0));
+	add_object(m_player);
+	add_object(m_slime);
+	
+	//slime->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
+	//m_player->set_local_scale(glm::vec3(1, 1, 1));
+	//slime->set_local_position(glm::vec3(0.5, 0.5, 0));
 
+	/*
 	//slime setup
 	slimeChangingSpeed = slimeSpeed;
 	//slime anim setup
 	slimeXAnim = SLIME_IDLE;
 	slimeYAnim = SLIME_ANIM_Y;
+	*/
 
 
 	///RUNNER SETUP
@@ -279,8 +285,8 @@ void TestScene::Update(double dt)
 
 void TestScene::Debug()
 {
-	ImGui::Begin("Player Class");
-	m_player_test->Debug();
+	ImGui::Begin("Slime Class");
+	m_slime->Debug();
 	ImGui::End();
 	/*
 	std::string vx = std::to_string(cameraPos.x);
@@ -288,6 +294,8 @@ void TestScene::Debug()
 	std::string vz = std::to_string(cameraPos.z);
 	ImGui::Text(("cameraPos: " + vx + " " + vy + " " + vz).c_str());
 	*/
+	
+	/*
 	std::string dmgNumb = std::to_string(dmgDist);
 	ImGui::Text(("distance from slime to dmgPoint: " + dmgNumb).c_str());
 
@@ -295,6 +303,7 @@ void TestScene::Debug()
 	std::string vy = std::to_string(debug_playerDir.y);
 	std::string vz = std::to_string(debug_playerDir.z);
 	ImGui::Text(("debug_playerDir: " + vx + " " + vy + " " + vz).c_str());
+	*/
 
 	
 

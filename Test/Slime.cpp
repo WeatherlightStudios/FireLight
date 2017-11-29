@@ -1,0 +1,83 @@
+﻿#include "Slime.h"
+
+#include "TestScene.h"
+
+Slime::Slime()
+{
+	slime = new Renderable;
+	player = new Player;
+}
+
+void Slime::init() {
+	this->set_local_scale(glm::vec3(1, 1, 1));
+	slime->set_texture("slime");
+	slime->set_texture_row(glm::vec2(SLIME_ROW, SLIME_COLUMNS));
+	slime->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
+	this->atuch_children(slime);
+
+	//slime setup
+	slimeChangingSpeed = slimeSpeed;
+	//slime anim setup
+	slimeXAnim = SLIME_IDLE;
+	slimeYAnim = SLIME_ANIM_Y;
+
+}
+
+void Slime::Debug() {
+	std::string vx = std::to_string(playerPos.x);
+	std::string vy = std::to_string(playerPos.y);
+	std::string vz = std::to_string(playerPos.z);
+	ImGui::Text(("playerPos: " + vx + " " + vy + " " + vz).c_str());
+}
+
+void Slime::update(double dt) {
+	///SLIME///
+	
+	//slime pos
+	glm::vec3 slimePos = slime->get_world_position();
+	//player pos
+	playerPos = player->get_world_position();
+
+	//constantemente diminuisce la velocità dello slime
+	slimeChangingSpeed -= speedDecrease * dt;
+
+	//se la velocità dello slime è sotto lo zero fa partire il timer e blocca il valore
+	//altrimenti resetta timer
+	if (slimeChangingSpeed > 0) {
+		timer = slimeLaunchTimer;
+	}
+	else {
+		slimeChangingSpeed = 0;
+		timer -= dt;
+	}
+
+	//quando timer è sotto a 0 fa uno scatto, quindi resetta la velocità dello slime
+	if (timer <= 0) {
+
+		//direzione da slime a giocatore
+		slimeToPlayerDir = playerPos - slimePos;
+
+		//glm::project()
+		//ignora asse z
+		slimeToPlayerDir.z = 0;
+		//proiezione sul piano con modulo 1 (se tutti diversi da 0)
+		if (glm::length(slimeToPlayerDir) != 0)
+			slimeToPlayerDir = glm::normalize(slimeToPlayerDir);
+
+
+		slimeChangingSpeed = slimeSpeed;
+	}
+
+	//aggiornamento posizione slime
+	glm::vec3 newSlimePos = slimePos + slimeToPlayerDir * slimeChangingSpeed * (float)dt;
+	slime->set_local_position(newSlimePos);
+
+	//aggiornamento animazione slime
+	slime->set_texture_offset(glm::vec2(slimeXAnim, slimeYAnim));
+	
+
+}
+
+Slime::~Slime()
+{
+}

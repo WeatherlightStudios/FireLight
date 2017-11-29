@@ -2,6 +2,8 @@
 
 #include <FireLight.h>
 #include "Player.h"
+#include "Slime.h"
+
 class TestScene : public Scene
 {
 public:
@@ -12,8 +14,14 @@ public:
 	void Debug();
 	void Close();
 	~TestScene();
-private:
+	
 	//game objects
+	Player* m_player;
+	Slime* m_slime;
+
+private:
+	
+	
 	//Renderable *player;
 	Renderable *slime;
 
@@ -86,9 +94,6 @@ private:
 	glm::vec3 slimeToPlayerDir;
 	float slimeHitboxRadius = 0.1;
 
-	//Camera *m_camera;
-
-
 	///RUNNER
 	Renderable *runner;
 
@@ -110,7 +115,6 @@ private:
 	glm::vec3 debug_playerDir;
 	float dmgDist;
 
-	Player* m_player_test;
 
 };
 

@@ -8,7 +8,7 @@ class Player : public SceneNode
 public:
 	Player();
 	void init();
-	void Update(double dt);
+	void update(double dt);
 	void Debug();
 	~Player();
 private:
