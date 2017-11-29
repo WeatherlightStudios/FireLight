@@ -24,6 +24,7 @@ void Scene::update_scene(double dt)
 {
 	m_camera->update();
 	CameraUpdate(m_camera);
+	update_objects(dt);
 	Update(dt);
 }
 
@@ -37,6 +38,14 @@ void Scene::init_objects()
 	for (int i = 0; i < m_graph_objects.size(); i++)
 	{
 		m_graph_objects[i]->init_this();
+	}
+}
+
+void Scene::update_objects(double dt)
+{
+	for (int i = 0; i < m_graph_objects.size(); i++)
+	{
+		m_graph_objects[i]->update_this(dt);
 	}
 }
 

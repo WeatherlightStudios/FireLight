@@ -19,7 +19,7 @@ void Player::init()
 }
 void Player::update(double dt)
 {
-
+	std::cout << "helllo" << std::endl;
 }
 
 Player::~Player()
