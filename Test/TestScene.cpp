@@ -7,35 +7,29 @@
 TestScene::TestScene()
 {
 	m_player_test = new Player;
-	player = new Renderable;
+	//player = new Renderable;
 	slime = new Renderable;
-	//m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
 	runner = new Renderable;
-	//m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
 }
 
 void TestScene::Init()
 {
-	//SimpleRenderSystem::set_Camera(m_camera);
-
-	//gl3wInit();
-	//ResourceManager::LoadTexture("sprite.png", true, "sprite");
 	//imposta sfondo della finestra
 	glClearColor(192.f/255, 192.f/255, 192.f/255, 1);
 	//carica sprites e salva con un nome
 	ResourceManager::LoadTexture("Sprites/Paladino_Walk_OLD.png", true, "player");
 	ResourceManager::LoadTexture("Sprites/Slime.png", true, "slime");
 	//applica texture a un Renderable
-	player->set_texture("player");
+	//player->set_texture("player");
 	slime->set_texture("slime");
 	//numero di righe e colonne per ogni sprite
-	player->set_texture_row(glm::vec2(ROW, COLUMNS));
+	//player->set_texture_row(glm::vec2(ROW, COLUMNS));
 	slime->set_texture_row(glm::vec2(2, 1));//per ora c'� solo 1 riga e 1 colonna
 	//aggiunge a scena
-	add_object(player);
+	//add_object(player);
 	add_object(slime);
 	add_object(m_player_test);
-	player->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
+	//player->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
 	slime->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
 	m_player_test->set_local_scale(glm::vec3(1, 1, 1));
 	slime->set_local_position(glm::vec3(0.5, 0.5, 0));
@@ -62,6 +56,8 @@ void TestScene::Update(double dt)
 
 	//m_camera->update();
 	
+
+	/*
 	///PLAYER///
 
 	//player Pos
@@ -160,9 +156,11 @@ void TestScene::Update(double dt)
 	player->set_local_position(playerPos);
 	//animazione
 	player->set_texture_offset(glm::vec2(glm::round(xAnim),glm::round(yAnim)));
-
-
 	
+	*/
+
+
+	/*
 	///SLIME///
 
 	//constantemente diminuisce la velocit� dello slime
@@ -273,6 +271,7 @@ void TestScene::Update(double dt)
 	glm::vec3 newRunnerPos = runnerPos + objectiveDir * runnerSpeed * (float)dt;
 	runner->set_local_position(newRunnerPos);
 
+	*/	
 	
 
 }
@@ -280,6 +279,9 @@ void TestScene::Update(double dt)
 
 void TestScene::Debug()
 {
+	ImGui::Begin("Player Class");
+	m_player_test->Debug();
+	ImGui::End();
 	/*
 	std::string vx = std::to_string(cameraPos.x);
 	std::string vy = std::to_string(cameraPos.y);
