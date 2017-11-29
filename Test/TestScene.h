@@ -14,7 +14,7 @@ public:
 	~TestScene();
 private:
 	//game objects
-	Renderable *player;
+	//Renderable *player;
 	Renderable *slime;
 
 	//constants for animations
