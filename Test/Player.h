@@ -2,17 +2,20 @@
 #define PLAYER_H
 
 #include <FireLight.h>
+#include "Slime.h"
 
 class Player : public SceneNode
 {
 public:
 	Player();
+	Player(Slime* sl);
 	void init();
 	void update(double dt);
 	void Debug();
 	~Player();
 private:
 	Renderable *m_player;
+	Slime* slime;
 
 	//constants for animations
 	///player
@@ -39,6 +42,8 @@ private:
 	float xAnimSpeed = 4;
 	float yAnimSpeed = 1;
 
+	glm::vec3 slimePos;
+
 
 	//INPUT VARIABLES
 	const float GRAVITY = 0.1;
@@ -59,6 +64,30 @@ private:
 	float damageRadius = 0.1;
 	float damageDistance = 0.2;
 	glm::vec3 dmgCoords;
+
+	/*
+	///slime
+	//slime
+	float slimeSpeed = 0.8;
+	float slimeChangingSpeed;
+	float speedDecrease = 0.75;
+	double slimeLaunchTimer = 0.5;
+	double timer = 0;
+	glm::vec3 slimeToPlayerDir;
+	float slimeHitboxRadius = 0.1;
+
+	//x division
+	const short SLIME_IDLE = 0;
+	const short SLIME_DMG = 1;
+	//y division
+	const short SLIME_ANIM_Y = 0;
+	//anim current values
+	short slimeXAnim;
+	short slimeYAnim;
+	//timer values
+	float damagedTimer = 1;
+	double timer_dmg;
+	*/
 
 };
 

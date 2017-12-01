@@ -1,11 +1,10 @@
 ﻿#include "Slime.h"
 
-#include "TestScene.h"
 
-Slime::Slime()
+Slime::Slime(Player* pl)
 {
 	slime = new Renderable;
-	player = new Player;
+	player = pl;
 }
 
 void Slime::init() {
@@ -14,7 +13,7 @@ void Slime::init() {
 	slime->set_texture_row(glm::vec2(SLIME_ROW, SLIME_COLUMNS));
 	slime->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
 	this->atuch_children(slime);
-
+	
 	//slime setup
 	slimeChangingSpeed = slimeSpeed;
 	//slime anim setup
@@ -24,10 +23,7 @@ void Slime::init() {
 }
 
 void Slime::Debug() {
-	std::string vx = std::to_string(playerPos.x);
-	std::string vy = std::to_string(playerPos.y);
-	std::string vz = std::to_string(playerPos.z);
-	ImGui::Text(("playerPos: " + vx + " " + vy + " " + vz).c_str());
+
 }
 
 void Slime::update(double dt) {
@@ -74,9 +70,16 @@ void Slime::update(double dt) {
 
 	//aggiornamento animazione slime
 	slime->set_texture_offset(glm::vec2(slimeXAnim, slimeYAnim));
-	
+	//UpdateAnim(slimeXAnim, slimeYAnim);
 
 }
+
+/*
+void Slime::UpdateAnim(int texX, int texY) {
+	slime->set_texture_offset(glm::vec2(texX, texY));
+}
+*/
+
 
 Slime::~Slime()
 {

@@ -1,11 +1,16 @@
 #include "Player.h"
-#include <iostream>
+
 
 
 Player::Player()
 {
 	m_player = new Renderable;
 }
+/*
+Player::Player(Slime* sl) {
+	slime = sl;
+}
+*/
 
 
 void Player::init()
@@ -83,18 +88,19 @@ void Player::update(double dt)
 		}
 	}
 
-	//m_player attack
-
 	/*
+	//slimePos
+	slimePos = slime->get_world_position();
+
 	if (Window::isKeyDown(GLFW_KEY_SPACE)) {
 		//where damage is applied
 		dmgCoords = playerPos + playerFacingDir * damageDistance;
 		//distance from 2 points = Pitagora's theorem
-		//non serve valore assoluto perch� al quadrato � sempre positivo
+		//non serve valore assoluto perché al quadrato é sempre positivo
 		float xDist = slimePos.x - dmgCoords.x;
 		float yDist = slimePos.y - dmgCoords.y;
 		float pitTheorem = glm::sqrt(xDist * xDist + yDist * yDist);
-		dmgDist = pitTheorem;
+		
 		//std::cout << pitTheorem << std::endl;
 
 		//if distance from enemy + hitboxRadius to this point <= damageRadius
@@ -117,7 +123,8 @@ void Player::update(double dt)
 
 
 	//update position
-	m_player->set_local_position(playerPos);
+	//m_player->set_local_position(playerPos);
+	this->set_local_position(playerPos);
 	//animazione
 	m_player->set_texture_offset(glm::vec2(glm::round(xAnim), glm::round(yAnim)));
 }

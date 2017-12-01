@@ -3,6 +3,7 @@
 #include <FireLight.h>
 #include "Player.h"
 #include "Slime.h"
+#include "RunnerEnemy.h"
 
 class TestScene : public Scene
 {
@@ -15,16 +16,15 @@ public:
 	void Close();
 	~TestScene();
 	
-	//game objects
+	//game objects/class objects
 	Player* m_player;
 	Slime* m_slime;
+	RunnerEnemy* m_runner;
 
 private:
 	
 	
-	//Renderable *player;
-	Renderable *slime;
-
+	/*
 	//constants for animations
 	///player
 	const short ROW = 5;
@@ -64,6 +64,7 @@ private:
 	//timer values
 	float damagedTimer = 1;
 	double timer_dmg;
+	*/
 
 	//INPUT VARIABLES
 	const float GRAVITY = 0.1;
@@ -80,6 +81,8 @@ private:
 	glm::vec3 playerMoveDir;
 	glm::vec3 playerFacingDir;
 	
+	
+	/*
 	//player dmg area
 	float damageRadius = 0.1;
 	float damageDistance = 0.2;
@@ -93,9 +96,6 @@ private:
 	double timer = 0;
 	glm::vec3 slimeToPlayerDir;
 	float slimeHitboxRadius = 0.1;
-
-	///RUNNER
-	Renderable *runner;
 
 	const short RUNNER_ROW = 1;
 	const short RUNNER_COLUMNS = 1;
@@ -114,6 +114,7 @@ private:
 	//debugging variables
 	glm::vec3 debug_playerDir;
 	float dmgDist;
+	*/
 
 
 };

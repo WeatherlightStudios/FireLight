@@ -5,10 +5,13 @@
 class Slime : public SceneNode
 {
 public:
-	Slime();
+	Slime(Player* pl);
 	void init();
 	void update(double dt);
 	void Debug();
+
+	void UpdateAnim(int texX, int texY);
+
 	~Slime();
 private:
 

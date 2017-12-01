@@ -122,12 +122,14 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RunnerEnemy.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="RunnerEnemy.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
