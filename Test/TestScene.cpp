@@ -38,7 +38,7 @@ void TestScene::Update(double dt)
 
 void TestScene::Debug()
 {
-
+	//m_player->Debug();
 }
 
 

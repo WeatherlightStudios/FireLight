@@ -7,6 +7,11 @@ Slime::Slime(Player* pl)
 	player = pl;
 }
 
+
+//Slime::Slime() {
+//
+//}
+
 void Slime::init() {
 	this->set_local_scale(glm::vec3(1, 1, 1));
 	slime->set_texture("slime");
@@ -26,11 +31,16 @@ void Slime::Debug() {
 
 }
 
+//void Slime::UpdateSlimePosToPlayer(glm::vec3 slimeP) {
+//	player->slimePos = slimeP;
+//}
+
 void Slime::update(double dt) {
 	///SLIME///
 	
 	//slime pos
 	glm::vec3 slimePos = slime->get_world_position();
+	//UpdateSlimePosToPlayer(slimePos);
 	//player pos
 	playerPos = player->get_world_position();
 
@@ -74,10 +84,10 @@ void Slime::update(double dt) {
 
 }
 
-/*
 void Slime::UpdateAnim(int texX, int texY) {
 	slime->set_texture_offset(glm::vec2(texX, texY));
 }
+/*
 */
 
 

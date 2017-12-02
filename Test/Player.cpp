@@ -88,10 +88,9 @@ void Player::update(double dt)
 		}
 	}
 
-	/*
 	//slimePos
-	slimePos = slime->get_world_position();
-
+	//slimePos = slime->get_world_position();
+	
 	if (Window::isKeyDown(GLFW_KEY_SPACE)) {
 		//where damage is applied
 		dmgCoords = playerPos + playerFacingDir * damageDistance;
@@ -107,7 +106,9 @@ void Player::update(double dt)
 		//then enemy takes damage
 		if (pitTheorem < damageRadius + slimeHitboxRadius) {
 			//colora di rosso
-			slimeXAnim = SLIME_DMG;
+			//slimeXAnim = SLIME_DMG;
+			
+			
 			//avvia timer
 			timer_dmg = damagedTimer;
 		}
@@ -119,6 +120,7 @@ void Player::update(double dt)
 	if (timer_dmg <= 0) {
 		slimeXAnim = SLIME_IDLE;
 	}
+	/*
 	*/
 
 
@@ -132,6 +134,12 @@ void Player::update(double dt)
 void Player::Debug() {
 	std::string dmgNumb = std::to_string(currentCenterAxisX);
 	ImGui::Text(("input X: " + dmgNumb).c_str());
+
+	std::string px = std::to_string(slimePos.x);
+	std::string py = std::to_string(slimePos.y);
+	std::string pz = std::to_string(slimePos.z);
+	ImGui::Text(("slimePos: " + px + " " + py + " " + pz).c_str());
+
 }
 
 

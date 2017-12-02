@@ -5,13 +5,14 @@
 class Slime : public SceneNode
 {
 public:
+	Slime();
 	Slime(Player* pl);
 	void init();
 	void update(double dt);
 	void Debug();
 
 	void UpdateAnim(int texX, int texY);
-
+	//void UpdateSlimePosToPlayer(glm::vec3 slimeP);
 	~Slime();
 private:
 
@@ -46,4 +47,3 @@ private:
 	glm::vec3 slimeToPlayerDir;
 	float slimeHitboxRadius = 0.1;
 };
-
