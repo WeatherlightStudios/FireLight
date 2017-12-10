@@ -14,7 +14,7 @@ Game::Game() : FL::App("Hello", 800,600) //m_camera(glm::vec3(0,0,-3), glm::vec3
 
 void Game::Init()
 {
-	ResourceManager::LoadShader("shader.vert","shader.frag", nullptr, "shader");
+	ResourceManager::LoadShader("Shaders/sprite_shader.vert","Shaders/sprite_shader.frag", nullptr, "shader");
 	SceneManager::add_scene(&m_testScene, "testScene");
 	SceneManager::set_current_scene("testScene");
 	//SceneManager::init_current_scene();

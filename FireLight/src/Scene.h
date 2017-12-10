@@ -3,6 +3,7 @@
 
 #include "SceneNode.h"
 #include "SimpleRenderSystem.h"
+#include "Debug.h"
 #include "Renderable.h"
 #include <vector>
 #include <string>
@@ -24,7 +25,7 @@ public:
 	virtual void Init(){}
 	virtual void CameraUpdate(Camera *camera) {}
 	virtual void Update(double dt){}
-	virtual void Debug(){}
+	virtual void Debughing(Debug *debug){}
 	virtual void Close(){}
 
 	void add_object(SceneNode *node);
@@ -43,7 +44,7 @@ public:
 private:
 	bool isInizialized;
 
-
+	Debug *m_debug;
 	SimpleRenderSystem m_render_system;
 	std::vector<SceneNode*> m_graph_objects;
 	Camera *m_camera;

@@ -61,7 +61,7 @@ namespace FL
 				lag -= dt;
 			}
 
-			SceneManager::debug_current_scene();
+			//SceneManager::debug_current_scene();
 			//render game
 			render();
 			ImGui::Render();

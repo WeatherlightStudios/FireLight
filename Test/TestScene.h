@@ -12,7 +12,7 @@ public:
 	void Init();
 	void Update(double dt);
 	void CameraUpdate(Camera *camera);
-	void Debug();
+	void Debughing(Debug* debug);
 	void Close();
 	~TestScene();
 	

@@ -6,17 +6,19 @@ Scene::Scene()
 {
 	isInizialized = false;
 	m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
+	m_debug = new Debug();
 }
 
 
 void Scene::init_scene()
 {
-
+	
 	Init();
 	init_objects();
 	m_render_system.set_Camera(m_camera);
 	init_render();
-
+	m_debug->create();
+	m_debug->setCamera(m_camera);
 	isInizialized = true;
 	std::cout << m_graph_objects.size() << std::endl;
 }
@@ -30,6 +32,8 @@ void Scene::update_scene(double dt)
 
 void Scene::render()
 {
+	Debughing(m_debug);
+	m_debug->flush();
 	m_render_system.Render();
 }
 

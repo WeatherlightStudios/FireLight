@@ -14,6 +14,7 @@ TestScene::TestScene()
 
 void TestScene::Init()
 {
+	ResourceManager::LoadShader("Shaders/debug_line_shader.vert", "Shaders/debug_line_shader.frag", nullptr, "debug_line");
 	//imposta sfondo della finestra
 	glClearColor(192.f/255, 192.f/255, 192.f/255, 1);
 
@@ -36,8 +37,12 @@ void TestScene::Update(double dt)
 }
 
 
-void TestScene::Debug()
+void TestScene::Debughing(Debug* debug)
 {
+
+	debug->DrawLine(glm::vec2(0,0), glm::vec2(1,0), glm::vec3(1,0,0));
+
+
 	//m_player->Debug();
 }
 
