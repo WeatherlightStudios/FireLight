@@ -3,6 +3,7 @@
 #pragma once
 
 #include <FireLight.h>
+#include "DataCenter.h"
 //#include "Slime.h"
 class Slime;
 
@@ -10,6 +11,7 @@ class Player : public SceneNode
 {
 public:
 	Player();
+	Player(DataCenter* cntr);
 	//Player(Slime* sl);
 	void init();
 	void update(double dt);
@@ -23,6 +25,7 @@ public:
 private:
 	Renderable *m_player;
 
+	DataCenter* dataCenter;
 
 	//constants for animations
 	///player

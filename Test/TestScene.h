@@ -5,6 +5,8 @@
 #include "Slime.h"
 #include "RunnerEnemy.h"
 
+#include "DataCenter.h"
+
 class TestScene : public Scene
 {
 public:
@@ -20,6 +22,9 @@ public:
 	Player* m_player;
 	Slime* m_slime;
 	RunnerEnemy* m_runner;
+
+	//DataCenter
+	DataCenter* dtCenter;
 
 private:
 	

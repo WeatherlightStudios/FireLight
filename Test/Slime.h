@@ -1,12 +1,14 @@
 #pragma once
 #include <FireLight.h>
-#include "Player.h"
+#include "DataCenter.h"
+//#include "Player.h"
 
 class Slime : public SceneNode
 {
 public:
 	Slime();
-	Slime(Player* pl);
+	//Slime(Player* pl);
+	Slime(DataCenter* cntr);
 	void init();
 	void update(double dt);
 	void Debug();
@@ -17,7 +19,9 @@ public:
 private:
 
 	Renderable* slime;
-	Player* player;
+	//Player* player;
+
+	DataCenter* dataCenter;
 
 	glm::vec3 playerPos;
 

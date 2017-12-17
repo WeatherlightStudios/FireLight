@@ -2,10 +2,16 @@
 
 
 
-Player::Player()
-{
+//Player::Player()
+//{
+//	m_player = new Renderable;
+//}
+
+Player::Player(DataCenter* cntr) {
 	m_player = new Renderable;
+	dataCenter = cntr;
 }
+
 /*
 Player::Player(Slime* sl) {
 	slime = sl;
@@ -30,7 +36,8 @@ void Player::update(double dt)
 
 	//m_player Pos
 	glm::vec3 playerPos = m_player->get_world_position();
-
+	//ogni frame il player passa la sua pos così slime se la può prendere
+	dataCenter->setVector3("PlayerPos", playerPos);	
 	//slime pos
 	//glm::vec3 slimePos = slime->get_world_position();
 

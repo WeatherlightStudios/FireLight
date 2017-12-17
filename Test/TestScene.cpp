@@ -5,10 +5,13 @@
 
 TestScene::TestScene()
 {
+	//setup DataCenter
+	dtCenter = new DataCenter;
+
 	//setup di classi
-	m_player = new Player;
-	m_slime = new Slime(m_player);	//a slime e runner vengono passati il player perché
-	//m_player = new Player(m_slime);
+	//a tutti passo un riferimento a dtCenter, perché loro lo usano per scambiarsi informazioni
+	m_player = new Player(dtCenter);
+	m_slime = new Slime(dtCenter);	
 	m_runner = new RunnerEnemy(m_player);//contiene informazioni che servono alle 2 classi
 }
 

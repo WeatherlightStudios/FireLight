@@ -1,10 +1,15 @@
 ﻿#include "Slime.h"
 
 
-Slime::Slime(Player* pl)
-{
+//Slime::Slime(Player* pl)
+//{
+//	slime = new Renderable;
+//	player = pl;
+//}
+
+Slime::Slime(DataCenter* cntr) {
 	slime = new Renderable;
-	player = pl;
+	dataCenter = cntr;
 }
 
 
@@ -24,6 +29,10 @@ void Slime::init() {
 	//slime anim setup
 	slimeXAnim = SLIME_IDLE;
 	slimeYAnim = SLIME_ANIM_Y;
+/*
+	DataCenter dataCenter;
+
+	dataCenter.setInt("test", 3);*/
 
 }
 
@@ -42,7 +51,11 @@ void Slime::update(double dt) {
 	glm::vec3 slimePos = slime->get_world_position();
 	//UpdateSlimePosToPlayer(slimePos);
 	//player pos
-	playerPos = player->get_world_position();
+	//playerPos = player->get_world_position();	//TODO: slime ha bisogno della posizione del player
+												//quindi slime si prende da dataCenter playerPos,
+												//mentre player ci mette playerPos
+	playerPos = dataCenter->getVector3("PlayerPos");
+
 
 	//constantemente diminuisce la velocità dello slime
 	slimeChangingSpeed -= speedDecrease * dt;
