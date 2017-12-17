@@ -1,17 +1,21 @@
 #pragma once
 #include <FireLight.h>
 #include "Player.h"
+#include "DataCenter.h"
 class RunnerEnemy : public SceneNode
 {
 public:
-	RunnerEnemy(Player* pl);
+	//RunnerEnemy(Player* pl);
+	RunnerEnemy(DataCenter* cntr);
 	void init();
 	void update(double dt);
 	void Debug();
 	~RunnerEnemy();
 private:
 	Renderable* runner;
-	Player* player;
+	//Player* player;
+
+	DataCenter* dataCenter;
 
 	glm::vec3 playerPos;
 

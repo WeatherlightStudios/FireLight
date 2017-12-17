@@ -1,26 +1,10 @@
 #include "DataCenter.h"
-#include <map>
+//#include <map>
 
 DataCenter::DataCenter()
 {
 
 }
-
-/*
-le map sono variabili che contengono coppie di valori
-in questo caso sono una stringa e un int
-per assegnare un vaalore o ricevere un valore entro nella map
-come se fosse un array, ma uso una stringa invece di un int index
-
-quindi le mappe sono array identificate da stringhe
-*/
-///INT
-std::map<std::string, int> IntData;
-///FLOAT
-std::map<std::string, float> FloatData;
-///VECTOR3
-std::map<std::string, glm::vec3> Vector3Data;
-
 
 ///INT
 /*
@@ -59,6 +43,14 @@ glm::vec3 DataCenter::getVector3(std::string mapName) {
 	return Vector3Data[mapName];
 }
 
+///BOOL
+void DataCenter::setBool(std::string mapName, bool value) {
+	BoolData[mapName] = value;
+}
+
+bool DataCenter::getBool(std::string mapName) {
+	return BoolData[mapName];
+}
 
 
 DataCenter::~DataCenter()

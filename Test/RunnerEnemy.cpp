@@ -2,10 +2,16 @@
 #include <glm\gtx\vector_angle.inl>
 #include <glm\gtc\constants.hpp>
 
-RunnerEnemy::RunnerEnemy(Player* pl)
+//RunnerEnemy::RunnerEnemy(Player* pl)
+//{
+//	runner = new Renderable;
+//	player = pl;
+//}
+
+RunnerEnemy::RunnerEnemy(DataCenter* cntr)
 {
 	runner = new Renderable;
-	player = pl;
+	dataCenter = cntr;
 }
 
 void RunnerEnemy::init() {
@@ -17,8 +23,9 @@ void RunnerEnemy::init() {
 }
 
 void RunnerEnemy::update(double dt) {
-	//playerPos
-	playerPos = player->get_world_position();
+	
+	//lettura posizione player che questo inserisce nel dataCenter
+	playerPos = dataCenter->getVector3("PlayerPos");
 
 	//per vedere se è dentro o fuori dal cerchio basta vedere la distanza dal giocatore
 	//se questa è minore di radiusFromPlayer allora runner è troppo vicino, sennò troppo lontano

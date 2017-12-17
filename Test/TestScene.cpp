@@ -12,7 +12,7 @@ TestScene::TestScene()
 	//a tutti passo un riferimento a dtCenter, perché loro lo usano per scambiarsi informazioni
 	m_player = new Player(dtCenter);
 	m_slime = new Slime(dtCenter);	
-	m_runner = new RunnerEnemy(m_player);//contiene informazioni che servono alle 2 classi
+	m_runner = new RunnerEnemy(dtCenter);//contiene informazioni che servono alle 2 classi
 }
 
 void TestScene::Init()
