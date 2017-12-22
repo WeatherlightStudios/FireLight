@@ -1,11 +1,6 @@
 ﻿#include "Slime.h"
 
 
-//Slime::Slime(Player* pl)
-//{
-//	slime = new Renderable;
-//	player = pl;
-//}
 
 Slime::Slime(DataCenter* cntr) {
 	slime = new Renderable;
@@ -13,9 +8,6 @@ Slime::Slime(DataCenter* cntr) {
 }
 
 
-//Slime::Slime() {
-//
-//}
 
 void Slime::init() {
 	this->set_local_scale(glm::vec3(1, 1, 1));
@@ -29,10 +21,6 @@ void Slime::init() {
 	//slime anim setup
 	slimeXAnim = SLIME_IDLE;
 	slimeYAnim = SLIME_ANIM_Y;
-/*
-	DataCenter dataCenter;
-
-	dataCenter.setInt("test", 3);*/
 
 }
 
@@ -40,20 +28,15 @@ void Slime::Debug() {
 
 }
 
-//void Slime::UpdateSlimePosToPlayer(glm::vec3 slimeP) {
-//	player->slimePos = slimeP;
-//}
 
 void Slime::update(double dt) {
 	///SLIME///
 	
 	//slime pos
 	glm::vec3 slimePos = slime->get_world_position();
-	//UpdateSlimePosToPlayer(slimePos);
-	//player pos
-	//playerPos = player->get_world_position();	//TODO: slime ha bisogno della posizione del player
-												//quindi slime si prende da dataCenter playerPos,
-												//mentre player ci mette playerPos
+	
+	//slime ha bisogno della posizione del player quindi slime si prende da dataCenter playerPos,
+	//mentre player ci mette playerPos
 	playerPos = dataCenter->getVector3("PlayerPos");
 
 
@@ -76,7 +59,6 @@ void Slime::update(double dt) {
 		//direzione da slime a giocatore
 		slimeToPlayerDir = playerPos - slimePos;
 
-		//glm::project()
 		//ignora asse z
 		slimeToPlayerDir.z = 0;
 		//proiezione sul piano con modulo 1 (se tutti diversi da 0)
@@ -97,11 +79,10 @@ void Slime::update(double dt) {
 
 }
 
+//USELESS
 void Slime::UpdateAnim(int texX, int texY) {
 	slime->set_texture_offset(glm::vec2(texX, texY));
 }
-/*
-*/
 
 
 Slime::~Slime()

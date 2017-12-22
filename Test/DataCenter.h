@@ -8,6 +8,17 @@ class DataCenter
 public:
 	DataCenter();
 	
+	/*
+	Analisi complessità metodo set...
+	nel metodo set... quando inserisco un numero viene fatto solo un accesso alla mappa
+	quindi la complessità è O(1)
+
+	Analisi complessità metodo get...
+	nel metodo get... viene eseguito solo un accesso alla mappa
+	quindi la complessità è O(1)
+	*/
+
+
 	//Int
 	void setInt(std::string mapName, int value);
 	int getInt(std::string mapName);

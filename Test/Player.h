@@ -4,15 +4,12 @@
 
 #include <FireLight.h>
 #include "DataCenter.h"
-//#include "Slime.h"
 class Slime;
 
 class Player : public SceneNode
 {
 public:
-	Player();
 	Player(DataCenter* cntr);
-	//Player(Slime* sl);
 	void init();
 	void update(double dt);
 	void Debug();
@@ -26,6 +23,8 @@ private:
 	Renderable *m_player;
 
 	DataCenter* dataCenter;
+
+	void Animations(double dt);
 
 	//constants for animations
 	///player
@@ -52,8 +51,6 @@ private:
 	float xAnimSpeed = 4;
 	float yAnimSpeed = 1;
 
-	//Slime
-
 
 	//INPUT VARIABLES
 	const float GRAVITY = 0.1;
@@ -74,6 +71,10 @@ private:
 	float damageRadius = 0.1;
 	float damageDistance = 0.2;
 	glm::vec3 dmgCoords;
+
+	//Player Health
+	int startingHealth = 100;
+	int currentHealth;
 
 	///slime
 	//slime
@@ -96,10 +97,9 @@ private:
 	//timer values
 	float damagedTimer = 1;
 	double timer_dmg;
-	/*
-	*/
+	
 
 };
 
-//#endif
 
+//#endif

@@ -46,7 +46,7 @@ void TestScene::Debughing(Debug* debug)
 	debug->DrawLine(glm::vec2(0,0), glm::vec2(1,0), glm::vec3(1,0,0));
 
 
-	//m_player->Debug();
+	m_player->Debug();
 }
 
 

@@ -1,32 +1,27 @@
 #include "Player.h"
 
-
-
-//Player::Player()
-//{
-//	m_player = new Renderable;
-//}
-
 Player::Player(DataCenter* cntr) {
 	m_player = new Renderable;
 	dataCenter = cntr;
 }
 
-/*
-Player::Player(Slime* sl) {
-	slime = sl;
-}
-*/
-
 
 void Player::init()
 {
-	//ResourceManager::LoadTexture("Sprites/Paladino_Walk_OLD.png", true, "m_player");
+	//setup scala a 1
 	this->set_local_scale(glm::vec3(1,1,1));
+	//assegnazione sprite
 	m_player->set_texture("player");
+	//setup animation
 	m_player->set_texture_row(glm::vec2(5, 6));
+	//setup scala nel gioco
 	m_player->set_local_scale(glm::vec3(0.35, 0.35, 0.35));
+	//attacca m_player a questo oggetto che poi viene gestito da engine e TestScene
 	this->atuch_children(m_player);
+
+
+	//setup vita player
+	currentHealth = startingHealth;
 }
 
 
@@ -38,7 +33,7 @@ void Player::update(double dt)
 	glm::vec3 playerPos = m_player->get_world_position();
 	//ogni frame il player passa la sua pos così slime se la può prendere
 	dataCenter->setVector3("PlayerPos", playerPos);	
-	//slime pos
+	//TODO slime pos
 	//glm::vec3 slimePos = slime->get_world_position();
 
 	//m_player movement
@@ -59,8 +54,52 @@ void Player::update(double dt)
 
 	playerPos = playerPos + playerMoveDir * playerSpd * (float)dt;
 
-	//playerPos.x += currentCenterAxisX * xSpeed * dt;
-	//playerPos.y += currentCenterAxisY * ySpeed * dt;
+	Animations(dt);
+
+	//TODO: player can damage slime (waiting for Box2d)
+	/*
+	//slimePos
+	//slimePos = slime->get_world_position();
+	
+	if (Window::isKeyDown(GLFW_KEY_SPACE)) {
+		//where damage is applied
+		dmgCoords = playerPos + playerFacingDir * damageDistance;
+		//distance from 2 points = Pitagora's theorem
+		//non serve valore assoluto perché al quadrato é sempre positivo
+		float xDist = slimePos.x - dmgCoords.x;
+		float yDist = slimePos.y - dmgCoords.y;
+		float pitTheorem = glm::sqrt(xDist * xDist + yDist * yDist);
+		
+		//std::cout << pitTheorem << std::endl;
+
+		//if distance from enemy + hitboxRadius to this point <= damageRadius
+		//then enemy takes damage
+		if (pitTheorem < damageRadius + slimeHitboxRadius) {
+			//colora di rosso
+			//slimeXAnim = SLIME_DMG;
+			
+			
+			//avvia timer
+			timer_dmg = damagedTimer;
+		}
+
+	}
+
+	//update timer colore slime
+	timer_dmg -= dt;
+	if (timer_dmg <= 0) {
+		slimeXAnim = SLIME_IDLE;
+	}
+	*/
+	
+	//update position
+	//m_player->set_local_position(playerPos);
+	this->set_local_position(playerPos);
+	//animazione
+	m_player->set_texture_offset(glm::vec2(glm::round(xAnim), glm::round(yAnim)));
+}
+
+void Player::Animations(double dt) {
 
 	//animazione sulla stessa riga
 	if (currentCenterAxisX == 0 && currentCenterAxisY == 0) {
@@ -94,58 +133,16 @@ void Player::update(double dt)
 			yAnim = DL_Y;
 		}
 	}
-
-	//slimePos
-	//slimePos = slime->get_world_position();
-	
-	if (Window::isKeyDown(GLFW_KEY_SPACE)) {
-		//where damage is applied
-		dmgCoords = playerPos + playerFacingDir * damageDistance;
-		//distance from 2 points = Pitagora's theorem
-		//non serve valore assoluto perché al quadrato é sempre positivo
-		float xDist = slimePos.x - dmgCoords.x;
-		float yDist = slimePos.y - dmgCoords.y;
-		float pitTheorem = glm::sqrt(xDist * xDist + yDist * yDist);
-		
-		//std::cout << pitTheorem << std::endl;
-
-		//if distance from enemy + hitboxRadius to this point <= damageRadius
-		//then enemy takes damage
-		if (pitTheorem < damageRadius + slimeHitboxRadius) {
-			//colora di rosso
-			//slimeXAnim = SLIME_DMG;
-			
-			
-			//avvia timer
-			timer_dmg = damagedTimer;
-		}
-
-	}
-
-	//update timer colore slime
-	timer_dmg -= dt;
-	if (timer_dmg <= 0) {
-		slimeXAnim = SLIME_IDLE;
-	}
-	/*
-	*/
-
-
-	//update position
-	//m_player->set_local_position(playerPos);
-	this->set_local_position(playerPos);
-	//animazione
-	m_player->set_texture_offset(glm::vec2(glm::round(xAnim), glm::round(yAnim)));
 }
 
 void Player::Debug() {
-	std::string dmgNumb = std::to_string(currentCenterAxisX);
-	ImGui::Text(("input X: " + dmgNumb).c_str());
-
+	std::string HP = std::to_string(currentHealth);
+	ImGui::Text(("current HP: " + HP).c_str());
+/*
 	std::string px = std::to_string(slimePos.x);
 	std::string py = std::to_string(slimePos.y);
 	std::string pz = std::to_string(slimePos.z);
-	ImGui::Text(("slimePos: " + px + " " + py + " " + pz).c_str());
+	ImGui::Text(("slimePos: " + px + " " + py + " " + pz).c_str());*/
 
 }
 
