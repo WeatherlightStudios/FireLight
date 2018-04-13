@@ -1,7 +1,8 @@
-#pragma once
+#ifndef GAME_HEADER
+#define GAME_HEADER
 
 #include <FireLight.h>
-#include "TestScene.h"
+#include "Scenes\Test_Scene.h"
 
 class Game : public FL::App
 {
@@ -9,12 +10,12 @@ public:
 	Game();
 
 	void Init();
+
 	~Game();
+
 private:
-	//Camera m_camera;
 
-	Renderable m_render;
-
-	TestScene m_testScene;
-
+	Test_Scene m_scene;
 };
+
+#endif

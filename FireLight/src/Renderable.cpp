@@ -4,7 +4,7 @@
 #include "SimpleRenderSystem.h"
 #include <iostream>
 
-Renderable::Renderable()
+Renderable::Renderable() : SceneNode("")
 {
 
 }

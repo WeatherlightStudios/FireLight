@@ -2,30 +2,21 @@
 
 
 
-Game::Game() : FL::App("Hello", 800,600) //m_camera(glm::vec3(0,0,-3), glm::vec3(0,1,0), 90,0, projType::ORTHO)
+Game::Game() : App("LiveWorld", 800,600)
 {
-	/*m_root = new SceneNode();
-	obj1 = new SceneNode();
-	obj2 = new SceneNode();
-	obj1->set_local_position(glm::vec3(1, 0, 0));
-	obj2->set_local_position(glm::vec3(1, 0, 0));*/
-	//SimpleRenderSystem::set_Camera(&m_camera);
+
 }
+
 
 void Game::Init()
 {
-	ResourceManager::LoadShader("Shaders/sprite_shader.vert","Shaders/sprite_shader.frag", nullptr, "shader");
-	SceneManager::add_scene(&m_testScene, "testScene");
-	SceneManager::set_current_scene("testScene");
-	//SceneManager::init_current_scene();
-	/*m_root->init();
-	obj1->init();
-	obj2->init();
+	glClearColor(1,0,0,1);
 
-	obj2->atuch_children(obj1);*/
+	SceneManager::add_scene(&m_scene, "test");
+	SceneManager::change_current_scene_to("test");
+
 }
 
 Game::~Game()
 {
-
 }

@@ -7,7 +7,7 @@
 #include <glm\vec3.hpp>
 #include <glm\vec4.hpp>
 #include <string>
-#include "SceneNode.h"
+#include "Core\SceneNode.h"
 #include "Utility\Resources\Texture.h"
 
 struct vertex_buffer
