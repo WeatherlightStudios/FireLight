@@ -36,8 +36,8 @@ public:
 	void init_objects();
 	void init_render();
 	void update_objects(double dt);
-	void check_renderable_node(SceneNode* node);
-
+	void add_renderable_node(SceneNode* node);
+	void remove_renderable_node(SceneNode* node);
 
 	SceneNode* get_object(string name);
 

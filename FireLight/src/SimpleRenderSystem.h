@@ -5,6 +5,7 @@
 #include <vector>
 #include "Renderable.h"
 #include "Camera.h"
+#include <algorithm>
 
 
 class SimpleRenderSystem

@@ -137,6 +137,7 @@
     <ClInclude Include="imgui\stb_rect_pack.h" />
     <ClInclude Include="imgui\stb_textedit.h" />
     <ClInclude Include="imgui\stb_truetype.h" />
+    <ClInclude Include="src\Render\Mesh.h" />
     <ClInclude Include="src\Debug.h" />
     <ClInclude Include="FireLight.h" />
     <ClInclude Include="GL\gl3w.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="src\Utility\Resources\Shader.h" />
     <ClInclude Include="src\Core\Window.h" />
     <ClInclude Include="src\Utility\Resources\Texture.h" />
+    <ClInclude Include="src\Render\OpenGL\VertexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\extra_fonts\binary_to_compressed_c.cpp" />
@@ -160,6 +162,7 @@
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
     <ClCompile Include="imgui\imgui_impl_glfw_gl3.cpp" />
+    <ClCompile Include="src\Render\Mesh.cpp" />
     <ClCompile Include="src\Debug.cpp" />
     <ClCompile Include="GL\gl3w.c" />
     <ClCompile Include="src\Core\Scene.cpp" />
@@ -174,6 +177,7 @@
     <ClCompile Include="src\Utility\Resources\Shader.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
     <ClCompile Include="src\Utility\Resources\Texture.cpp" />
+    <ClCompile Include="src\Render\OpenGL\VertexBuffer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

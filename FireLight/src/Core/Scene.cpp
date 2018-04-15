@@ -5,7 +5,7 @@
 Scene::Scene()
 {
 	isInizialized = false;
-	m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
+	m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::PROSPECTIVE);
 	m_debug = new Debug();
 }
 
@@ -24,17 +24,19 @@ void Scene::init_scene()
 }
 void Scene::update_scene(double dt)
 {
-	//m_camera->update();
+	m_camera->update();
 	CameraUpdate(m_camera);
 	update_objects(dt);
 	Update(dt);
+
+	std::cout << m_graph_objects.size() << endl;
 }
 
 void Scene::render()
 {
 	//Debughing(m_debug);
 	//m_debug->flush();
-	//m_render_system.Render();
+	m_render_system.Render();
 }
 
 void Scene::init_objects()
@@ -55,19 +57,19 @@ void Scene::update_objects(double dt)
 
 void Scene::init_render()
 {
-	for (int i = 0; i < m_graph_objects.size(); i++)
+	/*for (int i = 0; i < m_graph_objects.size(); i++)
 	{
-		check_renderable_node(m_graph_objects[i]);
-	}
+		add_renderable_node(m_graph_objects[i]);
+	}*/
 }
 
-void Scene::check_renderable_node(SceneNode* node)
+void Scene::add_renderable_node(SceneNode* node)
 {
 	if (dynamic_cast<const Renderable*>(node) == nullptr)
 	{
 		for (int i = 0; i < node->get_children_size(); i++)
 		{
-			check_renderable_node(node->getChildren(i));
+			add_renderable_node(node->getChildren(i));
 		}
 	}
 	else
@@ -77,7 +79,28 @@ void Scene::check_renderable_node(SceneNode* node)
 		//test
 		for (int i = 0; i < node->get_children_size(); i++)
 		{
-			check_renderable_node(node->getChildren(i));
+			add_renderable_node(node->getChildren(i));
+		}
+	}
+}
+
+void Scene::remove_renderable_node(SceneNode* node)
+{
+	if (dynamic_cast<const Renderable*>(node) == nullptr)
+	{
+		for (int i = 0; i < node->get_children_size(); i++)
+		{
+			remove_renderable_node(node->getChildren(i));
+		}
+	}
+	else
+	{
+		m_render_system.remove((Renderable*)node);
+
+		//test
+		for (int i = 0; i < node->get_children_size(); i++)
+		{
+			remove_renderable_node(node->getChildren(i));
 		}
 	}
 }
@@ -94,6 +117,7 @@ void Scene::add_object(SceneNode *node)
 	{
 		node->init_this();
 	}
+	add_renderable_node(node);
 }
 
 void Scene::remove_object(SceneNode *node)
@@ -102,9 +126,11 @@ void Scene::remove_object(SceneNode *node)
 	{
 		if (m_graph_objects[i] == node)
 		{
-			m_graph_objects.erase(m_graph_objects.begin() + (i - 1));
+			remove_renderable_node(m_graph_objects[i]);
+			m_graph_objects.erase(m_graph_objects.begin() + (i));
 		}
 	}
+
 }
 
 SceneNode* Scene::get_object(string name)
