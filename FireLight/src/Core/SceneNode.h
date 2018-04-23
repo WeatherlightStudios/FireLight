@@ -5,6 +5,7 @@
 #include <glm\vec3.hpp>
 #include <glm\vec4.hpp>
 
+#include <iostream>
 #include <string>
 #include <memory>
 #include <map>
@@ -15,7 +16,7 @@ class SceneNode
 public:
 
 	
-	SceneNode(std::string name);
+	SceneNode();
 	~SceneNode();
 	
 	void set_parent(SceneNode* parent);
@@ -24,12 +25,13 @@ public:
 	void atuch_children(SceneNode* children);
 	void detuch_childern(SceneNode* children);
 
-	virtual void init() {}
-	virtual void update(double dt) {}
 
 
 	void destroy();
 	void destroyChildrens();
+
+	virtual void update(double dt) {}
+	virtual void init() { std::cout << "INIT"; }
 
 	void init_this();
 	void init_children();

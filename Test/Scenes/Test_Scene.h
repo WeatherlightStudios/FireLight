@@ -2,6 +2,7 @@
 #define TEST_SCENE_HEADER
 
 #include <FireLight.h>
+#include <memory>
 
 
 
@@ -23,11 +24,22 @@ public:
 
 
 private:
-
-	Renderable *m_sprite;
 	float t; 
 
+	glm::vec3 camPos;
 
+	float speed;
+
+	float posX, posY, posZ;
+
+
+	float lastX ,lastY;
+
+
+	//camera Test
+	double xpos, ypos;
+
+	Cube *m_cube;
 
 };
 

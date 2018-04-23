@@ -1,7 +1,7 @@
 #include "Window.h"
 #include <iostream>
-#include "../imgui/imgui_impl_glfw_gl3.h"
-#include "../imgui/imgui.h"
+#include "../../imgui/imgui_impl_glfw_gl3.h"
+#include "../../imgui/imgui.h"
 
 
 int Window::m_width = 0;
@@ -30,16 +30,19 @@ Window::Window(int width, int height, const char* title)
 
 void Window::Init()
 {
+
+	std::cout << "Hello" << std::endl;
+
 	m_window = glfwCreateWindow(m_width, m_height, m_title, nullptr, nullptr);
-	glfwWindowHint(GLFW_RESIZABLE,GL_FALSE);
+	//glfwWindowHint(GLFW_RESIZABLE,GL_FALSE);
 	glfwMakeContextCurrent(m_window);
 	glfwSetWindowUserPointer(m_window, this);
 	glfwSetKeyCallback(m_window, key_callback);
 	glfwSetMouseButtonCallback(m_window, mouse_button_callback);
 	glfwSetCursorPosCallback(m_window, cursor_position_callback);
 	glfwSetWindowSizeCallback(m_window, window_size_callback);
+	glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	ImGui_ImplGlfwGL3_Init(m_window, false);
-	//glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
 void Window::get_mouse_positions(double &x ,double &y)
@@ -117,7 +120,6 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	Window *win = (Window*)glfwGetWindowUserPointer(window);
-
 
 	win->mx = xpos;
 	win->my = ypos;

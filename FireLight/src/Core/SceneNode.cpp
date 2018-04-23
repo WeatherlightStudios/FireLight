@@ -1,11 +1,12 @@
 #include "SceneNode.h"
+#include <iostream>
 
 std::map<std::string, SceneNode*>	SceneNode::m_nodes;
 
 
-SceneNode::SceneNode(std::string name)
+SceneNode::SceneNode()
 {
-	m_name = name;
+	
 }
 
 
@@ -34,6 +35,7 @@ void SceneNode::destroyChildrens()
 		delete(*it);
 	}
 }
+
 SceneNode *SceneNode::getChildren(std::string name)
 {
 	std::vector<SceneNode*>::iterator it;

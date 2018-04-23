@@ -2,9 +2,9 @@
 #define SCENE_H
 
 #include "SceneNode.h"
-#include "../SimpleRenderSystem.h"
-#include "../Debug.h"
-#include "../Renderable.h"
+#include "../Render/SimpleRenderSystem.h"
+#include "../Utility/Debug.h"
+#include "../Render/Renderable.h"
 #include <vector>
 #include <string>
 
@@ -28,16 +28,14 @@ public:
 	virtual void Debughing(Debug *debug){}
 	virtual void Close(){}
 
-	void add_object(SceneNode *node);
+	void add_object(SceneNode &node);
 	//void add_objectTo(SceneNode *parentNode, SceneNode *node);
-	void remove_object(SceneNode *node);
+	void remove_object(SceneNode &node);
 	//void remove_objectFrom(SceneNode *parentNode, SceneNode *node);
 
-	void init_objects();
-	void init_render();
 	void update_objects(double dt);
-	void add_renderable_node(SceneNode* node);
-	void remove_renderable_node(SceneNode* node);
+	void add_renderable_node(SceneNode &node);
+	void remove_renderable_node(SceneNode &node);
 
 	SceneNode* get_object(string name);
 

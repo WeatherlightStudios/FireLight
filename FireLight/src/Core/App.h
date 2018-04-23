@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include "Window.h"
-#include "../Renderable.h"
+#include "../Render/Renderable.h"
 #include <GLFW\glfw3.h>
 
 
@@ -57,8 +57,6 @@ namespace FL
 
 		std::string		m_title;
 		Window			*m_window;
-
-		Renderable m_rend;
 		//Camera m_camera;
 	};
 

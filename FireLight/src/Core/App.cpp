@@ -4,7 +4,7 @@
 #include "SceneManager.h"
 #include "../../imgui/imgui_impl_glfw_gl3.h"
 #include "../../imgui/imgui.h"
-#include "../Debug.h"
+#include "../Utility/Debug.h"
 #include "Time.h"
 
 namespace FL
@@ -45,7 +45,7 @@ namespace FL
 			Time::Calculate();
 
 			//updateting windows stuff
-			ImGui_ImplGlfwGL3_NewFrame();
+			//ImGui_ImplGlfwGL3_NewFrame();
 
 			//FixedFrame Update game
 			while(Time::GetLag() >= MS_PER_UPDATE)
@@ -58,7 +58,7 @@ namespace FL
 			//SceneManager::debug_current_scene();
 			//render game
 			render();
-			ImGui::Render();
+			//ImGui::Render();
 		
 			m_window->Update();
 			m_window->UpdateInput();
