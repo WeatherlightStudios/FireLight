@@ -1,5 +1,7 @@
 #include "Cube.h"
 #include <iostream>
+#include "../Core/Time.h"
+#include <math.h>
 
 using namespace std;
 
@@ -21,36 +23,48 @@ void Cube::init()
 	int vi = 0;
 	int ti = 0;
 
+	glm::vec3 color1 = glm::vec3((1.0f / 255.0f) * 196, (1.0f / 255.0f) * 177, (1.0f / 255.0f) * 144);
+	glm::vec3 color2 = glm::vec3((1.0f / 255.0f) * 134, (1.0f / 255.0f) * 90, (1.0f / 255.0f) * 77);
+
+	float a;
+
 	for (int y = 0; y < height + 1; y++)
 	{
 		for (int x = 0; x < width + 1; x++)
 		{
-			m_data[i].position = glm::vec3(x, 0, y);
+			m_data[i].position = glm::vec3(x, abs(sin(x / 2)  + cos(y / 2)), y);
+			glm::vec3 t = lerp(color1, color2, abs(sin(x / 2) + cos(y / 2)));
+			m_data[i].color = t;
 
-			//vi++;
-			//ti += 6;
+
+			
+
+			//m_data[i].color = glm::vec3(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX));
+		
+
 			i++;
 		}
 
-		//vi++;
 	}
 
 	for (int ti = 0, vi = 0, y = 0; y < height; y++, vi++) {
 		for (int x = 0; x < width; x++, ti += 6, vi++) {
 			index[ti] = vi;
-			index[ti + 3] = index[ti + 2] = vi + 1;
-			index[ti + 4] = index[ti + 1] = vi + width + 1;
-			index[ti + 5] = vi + width + 2;
+			index[ti + 1] = vi + 1;
+			index[ti + 2] = vi + height + 1;
+			index[ti + 3] = vi + height + 1;
+			index[ti + 4] = vi + height + 2;
+			index[ti + 5] = vi + 1;
 		}
 	}
 
 
-	/*index[ti] = vi;
-	index[ti + 1] = vi + 1;
-	index[ti + 2] = vi + height + 1;
-	index[ti + 3] = vi + height + 1;
-	index[ti + 4] = vi + height + 2;
-	index[ti + 5] = vi + 1;*/
+	//index[ti] = vi;
+	//index[ti + 1] = vi + 1;
+	//index[ti + 2] = vi + height + 1;
+	//index[ti + 3] = vi + height + 1;
+	//index[ti + 4] = vi + height + 2;
+	//index[ti + 5] = vi + 1;
 
 
 
@@ -66,6 +80,9 @@ void Cube::init()
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
+
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 
 
 	m_vbo.Unbind();

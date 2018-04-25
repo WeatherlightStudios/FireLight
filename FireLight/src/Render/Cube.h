@@ -7,6 +7,7 @@
 #include "OpenGL\GLUtility.h"
 #include "../Utility/ResourceManager.h"
 #include <GL\gl3w.h>
+#include <glm\glm.hpp>
 
 class Cube :  public Renderable, public SceneNode
 {
@@ -16,6 +17,10 @@ public:
 	void init();
 
 	void Draw(Camera *camera);
+	glm::vec3 lerp(const glm::vec3& A, const glm::vec3& B, float t) {
+		return A * t + B * (1.f - t);
+		//return (1 - t) * A + t * B;
+	}
 	
 	~Cube();
 
