@@ -18,19 +18,33 @@ Test_Scene::Test_Scene()
 void Test_Scene::Init()
 {
 	ResourceManager::LoadTexture("source/Texture/tilea2.png", true, "tile1");
+	ResourceManager::LoadTexture("source/Texture/tilea2.png", true, "sprite");
+
+	ResourceManager::LoadShader("source/Shaders/2D_shader.vert", "source/Shaders/2D_shader.frag", NULL, "2D_shader");
 	ResourceManager::LoadShader("source/Shaders/shader.vert", "source/Shaders/shader.frag", NULL, "shader");
 
+	m_sprite = new Sprite();
 
-	m_cube = new Cube();
+	m_sprite->set_local_position(glm::vec3(0, 0, 0));
 
-	m_cube->set_local_position(glm::vec3(0, 0, 0));
-	m_cube->set_local_scale(glm::vec3(1, 1, 1));	m_cube->set_local_rotation(0);
+	m_sprite->set_local_scale(glm::vec3(1, 1, 1));
+	m_sprite->set_local_rotation(0);
 
-	add_object(*m_cube);
+	add_object(*m_sprite);
+
+
+	/*m_cube = new Cube();
+
+	m_cube->set_local_position(glm::vec3(0, 0, 0));
+
+	m_cube->set_local_scale(glm::vec3(1, 1, 1));
+	m_cube->set_local_rotation(0);
+
+	add_object(*m_cube);*/
 
 	posX = 0;
 	posY = 0;
-	posZ = 0;
+	posZ = +3;
 
 }
 

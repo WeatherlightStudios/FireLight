@@ -21,7 +21,6 @@ void SimpleRenderSystem::remove(Renderable *rend)
 
 void SimpleRenderSystem::Render()
 {
-
 	for (int i = 0; i < m_renderables.size(); i++)
 	{
 		m_renderables.at(i)->Draw(m_camera);

@@ -8,7 +8,7 @@
 #include <SOIL/SOIL.h>
 
 std::map<std::string, Texture>    ResourceManager::Textures;
-std::map<std::string, Shader>       ResourceManager::Shaders;
+std::map<std::string, Shader>     ResourceManager::Shaders;
 
 
 Shader ResourceManager::LoadShader(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile, std::string name)

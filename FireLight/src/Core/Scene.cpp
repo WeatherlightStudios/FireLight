@@ -6,7 +6,7 @@
 Scene::Scene()
 {
 	isInizialized = false;
-	m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::PROSPECTIVE);
+	m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
 	m_debug = new Debug();
 }
 

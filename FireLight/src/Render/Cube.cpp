@@ -13,7 +13,20 @@ void Cube::init()
 {
 	cout << "init" << endl;
 
-	const int width = 100;
+	
+
+
+
+
+
+	
+
+	
+
+
+	/*Terrain Render Test*/
+
+	/*const int width = 100;
 	const int height = 100;
 
 	vertexData m_data[(width + 1) * (height + 1)];
@@ -32,16 +45,9 @@ void Cube::init()
 	{
 		for (int x = 0; x < width + 1; x++)
 		{
-			m_data[i].position = glm::vec3(x, abs(sin(x / 2)  + cos(y / 2)), y);
-			glm::vec3 t = lerp(color1, color2, abs(sin(x / 2) + cos(y / 2)));
-			m_data[i].color = t;
-
-
-			
-
-			//m_data[i].color = glm::vec3(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX));
-		
-
+			m_data[i].position = glm::vec3(x, abs(sin(x / 2)  + sin(y / 2)), y);
+			glm::vec3 t = lerp(color1, color2, abs(sin(x / 2) + sin(y / 2)));
+			m_data[i].Normal = t;
 			i++;
 		}
 
@@ -56,7 +62,7 @@ void Cube::init()
 			index[ti + 4] = vi + height + 2;
 			index[ti + 5] = vi + 1;
 		}
-	}
+	}*/
 
 
 	//index[ti] = vi;
@@ -66,17 +72,56 @@ void Cube::init()
 	//index[ti + 4] = vi + height + 2;
 	//index[ti + 5] = vi + 1;
 
+	float vertices[] = {
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+		0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+		0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+		0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+
+		0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+		0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+		0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+		0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+		0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+	};
 
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &EBO);
 
 	glBindVertexArray(VAO);
 
-	m_vbo.Gen(m_data, sizeof(m_data), GL_STATIC_DRAW);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(index), index, GL_STATIC_DRAW);
+	m_vbo.Gen(vertices, sizeof(vertices), GL_STATIC_DRAW);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
@@ -107,8 +152,10 @@ void Cube::Draw(Camera *camera)
 
 	glBindVertexArray(VAO);
 
-	glDrawElements(GL_TRIANGLES,100 * 100 * 6, GL_UNSIGNED_INT, 0);
-	//glDrawArrays(GL_TRIANGLES, 0, 3);
+
+
+	//glDrawElements(GL_TRIANGLES,100 * 100 * 6, GL_UNSIGNED_INT, 0);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
 	glBindVertexArray(0);
 }
 

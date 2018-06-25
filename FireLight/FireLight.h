@@ -1,5 +1,4 @@
 #pragma once
-
 #include "src\Core\App.h"
 #include "src\Render\Camera.h"
 #include "src\Utility\ResourceManager.h"
@@ -11,5 +10,6 @@
 #include "src\Core\Scene.h"
 #include "src\Render\Cube.h"
 #include "src\Core\SceneManager.h"
+#include "src\Render\Sprite.h"
 #include "src\Utility\Debug.h"
 #include "imgui\imgui.h"

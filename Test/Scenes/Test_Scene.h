@@ -41,6 +41,8 @@ private:
 
 	Cube *m_cube;
 
+	Sprite *m_sprite;
+
 };
 
 #endif
