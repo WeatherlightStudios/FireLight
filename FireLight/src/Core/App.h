@@ -31,7 +31,13 @@ public:
 
 
 	void render();
+
+
+	/**
+	* Hellow!
+	*/
 	void shutDown();
+
 
 private:
 
