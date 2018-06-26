@@ -7,8 +7,7 @@
 #include "../Utility/Debug.h"
 #include "Time.h"
 
-namespace FL
-{
+
 	App::App(const std::string name, int Width, int Height)
 	{
 		m_title = name;
@@ -83,6 +82,4 @@ namespace FL
 	App::~App()
 	{
 
-}
-
-}
+	}

@@ -11,55 +11,43 @@
 
 #define MS_PER_UPDATE 1 / 60.0
 
+/** 
+
+*/
 
 
-
-namespace FL
+class App
 {
+public:
+	App(const std::string name, int Width, int Height);
+	virtual ~App();
 
-	class App
-	{
-	public:
-		App(const std::string name, int Width, int Height);
-		virtual ~App();
+		
+	void start();
 
-		//Init Engine
-		void start();
-		//the game LOOP
-		void mainLoop();
-		//inizialize a Game
-		virtual void Init() = 0;
+	void mainLoop();
 
-		//---Like Unity system---\\
-		//Update a GameLogic
-		//virtual void Update(double deltaT) = 0;
-		//game render
-		//virtual void Draw() = 0;
-		//close game
-		//virtual void Close() = 0;
-
-		//RenderStuff
-		void render();
-		//free memory and close Engine
-		void shutDown();
-
-	private:
-
-		bool		m_isRunning;
-		double		m_oldTime;
-		double		m_deltaLag;
-
-		int			m_width;
-		int			m_height;
-
-		double lag;
+	virtual void Init() = 0;
 
 
-		std::string		m_title;
-		Window			*m_window;
-		//Camera m_camera;
-	};
+	void render();
+	void shutDown();
 
-}
+private:
+
+	bool		m_isRunning;
+	double		m_oldTime;
+	double		m_deltaLag;
+
+	int			m_width;
+	int			m_height;
+
+	double lag;
+
+
+	std::string		m_title;
+	Window			*m_window;
+};
+
 
 #endif
