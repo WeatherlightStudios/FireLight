@@ -34,7 +34,7 @@ public:
 
 
 	/**
-	* Hellow!
+	* Hello!
 	*/
 	void shutDown();
 
