@@ -17,7 +17,7 @@ public:
 
 	void init();
 
-	void Draw(Camera *camera);
+	void Draw(Camera2D *camera);
 
 
 
@@ -31,6 +31,9 @@ private:
 
 	GLuint VAO;
 	GLuint EBO;
+
+	Texture m_texutre;
+	Shader m_shader;
 
 
 };

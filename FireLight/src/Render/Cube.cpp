@@ -136,14 +136,14 @@ void Cube::init()
 }
 
 
-void Cube::Draw(Camera *camera)
+void Cube::Draw(Camera2D *camera)
 {
 	model = glm::scale(glm::translate(glm::mat4(1.0f), this->get_world_position()), this->get_world_scale());
 	model = glm::rotate(model, this->get_local_rotation(), glm::vec3(0, 0, 1));
 
 	ResourceManager::GetShader("shader").SetMatrix4("model", model, false);
-	ResourceManager::GetShader("shader").SetMatrix4("view", camera->get_viewMatrix(), false);
-	ResourceManager::GetShader("shader").SetMatrix4("projection", camera->get_projectionMatrix(), false);
+	//ResourceManager::GetShader("shader").SetMatrix4("view", camera->get_viewMatrix(), false);
+	//ResourceManager::GetShader("shader").SetMatrix4("projection", camera->get_projectionMatrix(), false);
 	//  ResourceManager::GetShader("shader").SetVector2f("offset", glm::vec2(0,0), false); 
 	//cout << "Draw" << endl;
 	ResourceManager::GetShader("shader").Use();

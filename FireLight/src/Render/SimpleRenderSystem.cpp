@@ -27,7 +27,7 @@ void SimpleRenderSystem::Render()
 	}
 }
 
-void SimpleRenderSystem::set_Camera(Camera *camera)
+void SimpleRenderSystem::set_Camera(Camera2D *camera)
 {
 	m_camera = camera;
 }

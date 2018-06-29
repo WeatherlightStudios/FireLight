@@ -2,7 +2,7 @@
 
 
 
-Game::Game() : App("LiveWorld", 800,600)
+Game::Game() : App("FireLight Engine", 800,600)
 {
 
 }

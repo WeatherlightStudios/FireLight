@@ -10,11 +10,9 @@
 
 
 #define MS_PER_UPDATE 1 / 60.0
-
-/** 
+/**
 
 */
-
 
 class App
 {
@@ -33,9 +31,6 @@ public:
 	void render();
 
 
-	/**
-	* Hello!
-	*/
 	void shutDown();
 
 

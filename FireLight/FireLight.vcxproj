@@ -130,6 +130,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Render\Camera2D.h" />
     <ClInclude Include="src\Render\Sprite.h" />
     <ClInclude Include="src\Render\Cube.h" />
     <ClInclude Include="imgui\imconfig.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="src\Render\OpenGL\VertexArrayBuffer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Render\Camera2D.cpp" />
     <ClCompile Include="src\Render\Sprite.cpp" />
     <ClCompile Include="src\Render\Cube.cpp" />
     <ClCompile Include="imgui\extra_fonts\binary_to_compressed_c.cpp" />

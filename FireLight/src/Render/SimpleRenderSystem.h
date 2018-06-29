@@ -5,6 +5,7 @@
 #include <vector>
 #include "Renderable.h"
 #include "Camera.h"
+#include "Camera2D.h"
 #include <algorithm>
 
 
@@ -30,12 +31,12 @@ public:
 
 	void Render();
 
-	void set_Camera(Camera *camera);
+	void set_Camera(Camera2D *camera);
 
 	~SimpleRenderSystem();
 private:
 
-	Camera* m_camera;
+	Camera2D* m_camera;
 	std::vector<Renderable*> m_renderables;
 
 };

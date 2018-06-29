@@ -16,7 +16,7 @@ public:
 
 	void init();
 
-	void Draw(Camera *camera);
+	void Draw(Camera2D *camera);
 	glm::vec3 lerp(const glm::vec3& A, const glm::vec3& B, float t) {
 		return A * t + B * (1.f - t);
 		//return (1 - t) * A + t * B;
