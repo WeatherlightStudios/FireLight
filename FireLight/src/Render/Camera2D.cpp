@@ -12,6 +12,8 @@ Camera2D::Camera2D()
 
 glm::mat4 Camera2D::getMatrix()
 {
+
+
 	glm::mat4 projection = glm::ortho(800.0f / -600.0f, 800.0f / 600.0f, -1.0f, 1.0f, 0.001f, 10000.0f);
 	glm::mat4 orientation;
 	orientation = glm::rotate(orientation, 0.0f, glm::vec3(1, 0, 0));

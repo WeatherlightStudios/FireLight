@@ -9,8 +9,6 @@ using namespace std;
 Test_Scene::Test_Scene()
 {
 
-	m_cube = new Cube();
-
 }
 
 
@@ -23,7 +21,7 @@ void Test_Scene::Init()
 	ResourceManager::LoadShader("source/Shaders/2D_shader.vert", "source/Shaders/2D_shader.frag", NULL, "2D_shader");
 	ResourceManager::LoadShader("source/Shaders/shader.vert", "source/Shaders/shader.frag", NULL, "shader");
 
-	m_sprite = new Sprite();
+	m_sprite = new Sprite(ResourceManager::GetTexture("sprite"), ResourceManager::GetShader("2D_shader"));
 
 	m_sprite->set_local_position(glm::vec3(0, 0, 0));
 

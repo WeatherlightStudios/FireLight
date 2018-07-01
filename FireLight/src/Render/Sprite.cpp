@@ -2,12 +2,22 @@
 
 
 
-Sprite::Sprite()
+Sprite::Sprite(Texture texture, Shader shader)
 {
+	m_offsetX = 0;
+	m_offsetY = 0;
+
+	m_row = 1;
+	m_collum = 1;
+
+	m_texutre = texture;
+	m_shader = shader;
+
 }
 
 void Sprite::init()
 {
+
 	float vertices[]
 	{
 		//Position			//UV
@@ -37,6 +47,21 @@ void Sprite::init()
 
 	m_vbo.Unbind();
 	glBindVertexArray(0);
+
+}
+
+
+void Sprite::setOffset(float x, float y)
+{
+	m_offsetX = x;
+	m_offsetY = y;
+
+}
+
+void Sprite::setRows(float row, float collum)
+{
+	m_row = row;
+	m_collum = collum;
 }
 
 
@@ -45,25 +70,16 @@ void Sprite::Draw(Camera2D *camera)
 	model = glm::scale(glm::translate(glm::mat4(1.0f), this->get_world_position()), this->get_world_scale());
 	model = glm::rotate(model, this->get_local_rotation(), glm::vec3(0, 0, 1));
 
-	ResourceManager::GetShader("2D_shader").SetMatrix4("model", model, false);
-	//ResourceManager::GetShader("2D_shader").SetMatrix4("view", camera->get_viewMatrix(), false);
-	ResourceManager::GetShader("2D_shader").SetMatrix4("projection", camera->getMatrix(), false);
+	m_shader.SetMatrix4("model", model, false);
+	m_shader.SetMatrix4("projection", camera->getMatrix(), false);
 
-	ResourceManager::GetShader("2D_shader").SetVector2f("row", glm::vec2(1.0f,1.0f), false);
-	ResourceManager::GetShader("2D_shader").SetVector2f("offset", glm::vec2(0.0f, 0.0f), false);
-
-	/*
-
-	row;
-	 offset
-	 
-	 */
+	m_shader.SetVector2f("row", glm::vec2(m_row, m_collum), false);
+	m_shader.SetVector2f("offset", glm::vec2(m_offsetX, m_offsetY), false);
 
 
-	//  ResourceManager::GetShader("shader").SetVector2f("offset", glm::vec2(0,0), false); 
-	//cout << "Draw" << endl;
-	ResourceManager::GetTexture("sprite").Bind();
-	ResourceManager::GetShader("2D_shader").Use();
+
+	m_texutre.Bind();
+	m_shader.Use();
 
 
 	glBindVertexArray(VAO);

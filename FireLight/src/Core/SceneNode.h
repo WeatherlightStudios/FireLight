@@ -62,7 +62,7 @@ public:
 
 	float get_local_rotation() { return m_local_rotation; }
 	//TODO: Da sistemare!
-	float get_world_rotation() { return m_world_rotation; }
+	float get_world_rotation() { return m_parent != nullptr ? m_parent->get_world_rotation() + m_local_rotation : m_local_rotation; }
 
 private:
 
