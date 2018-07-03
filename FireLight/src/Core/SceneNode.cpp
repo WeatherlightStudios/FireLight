@@ -147,7 +147,7 @@ void SceneNode::translate(glm::vec3 pos)
 {
 	m_local_position += pos;
 }
-void SceneNode::scale(glm::vec3 scale)
+void SceneNode::increment_scale(glm::vec3 scale)
 {
 	m_local_scale += scale;
 }
@@ -156,7 +156,7 @@ void SceneNode::translate(float x, float y, float z)
 {
 	m_local_position += glm::vec3(x, y, z);
 }
-void SceneNode::scale(float x, float y, float z)
+void SceneNode::increment_scale(float x, float y, float z)
 {
 	m_local_scale += glm::vec3(x, y, z);
 }

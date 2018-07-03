@@ -39,7 +39,7 @@ void Test_Scene::Init()
 
 void Test_Scene::CameraUpdate(Camera *camera)
 {
-	speed = 1 * Time::GetDeltaTime();
+	speed = 100 * Time::GetDeltaTime();
 	if (Window::isKeyDown(GLFW_KEY_W))
 	{
 		posY += speed;
@@ -61,7 +61,7 @@ void Test_Scene::CameraUpdate(Camera *camera)
 	}
 
 	//Camera2D::rotate(1 * Time::GetDeltaTime());
-
+	std::cout << m_sprite->local_position().x << std::endl;
 	m_sprite->set_position(glm::vec3(posX, posY, 0.0f));
 }
 

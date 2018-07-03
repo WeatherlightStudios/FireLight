@@ -57,9 +57,9 @@ public:
 	void set_rotation(float rot);
 
 	void translate(glm::vec3 pos);
-	void scale(glm::vec3 scale);
+	void increment_scale(glm::vec3 scale);
 	void translate(float x, float y, float z);
-	void scale(float x, float y, float z);
+	void increment_scale(float x, float y, float z);
 	void rotate(float rot);
 
 	void setDefaultScale(glm::vec3 scale);
@@ -67,6 +67,8 @@ public:
 
 	glm::vec3 local_position() { return m_local_position; }
 	glm::vec3 world_position() { return m_parent != nullptr ? m_parent->world_position() + m_local_position : m_local_position; }
+
+	glm::vec3 scale() { return m_local_scale; }
 
 	glm::vec3 local_scale() { return m_local_scale * m_default_scale; }
 	glm::vec3 world_scale() { return m_parent != nullptr ? m_parent->world_scale() * local_scale() : local_scale(); }
