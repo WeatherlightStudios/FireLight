@@ -1,6 +1,6 @@
 #include "App.h"
 #include <iostream>
-#include "../Utility\ResourceManager.h"
+#include "../Utility\Resource.h"
 #include "SceneManager.h"
 #include "../../imgui/imgui_impl_glfw_gl3.h"
 #include "../../imgui/imgui.h"

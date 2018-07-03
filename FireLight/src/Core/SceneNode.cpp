@@ -6,7 +6,9 @@ std::map<std::string, SceneNode*>	SceneNode::m_nodes;
 
 SceneNode::SceneNode()
 {
-	
+	m_local_position = glm::vec3(0, 0, 0);
+	m_local_scale = glm::vec3(1, 1, 1);
+	m_local_rotation = 0;
 }
 
 
@@ -15,7 +17,7 @@ void SceneNode::set_parent(SceneNode* parent)
 	m_parent = parent;
 }
 
-SceneNode* SceneNode::get_parent()
+SceneNode* SceneNode::Parent()
 {
 	return m_parent;
 }
@@ -36,18 +38,18 @@ void SceneNode::destroyChildrens()
 	}
 }
 
-SceneNode *SceneNode::getChildren(std::string name)
+SceneNode *SceneNode::Children(std::string name)
 {
 	std::vector<SceneNode*>::iterator it;
 	for (it = m_childrens.begin(); it != m_childrens.end(); ++it)
 	{
-		if ((*it)->getName() == name)
+		if ((*it)->Name() == name)
 		{
 			return (*it);
 		}
 		else
 		{
-			(*it)->getChildren(name);
+			(*it)->Children(name);
 		}
 	}
 }
@@ -115,21 +117,59 @@ void SceneNode::update_children(double dt)
 	}
 }
 
-void SceneNode::set_local_position(glm::vec3 pos)
+void SceneNode::set_position(glm::vec3 pos)
 {
 	m_local_position = pos;
 }
 
-void SceneNode::set_local_scale(glm::vec3 scale)
+void SceneNode::set_scale(glm::vec3 scale)
 {
 	m_local_scale = scale;
 }
 
-void SceneNode::set_local_rotation(float rot)
+void SceneNode::set_position(float x, float y, float z)
+{
+	m_local_position = glm::vec3(x ,y ,z);
+}
+
+void SceneNode::set_scale(float x, float y, float z)
+{
+	m_local_scale = glm::vec3(x, y, z);
+}
+
+
+void SceneNode::set_rotation(float rot)
 {
 	m_local_rotation = rot;
 }
 
+void SceneNode::translate(glm::vec3 pos) 
+{
+	m_local_position += pos;
+}
+void SceneNode::scale(glm::vec3 scale)
+{
+	m_local_scale += scale;
+}
+
+void SceneNode::translate(float x, float y, float z)
+{
+	m_local_position += glm::vec3(x, y, z);
+}
+void SceneNode::scale(float x, float y, float z)
+{
+	m_local_scale += glm::vec3(x, y, z);
+}
+
+void SceneNode::rotate(float rot)
+{
+	m_local_rotation += rot;
+}
+
+void SceneNode::setDefaultScale(glm::vec3 scale)
+{
+	m_default_scale = scale;
+}
 
 SceneNode::~SceneNode()
 {

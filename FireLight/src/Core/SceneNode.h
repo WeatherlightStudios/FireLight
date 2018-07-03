@@ -20,7 +20,7 @@ public:
 	~SceneNode();
 	
 	void set_parent(SceneNode* parent);
-	SceneNode* get_parent();
+	SceneNode* Parent();
 
 	void atuch_children(SceneNode* children);
 	void detuch_childern(SceneNode* children);
@@ -39,30 +39,40 @@ public:
 	void update_this(double dt);
 	void update_children(double dt);
 
-	size_t get_children_size() { return m_childrens.size(); }
-	SceneNode *getChildren(size_t i) { return m_childrens[i]; }
-	SceneNode *getChildren(std::string name);
+	size_t children_size() { return m_childrens.size(); }
+	SceneNode *Children(size_t i) { return m_childrens[i]; }
+	SceneNode *Children(std::string name);
 
 	void setName(std::string name);
-	std::string getName() { return m_name; }
+	std::string Name() { return m_name; }
 
 	
 
 	//More deep Refactoring 
 	// transformation and math stuff
-	void set_local_position(glm::vec3 pos);
-	void set_local_scale(glm::vec3 scale);
-	void set_local_rotation(float rot);
+	void set_position(glm::vec3 pos);
+	void set_scale(glm::vec3 scale);
+	void set_position(float x, float y, float z);
+	void set_scale(float x, float y, float z);
+	void set_rotation(float rot);
 
-	glm::vec3 get_local_position() { return m_local_position; }
-	glm::vec3 get_world_position() { return m_parent != nullptr ? m_parent->get_world_position() + m_local_position : m_local_position; }
+	void translate(glm::vec3 pos);
+	void scale(glm::vec3 scale);
+	void translate(float x, float y, float z);
+	void scale(float x, float y, float z);
+	void rotate(float rot);
 
-	glm::vec3 get_local_scale() { return m_local_scale; }
-	glm::vec3 get_world_scale() { return m_parent != nullptr ? m_parent->get_world_scale() * m_local_scale : m_local_scale; }
+	void setDefaultScale(glm::vec3 scale);
 
-	float get_local_rotation() { return m_local_rotation; }
-	//TODO: Da sistemare!
-	float get_world_rotation() { return m_parent != nullptr ? m_parent->get_world_rotation() + m_local_rotation : m_local_rotation; }
+
+	glm::vec3 local_position() { return m_local_position; }
+	glm::vec3 world_position() { return m_parent != nullptr ? m_parent->world_position() + m_local_position : m_local_position; }
+
+	glm::vec3 local_scale() { return m_local_scale * m_default_scale; }
+	glm::vec3 world_scale() { return m_parent != nullptr ? m_parent->world_scale() * local_scale() : local_scale(); }
+
+	float local_rotation() { return m_local_rotation; }
+	float world_rotation() { return m_parent != nullptr ? m_parent->world_rotation() + m_local_rotation : m_local_rotation; }
 
 private:
 
@@ -71,11 +81,16 @@ private:
 	glm::vec3 m_local_position;
 	glm::vec3 m_world_position;
 
+
+
+	glm::vec3 m_default_scale;
 	glm::vec3 m_local_scale;
 	glm::vec3 m_world_scale;
 
 	float m_local_rotation;
 	float m_world_rotation;
+
+
 
 
 

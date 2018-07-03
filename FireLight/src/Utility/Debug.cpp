@@ -1,6 +1,6 @@
 #include "Debug.h"
 #include <GL\gl3w.h>
-#include "..\Utility\ResourceManager.h"
+#include "..\Utility\Resource.h"
 
 struct Gl_line
 {
@@ -44,10 +44,10 @@ struct Gl_line
 	void Flush(Camera *camera)
 	{
 
-		ResourceManager::GetShader("shader").SetMatrix4("view", camera->get_viewMatrix(), false);
-		ResourceManager::GetShader("shader").SetMatrix4("projection", camera->get_projectionMatrix(), false);
+		Resource::getShader("shader").SetMatrix4("view", camera->get_viewMatrix(), false);
+		Resource::getShader("shader").SetMatrix4("projection", camera->get_projectionMatrix(), false);
 
-		ResourceManager::GetShader("debug_line").Use();
+		Resource::getShader("debug_line").Use();
 
 		glBindVertexArray(vaoID);
 

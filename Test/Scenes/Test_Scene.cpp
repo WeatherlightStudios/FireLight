@@ -15,18 +15,16 @@ Test_Scene::Test_Scene()
 
 void Test_Scene::Init()
 {
-	ResourceManager::LoadTexture("source/Texture/tilea2.png", true, "tile1");
-	ResourceManager::LoadTexture("source/Texture/tilea2.png", true, "sprite");
 
-	ResourceManager::LoadShader("source/Shaders/2D_shader.vert", "source/Shaders/2D_shader.frag", NULL, "2D_shader");
-	ResourceManager::LoadShader("source/Shaders/shader.vert", "source/Shaders/shader.frag", NULL, "shader");
+	auto texture = Resource::LoadTexture("source/Texture/tilea2.png", true, "sprite");
+	auto shader = Resource::LoadShader("source/Shaders/2D_shader.vert", "source/Shaders/2D_shader.frag", NULL, "2D_shader");
 
-	m_sprite = new Sprite(ResourceManager::GetTexture("sprite"), ResourceManager::GetShader("2D_shader"));
+	m_sprite = new Sprite(texture, shader, 16, 12);
 
-	m_sprite->set_local_position(glm::vec3(0, 0, 0));
+	m_sprite->set_position(glm::vec3(0, 0, 0));
 
-	m_sprite->set_local_scale(glm::vec3(1, 1, 1));
-	m_sprite->set_local_rotation(0);
+	//m_sprite->set_local_scale(glm::vec3(1, 1, 1));
+	m_sprite->set_rotation(0);
 
 	add_object(*m_sprite);
 
@@ -41,7 +39,7 @@ void Test_Scene::Init()
 
 void Test_Scene::CameraUpdate(Camera *camera)
 {
-	speed = 4.5 * Time::GetDeltaTime();
+	speed = 1 * Time::GetDeltaTime();
 	if (Window::isKeyDown(GLFW_KEY_W))
 	{
 		posY += speed;
@@ -62,9 +60,9 @@ void Test_Scene::CameraUpdate(Camera *camera)
 		posX -= speed;
 	}
 
-	Camera2D::rotate(1 * Time::GetDeltaTime());
+	//Camera2D::rotate(1 * Time::GetDeltaTime());
 
-	m_sprite->set_local_position(glm::vec3(posX, posY, 0.0f));
+	m_sprite->set_position(glm::vec3(posX, posY, 0.0f));
 }
 
 void Test_Scene::Update(double dt)

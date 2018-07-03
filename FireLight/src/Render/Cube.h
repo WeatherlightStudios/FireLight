@@ -5,7 +5,7 @@
 #include "Renderable.h"
 #include "../Core/SceneNode.h"
 #include "OpenGL\GLUtility.h"
-#include "../Utility/ResourceManager.h"
+#include "../Utility/Resource.h"
 #include <GL\gl3w.h>
 #include <glm\glm.hpp>
 

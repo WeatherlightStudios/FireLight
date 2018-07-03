@@ -4,7 +4,7 @@
 #include "Renderable.h"
 #include "../Core/SceneNode.h"
 #include "OpenGL\GLUtility.h"
-#include "../Utility/ResourceManager.h"
+#include "../Utility/Resource.h"
 #include <GL\gl3w.h>
 #include <glm\glm.hpp>
 
@@ -12,6 +12,7 @@ class Sprite : public Renderable, public SceneNode
 {
 
 public:
+	Sprite(Texture texture, Shader shader, float rows, float columns);
 	Sprite(Texture texture, Shader shader);
 	~Sprite();
 
@@ -20,7 +21,6 @@ public:
 	void Draw(Camera2D *camera);
 
 	void setOffset(float x, float y);
-	void setRows(float row, float collum);
 
 
 
@@ -28,6 +28,9 @@ private:
 
 	VertexBuffer m_vbo;
 	IndexBuffer m_ibo;
+
+	int m_widht;
+	int m_height;
 
 	glm::mat4 model;
 

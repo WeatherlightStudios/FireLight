@@ -41,7 +41,7 @@ void Window::Init()
 	glfwSetMouseButtonCallback(m_window, mouse_button_callback);
 	glfwSetCursorPosCallback(m_window, cursor_position_callback);
 	glfwSetWindowSizeCallback(m_window, window_size_callback);
-	glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	//glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	ImGui_ImplGlfwGL3_Init(m_window, false);
 }
 

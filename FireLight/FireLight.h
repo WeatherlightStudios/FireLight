@@ -1,7 +1,7 @@
 #pragma once
 #include "src\Core\App.h"
 #include "src\Render\Camera.h"
-#include "src\Utility\ResourceManager.h"
+#include "src\Utility\Resource.h"
 #include "src\Core\Window.h"
 #include "src\Render\Renderable.h"
 #include "src\Core\Time.h"

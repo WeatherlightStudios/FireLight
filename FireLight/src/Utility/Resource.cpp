@@ -1,5 +1,5 @@
 ﻿
-#include "ResourceManager.h"
+#include "Resource.h"
 
 #include <iostream>
 #include <sstream>
@@ -7,33 +7,33 @@
 
 #include <SOIL/SOIL.h>
 
-std::map<std::string, Texture>    ResourceManager::Textures;
-std::map<std::string, Shader>     ResourceManager::Shaders;
+std::map<std::string, Texture>    Resource::Textures;
+std::map<std::string, Shader>     Resource::Shaders;
 
 
-Shader ResourceManager::LoadShader(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile, std::string name)
+Shader Resource::LoadShader(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile, std::string name)
 {
 	Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
 	return Shaders[name];
 }
 
-Shader ResourceManager::GetShader(std::string name)
+Shader Resource::getShader(std::string name)
 {
 	return Shaders[name];
 }
 
-Texture ResourceManager::LoadTexture(const GLchar *file, GLboolean alpha, std::string name)
+Texture Resource::LoadTexture(const GLchar *file, GLboolean alpha, std::string name)
 {
 	Textures[name] = loadTextureFromFile(file, alpha);
 	return Textures[name];
 }
 
-Texture ResourceManager::GetTexture(std::string name)
+Texture Resource::getTexture(std::string name)
 {
 	return Textures[name];
 }
 
-void ResourceManager::Clear()
+void Resource::Clear()
 {
 	
 	for (auto iter : Shaders)
@@ -43,7 +43,7 @@ void ResourceManager::Clear()
 		glDeleteTextures(1, &iter.second.ID);
 }
 
-Shader ResourceManager::loadShaderFromFile(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile)
+Shader Resource::loadShaderFromFile(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile)
 {
 	
 	std::string vertexCode;
@@ -87,7 +87,7 @@ Shader ResourceManager::loadShaderFromFile(const GLchar *vShaderFile, const GLch
 	return shader;
 }
 
-Texture ResourceManager::loadTextureFromFile(const GLchar *file, GLboolean alpha)
+Texture Resource::loadTextureFromFile(const GLchar *file, GLboolean alpha)
 {
 	
 	Texture texture;

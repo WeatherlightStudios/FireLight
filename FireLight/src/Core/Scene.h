@@ -24,8 +24,7 @@ public:
 	void close_scene();
 
 	virtual void Init(){}
-	virtual void CameraUpdate(Camera *camera) {}
-	virtual void Update(double dt){}
+	virtual void Update(){}
 	virtual void Debughing(Debug *debug){}
 	virtual void Close(){}
 

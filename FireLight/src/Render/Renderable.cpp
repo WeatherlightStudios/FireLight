@@ -1,6 +1,6 @@
 #include "Renderable.h"
 #include <GL\gl3w.h> 
-#include "..\Utility\ResourceManager.h"
+#include "..\Utility\Resource.h"
 #include "SimpleRenderSystem.h"
 #include <iostream>
 
