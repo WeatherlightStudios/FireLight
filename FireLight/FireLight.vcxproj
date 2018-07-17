@@ -130,6 +130,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\ECS\Component.h" />
+    <ClInclude Include="src\Core\ECS\Entity.h" />
     <ClInclude Include="src\Render\Camera2D.h" />
     <ClInclude Include="src\Render\Sprite.h" />
     <ClInclude Include="src\Render\Cube.h" />
@@ -160,8 +162,11 @@
     <ClInclude Include="src\Utility\Resources\Texture.h" />
     <ClInclude Include="src\Render\OpenGL\VertexBuffer.h" />
     <ClInclude Include="src\Render\OpenGL\VertexArrayBuffer.h" />
+    <ClInclude Include="src\Core\ECS\System.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\ECS\Component.cpp" />
+    <ClCompile Include="src\Core\ECS\Entity.cpp" />
     <ClCompile Include="src\Render\Camera2D.cpp" />
     <ClCompile Include="src\Render\Sprite.cpp" />
     <ClCompile Include="src\Render\Cube.cpp" />
@@ -187,6 +192,7 @@
     <ClCompile Include="src\Utility\Resources\Texture.cpp" />
     <ClCompile Include="src\Render\OpenGL\VertexBuffer.cpp" />
     <ClCompile Include="src\Render\OpenGL\VertexArrayBuffer.cpp" />
+    <ClCompile Include="src\Core\ECS\System.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

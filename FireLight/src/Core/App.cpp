@@ -8,17 +8,15 @@
 #include "Time.h"
 
 
-	App::App(const std::string name, int Width, int Height)
+	App::App()
 	{
-		m_title = name;
-		m_width = Width; 
-		m_height = Height;
-		m_window = new Window(m_width, m_height, m_title.c_str());
+
 	}
 
 	void App::start() 
 	{
 		//Init GLFW/GL3W and start MainLoop
+		m_window = new Window(m_width, m_height, m_title.c_str());
 		glfwInit();
 		m_window->Init();
 		if (gl3wInit())
@@ -38,6 +36,14 @@
 		//Time Handling
 		Time::start();
 
+		//For Test
+		
+
+
+		std::cout << a.unique_ID << std::endl;
+		std::cout << c.unique_ID << std::endl;
+		std::cout << b.unique_ID << std::endl;
+		
 		//MainLoop
 		while (!m_window->isClosed())
 		{
@@ -78,6 +84,19 @@
 		glfwTerminate();
 		ImGui_ImplGlfwGL3_Shutdown();
 	}
+
+
+	void App::set_window_dimension(int width, int height)
+	{
+		m_width = width;
+		m_height = height;
+	}
+
+	void App::set_windiw_name(std::string name)
+	{
+		m_title = name;
+	}
+
 
 	App::~App()
 	{

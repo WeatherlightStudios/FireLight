@@ -9,21 +9,28 @@
 #include <GLFW\glfw3.h>
 
 
+//TEST
+#include "ECS\Component.h"
+
 #define MS_PER_UPDATE 1 / 60.0
+
 /**
+	La classe App viene utilizzata per inizializzare l'engine e il gioco.
+	Tramite la funzione virtuale Init e possibile inizializzare le risorse del gioco
 
 */
-
 class App
 {
 public:
-	App(const std::string name, int Width, int Height);
+	App();
 	virtual ~App();
 
 		
 	void start();
 
 	void mainLoop();
+
+
 
 	virtual void Init() = 0;
 
@@ -32,6 +39,12 @@ public:
 
 
 	void shutDown();
+
+
+	//setUp
+	//TODO: creare solo una singola funzione che carica i settaggi da file
+	void set_window_dimension(int width, int height);
+	void set_windiw_name(std::string name);
 
 
 private:
@@ -45,6 +58,9 @@ private:
 
 	double lag;
 
+	Transform<int> a;
+	Transform<int> c;
+	Render<char> b;
 
 	std::string		m_title;
 	Window			*m_window;

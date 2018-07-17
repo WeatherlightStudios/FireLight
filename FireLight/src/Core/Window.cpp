@@ -30,18 +30,13 @@ Window::Window(int width, int height, const char* title)
 
 void Window::Init()
 {
-
-	std::cout << "Hello" << std::endl;
-
 	m_window = glfwCreateWindow(m_width, m_height, m_title, nullptr, nullptr);
-	//glfwWindowHint(GLFW_RESIZABLE,GL_FALSE);
 	glfwMakeContextCurrent(m_window);
 	glfwSetWindowUserPointer(m_window, this);
 	glfwSetKeyCallback(m_window, key_callback);
 	glfwSetMouseButtonCallback(m_window, mouse_button_callback);
 	glfwSetCursorPosCallback(m_window, cursor_position_callback);
 	glfwSetWindowSizeCallback(m_window, window_size_callback);
-	//glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	ImGui_ImplGlfwGL3_Init(m_window, false);
 }
 
