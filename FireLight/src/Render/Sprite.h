@@ -37,7 +37,7 @@ private:
 	GLuint VAO;
 	GLuint EBO;
 
-	Texture m_texutre;
+	Texture m_texture;
 	Shader m_shader;
 
 	float m_offsetX, m_offsetY;

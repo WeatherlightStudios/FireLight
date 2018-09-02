@@ -10,7 +10,7 @@ Sprite::Sprite(Texture texture, Shader shader)
 	m_row = 1;
 	m_collum = 1;
 
-	m_texutre = texture;
+	m_texture = texture;
 	m_shader = shader;
 
 	//TESTS!
@@ -37,7 +37,7 @@ Sprite::Sprite(Texture texture, Shader shader, float rows, float columns)
 	m_row = rows;
 	m_collum = columns;
 
-	m_texutre = texture;
+	m_texture = texture;
 	m_shader = shader;
 
 	float pixeX = (float)(((float)texture.Width) / m_row);
@@ -101,7 +101,7 @@ void Sprite::Draw(Camera2D *camera)
 	m_shader.SetVector2f("row", glm::vec2(m_row, m_collum), false);
 	m_shader.SetVector2f("offset", glm::vec2(m_offsetX, m_offsetY), false);
 
-	m_texutre.Bind();
+	m_texture.Bind();
 	m_shader.Use();
 
 

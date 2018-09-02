@@ -1,37 +1,47 @@
-#ifndef COMPONENT_HEADER
-#define COMPONENT_HEADER
+#ifndef COMPONENT_H
+#define COMPONENT_H
 
-#include <memory>
+#include <iostream>
+#include <glm\vec3.hpp>
 
 struct BaseComponent
 {
-	static uint32_t getID();
-	static uint32_t ID;
+	static uint32_t registerComponentType();
+private:
+	static uint32_t index;
 };
 
-template<typename T>
+template<class T>
 struct Component : public BaseComponent
 {
-	static uint32_t unique_ID;
+	static const uint32_t ID;
 };
 
-template<typename T>
-uint32_t Component<T>::unique_ID(BaseComponent::getID());
+template<class T>
+const uint32_t Component<T>::ID(BaseComponent::registerComponentType());
 
-//ForTest
-template<typename T>
-struct Transform : public Component<T>
+
+
+
+
+//For Test
+struct Transform : public Component<Transform>
 {
-	float x, y, z;
+	float Position = 0;
+	float Rotation = 0;
+	float Scale = 0;
 };
-template<typename T>
-struct Render : public Component<T>
+
+
+
+struct Render : public Component<Render>
 {
-	float x, y, z;
+	glm::vec3 Position;
+	glm::vec3 Rotation;
+	glm::vec3 Scale;
 };
 
 
 
-
-#endif // !COMPONENT_HEADER
+#endif
 

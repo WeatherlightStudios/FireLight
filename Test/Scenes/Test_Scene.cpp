@@ -13,26 +13,12 @@ Test_Scene::Test_Scene()
 
 
 
+
 void Test_Scene::Init()
 {
 
 	auto texture = Resource::LoadTexture("source/Texture/tilea2.png", true, "sprite");
 	auto shader = Resource::LoadShader("source/Shaders/2D_shader.vert", "source/Shaders/2D_shader.frag", NULL, "2D_shader");
-
-	m_sprite = new Sprite(texture, shader, 16, 12);
-
-	m_sprite->set_position(glm::vec3(0, 0, 0));
-
-	//m_sprite->set_local_scale(glm::vec3(1, 1, 1));
-	m_sprite->set_rotation(0);
-
-	add_object(*m_sprite);
-
-
-
-	posX = 0;
-	posY = 0;
-	posZ = +3;
 
 }
 

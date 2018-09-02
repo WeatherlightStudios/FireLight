@@ -99,7 +99,6 @@ private:
 	SceneNode* m_parent;
 	std::vector<SceneNode*> m_childrens;
 	static std::map<std::string ,SceneNode*> m_nodes;
-
 };
 
 #endif

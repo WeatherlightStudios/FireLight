@@ -36,14 +36,14 @@
 		//Time Handling
 		Time::start();
 
-		//For Test
-		
+		m_world.addGameSystem(new TestSystem());
+
+		auto entity = m_world.CreateEntity();
+
+		entity->add_Component(Transform());
+		//entity->add_Component(Render());
 
 
-		std::cout << a.unique_ID << std::endl;
-		std::cout << c.unique_ID << std::endl;
-		std::cout << b.unique_ID << std::endl;
-		
 		//MainLoop
 		while (!m_window->isClosed())
 		{
@@ -57,6 +57,7 @@
 			{
 				//Update(dt);
 				SceneManager::update_current_scene(Time::GetDeltaTime());
+				//m_world.UpdateGameSystems();
 				Time::reset();
 			}
 
@@ -64,6 +65,8 @@
 			//render game
 			render();
 			//ImGui::Render();
+
+			//std::cout << m_world.getComponent<Transform>(entity)->Position << std::endl;
 		
 			m_window->Update();
 			m_window->UpdateInput();

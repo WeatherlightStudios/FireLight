@@ -8,10 +8,10 @@
 #include "../Render/Renderable.h"
 #include <GLFW\glfw3.h>
 
+#include "ECS\World.h"
+
 
 //TEST
-#include "ECS\Component.h"
-
 #define MS_PER_UPDATE 1 / 60.0
 
 /**
@@ -56,11 +56,9 @@ private:
 	int			m_width;
 	int			m_height;
 
-	double lag;
+	World m_world;
 
-	Transform<int> a;
-	Transform<int> c;
-	Render<char> b;
+	double lag;
 
 	std::string		m_title;
 	Window			*m_window;
