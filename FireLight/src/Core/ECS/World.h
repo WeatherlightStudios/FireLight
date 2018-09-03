@@ -16,7 +16,7 @@
 
 
 
-#define MAX_COMPONETNS 1024
+#define MAX_COMPONETNS 4
 
 
 using ComponentType = uint32_t;
@@ -53,6 +53,7 @@ public:
 		m_components[T::ID].push_back(Component);
 		for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
 		{
+
 			if ((handler->m_key & m_Game_Systems[i]->getKey()) == m_Game_Systems[i]->getKey())
 			{
 				m_Game_Systems[i]->registerEntity(handler);
@@ -70,7 +71,11 @@ public:
 				m_components[T::ID].erase(HandleToRow(handler)->second[i].second);
 				HandleToRow(handler)->second.erase(HandleToRow(handler)->second.begin() + i);
 
-				//TODO:: rimuovere l'entita dall sistema
+
+				for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
+				{
+					m_Game_Systems[i]->deregisterEntity(handler);
+				}
 			}
 		}
 	}
@@ -92,19 +97,14 @@ public:
 	static BaseComponent* getComponentByID(uint32_t ID, EntityHandler* handler);
 
 
-	void addBaseSystem();
-	void removeBaseSystem();
 
 	static void addGameSystem(System* system);
-	void removeGameSystem();
-
-	void UpdateBaseSystems();
+	static void removeGameSystem(System* system);
 
 	void UpdateGameSystems();
 
 private:
 	static std::vector<System*> m_Game_Systems;
-	static std::vector<System*> m_Base_Systems;
 
 	static std::vector<Entity*> m_Entitys;
 	static std::map<uint32_t,std::vector<BaseComponent*>> m_components;
@@ -114,9 +114,6 @@ private:
 	{
 		return (Entity*)entity;
 	}
-
-
-
 };
 
 
@@ -125,10 +122,10 @@ struct EntityHandler
 	std::bitset<MAX_COMPONETNS> m_key;
 
 	template<class T>
-	void add_Component(T component)
+	void add_Component(T* component)
 	{
-		World::addComponent(this, &component);
 		m_key[T::ID] = 1;
+		World::addComponent(this, component);
 	}
 
 };
@@ -143,7 +140,9 @@ public:
 
 	virtual void Init() {}
 
-	virtual void updateComponents(std::vector<BaseComponent*> components) {}
+	virtual void Update(std::vector<BaseComponent*> components) {}
+
+	virtual void Render(std::vector<BaseComponent*> components) {}
 
 	void registerEntity(EntityHandler* entity);
 
@@ -171,17 +170,4 @@ private:
 	std::vector<uint32_t> componentTypes;
 	std::vector<EntityHandler*> m_Entity;
 };
-
-
-
-//for test
-
-
-class TestSystem : public System
-{
-public:
-	void Init();
-	void updateComponents(std::vector<BaseComponent*> components);
-};
-
 #endif

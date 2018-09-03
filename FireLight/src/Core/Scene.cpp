@@ -33,7 +33,7 @@ void Scene::update_scene(double dt)
 
 void Scene::render()
 {
-	m_render_system.Render();
+	//m_render_system.Render();
 }
 
 void Scene::update_objects(double dt)

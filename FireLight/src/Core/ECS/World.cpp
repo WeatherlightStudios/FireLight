@@ -1,7 +1,6 @@
 #include"World.h"
 
 std::map<uint32_t, std::vector<BaseComponent*>> World::m_components;
-std::vector<System*> World::m_Base_Systems;
 std::vector<System*> World::m_Game_Systems;
 std::vector<Entity*> World::m_Entitys;
 
@@ -39,7 +38,6 @@ void World::UpdateGameSystems()
 {
 	for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
 	{
-
 		if (m_Game_Systems[i]->getSize() > 0)
 		{
 			m_Game_Systems[i]->updateEntity();
@@ -67,12 +65,16 @@ BaseComponent* World::getComponentByID(uint32_t ID, EntityHandler* handler)
 }
 
 
+void World::removeGameSystem(System* system)
+{
+
+}
+
 
 World::~World()
 {
 
 }
-
 
 
 
@@ -88,9 +90,10 @@ void System::updateEntity()
 		std::vector<BaseComponent*> m_component;
 		for (int x = 0; x < componentTypes.size(); x++)
 		{
-			m_component.push_back((BaseComponent*)World::getComponentByID(componentTypes[x], m_Entity[i]));
+			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
 		}
-		updateComponents(m_component);
+		Update(m_component);
+		Render(m_component);
 	}
 }
 
@@ -109,20 +112,3 @@ System::~System()
 {
 }
 //**********************************
-
-
-
-
-//for Test
-
-void TestSystem::Init()
-{
-	registerComponent<Transform>();
-}
-
-void TestSystem::updateComponents(std::vector<BaseComponent*> components)
-{
-	Transform* transform = (Transform*)components[0];
-
-	transform->Position += 1;
-}

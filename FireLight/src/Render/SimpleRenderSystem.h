@@ -3,41 +3,43 @@
 //prototype
 
 #include <vector>
-#include "Renderable.h"
-#include "Camera.h"
-#include "Camera2D.h"
 #include <algorithm>
 
 
+#include "Renderable.h"
+#include "Camera.h"
+#include "Camera2D.h"
+
+#include "../Core/ECS/World.h"
+#include "../Core/ECS/Components/Camera2D.h"
+#include "../Core/ECS/Components/Sprite.h"
+#include "../Core/ECS/Components/Transfrom.h"
 
 /// <summary>
 /// Actual Render System
 /// Provide to render stuff on screen
 /// </summary>
-class SimpleRenderSystem
+class SimpleRenderSystem : public System
 {
 public:
 	SimpleRenderSystem();
 
-	
+	//void Add(Renderable *rend);
 
+	//void remove(Renderable *rend);
 
+	void Init();
 
-	void Add(Renderable *rend);
+	void Update(std::vector<BaseComponent*> components);
 
-	void remove(Renderable *rend);
+	void Render(std::vector<BaseComponent*> components);
 
-
-
-	void Render();
-
-	void set_Camera(Camera2D *camera);
 
 	~SimpleRenderSystem();
 private:
 
-	Camera2D* m_camera;
-	std::vector<Renderable*> m_renderables;
+	//Camera2D* m_camera;
+	//std::vector<Renderable*> m_renderables;
 
 };
 #endif SIMPLERENDERSYSTEM_H

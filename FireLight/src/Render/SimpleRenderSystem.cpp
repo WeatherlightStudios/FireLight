@@ -1,5 +1,4 @@
 #include "SimpleRenderSystem.h"
-#include <iostream>
 
 //Camera* SimpleRenderSystem::m_camera;
 
@@ -10,27 +9,24 @@ SimpleRenderSystem::SimpleRenderSystem()
 }
 
 
-void SimpleRenderSystem::Add(Renderable *rend)
+
+void SimpleRenderSystem::Init()
 {
-	m_renderables.push_back(rend);
-}
-void SimpleRenderSystem::remove(Renderable *rend)
-{
-	m_renderables.erase(std::find(m_renderables.begin(), m_renderables.end(), rend));
+	registerComponent<Transform>();
+	registerComponent<Sprite>();
 }
 
-void SimpleRenderSystem::Render()
+
+void SimpleRenderSystem::Update(std::vector<BaseComponent*> components)
 {
-	for (int i = 0; i < m_renderables.size(); i++)
-	{
-		m_renderables.at(i)->Draw(m_camera);
-	}
+
 }
 
-void SimpleRenderSystem::set_Camera(Camera2D *camera)
+void SimpleRenderSystem::Render(std::vector<BaseComponent*> components)
 {
-	m_camera = camera;
+
 }
+
 
 
 SimpleRenderSystem::~SimpleRenderSystem()

@@ -36,14 +36,6 @@
 		//Time Handling
 		Time::start();
 
-		World::addGameSystem(new TestSystem());
-
-		auto entity = World::CreateEntity();
-
-		//entity->add_Component(Transform());
-		entity->add_Component(Render());
-
-
 		//MainLoop
 		while (!m_window->isClosed())
 		{
@@ -65,8 +57,6 @@
 			//render game
 			render();
 			//ImGui::Render();
-
-			//std::cout << World::getComponent<Transform>(entity)->Position << std::endl;
 		
 			m_window->Update();
 			m_window->UpdateInput();

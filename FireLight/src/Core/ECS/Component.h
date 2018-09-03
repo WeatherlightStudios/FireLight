@@ -19,29 +19,5 @@ struct Component : public BaseComponent
 
 template<class T>
 const uint32_t Component<T>::ID(BaseComponent::registerComponentType());
-
-
-
-
-
-//For Test
-struct Transform : public Component<Transform>
-{
-	float Position = 0;
-	float Rotation = 0;
-	float Scale = 0;
-};
-
-
-
-struct Render : public Component<Render>
-{
-	glm::vec3 Position;
-	glm::vec3 Rotation;
-	glm::vec3 Scale;
-};
-
-
-
 #endif
 
