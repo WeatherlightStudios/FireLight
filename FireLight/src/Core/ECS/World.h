@@ -128,6 +128,13 @@ struct EntityHandler
 		World::addComponent(this, component);
 	}
 
+	template<class T>
+	static T* getComponent(EntityHandler* handler)
+	{
+		return 	World::getComponent(handler);
+	}
+
+
 };
 
 

@@ -29,14 +29,14 @@ private:
 	VertexBuffer m_vbo;
 	IndexBuffer m_ibo;
 
-	int m_widht;
-	int m_height;
 
 	glm::mat4 model;
 
 	GLuint VAO;
 	GLuint EBO;
 
+	int m_widht;
+	int m_height;
 	Texture m_texture;
 	Shader m_shader;
 

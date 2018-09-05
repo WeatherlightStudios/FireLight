@@ -16,7 +16,7 @@ class Resource
 {
 public:
 	
-	static std::map<std::string, Shader>    Shaders;
+	static std::map<std::string, Shader>  Shaders;
 	static std::map<std::string, Texture> Textures;
 	
 	static Shader   LoadShader(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile, std::string name);
