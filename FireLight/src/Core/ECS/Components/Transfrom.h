@@ -6,9 +6,19 @@
 
 struct Transform : Component<Transform>
 {
+	Transform(glm::vec3 pos, float rot, glm::vec2 scal) : position(pos) , rotation (rot), scale(scal)
+	{
+
+	}
+
+	Transform()
+	{
+
+	}
+
 	glm::vec3 position;
-	glm::vec3 rotation;
-	glm::vec3 scale;
+	float rotation;
+	glm::vec2 scale;
 };
 
 #endif

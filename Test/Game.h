@@ -15,7 +15,7 @@ public:
 
 private:
 
-	//Test_Scene m_scene;
+	Test_Scene m_scene;
 };
 
 #endif

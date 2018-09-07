@@ -6,6 +6,16 @@
 
 struct Camera2D : Component<Camera2D>
 {
+	Camera2D(glm::mat4 projection) : m_projection(projection)
+	{
+
+	}
+
+	Camera2D()
+	{
+
+	}
+
 	glm::mat4 m_projection;
 };
 

@@ -6,8 +6,8 @@
 Scene::Scene()
 {
 	isInizialized = false;
-	m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
-	m_camera2D = new Camera2D();
+	//m_camera = new Camera(glm::vec3(0, 0, -3), glm::vec3(0, 1, 0), 90, 0, projType::ORTHO);
+	//m_camera2D = new Camera2D();
 	m_debug = new Debug();
 }
 
@@ -15,16 +15,16 @@ Scene::Scene()
 void Scene::init_scene()
 {
 	
+	m_render_system.Init();
 	Init();
-	m_render_system.set_Camera(m_camera2D);
 	m_debug->create();
-	m_debug->setCamera(m_camera);
+	//m_debug->setCamera(m_camera);
 	isInizialized = true;
 	//std::cout << m_graph_objects.size() << std::endl;
 }
 void Scene::update_scene(double dt)
 {
-	m_camera->update();
+	//m_camera->update();
 	update_objects(dt);
 	Update();
 
@@ -33,7 +33,7 @@ void Scene::update_scene(double dt)
 
 void Scene::render()
 {
-	//m_render_system.Render();
+	m_render_system.Update();
 }
 
 void Scene::update_objects(double dt)
@@ -46,9 +46,9 @@ void Scene::update_objects(double dt)
 
 void Scene::add_renderable_node(SceneNode &node)
 {
-	if (dynamic_cast<Renderable*>(&node))
+	/*if (dynamic_cast<Renderable*>(&node))
 	{
-		m_render_system.Add(dynamic_cast<Renderable*>(&node));
+		//m_render_system.Add(dynamic_cast<Renderable*>(&node));
 
 		//test
 		for (int i = 0; i < node.children_size(); i++)
@@ -62,12 +62,12 @@ void Scene::add_renderable_node(SceneNode &node)
 		{
 			add_renderable_node(*node.Children(i));
 		}
-	}
+	}*/
 }
 
 void Scene::remove_renderable_node(SceneNode &node)
 {
-	if (dynamic_cast<const Renderable*>(&node))
+	/*if (dynamic_cast<const Renderable*>(&node))
 	{
 		for (int i = 0; i < node.children_size(); i++)
 		{
@@ -76,14 +76,14 @@ void Scene::remove_renderable_node(SceneNode &node)
 	}
 	else
 	{
-		m_render_system.remove((Renderable*)&node);
+		//m_render_system.remove((Renderable*)&node);
 
 		//test
 		for (int i = 0; i < node.children_size(); i++)
 		{
 			remove_renderable_node(*node.Children(i));
 		}
-	}
+	}*/
 }
 
 void Scene::close_scene()

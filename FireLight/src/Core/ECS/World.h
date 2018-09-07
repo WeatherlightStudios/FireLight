@@ -16,7 +16,7 @@
 
 
 
-#define MAX_COMPONETNS 4
+#define MAX_COMPONETNS 1024
 
 
 using ComponentType = uint32_t;
@@ -51,12 +51,16 @@ public:
 		pair.second = m_components[T::ID].size();
 		HandleToRow(handler)->second.push_back(pair);
 		m_components[T::ID].push_back(Component);
+
+		
+
 		for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
 		{
-
 			if ((handler->m_key & m_Game_Systems[i]->getKey()) == m_Game_Systems[i]->getKey())
 			{
+
 				m_Game_Systems[i]->registerEntity(handler);
+				m_Game_Systems[i]->InitEntity(handler);
 			}
 		}
 	}
@@ -81,7 +85,7 @@ public:
 	}
 
 	template<class T>
-	static T* getComponent(EntityHandler* handler)
+	static T* getComponentInternal(EntityHandler* handler)
 	{
 		for (uint32_t i = 0; i < HandleToRow(handler)->second.size(); i++)
 		{
@@ -101,7 +105,8 @@ public:
 	static void addGameSystem(System* system);
 	static void removeGameSystem(System* system);
 
-	void UpdateGameSystems();
+	static void UpdateGameSystems();
+	static void RenderGameSystems();
 
 private:
 	static std::vector<System*> m_Game_Systems;
@@ -121,17 +126,19 @@ struct EntityHandler
 {
 	std::bitset<MAX_COMPONETNS> m_key;
 
-	template<class T>
-	void add_Component(T* component)
+	template<class T, class... Args>
+	void add_Component(Args... args)
 	{
+		T* component = new T(args...);
+
 		m_key[T::ID] = 1;
 		World::addComponent(this, component);
 	}
 
 	template<class T>
-	static T* getComponent(EntityHandler* handler)
+	T* getComponent()
 	{
-		return 	World::getComponent(handler);
+		return 	World::getComponentInternal<T>(this);
 	}
 
 
@@ -144,8 +151,10 @@ public:
 	System();
 
 	void updateEntity();
+	void Draw();
 
 	virtual void Init() {}
+	virtual void InitEntity(EntityHandler* entity) {}
 
 	virtual void Update(std::vector<BaseComponent*> components) {}
 

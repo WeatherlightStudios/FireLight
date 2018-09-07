@@ -36,6 +36,8 @@
 		//Time Handling
 		Time::start();
 
+
+
 		//MainLoop
 		while (!m_window->isClosed())
 		{
@@ -49,13 +51,13 @@
 			{
 				//Update(dt);
 				SceneManager::update_current_scene(Time::GetDeltaTime());
-				m_world.UpdateGameSystems();
+				World::UpdateGameSystems();
 				Time::reset();
 			}
 
+			render();
 			//SceneManager::debug_current_scene();
 			//render game
-			render();
 			//ImGui::Render();
 		
 			m_window->Update();
@@ -68,6 +70,7 @@
 	void App::render()
 	{
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+		World::RenderGameSystems();
 		SceneManager::render_current_scene();
 	}
 

@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include "Window.h"
-#include "../Render/Renderable.h"
 #include <GLFW\glfw3.h>
 
 #include "ECS\World.h"

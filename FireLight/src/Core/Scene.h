@@ -4,8 +4,6 @@
 #include "SceneNode.h"
 #include "../Render/SimpleRenderSystem.h"
 #include "../Utility/Debug.h"
-#include "../Render/Renderable.h"
-#include "../Render/Camera2D.h"
 
 
 #include <vector>
@@ -47,8 +45,8 @@ private:
 	Debug *m_debug;
 	SimpleRenderSystem m_render_system;
 	std::vector<SceneNode*> m_graph_objects;
-	Camera *m_camera;
-	Camera2D *m_camera2D;
+	//Camera *m_camera;
+	//Camera2D *m_camera2D;
 };
 
 #endif

@@ -33,7 +33,6 @@ void World::removeEntity(EntityHandler* handler)
 	delete(entity);
 }
 
-
 void World::UpdateGameSystems()
 {
 	for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
@@ -41,6 +40,18 @@ void World::UpdateGameSystems()
 		if (m_Game_Systems[i]->getSize() > 0)
 		{
 			m_Game_Systems[i]->updateEntity();
+		}
+	}
+}
+
+
+void World::RenderGameSystems()
+{
+	for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
+	{
+		if (m_Game_Systems[i]->getSize() > 0)
+		{
+			m_Game_Systems[i]->Draw();
 		}
 	}
 }
@@ -93,9 +104,24 @@ void System::updateEntity()
 			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
 		}
 		Update(m_component);
+		//Render(m_component);
+	}
+}
+
+void System::Draw()
+{
+	for (int i = 0; i < m_Entity.size(); i++)
+	{
+		std::vector<BaseComponent*> m_component;
+		for (int x = 0; x < componentTypes.size(); x++)
+		{
+			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
+		}
+		//Update(m_component);
 		Render(m_component);
 	}
 }
+
 
 void System::registerEntity(EntityHandler* entity)
 {

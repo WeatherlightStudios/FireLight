@@ -3,6 +3,9 @@
 //external icludes
 #include <vector>
 #include <algorithm>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 //internal icnludes
 #include "../Core/ECS/World.h"
 #include "../Core/ECS/Components/Camera2D.h"
@@ -23,22 +26,29 @@ public:
 
 	void Update();
 
-	void changeCurrentCamera();
-
 	~SimpleRenderSystem();
 private:
-	Camera2D* m_current_camera;
-	std::vector<Camera2D*> m_cameras;
+	EntityHandler* Camera;
+
+
+	VertexBuffer m_vbo;
+	IndexBuffer m_ibo;
+
+	glm::mat4 model;
+
+	GLuint VAO;
+	GLuint EBO;
 };
 
 
 class RenderSpriteSystem : public System
 {
 public:
-	RenderSpriteSystem(Camera2D* m_current_camera);
+	RenderSpriteSystem(EntityHandler* current_camera);
 
 
 	void Init();
+	void InitEntity(EntityHandler* Entity);
 	void Update(std::vector<BaseComponent*> components);
 	void Render(std::vector<BaseComponent*> components);
 
@@ -46,7 +56,7 @@ public:
 
 private:
 
-	Camera2D* m_current_camera;
+	EntityHandler* m_camera;
 
 };
 

@@ -16,7 +16,7 @@ public:
 
 	void Init();
 	void CameraUpdate(Camera *camera);
-	void Update(double dt);
+	void Update();
 	void Debughing(Debug *debug);
 	void Close();
 
@@ -39,10 +39,9 @@ private:
 	//camera Test
 	double xpos, ypos;
 
-	Cube *m_cube;
+	EntityHandler* entity;
 
-	Sprite *m_sprite;
-
+	int i;
 };
 
 #endif
