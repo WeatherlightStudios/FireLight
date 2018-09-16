@@ -15,6 +15,7 @@
 
 	void App::start() 
 	{
+
 		//Init GLFW/GL3W and start MainLoop
 		m_window = new Window(m_width, m_height, m_title.c_str());
 		glfwInit();
@@ -25,6 +26,7 @@
 		}
 		glEnable(GL_DEPTH_TEST);
 		glfwSwapInterval(0);
+
 		mainLoop();
 	}
 
@@ -34,6 +36,44 @@
 		//init a game
 		Init();
 		//Time Handling
+
+		auto texture = Resource::LoadTexture("source/Texture/Front.png", true, "sprite");
+		auto shader = Resource::LoadShader("source/Shaders/2D_shader.vert", "source/Shaders/2D_shader.frag", NULL, "2D_shader");
+
+		testBox = World::CreateEntity();
+
+		World::addGameSystem(new PysixSystem());
+
+		testBox->add_Component<Transform>(glm::vec3(0, 0, 0), 0.0f, glm::vec2(4, 4));
+		testBox->add_Component<Sprite>(texture, shader, 6, 1, 0, 0, 64, 64);
+		testBox->add_Component<MeshRender>();
+
+		gravity = b2Vec2(0.0f, -10.0f);
+		groundbodydef.position.Set(0.0f, -100.0f);
+		m_World = new b2World(gravity);
+		groundBody = m_World->CreateBody(&groundbodydef);
+
+		groundBox.SetAsBox(50,10);
+
+		groundBody->CreateFixture(&groundBox, 0.0f);
+
+
+
+		dynmBodydef.type = b2_dynamicBody;
+		dynmBodydef.position.Set(0.0f, 0.0f);
+		body = m_World->CreateBody(&dynmBodydef);
+
+		dynamicbox.SetAsBox(1.0f, 1.0f);
+
+		fixtureDef.shape = &dynamicbox;
+		fixtureDef.density = 1.0f;
+		fixtureDef.friction = 0.3f;
+
+		body->CreateFixture(&fixtureDef);
+
+		testBox->add_Component<PhysicsBody>(body);
+
+
 		Time::start();
 
 
@@ -52,6 +92,10 @@
 				//Update(dt);
 				SceneManager::update_current_scene(Time::GetDeltaTime());
 				World::UpdateGameSystems();
+				m_World->Step(Time::GetDeltaTime(), 10,8);
+
+				
+
 				Time::reset();
 			}
 
@@ -61,6 +105,7 @@
 			//ImGui::Render();
 		
 			m_window->Update();
+
 			m_window->UpdateInput();
 
 		}

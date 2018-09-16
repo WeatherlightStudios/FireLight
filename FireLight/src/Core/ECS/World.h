@@ -19,12 +19,15 @@
 #define MAX_COMPONETNS 1024
 
 
+
+//Macros
 using ComponentType = uint32_t;
 using ComponentID = uint32_t;
 using EntityID = uint32_t;
 
 using Entity = std::pair<EntityID, std::vector<std::pair<ComponentType, ComponentID>>>;
 
+//
 class World;
 struct EntityHandler;
 

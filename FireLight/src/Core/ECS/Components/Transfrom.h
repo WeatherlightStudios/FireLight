@@ -1,5 +1,5 @@
 #ifndef TRANSFORM_H
-#define TRANSFROM_H
+#define TRANSFORM_H
 
 #include "../Component.h"
 #include <glm/glm.hpp>
@@ -21,4 +21,4 @@ struct Transform : Component<Transform>
 	glm::vec2 scale;
 };
 
-#endif
+#endif TRANSFORM_H

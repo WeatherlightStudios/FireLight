@@ -5,43 +5,59 @@
 #include <string>
 #include <vector>
 #include "Window.h"
-#include <GLFW\glfw3.h>
-
 #include "ECS\World.h"
+#include "ECS\Components\Camera2D.h"
+#include "ECS\Components\Sprite.h"
+#include "ECS\Components\Transfrom.h"
+#include "ECS\Components\MeshRender.h"
+#include "ECS\Components\PhysicsBody.h"
+#include "ECS\Systems\PysixSystem.h"
+#include <GLFW\glfw3.h>
+#include <Box2D\Box2D.h>
+
+/*
+App e la classe Core dell engine serve per l'inizializzazione delle scene e dell gioco in se.
+Per poter utilizzare l'engine serve creare una classe e che derivi da App con unica funzione virtuale Init();
+*/
 
 
 //TEST
 #define MS_PER_UPDATE 1 / 60.0
 
-/**
-	La classe App viene utilizzata per inizializzare l'engine e il gioco.
-	Tramite la funzione virtuale Init e possibile inizializzare le risorse del gioco
 
-*/
 class App
 {
 public:
 	App();
 	virtual ~App();
 
-		
+	//funzione che inizializza tutti i sistemi dell engine 
 	void start();
 
+	//il GameLoop principale dell engine
 	void mainLoop();
 
 
-
+	/*
+	*queasta funzione ha lo scopo di inizizalizzare le scene create dall utente o per attivare funzioni di debug dell engine.
+	*la funzione deve essere inizializzata dopo aver ereditato App per poterla utilizzare.
+	*/
 	virtual void Init() = 0;
 
 
+
+	//Qui runna il codice di rendering viene richiamato dopo Update all'interno dell mainLoop
 	void render();
 
-
+	//qui vengono richiamate tutte le funzioni di chiusura dei vari sistemi e viene liberata la memoria
 	void shutDown();
 
 
 	//setUp
 	//TODO: creare solo una singola funzione che carica i settaggi da file
+
+
+	/*Callbaks di GLFW*/
 	void set_window_dimension(int width, int height);
 	void set_windiw_name(std::string name);
 
@@ -49,13 +65,31 @@ public:
 private:
 
 	bool		m_isRunning;
+
+	
+
 	double		m_oldTime;
 	double		m_deltaLag;
 
 	int			m_width;
 	int			m_height;
 
-	World m_world;
+	b2Vec2	gravity;
+	
+	b2World* m_World;
+	b2BodyDef groundbodydef;
+	b2Body* groundBody;
+
+	b2PolygonShape groundBox;
+
+	b2BodyDef dynmBodydef;
+	b2Body* body;
+
+	b2PolygonShape dynamicbox;
+	b2FixtureDef fixtureDef;
+
+
+	EntityHandler* testBox;
 
 	double lag;
 

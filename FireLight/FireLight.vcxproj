@@ -130,6 +130,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\ECS\Components\PhysicsBody.h" />
+    <ClInclude Include="src\Core\ECS\Systems\PysixSystem.h" />
     <ClInclude Include="src\Core\ECS\Component.h" />
     <ClInclude Include="src\Core\ECS\Components\Camera2D.h" />
     <ClInclude Include="src\Core\ECS\Components\MeshRender.h" />
@@ -164,6 +166,7 @@
     <ClInclude Include="src\Core\ECS\Components\Transfrom.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\ECS\Systems\PysixSystem.cpp" />
     <ClCompile Include="src\Core\ECS\Component.cpp" />
     <ClCompile Include="imgui\extra_fonts\binary_to_compressed_c.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
