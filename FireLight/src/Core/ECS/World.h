@@ -61,9 +61,7 @@ public:
 		{
 			if ((handler->m_key & m_Game_Systems[i]->getKey()) == m_Game_Systems[i]->getKey())
 			{
-
 				m_Game_Systems[i]->registerEntity(handler);
-				m_Game_Systems[i]->InitEntity(handler);
 			}
 		}
 	}
@@ -108,6 +106,7 @@ public:
 	static void addGameSystem(System* system);
 	static void removeGameSystem(System* system);
 
+	static void InitGameSystems();
 	static void UpdateGameSystems();
 	static void RenderGameSystems();
 
@@ -153,11 +152,14 @@ class System
 public:
 	System();
 
+	void InitAllEntity();
 	void updateEntity();
 	void Draw();
 
+
+
 	virtual void Init() {}
-	virtual void InitEntity(EntityHandler* entity) {}
+	virtual void InitEntity(std::vector<BaseComponent*> components) {}
 
 	virtual void Update(std::vector<BaseComponent*> components) {}
 

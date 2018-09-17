@@ -13,7 +13,7 @@
 
 	}
 
-	void App::start() 
+	void App::Start() 
 	{
 
 		//Init GLFW/GL3W and start MainLoop
@@ -27,10 +27,10 @@
 		glEnable(GL_DEPTH_TEST);
 		glfwSwapInterval(0);
 
-		mainLoop();
+		MainLoop();
 	}
 
-	void App::mainLoop()
+	void App::MainLoop()
 	{
 
 		//init a game
@@ -39,6 +39,7 @@
 
 		Time::start();
 
+		World::InitGameSystems();
 
 
 		//MainLoop
@@ -62,7 +63,7 @@
 				Time::reset();
 			}
 
-			render();
+			Render();
 			//SceneManager::debug_current_scene();
 			//render game
 			//ImGui::Render();
@@ -72,17 +73,17 @@
 			m_window->UpdateInput();
 
 		}
-		shutDown();
+		ShutDown();
 	}
 
-	void App::render()
+	void App::Render()
 	{
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 		World::RenderGameSystems();
 		SceneManager::render_current_scene();
 	}
 
-	void App::shutDown() 
+	void App::ShutDown() 
 	{
 		delete(m_window);
 		glfwTerminate();

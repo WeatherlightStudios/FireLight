@@ -32,7 +32,7 @@ public:
 	virtual ~App();
 
 	//funzione che inizializza tutti i sistemi dell engine 
-	void start();
+	void Start();
 
 
 	//setUp
@@ -46,7 +46,7 @@ protected:
 
 
 	//il GameLoop principale dell engine
-	void mainLoop();
+	void MainLoop();
 
 
 	/*
@@ -58,10 +58,10 @@ protected:
 
 
 	//Qui runna il codice di rendering viene richiamato dopo Update all'interno dell mainLoop
-	void render();
+	void Render();
 
 	//qui vengono richiamate tutte le funzioni di chiusura dei vari sistemi e viene liberata la memoria
-	void shutDown();
+	void ShutDown();
 
 
 private:
