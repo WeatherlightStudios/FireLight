@@ -14,7 +14,7 @@ void Debug::Init()
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-	glBufferData()
+	glBufferData();
 
 }
 void Debug::DrawPoint(glm::vec2 p1, glm::vec3 color)

@@ -10,7 +10,14 @@ struct Sprite : Component<Sprite>
 {
 
 	Sprite(Texture texture, Shader shader, float row, float columns, float offsetX, float offsetY,int width, int height) : 
-		m_texture(texture), m_shader(shader), m_row(row), m_collum(columns), m_offsetX(offsetX), m_offsetY(offsetY), m_widht(width), m_height(height)
+		m_texture(texture), 
+		m_shader(shader),
+		m_row(row), 
+		m_collum(columns), 
+		m_offsetX(offsetX),
+		m_offsetY(offsetY),
+		m_widht(width),
+		m_height(height)
 	{
 
 	}

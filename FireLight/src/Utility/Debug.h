@@ -12,9 +12,12 @@
 #include "../Core/ECS/Component.h"
 #include "../Core/ECS/World.h"
 
+#define MAX_BUFFER_OBJECTS 10000
 
 
 struct GL_Line;
+struct GL_Point;
+struct GL_Shape;
 
 class Debug
 {
@@ -30,6 +33,8 @@ public:
 
 private:
 	 static GLuint VBO, VAO;
+
+	 uint32_t count;
 
 };
 
