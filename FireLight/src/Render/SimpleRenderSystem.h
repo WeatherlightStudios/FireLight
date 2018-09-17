@@ -48,7 +48,7 @@ public:
 
 
 	void Init();
-	void InitEntity(EntityHandler* Entity);
+	void InitEntity(std::vector<BaseComponent*> components);
 	void Update(std::vector<BaseComponent*> components);
 	void Render(std::vector<BaseComponent*> components);
 

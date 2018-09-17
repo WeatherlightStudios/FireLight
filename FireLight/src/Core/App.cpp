@@ -37,6 +37,12 @@
 		Init();
 		//Time Handling
 
+
+		
+
+	
+
+
 		Time::start();
 
 		World::InitGameSystems();
@@ -56,8 +62,7 @@
 				//Update(dt);
 				SceneManager::update_current_scene(Time::GetDeltaTime());
 				World::UpdateGameSystems();
-				//m_World->Step(Time::GetDeltaTime(), 10,8);
-
+				
 				
 
 				Time::reset();

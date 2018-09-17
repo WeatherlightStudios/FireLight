@@ -59,10 +59,10 @@ void RenderSpriteSystem::Init()
 }
 
 
-void RenderSpriteSystem::InitEntity(EntityHandler* Entity)
+void RenderSpriteSystem::InitEntity(std::vector<BaseComponent*> components)
 {
-	Sprite* sprite = Entity->getComponent<Sprite>();
-	MeshRender* meshrender = Entity->getComponent<MeshRender>();
+	Sprite* sprite = (Sprite*)components[1];
+	MeshRender* meshrender = (MeshRender*)components[2];
 
 
 	glGenVertexArrays(1, &meshrender->VAO);

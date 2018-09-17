@@ -130,7 +130,6 @@ void System::InitAllEntity()
 			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
 		}
 		InitEntity(m_component);
-		//Render(m_component);
 	}
 }
 
