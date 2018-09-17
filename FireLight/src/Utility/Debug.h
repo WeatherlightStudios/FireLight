@@ -34,8 +34,6 @@ public:
 private:
 	 static GLuint VBO, VAO;
 
-	 uint32_t count;
-
 };
 
 #endif 

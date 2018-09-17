@@ -34,6 +34,17 @@ public:
 	//funzione che inizializza tutti i sistemi dell engine 
 	void start();
 
+
+	//setUp
+	//TODO: creare solo una singola funzione che carica i settaggi da file
+
+
+	/*Callbaks di GLFW*/
+	void set_window_dimension(int width, int height);
+	void set_windiw_name(std::string name);
+protected:
+
+
 	//il GameLoop principale dell engine
 	void mainLoop();
 
@@ -53,15 +64,6 @@ public:
 	void shutDown();
 
 
-	//setUp
-	//TODO: creare solo una singola funzione che carica i settaggi da file
-
-
-	/*Callbaks di GLFW*/
-	void set_window_dimension(int width, int height);
-	void set_windiw_name(std::string name);
-
-
 private:
 
 	bool		m_isRunning;
@@ -73,23 +75,6 @@ private:
 
 	int			m_width;
 	int			m_height;
-
-	b2Vec2	gravity;
-	
-	b2World* m_World;
-	b2BodyDef groundbodydef;
-	b2Body* groundBody;
-
-	b2PolygonShape groundBox;
-
-	b2BodyDef dynmBodydef;
-	b2Body* body;
-
-	b2PolygonShape dynamicbox;
-	b2FixtureDef fixtureDef;
-
-
-	EntityHandler* testBox;
 
 	double lag;
 
