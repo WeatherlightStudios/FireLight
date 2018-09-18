@@ -14,7 +14,7 @@ EntityHandler* World::CreateEntity()
 {
 	Entity* newEntity = new Entity();
 	EntityHandler* Handler = (EntityHandler*)newEntity;
-
+	Handler->m_key.reset();
 	newEntity->first = m_Entitys.size();
 	m_Entitys.push_back(newEntity);
 
