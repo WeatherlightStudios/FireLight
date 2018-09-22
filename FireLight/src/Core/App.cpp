@@ -50,7 +50,6 @@
 
 			//updateting windows stuff
 			//ImGui_ImplGlfwGL3_NewFrame();
-			double currentTime = glfwGetTime();
 
 			//FixedFrame Update game
 			while(Time::GetLag() >= MS_PER_UPDATE)
@@ -61,13 +60,12 @@
 				
 
 				Time::reset();
+			
 			}
-
-			Render();
-			//SceneManager::debug_current_scene();
-			//render game
-			//ImGui::Render();
-		
+			
+			
+			double currentTime = glfwGetTime();
+			
 			frameRate++;
 
 			if ((currentTime - oldTime) >= 1)
@@ -76,6 +74,12 @@
 				frameRate = 0;
 				oldTime = currentTime;
 			}
+
+			Render();
+			//SceneManager::debug_current_scene();
+			//render game
+			//ImGui::Render();
+		
 
 			m_window->Update();
 

@@ -125,9 +125,8 @@ public:
 			auto EnttKey = std::get<2>(*HandleToRow(handler));
 			auto systemKey = m_Game_Systems[i]->getKey();
 			
-			auto entKey = *EnttKey;	//00000000001
-			auto sestKey = *systemKey;	//00000001101
-										//00000000001
+			auto entKey = *EnttKey;
+			auto sestKey = *systemKey;
 			
 			if ((entKey & sestKey) == sestKey)
 			{

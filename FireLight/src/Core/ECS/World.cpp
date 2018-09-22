@@ -144,7 +144,7 @@ void System::updateEntity()
 			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
 		}
 		Update(m_component);
-		Render(m_component);
+		//Render(m_component);
 	}
 }
 
@@ -171,7 +171,7 @@ void System::Draw()
 		{
 			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
 		}
-		Update(m_component);
+		//Update(m_component);
 		Render(m_component);
 	}
 }
