@@ -1,19 +1,27 @@
-#ifndef APP_HEADER
-#define APP_HEADER
+#ifndef APP_H
+#define APP_H
 
-#include <GL\gl3w.h>
 #include <string>
 #include <vector>
-#include "Window.h"
-#include "ECS\World.h"
-#include "ECS\Components\Camera2D.h"
-#include "ECS\Components\Sprite.h"
-#include "ECS\Components\Transfrom.h"
-#include "ECS\Components\MeshRender.h"
-#include "ECS\Components\PhysicsBody.h"
-#include "ECS\Systems\PysixSystem.h"
+#include <memory>
+#include <iostream>
+
+#include <GL\gl3w.h>
 #include <GLFW\glfw3.h>
-#include <Box2D\Box2D.h>
+
+//#include "SceneManager.h"
+#include "Window.h"
+#include "Time.h"
+
+
+//#include "ECS\World.h"
+//#include "ECS\Components\Camera2D.h"
+//#include "ECS\Components\Sprite.h"
+//#include "ECS\Components\Transfrom.h"
+//#include "ECS\Components\MeshRender.h"
+//#include "ECS\Components\PhysicsBody.h"
+//#include "ECS\Systems\PysixSystem.h"
+//#include <Box2D\Box2D.h>
 
 /*
 App e la classe Core dell engine serve per l'inizializzazione delle scene e dell gioco in se.
@@ -41,7 +49,7 @@ public:
 
 	/*Callbaks di GLFW*/
 	void set_window_dimension(int width, int height);
-	void set_windiw_name(std::string name);
+	void set_window_name(std::string name);
 protected:
 
 
@@ -79,7 +87,10 @@ private:
 	double lag;
 
 	std::string		m_title;
-	Window			*m_window;
+
+	std::unique_ptr<Window> m_window;
+	
+
 };
 
 

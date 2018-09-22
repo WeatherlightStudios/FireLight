@@ -1,12 +1,4 @@
 #include "App.h"
-#include <iostream>
-#include "../Utility\Resource.h"
-#include "SceneManager.h"
-#include "../../imgui/imgui_impl_glfw_gl3.h"
-#include "../../imgui/imgui.h"
-#include "../Utility/Debug.h"
-#include "Time.h"
-
 
 	App::App()
 	{
@@ -17,7 +9,7 @@
 	{
 
 		//Init GLFW/GL3W and start MainLoop
-		m_window = new Window(m_width, m_height, m_title.c_str());
+		m_window = std::make_unique<Window>(m_width, m_height, m_title.c_str());
 		glfwInit();
 		m_window->Init();
 		if (gl3wInit())
@@ -45,7 +37,7 @@
 
 		Time::start();
 
-		World::InitGameSystems();
+		//World::InitGameSystems();
 
 
 		//MainLoop
@@ -60,8 +52,8 @@
 			while(Time::GetLag() >= MS_PER_UPDATE)
 			{
 				//Update(dt);
-				SceneManager::update_current_scene(Time::GetDeltaTime());
-				World::UpdateGameSystems();
+				//SceneManager::update_current_scene();
+				//World::UpdateGameSystems();
 				
 				
 
@@ -84,15 +76,14 @@
 	void App::Render()
 	{
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-		World::RenderGameSystems();
-		SceneManager::render_current_scene();
+		//SceneManager::render_current_scene();
+		//World::RenderGameSystems();
 	}
 
 	void App::ShutDown() 
 	{
-		delete(m_window);
 		glfwTerminate();
-		ImGui_ImplGlfwGL3_Shutdown();
+		//ImGui_ImplGlfwGL3_Shutdown();
 	}
 
 
@@ -102,7 +93,7 @@
 		m_height = height;
 	}
 
-	void App::set_windiw_name(std::string name)
+	void App::set_window_name(std::string name)
 	{
 		m_title = name;
 	}

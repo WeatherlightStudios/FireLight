@@ -16,124 +16,24 @@
 
 
 
-#define MAX_COMPONETNS 1024
-
-
 
 //Macros
 using ComponentType = uint32_t;
 using ComponentID = uint32_t;
 using EntityID = uint32_t;
 
-using Entity = std::pair<EntityID, std::vector<std::pair<ComponentType, ComponentID>>>;
+using Entity = std::tuple<EntityID, std::vector<std::pair<ComponentType, ComponentID>>, std::bitset<1024>*>;
+
+
 
 //
 class World;
-struct EntityHandler;
-
-
-class System;
-
-
-class World
-{
-public:
-	World();
-	~World();
-	
-	
-	static EntityHandler* CreateEntity();
-
-	static void removeEntity(EntityHandler* handler);
-
-	template<class T>
-	static void addComponent(EntityHandler* handler, T* Component)
-	{
-		std::pair<ComponentType, ComponentID> pair;
-		pair.first = T::ID;
-		pair.second = m_components[T::ID].size();
-		HandleToRow(handler)->second.push_back(pair);
-		m_components[T::ID].push_back(Component);
-
-		
-
-		for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
-		{
-			if ((handler->m_key & m_Game_Systems[i]->getKey()) == m_Game_Systems[i]->getKey())
-			{
-				m_Game_Systems[i]->registerEntity(handler);
-			}
-		}
-	}
-
-	template<class T>
-	static void removeComponent(EntityHandler* handler)
-	{
-		for (uint32_t i = 0; i < HandleToRow(handler)->second.size(); i++)
-		{
-			if (T::ID == HandleToRow(handler)->second[i].first)
-			{
-				m_components[T::ID].erase(HandleToRow(handler)->second[i].second);
-				HandleToRow(handler)->second.erase(HandleToRow(handler)->second.begin() + i);
-
-
-				for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
-				{
-					m_Game_Systems[i]->deregisterEntity(handler);
-				}
-			}
-		}
-	}
-
-	template<class T>
-	static T* getComponentInternal(EntityHandler* handler)
-	{
-		for (uint32_t i = 0; i < HandleToRow(handler)->second.size(); i++)
-		{
-			if (T::ID == HandleToRow(handler)->second[i].first)
-			{
-				return (T*)m_components[T::ID][HandleToRow(handler)->second[i].second];
-			}
-		}
-
-		return nullptr;
-	}
-
-	static BaseComponent* getComponentByID(uint32_t ID, EntityHandler* handler);
-
-
-
-	static void addGameSystem(System* system);
-	static void removeGameSystem(System* system);
-
-	static void InitGameSystems();
-	static void UpdateGameSystems();
-	static void RenderGameSystems();
-
-private:
-	static std::vector<System*> m_Game_Systems;
-
-	static std::vector<Entity*> m_Entitys;
-	static std::map<uint32_t,std::vector<BaseComponent*>> m_components;
-
-
-	static inline Entity* HandleToRow(EntityHandler* entity)
-	{
-		return (Entity*)entity;
-	}
-};
-
-
 struct EntityHandler
 {
-	std::bitset<MAX_COMPONETNS> m_key;
-
 	template<class T, class... Args>
 	void add_Component(Args... args)
 	{
 		T* component = new T(args...);
-
-		m_key[T::ID] = 1;
 		World::addComponent(this, component);
 	}
 
@@ -172,11 +72,11 @@ public:
 	template<class T>
 	void registerComponent()
 	{
-		m_key[T::ID] = 1;
+		(*m_key)[T::ID] = 1;
 		componentTypes.push_back(T::ID);
 	}
 
-	std::bitset<MAX_COMPONETNS> getKey()
+	std::bitset<1024>* getKey()
 	{
 		return m_key;
 	}
@@ -187,8 +87,103 @@ public:
 
 private:
 
-	std::bitset<MAX_COMPONETNS> m_key;
+	std::bitset<1024>* m_key;
 	std::vector<uint32_t> componentTypes;
 	std::vector<EntityHandler*> m_Entity;
 };
+
+class World
+{
+public:
+	World();
+	~World();
+	
+	
+	static EntityHandler* CreateEntity();
+
+	static void removeEntity(EntityHandler* handler);
+
+	template<class T>
+	static void addComponent(EntityHandler* handler, T* Component)
+	{
+		std::pair<ComponentType, ComponentID> pair;
+		pair.first = T::ID;
+		pair.second = m_components[T::ID].size();
+		std::get<1>(*HandleToRow(handler)).push_back(pair);
+		m_components[T::ID].push_back(Component);
+		std::get<2>(*HandleToRow(handler))[T::ID] = 1;
+		//std::cout << m_Game_Systems.size() << std::endl;
+
+		//std::cout << std::get<2>(*HandleToRow(handler)) << std::endl;
+
+		for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
+		{
+			//std::cout << *m_Game_Systems[i]->getKey() << std::endl;
+			std::cout << std::get<2>(*HandleToRow(handler)) << std::endl;
+			/*if (std::get<2>(*HandleToRow(handler)) & (m_Game_Systems[i]->getKey()) == (m_Game_Systems[i]->getKey()))
+			{
+				m_Game_Systems[i]->registerEntity(handler);
+			}*/
+		}
+	}
+
+	template<class T>
+	static void removeComponent(EntityHandler* handler)
+	{
+		for (uint32_t i = 0; i < HandleToRow(handler)->second.size(); i++)
+		{
+			if (T::ID == HandleToRow(handler)->second[i].first)
+			{
+				m_components[T::ID].erase(HandleToRow(handler)->second[i].second);
+				HandleToRow(handler)->second.erase(HandleToRow(handler)->second.begin() + i);
+
+
+				for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
+				{
+					m_Game_Systems[i]->deregisterEntity(handler);
+				}
+			}
+		}
+	}
+
+	template<class T>
+	static T* getComponentInternal(EntityHandler* handler)
+	{
+		for (uint32_t i = 0; i < std::get<1>(*HandleToRow(handler)).size(); i++)
+		{
+			if (T::ID == std::get<1>(*HandleToRow(handler))[i].first)
+			{
+				return (T*)m_components[T::ID][std::get<1>(*HandleToRow(handler))[i].second];
+			}
+		}
+
+		return nullptr;
+	}
+
+	static BaseComponent* getComponentByID(uint32_t ID, EntityHandler* handler);
+
+
+
+	static void addGameSystem(System* system);
+	static void removeGameSystem(System* system);
+
+	static void InitGameSystems();
+	static void UpdateGameSystems();
+	static void RenderGameSystems();
+
+private:
+	static std::vector<System*> m_Game_Systems;
+
+	static std::vector<Entity*> m_Entitys;
+	static std::map<uint32_t,std::vector<BaseComponent*>> m_components;
+
+
+	static inline Entity* HandleToRow(EntityHandler* entity)
+	{
+		return (Entity*)entity;
+	}
+};
+
+
+
 #endif

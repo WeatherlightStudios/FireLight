@@ -6,13 +6,13 @@ GLuint Debug::VAO;
 
 void Debug::Init()
 {
-	auto Debug_Line_S = Resource::LoadShader("source/Shaders/Debug_Line.vert", "source/Shaders/Debug_Line.frag", NULL, "Debug_Line");
+	//auto Debug_Line_S = Resource::LoadShader("source/Shaders/Debug_Line.vert", "source/Shaders/Debug_Line.frag", NULL, "Debug_Line");
 	
-	glGenVertexArrays(1, &VAO);
+	/*glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 
 	glBindVertexArray(VAO);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);*/
 
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 

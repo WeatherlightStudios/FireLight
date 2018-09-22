@@ -13,23 +13,23 @@ World::World()
 EntityHandler* World::CreateEntity()
 {
 	Entity* newEntity = new Entity();
+	std::get<2>(*newEntity) = new std::bitset<1024>;
 	EntityHandler* Handler = (EntityHandler*)newEntity;
-	Handler->m_key.reset();
-	newEntity->first = m_Entitys.size();
 	m_Entitys.push_back(newEntity);
-
 	return Handler;
 }
 
 void World::removeEntity(EntityHandler* handler)
 {
 	Entity* entity = HandleToRow(handler);
-	for (uint32_t i = 0; i < HandleToRow(handler)->second.size(); i++)
+
+	for (uint32_t i = 0; i < std::get<1>(*entity).size(); i++)
 	{
-		m_components[HandleToRow(handler)->second[i].first].erase(m_components[HandleToRow(handler)->second[i].first].begin() + HandleToRow(handler)->second[i].second);
-		HandleToRow(handler)->second.erase(HandleToRow(handler)->second.begin() + i);
+		m_components[std::get<1>(*entity)[i].first].erase(m_components[std::get<1>(*entity)[i].first].begin() + std::get<1>(*entity)[i].second);
+		std::get<1>(*entity).erase(std::get<1>(*entity).begin() + i);
 	}
-	m_Entitys.erase(m_Entitys.begin() + entity->first);
+
+	m_Entitys.erase(m_Entitys.begin() + std::get<0>(*entity));
 	delete(entity);
 }
 
@@ -77,11 +77,13 @@ void World::addGameSystem(System* system)
 
 BaseComponent* World::getComponentByID(uint32_t ID, EntityHandler* handler)
 {
-	for (uint32_t i = 0; i < HandleToRow(handler)->second.size(); i++)
+	
+
+	for (uint32_t i = 0; i < std::get<1>(*HandleToRow(handler)).size(); i++)
 	{
-		if (ID == HandleToRow(handler)->second[i].first)
+		if (ID == std::get<1>(*HandleToRow(handler))[i].first)
 		{
-			return m_components[ID][HandleToRow(handler)->second[i].second];
+			return m_components[ID][std::get<1>(*HandleToRow(handler))[i].second];
 		}
 	}
 }
@@ -95,7 +97,23 @@ void World::removeGameSystem(System* system)
 
 World::~World()
 {
+	for (std::vector<System*>::iterator i = m_Game_Systems.begin(); i != m_Game_Systems.end(); ++i) {
+		delete *i;
+	}
+	m_Game_Systems.clear();
+	for (std::vector<Entity*>::iterator i = m_Entitys.begin(); i != m_Entitys.end(); ++i) {
+		delete *i;
+	}
+	m_Entitys.clear();
 
+	std::map<uint32_t, std::vector<BaseComponent*>>::iterator it;
+	for (it = m_components.begin(); it != m_components.end(); it++)
+	{
+		for (std::vector<BaseComponent*>::iterator i = it->second.begin(); i != it->second.end(); ++i) {
+			delete *i;
+		}
+	}
+	m_components.clear();
 }
 
 
@@ -103,6 +121,8 @@ World::~World()
 //System Implementation
 System::System()
 {
+	m_key = new std::bitset<1024>;
+	this->m_key->reset();
 }
 void System::updateEntity()
 {

@@ -24,10 +24,10 @@ void SceneManager::init_current_scene()
 	if (m_current_scene != nullptr)
 		m_current_scene->init_scene();
 }
-void SceneManager::update_current_scene(double dt)
+void SceneManager::update_current_scene()
 {
 	if (m_current_scene != nullptr)
-		m_current_scene->update_scene(dt);
+		m_current_scene->update_scene();
 
 }
 void SceneManager::render_current_scene()

@@ -61,6 +61,7 @@ void RenderSpriteSystem::Init()
 
 void RenderSpriteSystem::InitEntity(std::vector<BaseComponent*> components)
 {
+
 	Sprite* sprite = (Sprite*)components[1];
 	MeshRender* meshrender = (MeshRender*)components[2];
 

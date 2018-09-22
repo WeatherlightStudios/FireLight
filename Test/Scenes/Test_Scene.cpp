@@ -17,46 +17,28 @@ Test_Scene::Test_Scene()
 void Test_Scene::Init()
 {
 
-	auto texture = Resource::LoadTexture("source/Texture/Front.png", true, "sprite");
+	/*auto texture = Resource::LoadTexture("source/Texture/Front.png", true, "sprite");
 	auto shader = Resource::LoadShader("source/Shaders/2D_shader.vert", "source/Shaders/2D_shader.frag", NULL, "2D_shader");
 
 	auto player = World::CreateEntity();
-
-	player->add_Component<Transform>(glm::vec3(0, 0, 0), 0.0f, glm::vec2(4, 4));
+	player->add_Component<Transform>(glm::vec3(0, 0, 0), 0.0f, glm::vec2(1, 1));
 	player->add_Component<Sprite>(texture, shader, 6, 1, 0, 0, 64, 64);
 	player->add_Component<MeshRender>();
 
 
-	i = 0;
-}
+	auto player02 = World::CreateEntity();
+	player02->add_Component<Transform>(glm::vec3(0, 100, 0), 0.0f, glm::vec2(1, 1));
+	player02->add_Component<Sprite>(texture, shader, 6, 1, 0, 0, 64, 64);
+	player02->add_Component<MeshRender>();
 
 
-void Test_Scene::CameraUpdate(Camera *camera)
-{
-	speed = 100 * Time::GetDeltaTime();
-	if (Window::isKeyDown(GLFW_KEY_W))
-	{
-		std::cout << "W" << std::endl;
-	}
-
-	if (Window::isKeyDown(GLFW_KEY_S))
-	{
-		posY -= speed;
-	}
-
-	if (Window::isKeyDown(GLFW_KEY_D))
-	{
-		posX += speed;
-	}
-
-	if (Window::isKeyDown(GLFW_KEY_A))
-	{
-		posX -= speed;
-	}
-
-	//Camera2D::rotate(1 * Time::GetDeltaTime());
-	//std::cout << m_sprite->local_position().x << std::endl;
+	auto player03 = World::CreateEntity();
+	player03->add_Component<Transform>(glm::vec3(100, 100, 0), 0.0f, glm::vec2(1, 1));
+	player03->add_Component<Sprite>(texture, shader, 6, 1, 0, 0, 64, 64);
+	player03->add_Component<MeshRender>();
+	//player->m_key.reset();**/
 	
+	i = 0;
 }
 
 void Test_Scene::Update()
@@ -69,11 +51,6 @@ void Test_Scene::Update()
 	{
 		i = 0;
 	}
-}
-
-void Test_Scene::Debughing(Debug *debug)
-{
-
 }
 
 void Test_Scene::Close()

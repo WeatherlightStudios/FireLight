@@ -7,7 +7,7 @@
 
 
 
-class Test_Scene : public Scene
+class Test_Scene
 {
 public:
 
@@ -15,9 +15,7 @@ public:
 	Test_Scene();
 
 	void Init();
-	void CameraUpdate(Camera *camera);
 	void Update();
-	void Debughing(Debug *debug);
 	void Close();
 
 	~Test_Scene();
@@ -26,7 +24,7 @@ public:
 private:
 	float t; 
 
-	glm::vec3 camPos;
+	//glm::vec3 camPos;
 
 	float speed;
 
@@ -39,7 +37,7 @@ private:
 	//camera Test
 	double xpos, ypos;
 
-	EntityHandler* entity;
+	//EntityHandler* entity;
 
 	int i;
 };

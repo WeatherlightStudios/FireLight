@@ -31,13 +31,12 @@ Window::Window(int width, int height, const char* title)
 void Window::Init()
 {
 	m_window = glfwCreateWindow(m_width, m_height, m_title, nullptr, nullptr);
-	glfwMakeContextCurrent(m_window);
 	glfwSetWindowUserPointer(m_window, this);
 	glfwSetKeyCallback(m_window, key_callback);
 	glfwSetMouseButtonCallback(m_window, mouse_button_callback);
 	glfwSetCursorPosCallback(m_window, cursor_position_callback);
 	glfwSetWindowSizeCallback(m_window, window_size_callback);
-	ImGui_ImplGlfwGL3_Init(m_window, false);
+	glfwMakeContextCurrent(m_window);
 }
 
 void Window::get_mouse_positions(double &x ,double &y)
@@ -89,7 +88,6 @@ void Window::UpdateInput()
 
 void Window::Update()
 {
-
 	glfwSwapBuffers(m_window);
 }
 
