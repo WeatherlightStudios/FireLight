@@ -1,12 +1,12 @@
 #ifndef SIMPLERENDERSYSTEM_H
 #define SIMPLERENDERSYSTEM_H
-//external icludes
+//external includes
 #include <vector>
 #include <algorithm>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-//internal icnludes
+//internal includes
 #include "../Core/ECS/World.h"
 #include "../Core/ECS/Components/Camera2D.h"
 #include "../Core/ECS/Components/Sprite.h"

@@ -35,8 +35,11 @@ void World::removeEntity(EntityHandler* handler)
 
 void World::UpdateGameSystems()
 {
+
+	//std::cout << "systems size: " << m_Game_Systems.size() << std::endl;
 	for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
 	{
+		//std::cout << "systems size n " << i << ": " << m_Game_Systems[i]->getSize() << std::endl;
 		if (m_Game_Systems[i]->getSize() > 0)
 		{
 			m_Game_Systems[i]->updateEntity();
@@ -71,6 +74,7 @@ void World::RenderGameSystems()
 void World::addGameSystem(System* system)
 {
 	system->Init();
+	std::cout << "added and started a system" << std::endl;
 	m_Game_Systems.push_back(system);
 }
  
@@ -135,7 +139,7 @@ void System::updateEntity()
 			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
 		}
 		Update(m_component);
-		//Render(m_component);
+		Render(m_component);
 	}
 }
 
@@ -162,7 +166,7 @@ void System::Draw()
 		{
 			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
 		}
-		//Update(m_component);
+		Update(m_component);
 		Render(m_component);
 	}
 }

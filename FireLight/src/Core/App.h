@@ -9,19 +9,19 @@
 #include <GL\gl3w.h>
 #include <GLFW\glfw3.h>
 
-//#include "SceneManager.h"
+#include "SceneManager.h"
 #include "Window.h"
 #include "Time.h"
 
 
-//#include "ECS\World.h"
-//#include "ECS\Components\Camera2D.h"
-//#include "ECS\Components\Sprite.h"
-//#include "ECS\Components\Transfrom.h"
-//#include "ECS\Components\MeshRender.h"
-//#include "ECS\Components\PhysicsBody.h"
-//#include "ECS\Systems\PysixSystem.h"
-//#include <Box2D\Box2D.h>
+#include "ECS\World.h"
+#include "ECS\Components\Camera2D.h"
+#include "ECS\Components\Sprite.h"
+#include "ECS\Components\Transfrom.h"
+#include "ECS\Components\MeshRender.h"
+#include "ECS\Components\PhysicsBody.h"
+#include "ECS\Systems\PysixSystem.h"
+#include <Box2D\Box2D.h>
 
 /*
 App e la classe Core dell engine serve per l'inizializzazione delle scene e dell gioco in se.

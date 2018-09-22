@@ -37,7 +37,7 @@
 
 		Time::start();
 
-		//World::InitGameSystems();
+		World::InitGameSystems();
 
 
 		//MainLoop
@@ -52,8 +52,8 @@
 			while(Time::GetLag() >= MS_PER_UPDATE)
 			{
 				//Update(dt);
-				//SceneManager::update_current_scene();
-				//World::UpdateGameSystems();
+				SceneManager::update_current_scene();
+				World::UpdateGameSystems();
 				
 				
 
@@ -76,14 +76,14 @@
 	void App::Render()
 	{
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-		//SceneManager::render_current_scene();
-		//World::RenderGameSystems();
+		SceneManager::render_current_scene();
+		World::RenderGameSystems();
 	}
 
 	void App::ShutDown() 
 	{
 		glfwTerminate();
-		//ImGui_ImplGlfwGL3_Shutdown();
+		ImGui_ImplGlfwGL3_Shutdown();
 	}
 
 

@@ -5,12 +5,12 @@
 #include <glm\glm.hpp>
 #include <GL\gl3w.h>
 
-//#include "Resource.h"
+#include "Resource.h"
 #include "../../imgui/imgui_impl_glfw_gl3.h"
 #include "../../imgui/imgui.h"
-//#include "../Core/ECS/Components/Camera2D.h"
-//#include "../Core/ECS/Component.h"
-//#include "../Core/ECS/World.h"
+#include "../Core/ECS/Components/Camera2D.h"
+#include "../Core/ECS/Component.h"
+#include "../Core/ECS/World.h"
 
 #define MAX_BUFFER_OBJECTS 10000
 

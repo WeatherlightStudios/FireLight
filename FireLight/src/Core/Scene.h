@@ -2,7 +2,7 @@
 #define SCENE_H
 
 #include "SceneNode.h"
-//#include "../Render/SimpleRenderSystem.h"
+#include "../Render/SimpleRenderSystem.h"
 #include "../Utility/Debug.h"
 
 
@@ -41,7 +41,7 @@ public:
 	
 private:
 	bool isInizialized;
-	//SimpleRenderSystem m_render_system;
+	SimpleRenderSystem m_render_system;
 
 };
 

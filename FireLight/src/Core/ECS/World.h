@@ -119,11 +119,36 @@ public:
 		for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
 		{
 			//std::cout << *m_Game_Systems[i]->getKey() << std::endl;
-			std::cout << std::get<2>(*HandleToRow(handler)) << std::endl;
-			/*if (std::get<2>(*HandleToRow(handler)) & (m_Game_Systems[i]->getKey()) == (m_Game_Systems[i]->getKey()))
+			//std::cout << std::get<2>(*HandleToRow(handler)) << std::endl;
+			
+			/*
+			std::bitset<4> foo(std::string("1001"));
+			std::bitset<4> bar(std::string("0011"));
+
+			std::bitset<4>* fee = &foo;
+			std::bitset<4>* ber = &bar;
+
+
+
+
+			std::cout << hendKey & sestKey << std::endl;
+			*/
+
+			//std::cout <<"hand key: " << typeid(handlerKey).name() << std::endl;
+			//std::cout << "syst key: " << typeid(systemKey).name() << std::endl;
+
+			auto handlerKey = std::get<2>(*HandleToRow(handler));
+			auto systemKey = m_Game_Systems[i]->getKey();
+			
+			
+			auto hendKey = *handlerKey;
+			auto sestKey = *systemKey;
+			
+			if ((hendKey & sestKey) == sestKey)
 			{
 				m_Game_Systems[i]->registerEntity(handler);
-			}*/
+			}
+			
 		}
 	}
 
