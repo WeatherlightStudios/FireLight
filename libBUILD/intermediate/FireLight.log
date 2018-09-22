@@ -18,5 +18,5 @@ c:\users\utente\desktop\projects\gamedev projects\fireligthtestgames\firelight\f
   Debug.cpp
 c:\users\utente\desktop\projects\gamedev projects\fireligthtestgames\firelight\firelight\src\core\ecs\world.h(84): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
   Generazione del codice in corso...
-c:\users\utente\desktop\projects\gamedev projects\fireligthtestgames\firelight\firelight\src\core\ecs\world.cpp(93): warning C4715: 'World::getComponentByID': non tutti i percorsi di controllo restituiscono un valore
+c:\users\utente\desktop\projects\gamedev projects\fireligthtestgames\firelight\firelight\src\core\ecs\world.cpp(95): warning C4715: 'World::getComponentByID': non tutti i percorsi di controllo restituiscono un valore
   FireLight.vcxproj -> C:\Users\Utente\Desktop\Projects\GameDev Projects\FireligthTestGames\FireLight\libBUILD\FireLight.lib

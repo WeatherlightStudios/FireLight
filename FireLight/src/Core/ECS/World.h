@@ -111,40 +111,25 @@ public:
 		pair.second = m_components[T::ID].size();
 		std::get<1>(*HandleToRow(handler)).push_back(pair);
 		m_components[T::ID].push_back(Component);
-		std::get<2>(*HandleToRow(handler))[T::ID] = 1;
-		//std::cout << m_Game_Systems.size() << std::endl;
+		//std::get<2>(*HandleToRow(handler))[T::ID] = 1;
+		auto EntityKey = std::get<2>(*HandleToRow(handler));
+		auto id = T::ID;
+		(*EntityKey)[id] = 1;
+		
+		std::cout << m_Game_Systems.size() << std::endl;
 
-		//std::cout << std::get<2>(*HandleToRow(handler)) << std::endl;
 
 		for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
 		{
-			//std::cout << *m_Game_Systems[i]->getKey() << std::endl;
-			//std::cout << std::get<2>(*HandleToRow(handler)) << std::endl;
 			
-			/*
-			std::bitset<4> foo(std::string("1001"));
-			std::bitset<4> bar(std::string("0011"));
-
-			std::bitset<4>* fee = &foo;
-			std::bitset<4>* ber = &bar;
-
-
-
-
-			std::cout << hendKey & sestKey << std::endl;
-			*/
-
-			//std::cout <<"hand key: " << typeid(handlerKey).name() << std::endl;
-			//std::cout << "syst key: " << typeid(systemKey).name() << std::endl;
-
-			auto handlerKey = std::get<2>(*HandleToRow(handler));
+			auto EnttKey = std::get<2>(*HandleToRow(handler));
 			auto systemKey = m_Game_Systems[i]->getKey();
 			
+			auto entKey = *EnttKey;	//00000000001
+			auto sestKey = *systemKey;	//00000001101
+										//00000000001
 			
-			auto hendKey = *handlerKey;
-			auto sestKey = *systemKey;
-			
-			if ((hendKey & sestKey) == sestKey)
+			if ((entKey & sestKey) == sestKey)
 			{
 				m_Game_Systems[i]->registerEntity(handler);
 			}
