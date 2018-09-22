@@ -7,7 +7,7 @@
 
 
 
-class Test_Scene
+class Test_Scene : public Scene
 {
 public:
 

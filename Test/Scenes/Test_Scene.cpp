@@ -35,8 +35,8 @@ void Test_Scene::Init()
 	auto player03 = World::CreateEntity();
 	player03->add_Component<Transform>(glm::vec3(100, 100, 0), 0.0f, glm::vec2(1, 1));
 	player03->add_Component<Sprite>(texture, shader, 6, 1, 0, 0, 64, 64);
-	player03->add_Component<MeshRender>();
-	//player->m_key.reset();**/
+	player03->add_Component<MeshRender>();*/
+	//player->m_key.reset();*
 	
 	i = 0;
 }

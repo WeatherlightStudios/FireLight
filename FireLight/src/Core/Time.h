@@ -19,7 +19,7 @@ public:
 	static void reset();
 
 	//GameLogic
-	static double GetCurrentTime();
+	static double GetTime();
 	static double GetDeltaTime();
 
 

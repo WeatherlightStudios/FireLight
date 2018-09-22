@@ -15,7 +15,7 @@ public:
 
 private:
 
-	//std::unique_ptr<Test_Scene> m_scene;
+	std::unique_ptr<Test_Scene> m_scene;
 };
 
 #endif

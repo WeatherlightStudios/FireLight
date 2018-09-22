@@ -16,7 +16,7 @@ void Time::start()
 	m_lag = 0.0;
 }
 
-double Time::GetCurrentTime()
+double Time::GetTime()
 {
 	return m_current_time;
 }

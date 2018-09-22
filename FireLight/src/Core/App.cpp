@@ -39,6 +39,9 @@
 
 		World::InitGameSystems();
 
+		frameRate = 0;
+
+		double oldTime = glfwGetTime();
 
 		//MainLoop
 		while (!m_window->isClosed())
@@ -47,6 +50,7 @@
 
 			//updateting windows stuff
 			//ImGui_ImplGlfwGL3_NewFrame();
+			double currentTime = glfwGetTime();
 
 			//FixedFrame Update game
 			while(Time::GetLag() >= MS_PER_UPDATE)
@@ -54,7 +58,6 @@
 				//Update(dt);
 				SceneManager::update_current_scene();
 				World::UpdateGameSystems();
-				
 				
 
 				Time::reset();
@@ -65,6 +68,15 @@
 			//render game
 			//ImGui::Render();
 		
+			frameRate++;
+
+			if ((currentTime - oldTime) >= 1)
+			{
+				std::cout << "FPS: " << frameRate << std::endl;
+				frameRate = 0;
+				oldTime = currentTime;
+			}
+
 			m_window->Update();
 
 			m_window->UpdateInput();
