@@ -11,16 +11,16 @@ public:
 	SceneManager();
 	~SceneManager();
 
-	static void add_scene(Scene *scene, std::string name);
+	static void AddScene(Scene *scene, std::string name);
 
-	static void set_current_scene(std::string name);
-	static void init_current_scene();
-	static void update_current_scene();
+	static void setCurrentScene(std::string name);
+	static void InitCurrentScene();
+	static void UpdateCurrentScene();
 
-	static void render_current_scene();
-	static void close_current_scene();
+	static void RenderCurrentScene();
+	static void CloseCurrentScene();
 
-	static void change_current_scene_to(std::string name);
+	static void changeCurrentSceneTo(std::string name);
 
 
 private:

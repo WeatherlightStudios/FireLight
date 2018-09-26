@@ -17,7 +17,7 @@ Test_Scene::Test_Scene()
 void Test_Scene::Init()
 {
 
-	/*auto texture = Resource::LoadTexture("source/Texture/Front.png", true, "sprite");
+	auto texture = Resource::LoadTexture("source/Texture/Front.png", true, "sprite");
 	auto shader = Resource::LoadShader("source/Shaders/2D_shader.vert", "source/Shaders/2D_shader.frag", NULL, "2D_shader");
 
 	auto player = World::CreateEntity();
@@ -35,8 +35,7 @@ void Test_Scene::Init()
 	auto player03 = World::CreateEntity();
 	player03->add_Component<Transform>(glm::vec3(100, 100, 0), 0.0f, glm::vec2(1, 1));
 	player03->add_Component<Sprite>(texture, shader, 6, 1, 0, 0, 64, 64);
-	player03->add_Component<MeshRender>();*/
-	//player->m_key.reset();*
+	player03->add_Component<MeshRender>();
 	
 	i = 0;
 }

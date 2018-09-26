@@ -10,7 +10,7 @@ Time::Time()
 {
 }
 
-void Time::start()
+void Time::Start()
 {
 	m_previus_time = glfwGetTime();
 	m_lag = 0.0;
@@ -41,7 +41,7 @@ void Time::Calculate()
 	m_current_time = glfwGetTime();
 }
 
-void Time::reset()
+void Time::Reset()
 {
 	m_lag -= delta_time;
 }

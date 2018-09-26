@@ -10,13 +10,13 @@ public:
 	~Time();
 
 	//Engine Staff
-	static void start();
+	static void Start();
 
 	static double GetLag();
 
 	static void Calculate();
 
-	static void reset();
+	static void Reset();
 
 	//GameLogic
 	static double GetTime();

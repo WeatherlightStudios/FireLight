@@ -23,6 +23,9 @@
 #include "ECS\Systems\PysixSystem.h"
 #include <Box2D\Box2D.h>
 
+
+#include <ft2build.h>
+
 /*
 App e la classe Core dell engine serve per l'inizializzazione delle scene e dell gioco in se.
 Per poter utilizzare l'engine serve creare una classe e che derivi da App con unica funzione virtuale Init();
@@ -35,6 +38,7 @@ Per poter utilizzare l'engine serve creare una classe e che derivi da App con un
 
 class App
 {
+
 public:
 	App();
 	virtual ~App();
@@ -48,8 +52,8 @@ public:
 
 
 	/*Callbaks di GLFW*/
-	void set_window_dimension(int width, int height);
-	void set_window_name(std::string name);
+	void setWindowDimension(int width, int height);
+	void setWindowName(std::string name);
 protected:
 
 

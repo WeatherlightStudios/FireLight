@@ -8,45 +8,45 @@ SceneManager::SceneManager()
 {
 }
 
-void SceneManager::add_scene(Scene* scene, std::string name)
+void SceneManager::AddScene(Scene* scene, std::string name)
 {
 	m_scenes[name] = scene;
 }
 
-void SceneManager::set_current_scene(std::string name)
+void SceneManager::setCurrentScene(std::string name)
 {
 	m_current_scene = m_scenes[name];
-	m_current_scene->init_scene();
+	m_current_scene->InitScene();
 }
 
-void SceneManager::init_current_scene()
+void SceneManager::InitCurrentScene()
 {
 	if (m_current_scene != nullptr)
-		m_current_scene->init_scene();
+		m_current_scene->InitScene();
 }
-void SceneManager::update_current_scene()
+void SceneManager::UpdateCurrentScene()
 {
 	if (m_current_scene != nullptr)
-		m_current_scene->update_scene();
+		m_current_scene->UpdateScene();
 
 }
-void SceneManager::render_current_scene()
+void SceneManager::RenderCurrentScene()
 {
 	if (m_current_scene != nullptr)
-		m_current_scene->render();
+		m_current_scene->Render();
 }
 
-void SceneManager::close_current_scene()
+void SceneManager::CloseCurrentScene()
 {
 	if (m_current_scene != nullptr)
 		m_current_scene->Close();
 }
 
-void SceneManager::change_current_scene_to(std::string name)
+void SceneManager::changeCurrentSceneTo(std::string name)
 {
-	SceneManager::close_current_scene();
+	SceneManager::CloseCurrentScene();
 	m_current_scene = m_scenes[name];
-	SceneManager::init_current_scene();
+	SceneManager::InitCurrentScene();
 }
 
 SceneManager::~SceneManager()

@@ -5,6 +5,9 @@
 #include <map>
 #include <string>
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 #include <GL/gl3w.h>
 
 #include "Resources/Texture.h"
@@ -18,6 +21,11 @@ public:
 	
 	static std::map<std::string, Shader>  Shaders;
 	static std::map<std::string, Texture> Textures;
+	static std::map<std::string, Texture> Fonts;
+
+public:
+
+	static void Init();
 	
 	static Shader   LoadShader(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile, std::string name);
 
@@ -27,7 +35,7 @@ public:
 	
 	static Texture	getTexture(std::string name);
 
-	static void      Clear();
+	static void     Clear();
 private:
 	
 	Resource() { }
@@ -35,6 +43,11 @@ private:
 
 	static Texture loadTextureFromFile(const GLchar *file, GLboolean alpha);
 
+	static Texture loadFontFromFile();
+
+
+private:
+	FT_Library ft;
 };
 
 #endif

@@ -27,26 +27,16 @@
 
 		//init a game
 		Init();
-		//Time Handling
 
-
-		
-
-	
-
-
-		Time::start();
+		Time::Start();
 
 		World::InitGameSystems();
-
-		frameRate = 0;
-
-		double oldTime = glfwGetTime();
 
 		//MainLoop
 		while (!m_window->isClosed())
 		{
 			Time::Calculate();
+			
 
 			//updateting windows stuff
 			//ImGui_ImplGlfwGL3_NewFrame();
@@ -54,31 +44,14 @@
 			//FixedFrame Update game
 			while(Time::GetLag() >= MS_PER_UPDATE)
 			{
-				//Update(dt);
-				SceneManager::update_current_scene();
+				SceneManager::UpdateCurrentScene();
 				World::UpdateGameSystems();
-				
-
-				Time::reset();
+				Time::Reset();
 			
 			}
 			
 			
-			double currentTime = glfwGetTime();
-			
-			frameRate++;
-
-			if ((currentTime - oldTime) >= 1)
-			{
-				std::cout << "FPS: " << frameRate << std::endl;
-				frameRate = 0;
-				oldTime = currentTime;
-			}
-
 			Render();
-			//SceneManager::debug_current_scene();
-			//render game
-			//ImGui::Render();
 		
 
 			m_window->Update();
@@ -92,7 +65,7 @@
 	void App::Render()
 	{
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-		SceneManager::render_current_scene();
+		SceneManager::RenderCurrentScene();
 		World::RenderGameSystems();
 	}
 
@@ -103,13 +76,13 @@
 	}
 
 
-	void App::set_window_dimension(int width, int height)
+	void App::setWindowDimension(int width, int height)
 	{
 		m_width = width;
 		m_height = height;
 	}
 
-	void App::set_window_name(std::string name)
+	void App::setWindowName(std::string name)
 	{
 		m_title = name;
 	}

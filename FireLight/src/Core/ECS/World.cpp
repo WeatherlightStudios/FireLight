@@ -21,7 +21,6 @@ EntityHandler* World::CreateEntity()
 
 void World::removeEntity(EntityHandler* handler)
 {
-	std::cout << "entity's dead" << std::endl;
 	Entity* entity = HandleToRow(handler);
 
 	for (uint32_t i = 0; i < std::get<1>(*entity).size(); i++)
@@ -76,7 +75,6 @@ void World::RenderGameSystems()
 void World::addGameSystem(System* system)
 {
 	system->Init();
-	std::cout << "added and started a system" << std::endl;
 	m_Game_Systems.push_back(system);
 }
  
@@ -103,7 +101,6 @@ void World::removeGameSystem(System* system)
 
 World::~World()
 {
-	std::cout << "ded" << std::endl;
 	
 	for (std::vector<System*>::iterator i = m_Game_Systems.begin(); i != m_Game_Systems.end(); ++i) {
 		delete *i;
@@ -179,7 +176,6 @@ void System::Draw()
 
 void System::registerEntity(EntityHandler* entity)
 {
-	std::cout << "added Entity" << std::endl;
 	m_Entity.push_back(entity);
 }
 

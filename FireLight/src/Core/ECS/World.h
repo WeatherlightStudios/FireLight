@@ -115,8 +115,7 @@ public:
 		auto EntityKey = std::get<2>(*HandleToRow(handler));
 		auto id = T::ID;
 		(*EntityKey)[id] = 1;
-		
-		std::cout << m_Game_Systems.size() << std::endl;
+	
 
 
 		for (uint32_t i = 0; i < m_Game_Systems.size(); i++)

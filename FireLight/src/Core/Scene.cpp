@@ -9,24 +9,24 @@ Scene::Scene()
 }
 
 
-void Scene::init_scene()
+void Scene::InitScene()
 {
 	
 	m_render_system.Init();
 	Init();
 	isInizialized = true;
 }
-void Scene::update_scene()
+void Scene::UpdateScene()
 {
 	Update();
 }
 
-void Scene::render()
+void Scene::Render()
 {
 	m_render_system.Update();
 }
 
-void Scene::close_scene()
+void Scene::CloseScene()
 {
 	Close();
 }

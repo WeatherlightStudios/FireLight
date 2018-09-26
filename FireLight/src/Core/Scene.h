@@ -18,10 +18,10 @@ public:
 	~Scene();
 
 	/*-----------------------------------------Funzioni DEL ENGINE-----------------------------------*/
-	void init_scene();
-	void update_scene();
-	void render();
-	void close_scene();
+	void InitScene();
+	void UpdateScene();
+	void Render();
+	void CloseScene();
 	/*-----------------------------------------FUNZIONI DI GAMELOGIC-----------------------------------*/
 	/*
 	funzioni base della scena 
