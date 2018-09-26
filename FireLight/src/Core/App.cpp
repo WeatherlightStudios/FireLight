@@ -40,6 +40,10 @@
 
 			//updateting windows stuff
 			//ImGui_ImplGlfwGL3_NewFrame();
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
+			bool show_demo_window = true;
 
 			//FixedFrame Update game
 			while(Time::GetLag() >= MS_PER_UPDATE)
@@ -49,13 +53,15 @@
 				Time::Reset();
 			
 			}
-			
+			ImGui::ShowDemoWindow(&show_demo_window);
 			
 			Render();
 		
 
-			m_window->Update();
+			ImGui::Render();
+			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
+			m_window->Update();
 			m_window->UpdateInput();
 
 		}
@@ -71,8 +77,10 @@
 
 	void App::ShutDown() 
 	{
+		ImGui_ImplOpenGL3_Shutdown();
+		ImGui_ImplGlfw_Shutdown();
+		ImGui::DestroyContext();
 		glfwTerminate();
-		ImGui_ImplGlfwGL3_Shutdown();
 	}
 
 

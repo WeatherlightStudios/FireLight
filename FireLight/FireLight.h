@@ -11,7 +11,6 @@
 #include "src\Render\SimpleRenderSystem.h"
 #include "src\Core\SceneNode.h"
 #include "src\Utility\Debug.h"
-#include "imgui\imgui.h"
 #include "src/Core/ECS/Component.h"
 #include "src/Core/ECS/World.h"
 #include "src/Core/ECS/Components/Camera2D.h"

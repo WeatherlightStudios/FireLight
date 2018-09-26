@@ -1,8 +1,5 @@
 #include "Window.h"
 #include <iostream>
-#include "../../imgui/imgui_impl_glfw_gl3.h"
-#include "../../imgui/imgui.h"
-
 
 int Window::m_width = 0;
 int Window::m_height = 0;
@@ -37,6 +34,29 @@ void Window::Init()
 	glfwSetCursorPosCallback(m_window, cursor_position_callback);
 	glfwSetWindowSizeCallback(m_window, window_size_callback);
 	glfwMakeContextCurrent(m_window);
+
+
+	const char* glsl_version = "#version 130";
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+
+
+	//setUp IMGUI
+	//const char* glsl_version = "#version 130";
+
+  // Setup Dear ImGui binding
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
+
+	ImGui_ImplGlfw_InitForOpenGL(m_window, true);
+	ImGui_ImplOpenGL3_Init(glsl_version);
+
+	// Setup style
+	ImGui::StyleColorsDark();
+
 }
 
 void Window::get_mouse_positions(double &x ,double &y)
@@ -123,13 +143,10 @@ void window_size_callback(GLFWwindow* window, int width, int height)
 	Window *win = (Window*)glfwGetWindowUserPointer(window);
 
 	glViewport(0, 0, width, height);
-
-	//win->m_width = width;
-	//win->m_height = height;
 }
 
 
 Window::~Window()
 {
-
+	glfwDestroyWindow(m_window);
 }
