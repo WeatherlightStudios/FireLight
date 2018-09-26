@@ -18,5 +18,6 @@
 #include "src/Core/ECS/Components/Transfrom.h"
 #include "src/Core/ECS/Components/MeshRender.h"
 #include "src/Core/ECS/Components/PhysicsBody.h"
+#include "src\Utility\RandomNumber.h"
 
 #endif
