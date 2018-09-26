@@ -1,24 +1,6 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(376,5): warning MSB8004: la directory Intermediate non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Intermediate.
 C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: la directory Output non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Output.
-  App.cpp
-e:\firelight\firelight\src\core\ecs\world.h(84): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-  Scene.cpp
-e:\firelight\firelight\src\core\ecs\world.h(84): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-  SceneManager.cpp
-e:\firelight\firelight\src\core\ecs\world.h(84): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-  SimpleRenderSystem.cpp
-e:\firelight\firelight\src\core\ecs\world.h(84): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-e:\firelight\firelight\src\core\ecs\world.h(111): warning C4267: '=': conversione da 'size_t' a '_Ty2'. Possibile perdita di dati.
-          with
-          [
-              _Ty2=ComponentID
-          ]
-  e:\firelight\firelight\src\core\ecs\world.h(37): note: vedere il riferimento all'istanza '<Sconosciuto>' della funzione <Sconosciuto> di cui è in corso la compilazione
-  e:\firelight\firelight\src\render\simplerendersystem.cpp(17): note: vedere il riferimento all'istanza '<Sconosciuto>' della funzione <Sconosciuto> di cui è in corso la compilazione
-  Debug.cpp
-e:\firelight\firelight\src\core\ecs\world.h(84): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-  Resource.cpp
-  Generazione del codice in corso...
-freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR giα definito in opengl32.lib(OPENGL32.dll); seconda definizione ignorata
-freetype.lib(freetype.dll) : warning LNK4221: Questo file oggetto non definisce simboli pubblici non definiti in precedenza, pertanto verrα utilizzato da qualsiasi operazione di collegamento che utilizza la libreria
-  FireLight.vcxproj -> E:\FireLight\libBUILD\FireLight.lib
+  RandomNumber.cpp
+freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR giÓ definito in opengl32.lib(OPENGL32.dll); seconda definizione ignorata
+freetype.lib(freetype.dll) : warning LNK4221: Questo file oggetto non definisce simboli pubblici non definiti in precedenza, pertanto verrÓ utilizzato da qualsiasi operazione di collegamento che utilizza la libreria
+  FireLight.vcxproj -> C:\Users\Utente\Desktop\Projects\GameDev Projects\FireligthTestGames\FireLight\libBUILD\FireLight.lib
