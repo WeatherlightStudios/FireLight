@@ -4,7 +4,7 @@ RandomNumber::RandomNumber()
 {
 }
 
-int RandomNumber::IntRange(int a, int b) {
+int RandomNumber::Range(int a, int b) {
 	auto diff = b - a;
 	auto n = rand() % diff;
 	return n + a;
@@ -20,7 +20,7 @@ float RandomNumber::Range(float a, float b)
 
 
 
-int RandomNumber::GaussianRangeInt(int a, int b)
+int RandomNumber::GaussianRange(int a, int b)
 {
 	float sum = 0;
 	for (int i = 0; i < 3; i++)
@@ -44,6 +44,11 @@ float RandomNumber::GaussianRange(float a, float b)
 	float diff = b - a;
 	float r = diff * sum;
 	return r + a;
+}
+
+void RandomNumber::SetSeed(int seed)
+{
+	srand(seed);
 }
 
 RandomNumber::~RandomNumber()

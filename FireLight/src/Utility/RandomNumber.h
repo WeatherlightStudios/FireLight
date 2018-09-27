@@ -9,10 +9,12 @@ public:
 	~RandomNumber();
 
 
-	static int IntRange(int a, int b);
+	static int Range(int a, int b);
 	static float Range(float a, float b);
-	static int GaussianRangeInt(int a, int b);
+	static int GaussianRange(int a, int b);
 	static float GaussianRange(float a, float b);
+	static void SetSeed(int seed);
+
 };
 
 #endif
