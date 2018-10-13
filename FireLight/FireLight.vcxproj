@@ -121,6 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -143,7 +144,6 @@
     <ClInclude Include="imgui\misc\freetype\imgui_freetype.h" />
     <ClInclude Include="imgui\misc\stl\imgui_stl.h" />
     <ClInclude Include="src\Core\ECS\Components\PhysicsBody.h" />
-    <ClInclude Include="src\Core\ECS\Systems\PysixSystem.h" />
     <ClInclude Include="src\Core\ECS\Component.h" />
     <ClInclude Include="src\Core\ECS\Components\Camera2D.h" />
     <ClInclude Include="src\Core\ECS\Components\MeshRender.h" />
@@ -170,6 +170,7 @@
     <ClInclude Include="src\Render\OpenGL\VertexArrayBuffer.h" />
     <ClInclude Include="src\Core\ECS\World.h" />
     <ClInclude Include="src\Core\ECS\Components\Transfrom.h" />
+    <ClInclude Include="src\Core\ECS\System.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp" />
@@ -181,7 +182,6 @@
     <ClCompile Include="imgui\misc\fonts\binary_to_compressed_c.cpp" />
     <ClCompile Include="imgui\misc\freetype\imgui_freetype.cpp" />
     <ClCompile Include="imgui\misc\stl\imgui_stl.cpp" />
-    <ClCompile Include="src\Core\ECS\Systems\PysixSystem.cpp" />
     <ClCompile Include="src\Core\ECS\Component.cpp" />
     <ClCompile Include="src\Render\OpenGL\IndexBuffer.cpp" />
     <ClCompile Include="src\Utility\Debug.cpp" />
@@ -201,6 +201,7 @@
     <ClCompile Include="src\Render\OpenGL\VertexBuffer.cpp" />
     <ClCompile Include="src\Render\OpenGL\VertexArrayBuffer.cpp" />
     <ClCompile Include="src\Core\ECS\World.cpp" />
+    <ClCompile Include="src\Core\ECS\System.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

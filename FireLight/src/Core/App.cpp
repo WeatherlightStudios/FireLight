@@ -1,4 +1,5 @@
 #include "App.h"
+#include <chrono>
 
 	App::App()
 	{
@@ -32,6 +33,14 @@
 
 		World::InitGameSystems();
 
+
+
+		std::chrono::steady_clock::time_point ms_begin;
+
+		
+
+		std::chrono::steady_clock::time_point ms_end;
+
 		//MainLoop
 		while (!m_window->isClosed())
 		{
@@ -49,18 +58,37 @@
 			while(Time::GetLag() >= MS_PER_UPDATE)
 			{
 				SceneManager::UpdateCurrentScene();
-				World::UpdateGameSystems();
 				Time::Reset();
 			
 			}
-			ImGui::ShowDemoWindow(&show_demo_window);
+			//ImGui::ShowDemoWindow(&show_demo_window);
 			
 			Render();
-		
+			
+				ImGui::Begin("Test");
+
+				if (ImGui::Button("Test ECS"))
+				{
+					ms_begin = std::chrono::high_resolution_clock::now();
+					World::UpdateGameSystems();
+					ms_end = std::chrono::high_resolution_clock::now();
+
+				}
+
+				
+				auto ms_Update =  std::chrono::duration_cast<std::chrono::milliseconds>(ms_end - ms_begin);
+
+				ImGui::LabelText(to_string(ms_Update.count()).c_str(),"Ecs");
+
+				ImGui::End();
+
+
+
+
 
 			ImGui::Render();
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
+			
 			m_window->Update();
 			m_window->UpdateInput();
 
@@ -72,7 +100,7 @@
 	{
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 		SceneManager::RenderCurrentScene();
-		World::RenderGameSystems();
+		//World::RenderGameSystems();
 	}
 
 	void App::ShutDown() 

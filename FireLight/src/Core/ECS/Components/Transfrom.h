@@ -11,7 +11,7 @@ struct Transform : Component<Transform>
 
 	}
 
-	Transform()
+	Transform() : position(glm::vec3(0,0,0)), rotation(0.0f), scale(glm::vec2(1,1))
 	{
 
 	}

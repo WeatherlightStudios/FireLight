@@ -25,6 +25,8 @@ using EntityID = uint32_t;
 using Entity = std::tuple<EntityID, std::vector<std::pair<ComponentType, ComponentID>>, std::bitset<1024>*>;
 
 
+class System;
+
 
 //
 class World;
@@ -47,50 +49,50 @@ struct EntityHandler
 };
 
 
-class System
-{
-public:
-	System();
-
-	void InitAllEntity();
-	void updateEntity();
-	void Draw();
-
-
-
-	virtual void Init() {}
-	virtual void InitEntity(std::vector<BaseComponent*> components) {}
-
-	virtual void Update(std::vector<BaseComponent*> components) {}
-
-	virtual void Render(std::vector<BaseComponent*> components) {}
-
-	void registerEntity(EntityHandler* entity);
-
-	void deregisterEntity(EntityHandler* entity);
-
-	template<class T>
-	void registerComponent()
-	{
-		(*m_key)[T::ID] = 1;
-		componentTypes.push_back(T::ID);
-	}
-
-	std::bitset<1024>* getKey()
-	{
-		return m_key;
-	}
-
-	int getSize() { return m_Entity.size(); }
-
-	~System();
-
-private:
-
-	std::bitset<1024>* m_key;
-	std::vector<uint32_t> componentTypes;
-	std::vector<EntityHandler*> m_Entity;
-};
+//class System
+//{
+//public:
+//	System();
+//
+//	void InitAllEntity();
+//	void updateEntity();
+//	void Draw();
+//
+//
+//
+//	virtual void Init() {}
+//	virtual void InitEntity(std::vector<BaseComponent*> components) {}
+//
+//	virtual void Update(std::vector<BaseComponent*> components) {}
+//
+//	virtual void Render(std::vector<BaseComponent*> components) {}
+//
+//	void registerEntity(EntityHandler* entity);
+//
+//	void deregisterEntity(EntityHandler* entity);
+//
+//	template<class T>
+//	void registerComponent()
+//	{
+//		(*m_key)[T::ID] = 1;
+//		componentTypes.push_back(T::ID);
+//	}
+//
+//	std::bitset<1024>* getKey()
+//	{
+//		return m_key;
+//	}
+//
+//	int getSize() { return m_Entity.size(); }
+//
+//	~System();
+//
+//private:
+//
+//	std::bitset<1024>* m_key;
+//	std::vector<uint32_t> componentTypes;
+//	std::vector<EntityHandler*> m_Entity;
+//};
 
 class World
 {

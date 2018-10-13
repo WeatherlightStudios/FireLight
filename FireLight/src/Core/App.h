@@ -20,7 +20,6 @@
 #include "ECS\Components\Transfrom.h"
 #include "ECS\Components\MeshRender.h"
 #include "ECS\Components\PhysicsBody.h"
-#include "ECS\Systems\PysixSystem.h"
 #include <Box2D\Box2D.h>
 
 #include "../../imgui/imgui.h"

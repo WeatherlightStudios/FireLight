@@ -36,45 +36,45 @@ void World::removeEntity(EntityHandler* handler)
 void World::UpdateGameSystems()
 {
 
-	//std::cout << "systems size: " << m_Game_Systems.size() << std::endl;
-	for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
-	{
-		//std::cout << "systems size n " << i << ": " << m_Game_Systems[i]->getSize() << std::endl;
-		if (m_Game_Systems[i]->getSize() > 0)
-		{
-			m_Game_Systems[i]->updateEntity();
-		}
-	}
+	////std::cout << "systems size: " << m_Game_Systems.size() << std::endl;
+	//for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
+	//{
+	//	//std::cout << "systems size n " << i << ": " << m_Game_Systems[i]->getSize() << std::endl;
+	//	if (m_Game_Systems[i]->getSize() > 0)
+	//	{
+	//		m_Game_Systems[i]->updateEntity();
+	//	}
+	//}
 }
 
 void World::InitGameSystems()
 {
-	for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
+	/*for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
 	{
 		if (m_Game_Systems[i]->getSize() > 0)
 		{
 			m_Game_Systems[i]->InitAllEntity();
 		}
-	}
+	}*/
 }
 
 
 void World::RenderGameSystems()
 {
-	auto sys = m_Game_Systems;
+	/*auto sys = m_Game_Systems;
 	for (uint32_t i = 0; i < m_Game_Systems.size(); i++)
 	{
 		if (m_Game_Systems[i]->getSize() > 0)
 		{
 			m_Game_Systems[i]->Draw();
 		}
-	}
+	}*/
 }
 
 
 void World::addGameSystem(System* system)
 {
-	system->Init();
+	//system->Init();
 	m_Game_Systems.push_back(system);
 }
  
@@ -124,68 +124,68 @@ World::~World()
 
 
 
-//System Implementation
-System::System()
-{
-	m_key = new std::bitset<1024>;
-	this->m_key->reset();
-}
-void System::updateEntity()
-{
-
-	for (int i = 0; i <  m_Entity.size(); i++)
-	{
-		std::vector<BaseComponent*> m_component;
-		for (int x = 0; x < componentTypes.size(); x++)
-		{
-			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
-		}
-		Update(m_component);
-		//Render(m_component);
-	}
-}
-
-
-void System::InitAllEntity()
-{
-	for (int i = 0; i < m_Entity.size(); i++)
-	{
-		std::vector<BaseComponent*> m_component;
-		for (int x = 0; x < componentTypes.size(); x++)
-		{
-			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
-		}
-		InitEntity(m_component);
-	}
-}
-
-void System::Draw()
-{
-	for (int i = 0; i < m_Entity.size(); i++)
-	{
-		std::vector<BaseComponent*> m_component;
-		for (int x = 0; x < componentTypes.size(); x++)
-		{
-			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
-		}
-		//Update(m_component);
-		Render(m_component);
-	}
-}
-
-
-void System::registerEntity(EntityHandler* entity)
-{
-	m_Entity.push_back(entity);
-}
-
-void System::deregisterEntity(EntityHandler* entity)
-{
-	m_Entity.erase(std::find(m_Entity.begin(), m_Entity.end(), entity));
-}
-
-
-System::~System()
-{
-}
+////System Implementation
+//System::System()
+//{
+//	m_key = new std::bitset<1024>;
+//	this->m_key->reset();
+//}
+//void System::updateEntity()
+//{
+//
+//	for (int i = 0; i <  m_Entity.size(); i++)
+//	{
+//		std::vector<BaseComponent*> m_component;
+//		for (int x = 0; x < componentTypes.size(); x++)
+//		{
+//			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
+//		}
+//		Update(m_component);
+//		//Render(m_component);
+//	}
+//}
+//
+//
+//void System::InitAllEntity()
+//{
+//	for (int i = 0; i < m_Entity.size(); i++)
+//	{
+//		std::vector<BaseComponent*> m_component;
+//		for (int x = 0; x < componentTypes.size(); x++)
+//		{
+//			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
+//		}
+//		InitEntity(m_component);
+//	}
+//}
+//
+//void System::Draw()
+//{
+//	for (int i = 0; i < m_Entity.size(); i++)
+//	{
+//		std::vector<BaseComponent*> m_component;
+//		for (int x = 0; x < componentTypes.size(); x++)
+//		{
+//			m_component.push_back(World::getComponentByID(componentTypes[x], m_Entity[i]));
+//		}
+//		//Update(m_component);
+//		Render(m_component);
+//	}
+//}
+//
+//
+//void System::registerEntity(EntityHandler* entity)
+//{
+//	m_Entity.push_back(entity);
+//}
+//
+//void System::deregisterEntity(EntityHandler* entity)
+//{
+//	m_Entity.erase(std::find(m_Entity.begin(), m_Entity.end(), entity));
+//}
+//
+//
+//System::~System()
+//{
+//}
 //**********************************
