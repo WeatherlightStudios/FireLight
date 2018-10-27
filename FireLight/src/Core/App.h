@@ -14,17 +14,18 @@
 #include "Time.h"
 
 
-#include "ECS\World.h"
-#include "ECS\Components\Camera2D.h"
-#include "ECS\Components\Sprite.h"
-#include "ECS\Components\Transfrom.h"
-#include "ECS\Components\MeshRender.h"
-#include "ECS\Components\PhysicsBody.h"
+
 #include <Box2D\Box2D.h>
 
 #include "../../imgui/imgui.h"
 #include "../../imgui/imgui_impl_glfw.h"
 #include "../../imgui/imgui_impl_opengl3.h"
+
+
+//ECS stuff
+
+#include "ECS/World.h"
+#include "../Render/RenderSystem.h"
 
 
 #include <ft2build.h>

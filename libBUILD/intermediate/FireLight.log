@@ -1,72 +1,9 @@
-﻿D:\VisualStudio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(372,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
-D:\VisualStudio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(373,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  World.cpp
-d:\projects\firelight\firelight\src\core\ecs\world.h(84): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  VertexArrayBuffer.cpp
-  VertexBuffer.cpp
-  Texture.cpp
-  Window.cpp
-  Shader.cpp
-  Resource.cpp
-  RandomNumber.cpp
-d:\projects\firelight\firelight\src\utility\randomnumber.cpp(32): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Time.cpp
-  Camera.cpp
-  App.cpp
-d:\projects\firelight\firelight\src\core\ecs\world.h(84): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  SimpleRenderSystem.cpp
-d:\projects\firelight\firelight\src\core\ecs\world.h(84): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-d:\projects\firelight\firelight\src\core\ecs\world.h(111): warning C4267: '=': conversion from 'size_t' to 'ComponentID', possible loss of data
-  d:\projects\firelight\firelight\src\core\ecs\world.h(37): note: see reference to function template instantiation 'void World::addComponent<T>(EntityHandler *,T *)' being compiled
-          with
-          [
-              T=Transform
-          ]
-  d:\projects\firelight\firelight\src\render\simplerendersystem.cpp(17): note: see reference to function template instantiation 'void EntityHandler::add_Component<Transform,glm::vec3,float,glm::vec2>(glm::vec3,float,glm::vec2)' being compiled
-  SceneNode.cpp
-  SceneManager.cpp
-d:\projects\firelight\firelight\src\core\ecs\world.h(84): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  Scene.cpp
-d:\projects\firelight\firelight\src\core\ecs\world.h(84): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  Debug.cpp
-d:\projects\firelight\firelight\src\core\ecs\world.h(84): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  IndexBuffer.cpp
-  Component.cpp
-  PysixSystem.cpp
-d:\projects\firelight\firelight\src\core\ecs\world.h(84): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  imgui_stl.cpp
-  Generating Code...
-d:\projects\firelight\firelight\src\core\scenenode.cpp(55): warning C4715: 'SceneNode::Children': not all control paths return a value
-d:\projects\firelight\firelight\src\core\ecs\world.cpp(93): warning C4715: 'World::getComponentByID': not all control paths return a value
-  Compiling...
-  imgui_freetype.cpp
-  binary_to_compressed_c.cpp
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(258): warning C4244: '=': conversion from '__int64' to 'stb_uint', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(275): warning C4244: 'argument': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(275): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(277): warning C4244: 'argument': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(277): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(279): warning C4244: 'argument': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(279): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(281): warning C4244: 'argument': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(281): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(294): warning C4244: 'argument': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(298): warning C4244: 'argument': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(302): warning C4244: 'argument': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(306): warning C4244: 'argument': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(311): warning C4244: 'argument': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(331): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(333): warning C4244: 'argument': conversion from '__int64' to 'stb_uint', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(334): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
-d:\projects\firelight\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(379): warning C4244: 'return': conversion from '__int64' to 'stb_uint', possible loss of data
-  imgui_widgets.cpp
-  imgui_impl_opengl3.cpp
-  imgui_impl_glfw.cpp
-  imgui_draw.cpp
-  imgui_demo.cpp
-  imgui.cpp
-  Generating Code...
-  gl3w.c
-freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
-freetype.lib(freetype.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-  FireLight.vcxproj -> D:\projects\FireLight\libBUILD\FireLight.lib
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(376,5): warning MSB8004: la directory Intermediate non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Intermediate.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: la directory Output non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Output.
+  SpriteRenderSystem.cpp
+e:\firelight\firelight\src\render\rendersystem.h(11): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+e:\firelight\firelight\src\render\rendersystem.h(12): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+e:\firelight\firelight\src\render\rendersystem.h(13): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR giα definito in opengl32.lib(OPENGL32.dll); seconda definizione ignorata
+freetype.lib(freetype.dll) : warning LNK4221: Questo file oggetto non definisce simboli pubblici non definiti in precedenza, pertanto verrα utilizzato da qualsiasi operazione di collegamento che utilizza la libreria
+  FireLight.vcxproj -> E:\FireLight\libBUILD\FireLight.lib

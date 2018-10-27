@@ -1,12 +1,11 @@
-#ifndef CAMERA2D_H
-#define CAMERA2D_H
+#pragma once
 
 #include "../Component.h"
 #include <glm/glm.hpp>
 
-struct Camera2D : Component<Camera2D>
+struct Camera2D : public Component<Camera2D>
 {
-	Camera2D(glm::mat4 projection) : m_projection(projection)
+	Camera2D(glm::mat4 proj) : projection(proj)
 	{
 
 	}
@@ -16,9 +15,6 @@ struct Camera2D : Component<Camera2D>
 
 	}
 
-	glm::mat4 m_projection;
+
+	glm::mat4 projection;
 };
-
-
-
-#endif

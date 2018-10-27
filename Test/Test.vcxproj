@@ -87,8 +87,8 @@
     <LibraryPath>$(SolutionDir)libBUILD;$(SolutionDir)ThirdParty\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\projects\FireLight\FireLight;D:\projects\FireLight\ThirdParty\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\projects\FireLight\x64\Release;D:\projects\FireLight\ThirdParty\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)FireLight;$(SolutionDir)ThirdParty\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)x64\Release;$(SolutionDir)ThirdParty\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -123,13 +123,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

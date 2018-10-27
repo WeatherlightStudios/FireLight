@@ -1,20 +1,21 @@
-#include "TestSystem.h"
-
-
-
-TestSystem::TestSystem()
-{
-	registerComponent<Transform>();
-}
-
-
-void TestSystem::Update(std::vector<BaseComponent*> components)
-{
-	Transform* transf = (Transform*)components[0];
-
-	transf->position.x += 5;
-}
-
-TestSystem::~TestSystem()
-{
-}
+//#include "TestSystem.h"
+//
+//
+//
+//TestSystem::TestSystem()
+//{
+//	registerComponent(Transform::ID);
+//
+//}
+//
+//void TestSystem::Update(std::vector<BaseComponent&>& components)
+//{
+//	/*Transform* component = (Transform*)&components[0];
+//
+//	std::cout << "Position: " << component->Position.x << "," << component->Position.y << "," << std::endl;*/
+//
+//
+//}
+//TestSystem::~TestSystem()
+//{
+//}
