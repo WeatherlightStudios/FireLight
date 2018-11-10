@@ -145,12 +145,14 @@
     <ClInclude Include="imgui\misc\stl\imgui_stl.h" />
     <ClInclude Include="src\Core\ECS\Component.h" />
     <ClInclude Include="src\Core\ECS\Components\Camera2D.h" />
+    <ClInclude Include="src\Core\ECS\Components\MeshRender.h" />
     <ClInclude Include="src\Core\ECS\Components\Sprite.h" />
     <ClInclude Include="src\Core\ECS\Components\Transform.h" />
     <ClInclude Include="src\Core\ECS\Entity.h" />
     <ClInclude Include="src\Core\ECS\System.h" />
     <ClInclude Include="src\Core\ECS\Systems\Camera2DSystem.h" />
     <ClInclude Include="src\Core\ECS\Systems\SpriteRenderSystem.h" />
+    <ClInclude Include="src\Render\Material.h" />
     <ClInclude Include="src\Render\OpenGL\IndexBuffer.h" />
     <ClInclude Include="FireLight.h" />
     <ClInclude Include="GL\gl3w.h" />
@@ -162,6 +164,7 @@
     <ClInclude Include="src\Core\App.h" />
     <ClInclude Include="src\Render\Camera.h" />
     <ClInclude Include="src\Core\Time.h" />
+    <ClInclude Include="src\Render\RenderBuffer.h" />
     <ClInclude Include="src\Render\RenderSystem.h" />
     <ClInclude Include="src\Utility\RandomNumber.h" />
     <ClInclude Include="src\Utility\Resource.h" />
@@ -195,6 +198,7 @@
     <ClCompile Include="src\Core\App.cpp" />
     <ClCompile Include="src\Render\Camera.cpp" />
     <ClCompile Include="src\Core\Time.cpp" />
+    <ClCompile Include="src\Render\RenderBuffer.cpp" />
     <ClCompile Include="src\Render\RenderSystem.cpp" />
     <ClCompile Include="src\Utility\RandomNumber.cpp" />
     <ClCompile Include="src\Utility\Resource.cpp" />

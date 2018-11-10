@@ -32,6 +32,7 @@
     <ClCompile Include="src\Core\ECS\Systems\Camera2DSystem.cpp" />
     <ClCompile Include="src\Core\ECS\Systems\SpriteRenderSystem.cpp" />
     <ClCompile Include="src\Render\RenderSystem.cpp" />
+    <ClCompile Include="src\Render\RenderBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h" />
@@ -72,6 +73,9 @@
     <ClInclude Include="src\Core\ECS\Systems\Camera2DSystem.h" />
     <ClInclude Include="src\Core\ECS\Systems\SpriteRenderSystem.h" />
     <ClInclude Include="src\Render\RenderSystem.h" />
+    <ClInclude Include="src\Render\RenderBuffer.h" />
+    <ClInclude Include="src\Render\Material.h" />
+    <ClInclude Include="src\Core\ECS\Components\MeshRender.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

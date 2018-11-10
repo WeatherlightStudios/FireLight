@@ -2,6 +2,7 @@
 
 #include "../Components/Transform.h"
 #include "../Components/Sprite.h"
+#include "../Components/MeshRender.h"
 
 #include "../System.h"
 

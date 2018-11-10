@@ -43,7 +43,7 @@ void App::MainLoop()
 		ImGui::NewFrame();
 		bool show_demo_window = true;
 
-		//FixedFrame Update game
+		//FixedFrame Update only GameLogic
 		while(Time::GetLag() >= MS_PER_UPDATE)
 		{
 			SceneManager::UpdateCurrentScene();
@@ -52,6 +52,10 @@ void App::MainLoop()
 		}
 			
 		World::UpdateEngineSystems();
+		
+
+		SceneManager::DebugCurrentScene();
+
 
 
 		Render();
@@ -68,6 +72,7 @@ void App::MainLoop()
 void App::Render()
 {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+	RenderSystem::GenerateBatch();
 	RenderSystem::Draw();
 }
 

@@ -28,12 +28,13 @@ void SceneManager::UpdateCurrentScene()
 {
 	if (m_current_scene != nullptr)
 		m_current_scene->UpdateScene();
-
 }
-void SceneManager::RenderCurrentScene()
+
+
+void SceneManager::DebugCurrentScene()
 {
 	if (m_current_scene != nullptr)
-		m_current_scene->Render();
+		m_current_scene->Debug();
 }
 
 void SceneManager::CloseCurrentScene()

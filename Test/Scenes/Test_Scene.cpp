@@ -22,14 +22,16 @@ void Test_Scene::Init()
 
 	//World::addGameSystem(new TestSystem());
 
-	for (uint32 i = 0; i < 100000; i++)
+	
+	for (uint32 i = 0; i < 10000; i++)
 	{
 		float x = RandomNumber::Range(-Window::getWidth() / 180.0f, Window::getWidth() / 180.0f);
 		float y = RandomNumber::Range(-Window::getHeight() / 180.0f, Window::getHeight() / 180.0f);
 
 		auto entt = World::CreateEntity();
 		entt->add_Component<Transform>(glm::vec2(x, y), 0.0f, glm::vec2(1.0f, 1.0f));
-		entt->add_Component<Sprite>(Resource::getShader("2D_shader"), Resource::getTexture("sprite"), 2.0f, 0.0f, 1.0f, 6.0f);
+		entt->add_Component<Sprite>(2.0f, 0.0f, 1.0f, 6.0f);
+		entt->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sprite"));
 	}
 }
 

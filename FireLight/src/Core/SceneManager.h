@@ -14,10 +14,11 @@ public:
 	static void AddScene(Scene *scene, std::string name);
 
 	static void setCurrentScene(std::string name);
+
 	static void InitCurrentScene();
 	static void UpdateCurrentScene();
+	static void DebugCurrentScene();
 
-	static void RenderCurrentScene();
 	static void CloseCurrentScene();
 
 	static void changeCurrentSceneTo(std::string name);

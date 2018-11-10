@@ -32,7 +32,8 @@ public:
 	//funzione che viene richiamata ogni frame 
 	virtual void Update(){}
 	//funzione che viene richiamata ogni frame con l'ogetto debug che contiene funzioni di disegno e di UI adatti per il debugging (non funziona)
-	//virtual void Debughing(Debug *debug){}
+	virtual void Debug(){}
+
 	//funzione richiamata alla chiusura di una scena solitamente accade quando si cambia scena o quando il gioco si chiude
 	virtual void Close(){}
 	
