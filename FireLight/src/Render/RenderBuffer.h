@@ -38,7 +38,7 @@ public:
 private:
 	GLuint VAO, VBO;
 
-	uint32_t index;
+	uint32_t index = 0;
 
 	GL_Sprite* Buffer;
 

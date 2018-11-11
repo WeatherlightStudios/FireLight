@@ -75,6 +75,11 @@ public:
 
  	static void Draw();
 
+
+
+	static uint32_t getNumberOfObjects() { return numberOfObjects; }
+	static uint32_t getNumberOfBatch() { return numberOfBatch; }
+
 	~RenderSystem();
 
 private:
@@ -92,4 +97,9 @@ private:
 
 	static std::vector<Batch> m_batchs;
 	static std::vector<RenderObject> m_renderObjects;
+
+
+	static uint32_t numberOfBatch;
+	static uint32_t numberOfObjects;
+
 };

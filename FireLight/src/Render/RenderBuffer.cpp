@@ -4,7 +4,12 @@
 
 RenderBuffer::RenderBuffer()
 {
-	size_t RenderBufferSize = (sizeof(GL_Sprite) * 6) * 150000;
+	size_t RenderBufferSize = ((sizeof(GL_Sprite) * 6) * 150000);
+
+	std::cout << sizeof(GL_Sprite) << std::endl;
+	std::cout << (sizeof(GL_Sprite) * 6) << std::endl;
+	std::cout << RenderBufferSize << std::endl;
+
 	Buffer = new GL_Sprite();
 	Buffer = (GL_Sprite*)malloc(RenderBufferSize);
 

@@ -58,7 +58,18 @@ void App::MainLoop()
 
 
 
+
+
+
 		Render();
+
+
+
+
+		ImGui::LabelText("number of objects ", to_string(RenderSystem::getNumberOfObjects()).c_str());
+		ImGui::LabelText("number of batch ", to_string(RenderSystem::getNumberOfBatch()).c_str());
+
+
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 			
