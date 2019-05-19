@@ -9,32 +9,40 @@ System::System()
 
 void System::UpdateComponents()
 {
-
-	for (uint32_t i = 0; i < m_Components.size(); i++)
+	for (uint32_t i = 0; i < m_Entity.size(); i++)
 	{
-		std::vector<BaseComponent*>& components = *m_Components[i];
-		Update(components);
+		Update(m_Entity[i]);
 	}
 }
 
-void System::addEntity(uint32_t entity_ID, std::vector<BaseComponent*>*  components)
+void System::addEntity(uint32_t entity_ID)
 {
-	m_Entitys[entity_ID] = m_Components.size();
-	m_Components.emplace_back(components);
+	m_Entity.emplace_back(entity_ID);
 }
 
 void System::removeEntity(uint32_t entity_ID)
 {
-	m_Components.erase(m_Components.begin() + m_Entitys[entity_ID]);
-	m_Entitys.erase(entity_ID);
+	for (uint32_t i = 0; i < m_Entity.size(); i++)
+	{
+		if (m_Entity[i] == entity_ID)
+		{
+			m_Entity.erase(m_Entity.begin() + i);
+		}
+	}
 }
-
 
 void System::registerComponent(uint32_t ID)
 {
 	m_ComponentTypes.emplace_back(ID);
 	m_key[ID] = 1;
 }
+
+
+void System::Clear()
+{
+
+}
+
 
 System::~System()
 {

@@ -1,77 +1,98 @@
-#ifndef WORLD_HEADER
-#define WORLD_HEADER
+#ifndef WORLD_H
+#define	WORLD_H
 
-
-#include <vector>
-#include <map>
 #include <unordered_map>
-
-//external Includes
-#include <tuple>
-#include <utility>
-#include <bitset>
+#include <map>
+#include <algorithm>
 
 
-//internal Includes
+#include "ComponentPool.h"
 #include "Component.h"
-#include "Entity.h"
 #include "System.h"
+#include "Entity.h"
+
+
+struct EntityHandler
+{
+	template<class T, class... Args>
+	void add_Component(Args... args)
+	{
+		World::addComponent<T>(this, args...);
+	}
+};
+
+
 class World
 {
 public:
 	World();
-	~World();
-	
 
 	static EntityHandler* CreateEntity();
-	static void RemoveEntity(EntityHandler* handler);
+	void RemoveEntity(EntityHandler* entity);
 
-	template<class T>
-	static void addComponent(EntityHandler* entity,T* Component)
+	template<class T, class... Args>
+	static void addComponent(EntityHandler* entity, Args... args)
 	{
-		std::vector<BaseComponent*>& memory = m_components[T::ID];
-		uint32_t index = memory.size();
-		memory.push_back((T*)Component);
-
-		HandlerToRow(entity)->addComponent(T::ID, index);
-
-		addEntityToSystems(entity);
-	}
-	
-	template<class T>
-	void RemoveComponet(EntityHandler* entity)
-	{
-
+		Entity* temp_entity = HandlerToRow(entity);
+		m_Components[T::ID].addComponent<T>(temp_entity->getID(), args...);
+		temp_entity->addComponent(T::ID);
+		checkEntityToSystem(entity);
 	}
 
-	static void addEntityToSystems(EntityHandler* handler);
-	static void removeEntityToSystems(EntityHandler* handler);
+	template<class T>
+	T* getComponent(uint32_t entityID)
+	{
+		return &m_Components[T::ID].getComponent<T>(entityID);
+	}
+
+
+
+	//TODO:: Change Name
+	static void checkEntityToSystem(EntityHandler* entity);
+
+	template<class Component>
+	void removeComponent(EntityHandler* entity)
+	{
+		entity->removeComponent(Component::ID);	
+		m_Components[Component::ID].removeComponent<Component>(entity->getID());
+
+		removeEntityFromSystem(entity);
+	}
+
+
+	//TODO:: Change Name
+	void removeEntityFromSystem(EntityHandler* entity);
+
+	//void addSystem(System* system);
+	//void removeSystem(System* system);
+
+	//void UpdateSystems();
 
 	static void addGameSystem(System* system);
 	static void removeGameSystem(System* system);
-	
+
 	static void addEngineSystem(System* system);
 	static void removeEgnineSystem(System* system);
 
 	static void UpdateGameSystems();
 	static void UpdateEngineSystems();
 
-
+	~World();
 
 private:
-
 	static inline Entity* HandlerToRow(EntityHandler* handler)
 	{
 		return (Entity*)handler;
 	}
 
-
+	static std::vector<Entity*> m_Entitys;
 	static std::vector<System*> m_Game_Systems;
 	static std::vector<System*> m_Engine_Systems;
-	static std::vector<Entity*> m_Entitys;
-	static std::unordered_map<uint32_t, std::vector<BaseComponent*>> m_components;
+
+	static std::map<uint32_t, ComponentPool> m_Components;
+
+
+
 };
-
-
 
 #endif

@@ -1,24 +1,29 @@
-#pragma once
+#ifndef SYSTEM_H
+#define	SYSTEM_H
 
-#include "Component.h"
-#include <vector>
-#include <unordered_map>
 #include <bitset>
+#include <vector>
+
+
+#include "Entity.h"
 
 class System
 {
 public:
 	System();
 
-	virtual void Update(std::vector<BaseComponent*>& comp) {}
+
+	virtual void Update(uint32_t entity) {}
 
 	void UpdateComponents();
 
-	void addEntity(uint32_t entity_ID, std::vector<BaseComponent*>* components);
+	void addEntity(uint32_t entity_ID);
 
 	void removeEntity(uint32_t entity_ID);
 
 	void Clear();
+
+	void registerComponent(uint32_t ID);
 
 
 	std::vector<uint32_t>& getComponentTypes()
@@ -32,15 +37,11 @@ public:
 	}
 
 	~System();
-	
-protected:
-	void registerComponent(uint32_t ID);
 private:
 	std::bitset<150> m_key;
 	std::vector<uint32_t> m_ComponentTypes;
-	std::vector<std::vector<BaseComponent*>*> m_Components;
-	std::unordered_map<uint32_t, uint32_t> m_Entitys;
-
-
+	std::vector<uint32_t> m_Entity;
 };
 
+
+#endif

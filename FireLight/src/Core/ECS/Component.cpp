@@ -1,4 +1,11 @@
 #include "Component.h"
 
+
+
 uint32_t BaseComponent::index = 0;
-uint32_t BaseComponent::registerComponentType() { return index++; };
+std::vector<size_t> BaseComponent::componentType;
+uint32_t BaseComponent::registerComponentType(size_t size)
+{ 
+	componentType.push_back(size);
+	return index++; 
+};

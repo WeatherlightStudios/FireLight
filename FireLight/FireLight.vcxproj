@@ -144,6 +144,7 @@
     <ClInclude Include="imgui\misc\freetype\imgui_freetype.h" />
     <ClInclude Include="imgui\misc\stl\imgui_stl.h" />
     <ClInclude Include="src\Core\ECS\Component.h" />
+    <ClInclude Include="src\Core\ECS\ComponentPool.h" />
     <ClInclude Include="src\Core\ECS\Components\Camera2D.h" />
     <ClInclude Include="src\Core\ECS\Components\MeshRender.h" />
     <ClInclude Include="src\Core\ECS\Components\Sprite.h" />
@@ -186,6 +187,7 @@
     <ClCompile Include="imgui\misc\freetype\imgui_freetype.cpp" />
     <ClCompile Include="imgui\misc\stl\imgui_stl.cpp" />
     <ClCompile Include="src\Core\ECS\Component.cpp" />
+    <ClCompile Include="src\Core\ECS\ComponentPool.cpp" />
     <ClCompile Include="src\Core\ECS\Entity.cpp" />
     <ClCompile Include="src\Core\ECS\System.cpp" />
     <ClCompile Include="src\Core\ECS\Systems\Camera2DSystem.cpp" />
