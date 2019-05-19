@@ -14,7 +14,7 @@ class SpriteRenderSystem : public System
 public:
 	SpriteRenderSystem();
 
-	void Update(std::vector<BaseComponent*>& components);
+	void Update(uint32_t entity);
 
 	~SpriteRenderSystem();
 };

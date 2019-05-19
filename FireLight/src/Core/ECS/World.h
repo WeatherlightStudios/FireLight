@@ -40,7 +40,7 @@ public:
 	}
 
 	template<class T>
-	T* getComponent(uint32_t entityID)
+	static T* getComponent(uint32_t entityID)
 	{
 		return &m_Components[T::ID].getComponent<T>(entityID);
 	}
@@ -76,6 +76,14 @@ public:
 
 	static void UpdateGameSystems();
 	static void UpdateEngineSystems();
+
+	static int getGameSystemSize() { return m_Game_Systems.size(); }
+	static int getEngineSystemSize() { return m_Engine_Systems.size(); }
+	static int getEntitySize() { return m_Entitys.size();  }
+
+	static int getComponentSize() { return m_Components.size(); }
+
+	static int getComponentPoolSize(uint32_t ID, size_t size) { return m_Components[ID].Size(size); }
 
 	~World();
 

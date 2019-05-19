@@ -63,10 +63,15 @@ void App::MainLoop()
 
 		Render();
 
+		ImGui::LabelText("ECS: ", "");
+		ImGui::LabelText("Game Systems ", to_string(World::getGameSystemSize()).c_str());
+		ImGui::LabelText("Engine Systems ", to_string(World::getEngineSystemSize()).c_str());
+		ImGui::LabelText("Component List ", to_string(World::getComponentSize()).c_str());
+		ImGui::LabelText("Entity List ", to_string(World::getEntitySize()).c_str());
 
 
-
-		ImGui::LabelText("number of objects ", to_string(RenderSystem::getNumberOfObjects()).c_str());
+		ImGui::LabelText("Render: ", "");
+		ImGui::LabelText("number of Rendered objects ", to_string(RenderSystem::getNumberOfObjects()).c_str());
 		ImGui::LabelText("number of batch ", to_string(RenderSystem::getNumberOfBatch()).c_str());
 
 

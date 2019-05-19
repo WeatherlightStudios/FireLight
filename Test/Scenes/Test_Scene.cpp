@@ -29,9 +29,9 @@ void Test_Scene::Init()
 	entt->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sprite"));*/
 
 
-	/*for (int y = -50; y < 50; y++)
+	for (int y = 0; y < 100; y++)
 	{
-		for (int x = -50; x < 50; x++)
+		for (int x = 0; x < 100; x++)
 		{
 			auto tile  = World::CreateEntity();
 			tile->add_Component<Transform>(glm::vec2(x * 32, y * 32), 0.0f, glm::vec2(1.0f, 1.0f));
@@ -39,7 +39,7 @@ void Test_Scene::Init()
 			tile->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("tile"));
 		}
 	}
-*/
+
 	
 	//auto tile02 = World::CreateEntity();
 	//tile02->add_Component<Transform>(glm::vec2(0, 1), 0.0f, glm::vec2(1.0f, 1.0f));

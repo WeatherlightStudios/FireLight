@@ -177,20 +177,18 @@ void RenderSystem::setCamera(EntityHandler* camera)
 	 numberOfObjects = m_renderObjects.size();
 
 
+
 	 for (uint32_t i = 0; i < m_batchs.size(); i++)
 	 {
-		 m_batchs[i].Use();
+			m_batchs[i].Use();
+			m_batchs[i].m_material.m_shader.SetMatrix4("model", model, false);
+			m_batchs[i].m_material.m_shader.SetMatrix4("projection", projection, false);
 
-		 m_batchs[i].m_material.m_shader.SetMatrix4("model", model, false);
-		 m_batchs[i].m_material.m_shader.SetMatrix4("projection", projection, false);
-
-		 m_batchs[i].m_material.m_shader.SetVector2f("row", glm::vec2(1, 1), false);
-		 m_batchs[i].m_material.m_shader.SetVector2f("offset", glm::vec2(0, 0), false);
-
-
-		 FirstBuffer->beginDraw();
-		 FirstBuffer->Draw(m_batchs[i].m_begin, m_batchs[i].m_end);
-		 FirstBuffer->endDraw();
+			m_batchs[i].m_material.m_shader.SetVector2f("row", glm::vec2(1, 1), false);
+			m_batchs[i].m_material.m_shader.SetVector2f("offset", glm::vec2(0, 0), false);
+			FirstBuffer->beginDraw();
+			FirstBuffer->Draw(m_batchs[i].m_begin, m_batchs[i].m_end);
+			FirstBuffer->endDraw();
 	 }
 	 //BufferIndex *= -1;
 	 m_batchs.clear();

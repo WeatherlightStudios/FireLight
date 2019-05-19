@@ -56,6 +56,8 @@ public:
 		//TODO:: test if it work!
 	}
 
+	int Size(size_t size) { return m_Components.size() / size; }
+
 	void Clear(size_t size);
 
 

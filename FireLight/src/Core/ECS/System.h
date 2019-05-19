@@ -25,6 +25,7 @@ public:
 
 	void registerComponent(uint32_t ID);
 
+	int getEntitySize() { return m_Entity.size(); }
 
 	std::vector<uint32_t>& getComponentTypes()
 	{

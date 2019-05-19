@@ -10,11 +10,12 @@ SpriteRenderSystem::SpriteRenderSystem()
 
 }
 
-void SpriteRenderSystem::Update(std::vector<BaseComponent*>& components)
+void SpriteRenderSystem::Update(uint32_t entity)
 {
-	Transform* transform = static_cast<Transform*>(components[0]);
-	Sprite* sprite = static_cast<Sprite*>(components[1]);
-	MeshRender* meshRender = static_cast<MeshRender*>(components[2]);
+
+	Transform* transform = World::getComponent<Transform>(entity);
+	Sprite* sprite = World::getComponent<Sprite>(entity);
+	MeshRender* meshRender = World::getComponent<MeshRender>(entity);
 
 	RenderSystem::addSprite(transform, sprite, meshRender->m_shader, meshRender->m_texture);
 }
