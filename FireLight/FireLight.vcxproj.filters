@@ -78,6 +78,7 @@
     <ClInclude Include="src\Core\ECS\Components\MeshRender.h" />
     <ClInclude Include="src\Core\ECS\ComponentPool.h" />
     <ClInclude Include="src\Core\ECS\Component.h" />
+    <ClInclude Include="GL\khrplatform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

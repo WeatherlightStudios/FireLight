@@ -23,13 +23,13 @@ void Test_Scene::Init()
 	auto shader = Resource::LoadShader("source/Shaders/2D_shader.vert", "source/Shaders/2D_shader.frag", NULL, "2D_shader");
 
 	//World::addGameSystem(new TestSystem());
-	/*auto entt = World::CreateEntity();
+	auto entt = World::CreateEntity();
 	entt->add_Component<Transform>(glm::vec2(0, 0), 0.0f, glm::vec2(1.0f, 1.0f));
 	entt->add_Component<Sprite>(2.0f, 0.0f, 1.0f, 6.0f);
-	entt->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sprite"));*/
+	entt->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sprite"));
 
 
-	for (int y = 0; y < 100; y++)
+	for (int y = 0; y < 1000; y++)
 	{
 		for (int x = 0; x < 100; x++)
 		{

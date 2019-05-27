@@ -138,7 +138,7 @@ void RenderSystem::GenerateBatch()
 	//FirstBuffer->UpdateData(m_renderObjects[0].sprite);
 	//FirstBuffer->End();
 
-	std::stable_sort(m_renderObjects.begin(),m_renderObjects.end(), compareTexture);
+	//std::stable_sort(m_renderObjects.begin(),m_renderObjects.end(), compareTexture);
 
 	GLuint CurrentBatchIndex = 0;
 
@@ -178,6 +178,7 @@ void RenderSystem::setCamera(EntityHandler* camera)
 
 
 
+		FirstBuffer->beginDraw();
 	 for (uint32_t i = 0; i < m_batchs.size(); i++)
 	 {
 			m_batchs[i].Use();
@@ -186,10 +187,9 @@ void RenderSystem::setCamera(EntityHandler* camera)
 
 			m_batchs[i].m_material.m_shader.SetVector2f("row", glm::vec2(1, 1), false);
 			m_batchs[i].m_material.m_shader.SetVector2f("offset", glm::vec2(0, 0), false);
-			FirstBuffer->beginDraw();
 			FirstBuffer->Draw(m_batchs[i].m_begin, m_batchs[i].m_end);
-			FirstBuffer->endDraw();
 	 }
+		FirstBuffer->endDraw();
 	 //BufferIndex *= -1;
 	 m_batchs.clear();
 	 m_renderObjects.clear();

@@ -30,6 +30,7 @@ void App::MainLoop()
 	RenderSystem::Init();
 	Init();
 	Time::Start();
+
 	//MainLoop
 	while (!m_window->isClosed())
 	{
@@ -38,9 +39,9 @@ void App::MainLoop()
 
 		//updateting windows stuff
 		//ImGui_ImplGlfwGL3_NewFrame();
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
+		//ImGui_ImplOpenGL3_NewFrame();
+		//ImGui_ImplGlfw_NewFrame();
+		//ImGui::NewFrame();
 		bool show_demo_window = true;
 
 		//FixedFrame Update only GameLogic
@@ -63,7 +64,7 @@ void App::MainLoop()
 
 		Render();
 
-		ImGui::LabelText("ECS: ", "");
+		/*ImGui::LabelText("ECS: ", "");
 		ImGui::LabelText("Game Systems ", to_string(World::getGameSystemSize()).c_str());
 		ImGui::LabelText("Engine Systems ", to_string(World::getEngineSystemSize()).c_str());
 		ImGui::LabelText("Component List ", to_string(World::getComponentSize()).c_str());
@@ -76,7 +77,7 @@ void App::MainLoop()
 
 
 		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());*/
 			
 		m_window->Update();
 		m_window->UpdateInput();
@@ -94,9 +95,9 @@ void App::Render()
 
 void App::ShutDown() 
 {
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplGlfw_Shutdown();
-	ImGui::DestroyContext();
+	//ImGui_ImplOpenGL3_Shutdown();
+	//ImGui_ImplGlfw_Shutdown();
+	//ImGui::DestroyContext();
 	glfwTerminate();
 }
 
