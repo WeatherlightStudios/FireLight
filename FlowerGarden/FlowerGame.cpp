@@ -11,7 +11,6 @@ void FlowerGame::Init()
 	m_scene = std::make_unique<MainGameScene>();
 	SceneManager::AddScene(m_scene.get(), "Game");
 	SceneManager::changeCurrentSceneTo("Game");
-	
 }
 
 FlowerGame::~FlowerGame()
