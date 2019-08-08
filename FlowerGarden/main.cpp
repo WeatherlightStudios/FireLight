@@ -2,7 +2,6 @@
 #include <memory>
 #include "FlowerGame.h"
 
-
 int main()
 {
 	std::unique_ptr<FlowerGame> newGame(new FlowerGame);
