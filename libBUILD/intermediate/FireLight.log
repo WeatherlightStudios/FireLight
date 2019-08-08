@@ -1,6 +1,120 @@
-﻿E:\VisualStudio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(376,5): warning MSB8004: la directory Intermediate non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Intermediate.
-E:\VisualStudio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: la directory Output non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Output.
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v150\Microsoft.CppBuild.targets(376,5): warning MSB8004: la directory Intermediate non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Intermediate.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v150\Microsoft.CppBuild.targets(377,5): warning MSB8004: la directory Output non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Output.
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_glfw.cpp
+  imgui_impl_opengl3.cpp
+  imgui_widgets.cpp
+  binary_to_compressed_c.cpp
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(258): warning C4244: '=': conversione da '__int64' a 'stb_uint'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(275): warning C4244: 'argomento': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(275): warning C4244: '=': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(277): warning C4244: 'argomento': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(277): warning C4244: '=': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(279): warning C4244: 'argomento': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(279): warning C4244: '=': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(281): warning C4244: 'argomento': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(281): warning C4244: '=': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(294): warning C4244: 'argomento': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(298): warning C4244: 'argomento': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(302): warning C4244: 'argomento': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(306): warning C4244: 'argomento': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(311): warning C4244: 'argomento': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(331): warning C4244: '=': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(333): warning C4244: 'argomento': conversione da '__int64' a 'stb_uint'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(334): warning C4244: 'return': conversione da '__int64' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\imgui\misc\fonts\binary_to_compressed_c.cpp(379): warning C4244: 'return': conversione da '__int64' a 'stb_uint'. Possibile perdita di dati.
+  imgui_freetype.cpp
+  imgui_stl.cpp
+  Component.cpp
+  ComponentPool.cpp
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\componentpool.h(59): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\componentpool.cpp(14): warning C4267: '+=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+  Entity.cpp
+  System.cpp
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\system.h(28): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+  Camera2DSystem.cpp
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\system.h(28): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(12): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(13): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\componentpool.h(59): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(103): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(104): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(105): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(107): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(14): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(15): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+  SpriteRenderSystem.cpp
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\system.h(28): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(12): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\componentpool.h(59): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(103): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(104): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(105): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(107): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(13): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(14): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(15): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+  TestSystem.cpp
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\system.h(28): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\componentpool.h(59): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(103): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(104): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(105): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(107): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+  IndexBuffer.cpp
+  Scene.cpp
+  SceneManager.cpp
+  SceneNode.cpp
+  Generazione del codice in corso...
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\scenenode.cpp(55): warning C4715: 'SceneNode::Children': non tutti i percorsi di controllo restituiscono un valore
+  Compilazione in corso...
+  App.cpp
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\componentpool.h(59): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\system.h(28): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(103): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(104): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(105): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(107): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(12): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(13): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(14): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(15): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+  Camera.cpp
+  Time.cpp
+  RenderBuffer.cpp
+  RenderSystem.cpp
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(12): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\system.h(28): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\componentpool.h(59): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(103): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(104): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(105): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(107): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(13): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(14): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(15): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.cpp(207): warning C4267: '=': conversione da 'size_t' a 'uint32_t'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.cpp(208): warning C4267: '=': conversione da 'size_t' a 'uint32_t'. Possibile perdita di dati.
+  RandomNumber.cpp
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\utility\randomnumber.cpp(32): warning C4244: 'inizializzazione': conversione da 'float' a 'int'. Possibile perdita di dati.
+  Resource.cpp
+  Shader.cpp
   Window.cpp
-freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR giα definito in opengl32.lib(OPENGL32.dll); seconda definizione ignorata
-freetype.lib(freetype.dll) : warning LNK4221: Questo file oggetto non definisce simboli pubblici non definiti in precedenza, pertanto verrα utilizzato da qualsiasi operazione di collegamento che utilizza la libreria
-  FireLight.vcxproj -> E:\Git-Projects\FireLightEngine\libBUILD\FireLight.lib
+  Texture.cpp
+  VertexBuffer.cpp
+  VertexArrayBuffer.cpp
+  World.cpp
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\componentpool.h(59): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\system.h(28): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(103): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(104): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(105): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(107): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.cpp(15): warning C4267: 'inizializzazione': conversione da 'size_t' a 'uint32_t'. Possibile perdita di dati.
+  Generazione del codice in corso...
+  gl3w.c
+freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR giÓ definito in opengl32.lib(OPENGL32.dll); seconda definizione ignorata
+freetype.lib(freetype.dll) : warning LNK4221: Questo file oggetto non definisce simboli pubblici non definiti in precedenza, pertanto verrÓ utilizzato da qualsiasi operazione di collegamento che utilizza la libreria
+  FireLight.vcxproj -> C:\Users\Utente\Desktop\Projects\GameDev Projects\2019\Firelight_Engine\libBUILD\FireLight.lib

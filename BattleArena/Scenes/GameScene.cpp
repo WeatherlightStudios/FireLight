@@ -35,7 +35,6 @@ void GameScene::Init()
 	World::addGameSystem(new WeaponSystem(camera, entt));
 
 	RenderSystem::setCamera(camera);
-
 }
 
 
