@@ -17,7 +17,7 @@ public:
 	void Init();
 	void Update();
 
-	//void Debug();
+	void Debug();
 
 	void Close();
 

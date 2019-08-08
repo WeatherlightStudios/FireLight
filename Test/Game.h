@@ -4,7 +4,7 @@
 #include <FireLight.h>
 #include "Scenes\Test_Scene.h"
 
-class Game : public App
+class Game : public FL::App
 {
 public:
 	Game();

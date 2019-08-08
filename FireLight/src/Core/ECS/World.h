@@ -11,6 +11,7 @@
 #include "System.h"
 #include "Entity.h"
 
+class World;
 
 struct EntityHandler
 {
@@ -19,6 +20,26 @@ struct EntityHandler
 	{
 		World::addComponent<T>(this, args...);
 	}
+
+
+	uint32_t getID()
+	{
+		return ((Entity*)this)->getID();
+	}
+
+	template<class T>
+	T* get_Component()
+	{
+		return World::getComponent<T>(this->getID());
+	}
+	/*template<class T>
+	T* getComponent()
+	{
+		return World::getComponent<T>(getID());
+	}*/
+
+
+
 };
 
 
@@ -36,7 +57,7 @@ public:
 		Entity* temp_entity = HandlerToRow(entity);
 		m_Components[T::ID].addComponent<T>(temp_entity->getID(), args...);
 		temp_entity->addComponent(T::ID);
-		checkEntityToSystem(entity);
+		checkEntityToSystems(entity);
 	}
 
 	template<class T>
@@ -48,15 +69,17 @@ public:
 
 
 	//TODO:: Change Name
-	static void checkEntityToSystem(EntityHandler* entity);
+	static void checkEntityToSystems(EntityHandler* entity);
+	static void checkEntitysToSystem(System* system);
 
 	template<class Component>
-	void removeComponent(EntityHandler* entity)
+	void removeComponent(EntityHandler* entityHandler)
 	{
+		Entity* entity = HandlerToRow(entityHandler);
 		entity->removeComponent(Component::ID);	
 		m_Components[Component::ID].removeComponent<Component>(entity->getID());
 
-		removeEntityFromSystem(entity);
+		removeEntityFromSystem(entityHandler);
 	}
 
 

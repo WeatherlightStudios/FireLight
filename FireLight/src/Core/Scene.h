@@ -41,6 +41,7 @@ private:
 	bool isInizialized;
 	//SimpleRenderSystem m_render_system;
 
+
 };
 
 #endif

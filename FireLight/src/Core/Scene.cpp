@@ -12,7 +12,6 @@ Scene::Scene()
 void Scene::InitScene()
 {
 	
-	//m_render_system.Init();
 	Init();
 	isInizialized = true;
 }
@@ -23,7 +22,7 @@ void Scene::UpdateScene()
 
 void Scene::Render()
 {
-	//m_render_system.Update();
+
 }
 
 void Scene::CloseScene()

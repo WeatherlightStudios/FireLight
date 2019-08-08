@@ -13,6 +13,8 @@ std::vector<RenderObject> RenderSystem::m_renderObjects;
 
 EntityHandler* RenderSystem::m_camera;
 
+EntityHandler* RenderSystem::testHandle;
+
 glm::mat4 RenderSystem::projection;
 glm::mat4 RenderSystem::orientation;
 
@@ -79,8 +81,12 @@ void RenderSystem::Init()
 	projection = glm::translate(projection, glm::vec3(0.0f,0.0f, -3.0f));
 
 
-	//World::addSystem(new Camera2DSystem());
+	World::addEngineSystem(new Camera2DSystem());
 	World::addEngineSystem(new SpriteRenderSystem());
+	World::addEngineSystem(new TestSystem());
+
+	//testHandle = World::CreateEntity();
+	//testHandle->add_Component<Test>();
 
 	BufferIndex = 0;
 
@@ -91,9 +97,11 @@ void RenderSystem::addSprite(Transform* tran, Sprite* sprite, Shader shader, Tex
 	RenderObject tempObject(Material(shader, texture));
 
 
+	//glm::vec2 rot = glm::vec2(x,y);
 
 	glm::vec2 pos = tran->Position;
 	glm::vec2 size = tran->Scale;
+
 
 	glm::vec2 offset = glm::vec2(sprite->OffsetX, sprite->OffsetY);
 
@@ -102,26 +110,49 @@ void RenderSystem::addSprite(Transform* tran, Sprite* sprite, Shader shader, Tex
 
 	glm::vec2 base_scale = glm::vec2(texture.Width / sprite->Collums, texture.Height / sprite->Rows);
 
-	tempObject.sprite[0].vertex = glm::vec3(pos.x + (-0.5f * (size.x * base_scale.x)), pos.y + (-0.5f * (size.y * base_scale.y)), 0);
+	float x = ((-0.5f * (size.x * base_scale.x)) * cos(tran->Rotation) + (0.5f * (size.y * base_scale.y)) * sin(tran->Rotation));
+	float y = ((-0.5f * (size.x * base_scale.x)) * sin(tran->Rotation) - (0.5f * (size.y * base_scale.y)) * cos(tran->Rotation));
+
+	tempObject.sprite[0].vertex = glm::vec3(pos.x + (x), pos.y + (y), 0);
 	tempObject.sprite[0].uv = glm::vec2(offset.x / grid.x, (1.0f + offset.y) / grid.y);
 
-	tempObject.sprite[1].vertex = glm::vec3(pos.x + (-0.5f * (size.x * base_scale.x)), pos.y + (0.5f * (size.y * base_scale.y)), 0);
+
+	x = ((-0.5f * (size.x * base_scale.x)) * cos(tran->Rotation) - (0.5f * (size.y * base_scale.y)) * sin(tran->Rotation));
+	y = ((-0.5f * (size.x * base_scale.x)) * sin(tran->Rotation) + (0.5f * (size.y * base_scale.y)) * cos(tran->Rotation));
+
+	tempObject.sprite[1].vertex = glm::vec3(pos.x + (x), pos.y + (y), 0);
 	tempObject.sprite[1].uv = glm::vec2(offset.x / grid.x, offset.y / grid.y);
 
-	tempObject.sprite[2].vertex = glm::vec3(pos.x + (0.5f * (size.x * base_scale.x)), pos.y + (0.5f * (size.y * base_scale.y)), 0);
+
+	 x = ((0.5f * (size.x * base_scale.x)) * cos(tran->Rotation) - (0.5f * (size.y * base_scale.y)) * sin(tran->Rotation));
+	 y = ((0.5f * (size.x * base_scale.x)) * sin(tran->Rotation) + (0.5f * (size.y * base_scale.y)) * cos(tran->Rotation));
+
+	tempObject.sprite[2].vertex = glm::vec3(pos.x + (x), pos.y + (y), 0);
 	tempObject.sprite[2].uv = glm::vec2((1.0f + offset.x) / grid.x, offset.y / grid.y);
 
+	x = ((0.5f * (size.x * base_scale.x)) * cos(tran->Rotation) - (0.5f * (size.y * base_scale.y)) * sin(tran->Rotation));
+	y = ((0.5f * (size.x * base_scale.x)) * sin(tran->Rotation) + (0.5f * (size.y * base_scale.y)) * cos(tran->Rotation));
 
-	tempObject.sprite[3].vertex = glm::vec3(pos.x + (0.5f * (size.x * base_scale.x)), pos.y + (0.5f * (size.y * base_scale.y)), 0);
+	tempObject.sprite[3].vertex = glm::vec3(pos.x + (x), pos.y + (y), 0);
 	tempObject.sprite[3].uv = glm::vec2((1.0f + offset.x) / grid.x, offset.y / grid.y);
 	
-	tempObject.sprite[4].vertex = glm::vec3(pos.x + (0.5f * (size.x * base_scale.x)), pos.y + (-0.5f * (size.y * base_scale.y)), 0);
+	x = ((0.5f * (size.x * base_scale.x)) * cos(tran->Rotation) + (0.5f * (size.y * base_scale.y)) * sin(tran->Rotation));
+	y = ((0.5f * (size.x * base_scale.x)) * sin(tran->Rotation) - (0.5f * (size.y * base_scale.y)) * cos(tran->Rotation));
+
+	tempObject.sprite[4].vertex = glm::vec3(pos.x + (x), pos.y + (y), 0);
 	tempObject.sprite[4].uv = glm::vec2((1.0f + offset.x) / grid.x, (1.0f + offset.y) / grid.y);
 	
-	tempObject.sprite[5].vertex = glm::vec3(pos.x + (-0.5f * (size.x * base_scale.x)), pos.y + (-0.5f * (size.y * base_scale.y)), 0);
+	x = ((-0.5f * (size.x * base_scale.x)) * cos(tran->Rotation) + (0.5f * (size.y * base_scale.y)) * sin(tran->Rotation));
+	y = ((-0.5f * (size.x * base_scale.x)) * sin(tran->Rotation) - (0.5f * (size.y * base_scale.y)) * cos(tran->Rotation));
+
+	tempObject.sprite[5].vertex = glm::vec3(pos.x + (x), pos.y + (y), 0);
 	tempObject.sprite[5].uv = glm::vec2((0.0f + offset.x) / grid.x, (1.0f + offset.y) / grid.y);
 
 	m_renderObjects.emplace_back(tempObject);
+
+	m_batchs.clear();
+
+
 }
 
 bool RenderSystem::compareTexture(const RenderObject &a, const RenderObject &b)
@@ -176,20 +207,18 @@ void RenderSystem::setCamera(EntityHandler* camera)
 	 numberOfBatch = m_batchs.size();
 	 numberOfObjects = m_renderObjects.size();
 
-
-
-		FirstBuffer->beginDraw();
+	FirstBuffer->beginDraw();
 	 for (uint32_t i = 0; i < m_batchs.size(); i++)
 	 {
-			m_batchs[i].Use();
-			m_batchs[i].m_material.m_shader.SetMatrix4("model", model, false);
-			m_batchs[i].m_material.m_shader.SetMatrix4("projection", projection, false);
+		m_batchs[i].Use();
+		m_batchs[i].m_material.m_shader.SetMatrix4("model", model, false);
+		m_batchs[i].m_material.m_shader.SetMatrix4("projection", m_camera->get_Component<Camera2D>()->projection, false);
 
-			m_batchs[i].m_material.m_shader.SetVector2f("row", glm::vec2(1, 1), false);
-			m_batchs[i].m_material.m_shader.SetVector2f("offset", glm::vec2(0, 0), false);
-			FirstBuffer->Draw(m_batchs[i].m_begin, m_batchs[i].m_end);
+		m_batchs[i].m_material.m_shader.SetVector2f("row", glm::vec2(1, 1), false);
+		m_batchs[i].m_material.m_shader.SetVector2f("offset", glm::vec2(0, 0), false);
+		FirstBuffer->Draw(m_batchs[i].m_begin, m_batchs[i].m_end);
 	 }
-		FirstBuffer->endDraw();
+	FirstBuffer->endDraw();
 	 //BufferIndex *= -1;
 	 m_batchs.clear();
 	 m_renderObjects.clear();

@@ -6,6 +6,7 @@
 #include "../Components/Transform.h"
 
 #include "../../Window.h"
+#include "../World.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -15,7 +16,7 @@ class Camera2DSystem : public System
 public:
 	Camera2DSystem();
 
-	void Update(BaseComponent** components);
+	void Update(uint32_t entity);
 
 	~Camera2DSystem();
 };

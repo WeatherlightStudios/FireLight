@@ -1,29 +1,31 @@
 #include "App.h"
 #include <chrono>
 
-App::App()
+
+FL::App::App()
 {
 
 }
 
-void App::Start() 
+void FL::App::Start() 
 {
 
 	//Init GLFW/GL3W and start MainLoop
-	m_window = std::make_unique<Window>(m_width, m_height, m_title.c_str());
+	newWindow = std::make_unique<Window>(Width, Height, Title.c_str());
 	glfwInit();
-	m_window->Init();
+	newWindow->Init();
 	if (gl3wInit())
 	{
 		std::cout << "OpenGL failde to inizialize" << std::endl;
 	}
+	newWindow->InitIMGUI();
 	glEnable(GL_DEPTH_TEST);
 	glfwSwapInterval(0);
 
 	MainLoop();
 }
 
-void App::MainLoop()
+void FL::App::MainLoop()
 {
 
 	//init a game
@@ -32,89 +34,68 @@ void App::MainLoop()
 	Time::Start();
 
 	//MainLoop
-	while (!m_window->isClosed())
+	while (!newWindow->isClosed())
 	{
 		Time::Calculate();
-			
 
-		//updateting windows stuff
-		//ImGui_ImplGlfwGL3_NewFrame();
-		//ImGui_ImplOpenGL3_NewFrame();
-		//ImGui_ImplGlfw_NewFrame();
-		//ImGui::NewFrame();
-		bool show_demo_window = true;
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
 
 		//FixedFrame Update only GameLogic
 		while(Time::GetLag() >= MS_PER_UPDATE)
 		{
+			//FL::Input::Reset();
 			SceneManager::UpdateCurrentScene();
 			World::UpdateGameSystems();
 			Time::Reset();
 		}
-			
-		World::UpdateEngineSystems();
-		
 
+
+		World::UpdateEngineSystems();
 		SceneManager::DebugCurrentScene();
 
-
-
-
-
+		ImGui::Render();
 
 		Render();
 
-		/*ImGui::LabelText("ECS: ", "");
-		ImGui::LabelText("Game Systems ", to_string(World::getGameSystemSize()).c_str());
-		ImGui::LabelText("Engine Systems ", to_string(World::getEngineSystemSize()).c_str());
-		ImGui::LabelText("Component List ", to_string(World::getComponentSize()).c_str());
-		ImGui::LabelText("Entity List ", to_string(World::getEntitySize()).c_str());
-
-
-		ImGui::LabelText("Render: ", "");
-		ImGui::LabelText("number of Rendered objects ", to_string(RenderSystem::getNumberOfObjects()).c_str());
-		ImGui::LabelText("number of batch ", to_string(RenderSystem::getNumberOfBatch()).c_str());
-
-
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());*/
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 			
-		m_window->Update();
-		m_window->UpdateInput();
-
+		newWindow->Update();
+		newWindow->UpdateInput();
 	}
 	ShutDown();
 }
 
-void App::Render()
+void FL::App::Render()
 {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	RenderSystem::GenerateBatch();
 	RenderSystem::Draw();
 }
 
-void App::ShutDown() 
+void FL::App::ShutDown()
 {
-	//ImGui_ImplOpenGL3_Shutdown();
-	//ImGui_ImplGlfw_Shutdown();
-	//ImGui::DestroyContext();
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 	glfwTerminate();
 }
 
 
-void App::setWindowDimension(int width, int height)
+void FL::App::SetWindowDimension(int width, int height)
 {
-	m_width = width;
-	m_height = height;
+	Width = width;
+	Height = height;
 }
 
-void App::setWindowName(std::string name)
+void FL::App::SetWindowName(std::string name)
 {
-	m_title = name;
+	Title = name;
 }
 
 
-App::~App()
+FL::App::~App()
 {
 
 }

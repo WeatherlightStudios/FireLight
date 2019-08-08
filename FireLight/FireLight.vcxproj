@@ -149,11 +149,14 @@
     <ClInclude Include="src\Core\ECS\Components\Camera2D.h" />
     <ClInclude Include="src\Core\ECS\Components\MeshRender.h" />
     <ClInclude Include="src\Core\ECS\Components\Sprite.h" />
+    <ClInclude Include="src\Core\ECS\Components\Test.h" />
     <ClInclude Include="src\Core\ECS\Components\Transform.h" />
     <ClInclude Include="src\Core\ECS\Entity.h" />
     <ClInclude Include="src\Core\ECS\System.h" />
     <ClInclude Include="src\Core\ECS\Systems\Camera2DSystem.h" />
     <ClInclude Include="src\Core\ECS\Systems\SpriteRenderSystem.h" />
+    <ClInclude Include="src\Core\ECS\Systems\TestSystem.h" />
+    <ClInclude Include="src\Core\Input.h" />
     <ClInclude Include="src\Render\Material.h" />
     <ClInclude Include="src\Render\OpenGL\IndexBuffer.h" />
     <ClInclude Include="FireLight.h" />
@@ -193,6 +196,7 @@
     <ClCompile Include="src\Core\ECS\System.cpp" />
     <ClCompile Include="src\Core\ECS\Systems\Camera2DSystem.cpp" />
     <ClCompile Include="src\Core\ECS\Systems\SpriteRenderSystem.cpp" />
+    <ClCompile Include="src\Core\ECS\Systems\TestSystem.cpp" />
     <ClCompile Include="src\Render\OpenGL\IndexBuffer.cpp" />
     <ClCompile Include="GL\gl3w.c" />
     <ClCompile Include="src\Core\Scene.cpp" />

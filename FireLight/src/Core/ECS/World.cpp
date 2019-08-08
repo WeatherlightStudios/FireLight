@@ -22,7 +22,7 @@ EntityHandler* World::CreateEntity()
 }
 
 
-void World::checkEntityToSystem(EntityHandler* entity)
+void World::checkEntityToSystems(EntityHandler* entity)
 {
 	Entity* temp_entity = HandlerToRow(entity);
 
@@ -39,6 +39,20 @@ void World::checkEntityToSystem(EntityHandler* entity)
 		if ((temp_entity->getKey() & m_Engine_Systems[i]->getSystemKey()) == m_Engine_Systems[i]->getSystemKey())
 		{
 			m_Engine_Systems[i]->addEntity(temp_entity->getID());
+		}
+	}
+}
+
+
+void World::checkEntitysToSystem(System* system)
+{
+	for (int i = 0; i < m_Entitys.size(); i++)
+	{
+		Entity* temp_entity = m_Entitys[i];
+
+		if ((temp_entity->getKey() & system->getSystemKey()) == system->getSystemKey())
+		{
+			system->addEntity(temp_entity->getID());
 		}
 	}
 }
@@ -100,6 +114,7 @@ void World::RemoveEntity(EntityHandler* entity)
 void World::addGameSystem(System* system)
 {
 	m_Game_Systems.push_back(system);
+	checkEntitysToSystem(system);
 }
 
 void World::removeGameSystem(System* system)
@@ -110,7 +125,7 @@ void World::removeGameSystem(System* system)
 void World::addEngineSystem(System* system)
 {
 	m_Engine_Systems.push_back(system);
-
+	checkEntitysToSystem(system);
 }
 
 

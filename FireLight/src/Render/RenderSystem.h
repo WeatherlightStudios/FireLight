@@ -4,11 +4,13 @@
 #include <GL/gl3w.h>
 
 #include "../Core/ECS/Components/Transform.h"
+#include "../Core/ECS/Components/Test.h"
 #include "../Core/ECS/Components/Sprite.h"
 
 #include "../Utility/Resource.h"
 
 #include "../Core/ECS/Systems/Camera2DSystem.h";
+#include "../Core/ECS/Systems/TestSystem.h";
 #include "../Core/ECS/Systems/SpriteRenderSystem.h";
 #include "../Core/ECS/World.h";
 
@@ -73,6 +75,8 @@ public:
 
 	static void setCamera(EntityHandler* camera);
 
+	static void setTest(EntityHandler* handle) { testHandle = handle; }
+
  	static void Draw();
 
 
@@ -97,6 +101,8 @@ private:
 
 	static std::vector<Batch> m_batchs;
 	static std::vector<RenderObject> m_renderObjects;
+
+	static EntityHandler* testHandle;
 
 
 	static uint32_t numberOfBatch;
