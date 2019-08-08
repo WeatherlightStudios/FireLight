@@ -3,7 +3,7 @@
 #include <FireLight.h>
 #include "../Components/PlayerMovement.h"
 
-class PlayerMovement_S : public System
+SYSTEM(PlayerMovement_S)
 {
 public:
 	PlayerMovement_S();
