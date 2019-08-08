@@ -2,7 +2,7 @@
 
 #include <FireLight.h>
 
-struct PlayerMovement : public Component<PlayerMovement>
+COMPONENT(PlayerMovement)
 {
 	PlayerMovement()
 	{

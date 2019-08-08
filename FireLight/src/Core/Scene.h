@@ -8,6 +8,8 @@
 
 using namespace std;
 
+#define SCENE(T) class T : public Scene
+
 class Scene
 {
 public:

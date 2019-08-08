@@ -2,7 +2,7 @@
 
 #include <FireLight.h>
 
-struct Weapon : public Component<Weapon>
+COMPONENT(Weapon)
 {
 	Weapon(Transform* PPos)
 	{

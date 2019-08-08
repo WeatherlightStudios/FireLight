@@ -3,7 +3,7 @@
 #include <FireLight.h>
 #include "../Components/Weapon.h"
 
-class WeaponSystem : public System
+SYSTEM(WeaponSystem)
 {
 public:
 	WeaponSystem(EntityHandler* camera, EntityHandler* player);

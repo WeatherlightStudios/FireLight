@@ -9,7 +9,7 @@
 #include <Box2D/Box2D.h>
 
 
-class GameScene : public Scene
+SCENE(GameScene)
 {
 
 

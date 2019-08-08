@@ -7,6 +7,8 @@
 
 #include "Entity.h"
 
+#define SYSTEM(T) class T : public System
+
 class System
 {
 public:

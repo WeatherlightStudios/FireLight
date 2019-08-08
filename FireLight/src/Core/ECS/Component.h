@@ -5,6 +5,9 @@
 #include <vector>
 
 
+#define COMPONENT(T) struct T : Component<T>
+
+
 struct BaseComponent
 {
 	static uint32_t registerComponentType(size_t size);
