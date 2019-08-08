@@ -1,9 +1,6 @@
 #include "App.h"
 #include <chrono>
 
-
-#define BG_COLOR(r,g,b) glClearColor((1.0 / 255.0) * r##.0, (1.0 / 255.0) * g##.0, (1 / 255.0) * b##.0, 1)
-
 FL::App::App()
 {
 
