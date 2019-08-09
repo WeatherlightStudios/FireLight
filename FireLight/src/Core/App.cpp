@@ -48,6 +48,7 @@ void FL::App::MainLoop()
 			SceneManager::UpdateCurrentScene();
 			World::UpdateGameSystems();
 			Time::Reset();
+			newWindow->clearKeys();
 		}
 
 
@@ -62,6 +63,8 @@ void FL::App::MainLoop()
 			
 		newWindow->Update();
 		newWindow->UpdateInput();
+
+
 	}
 	ShutDown();
 }

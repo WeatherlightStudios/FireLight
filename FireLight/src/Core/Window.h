@@ -54,6 +54,15 @@ namespace FL
 		static bool isKeyUp(int keyCode);
 		static bool isKeyPress(int keyCode);
 
+
+		static void clearKeys()
+		{
+			for (int i = 0; i < (sizeof(m_keys) / sizeof(*m_keys)); i++)
+			{
+				m_keys[i] = -1;
+			}
+		}
+
 		//static bool isMouseButtonPressed(int keyCode);
 
 		static glm::vec2 get_mouse_positions();

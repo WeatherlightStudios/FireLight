@@ -59,7 +59,7 @@ bool FL::Window::isKeyUp(int keyCode)
 	if (m_keys[keyCode] == GLFW_RELEASE)
 	{
 		currentState = true;
-		m_keys[keyCode] = -1;
+		//m_keys[keyCode] = -1;
 	}
 	return currentState;
 }
@@ -70,7 +70,7 @@ bool FL::Window::isKeyDown(int keyCode)
 	if (m_keys[keyCode] == GLFW_PRESS)
 	{
 		currentState = true;
-		m_keys[keyCode] = -1;
+		//m_keys[keyCode] = -1;
 	}
 	return currentState;
 }
