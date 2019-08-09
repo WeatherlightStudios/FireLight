@@ -1,5 +1,8 @@
 #include "MainGameScene.h"
 
+#include "../Systems/Draggable_S.h"
+#include "../Components/Draggable.h"
+
 MainGameScene::MainGameScene() {
 
 }
@@ -11,6 +14,8 @@ void MainGameScene::Init() {
 
 	const int TILE_WIDTH = 16;
 	int space = TILE_WIDTH * 5;
+
+
 
 	//World::addGameSystem(new WeaponSystem(camera, entt));
 	auto dirt = World::CreateEntity();
@@ -44,27 +49,31 @@ void MainGameScene::Init() {
 	skull->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sheet_transp"));
 
 
+	auto water = World::CreateEntity();
+	water->add_Component<Transform>(glm::vec2(0, space*2), 0.0f, glm::vec2(4.0f, 4.0f));
+	water->add_Component<Sprite>(14.0f, 18.0f, 32.0f, 32.0f);
+	water->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sheet_transp"));
+	water->add_Component<Draggable>("water");
 
 	auto sun = World::CreateEntity();
 	sun->add_Component<Transform>(glm::vec2(space*2, space*2), 0.0f, glm::vec2(4.0f, 4.0f));
 	sun->add_Component<Sprite>(16.0f, 22.0f, 32.0f, 32.0f);
 	sun->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sheet_transp"));
-
-	auto water = World::CreateEntity();
-	water->add_Component<Transform>(glm::vec2(0, space*2), 0.0f, glm::vec2(4.0f, 4.0f));
-	water->add_Component<Sprite>(14.0f, 18.0f, 32.0f, 32.0f);
-	water->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sheet_transp"));
+	sun->add_Component<Draggable>("sun");
 
 	auto seed = World::CreateEntity();
 	seed->add_Component<Transform>(glm::vec2(space, space*2), 0.0f, glm::vec2(4.0f, 4.0f));
 	seed->add_Component<Sprite>(20.0f, 5.0f, 32.0f, 32.0f);
-	seed->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sheet_black"));
+	seed->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sheet_transp"));
+	seed->add_Component<Draggable>("seed");
 	
 
 	auto camera = World::CreateEntity();
 	camera->add_Component<Transform>(glm::vec2(0.0f, 0.0f), 0.0f, glm::vec2(1.0f, 1.0f));
 	camera->add_Component<Camera2D>();
 	RenderSystem::setCamera(camera);
+
+	World::addGameSystem(new Draggable_S(camera));
 
 }
 
