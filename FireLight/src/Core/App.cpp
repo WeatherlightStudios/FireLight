@@ -71,7 +71,9 @@ void FL::App::MainLoop()
 void FL::App::Render()
 {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-
+	m_render_system->sortSprites();
+	m_render_system->GenerateBatch();
+	m_render_system->GenerateBuffer();
 	m_render_system->Draw();
 
 	//RenderSystem::GenerateBatch();

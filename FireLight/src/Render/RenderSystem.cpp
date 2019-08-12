@@ -12,6 +12,7 @@
 //
 //
 EntityHandler* RenderSystem::m_camera;
+std::vector<SpriteObj> RenderSystem::spriteList;
 //
 //EntityHandler* RenderSystem::testHandle;
 //
@@ -107,6 +108,12 @@ void RenderSystem::Init()
 
 void RenderSystem::addSprite(Transform* tran, Sprite* sprite, Shader shader, Texture texture)
 {
+	SpriteObj tempObj(tran->Position, tran->Scale, tran->Rotation, sprite->OffsetX, sprite->OffsetY, sprite->Rows, sprite->Collums, shader, texture);
+	spriteList.push_back(tempObj);
+
+
+
+	/*
 	glm::vec2 pos = tran->Position;
 	glm::vec2 size = tran->Scale;
 	float rot = tran->Rotation;
@@ -159,16 +166,46 @@ void RenderSystem::addSprite(Transform* tran, Sprite* sprite, Shader shader, Tex
 	spriteBuffer[spriteIndex + 5].vertex = glm::vec3(pos.x + (x), pos.y + (y), 0);
 	spriteBuffer[spriteIndex + 5].uv = glm::vec2((0.0f + offset.x) / grid.x, (1.0f + offset.y) / grid.y);
 
-	spriteIndex += 6;
+	spriteIndex += 6;*/
 }
 
-//bool RenderSystem::compareTexture(const RenderObject &a, const RenderObject &b)
-//{
-//	return ((a.m_material.m_texture.ID) < (b.m_material.m_texture.ID));
-//}
+bool RenderSystem::compareTexture(const SpriteObj &a, const SpriteObj &b)
+{
+	return ((a.m_texture.ID) > (b.m_texture.ID));
+}
 
 void RenderSystem::GenerateBatch()
 {
+
+	int begin = 0;
+
+	for (uint32_t i = 0; i < spriteList.size(); i++)
+	{
+
+		if (i+1 != spriteList.size())
+		{
+			if(spriteList[i].m_texture.ID != spriteList[i+1].m_texture.ID)
+			{
+				Batch tempBathc;
+				tempBathc.m_texture = spriteList[i].m_texture;
+				tempBathc.m_shader = spriteList[i].m_shader;
+				tempBathc.m_begin = begin;
+				tempBathc.m_end = i;
+				batchList.push_back(tempBathc);
+				begin = i;
+			}
+		}
+		else
+		{
+			Batch tempBathc;
+			tempBathc.m_texture = spriteList[i].m_texture;
+			tempBathc.m_shader = spriteList[i].m_shader;
+			tempBathc.m_begin = begin;
+			tempBathc.m_end = i;
+			batchList.push_back(tempBathc);
+		}
+
+	}
 	//FirstBuffer->Begin();
 
 	//std::cout << m_renderObjects[0].sprite[0].uv.x << std::endl;
@@ -201,6 +238,62 @@ void RenderSystem::GenerateBatch()
 	}*/
 }
 
+
+void RenderSystem::GenerateBuffer()
+{
+	for (uint32_t i = 0; i < spriteList.size(); i++)
+	{
+		SpriteObj& spTemp = spriteList[i];
+
+		float cosine = cos(spTemp.m_rot);
+		float sine = sin(spTemp.m_rot);
+
+
+		glm::vec2 base_scale = glm::vec2(spTemp.m_texture.Width / spTemp.m_Collums, spTemp.m_texture.Height / spTemp.m_Rows);
+
+		float x = ((-0.5f * (spTemp.m_scale.x * base_scale.x)) * cosine + (0.5f * (spTemp.m_scale.y * base_scale.y)) * sine);
+		float y = ((-0.5f * (spTemp.m_scale.x * base_scale.x)) * sine - (0.5f * (spTemp.m_scale.y * base_scale.y)) * cosine);
+
+		spriteBuffer[spriteIndex].vertex = glm::vec3(spTemp.m_position.x + (x), spTemp.m_position.y + (y), 0);
+		spriteBuffer[spriteIndex].uv = glm::vec2(spTemp.m_OffsetX / spTemp.m_Collums, (1.0f + spTemp.m_OffsetY) / spTemp.m_Rows);
+
+
+		x = ((-0.5f * (spTemp.m_scale.x * base_scale.x)) * cosine - (0.5f * (spTemp.m_scale.y * base_scale.y)) * sine);
+		y = ((-0.5f * (spTemp.m_scale.x * base_scale.x)) * sine + (0.5f * (spTemp.m_scale.y * base_scale.y)) * cosine);
+
+		spriteBuffer[spriteIndex + 1].vertex = glm::vec3(spTemp.m_position.x + (x), spTemp.m_position.y + (y), 0);
+		spriteBuffer[spriteIndex + 1].uv = glm::vec2(spTemp.m_OffsetX / spTemp.m_Collums, spTemp.m_OffsetY / spTemp.m_Rows);
+
+
+		x = ((0.5f * (spTemp.m_scale.x * base_scale.x)) * cosine - (0.5f * (spTemp.m_scale.y * base_scale.y)) * sine);
+		y = ((0.5f * (spTemp.m_scale.x * base_scale.x)) * sine + (0.5f * (spTemp.m_scale.y * base_scale.y)) * cosine);
+
+		spriteBuffer[spriteIndex + 2].vertex = glm::vec3(spTemp.m_position.x + (x), spTemp.m_position.y + (y), 0);
+		spriteBuffer[spriteIndex + 2].uv = glm::vec2((1.0f + spTemp.m_OffsetX) / spTemp.m_Collums, spTemp.m_OffsetY / spTemp.m_Rows);
+
+		x = ((0.5f * (spTemp.m_scale.x * base_scale.x)) * cosine - (0.5f * (spTemp.m_scale.y * base_scale.y)) * sine);
+		y = ((0.5f * (spTemp.m_scale.x * base_scale.x)) * sine + (0.5f * (spTemp.m_scale.y * base_scale.y)) * cosine);
+
+		spriteBuffer[spriteIndex + 3].vertex = glm::vec3(spTemp.m_position.x + (x), spTemp.m_position.y + (y), 0);
+		spriteBuffer[spriteIndex + 3].uv = glm::vec2((1.0f + spTemp.m_OffsetX) / spTemp.m_Collums, spTemp.m_OffsetY / spTemp.m_Rows);
+
+		x = ((0.5f * (spTemp.m_scale.x * base_scale.x)) * cosine + (0.5f * (spTemp.m_scale.y * base_scale.y)) * sine);
+		y = ((0.5f * (spTemp.m_scale.x * base_scale.x)) * sine - (0.5f * (spTemp.m_scale.y * base_scale.y)) * cosine);
+
+		spriteBuffer[spriteIndex + 4].vertex = glm::vec3(spTemp.m_position.x + (x), spTemp.m_position.y + (y), 0);
+		spriteBuffer[spriteIndex + 4].uv = glm::vec2((1.0f + spTemp.m_OffsetX) / spTemp.m_Collums, (1.0f + spTemp.m_OffsetY) / spTemp.m_Rows);
+
+		x = ((-0.5f * (spTemp.m_scale.x * base_scale.x)) * cosine + (0.5f * (spTemp.m_scale.y * base_scale.y)) * sine);
+		y = ((-0.5f * (spTemp.m_scale.x * base_scale.x)) * sine - (0.5f * (spTemp.m_scale.y * base_scale.y)) * cosine);
+
+		spriteBuffer[spriteIndex + 5].vertex = glm::vec3(spTemp.m_position.x + (x), spTemp.m_position.y + (y), 0);
+		spriteBuffer[spriteIndex + 5].uv = glm::vec2((0.0f + spTemp.m_OffsetX) / spTemp.m_Collums, (1.0f + spTemp.m_OffsetY) / spTemp.m_Rows);
+
+		//spriteIndex += 6;
+
+	}
+}
+
 void RenderSystem::setCamera(EntityHandler* camera)
 {
 	m_camera = camera;
@@ -213,23 +306,49 @@ void RenderSystem::setCamera(EntityHandler* camera)
 	 model = glm::rotate(model, 0.0f, glm::vec3(0, 0, 1));
 
 
+	 std::cout << "batch: " << batchList.size() << std::endl;
+	 std::cout << "sprite: " << spriteList.size() << std::endl;
+
+	 for (int i = 0; i < batchList.size(); i++)
+	 {
+		Batch batch = batchList[i];
+
+	/*	batch.m_texture.Bind();
+		batch.m_shader.Use();
+		batch.m_shader.SetMatrix4("model", model, false);
+		batch.m_shader.SetMatrix4("projection", m_camera->get_Component<Camera2D>()->projection, false);
+		batch.m_shader.SetVector2f("row", glm::vec2(1, 1), false);
+		batch.m_shader.SetVector2f("offset", glm::vec2(0, 0), false);*/
+
+		Resource::getTexture("sprite").Bind();
 
 
-	 Resource::getTexture("sprite").Bind();
+		Resource::getShader("shader").Use();
+		Resource::getShader("shader").SetMatrix4("model", model, false);
+		Resource::getShader("shader").SetMatrix4("projection", m_camera->get_Component<Camera2D>()->projection, false);
+		Resource::getShader("shader").SetVector2f("row", glm::vec2(1, 1), false);
+		Resource::getShader("shader").SetVector2f("offset", glm::vec2(0, 0), false);
+
+		glDrawArrays(GL_TRIANGLES, batch.m_begin * sizeof(GL_Sprite) * 6, batch.m_end * sizeof(GL_Sprite) * 6);
+
+	 }
+
+	/* Resource::getTexture("sprite").Bind();
 
 
 	 Resource::getShader("shader").Use();
 	 Resource::getShader("shader").SetMatrix4("model", model, false);
 	 Resource::getShader("shader").SetMatrix4("projection", m_camera->get_Component<Camera2D>()->projection, false);
 	 Resource::getShader("shader").SetVector2f("row", glm::vec2(1, 1), false);
-	 Resource::getShader("shader").SetVector2f("offset", glm::vec2(0, 0), false);
+	 Resource::getShader("shader").SetVector2f("offset", glm::vec2(0, 0), false);*/
 
 
-	 //std::cout << spriteIndex << std::endl;
+	 ////std::cout << spriteIndex << std::endl;
 
-	 glDrawArrays(GL_TRIANGLES, 0, (GLsizei)(spriteIndex));
+	 //glDrawArrays(GL_TRIANGLES, 0, (GLsizei)(spriteIndex));
 
-
+	 spriteList.clear();
+	 batchList.clear();
 	 spriteIndex = 0;
 	 spriteBuffer = renderBuffer;
 
