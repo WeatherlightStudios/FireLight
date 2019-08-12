@@ -4,7 +4,7 @@
 std::vector<System*> World::m_Game_Systems;
 std::vector<System*> World::m_Engine_Systems;
 std::vector<Entity*> World::m_Entitys;
-std::map<uint32_t, ComponentPool> World::m_Components;
+std::vector<ComponentPool> World::m_Components;
 
 World::World()
 {

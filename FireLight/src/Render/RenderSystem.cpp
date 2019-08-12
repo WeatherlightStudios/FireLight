@@ -110,49 +110,51 @@ void RenderSystem::addSprite(Transform* tran, Sprite* sprite, Shader shader, Tex
 	glm::vec2 pos = tran->Position;
 	glm::vec2 size = tran->Scale;
 	float rot = tran->Rotation;
+	float cosine = cos(rot);
+	float sine = sin(rot);
+
 
 
 	glm::vec2 offset = glm::vec2(sprite->OffsetX, sprite->OffsetY);
 
 	glm::vec2 grid = glm::vec2(sprite->Collums, sprite->Rows);
 
-
 	glm::vec2 base_scale = glm::vec2(texture.Width / grid.x, texture.Height / grid.y);
 
-	float x = ((-0.5f * (size.x * base_scale.x)) * cos(rot) + (0.5f * (size.y * base_scale.y)) * sin(rot));
-	float y = ((-0.5f * (size.x * base_scale.x)) * sin(rot) - (0.5f * (size.y * base_scale.y)) * cos(rot));
+	float x = ((-0.5f * (size.x * base_scale.x)) * cosine + (0.5f * (size.y * base_scale.y)) * sine);
+	float y = ((-0.5f * (size.x * base_scale.x)) * sine - (0.5f * (size.y * base_scale.y)) * cosine);
 
 	spriteBuffer[spriteIndex].vertex = glm::vec3(pos.x + (x), pos.y + (y), 0);
 	spriteBuffer[spriteIndex].uv = glm::vec2(offset.x / grid.x, (1.0f + offset.y) / grid.y);
 
 
-	x = ((-0.5f * (size.x * base_scale.x)) * cos(rot) - (0.5f * (size.y * base_scale.y)) * sin(rot));
-	y = ((-0.5f * (size.x * base_scale.x)) * sin(rot) + (0.5f * (size.y * base_scale.y)) * cos(rot));
+	x = ((-0.5f * (size.x * base_scale.x)) * cosine - (0.5f * (size.y * base_scale.y)) * sine);
+	y = ((-0.5f * (size.x * base_scale.x)) * sine + (0.5f * (size.y * base_scale.y)) * cosine);
 
 	spriteBuffer[spriteIndex + 1].vertex = glm::vec3(pos.x + (x), pos.y + (y), 0);
 	spriteBuffer[spriteIndex + 1].uv = glm::vec2(offset.x / grid.x, offset.y / grid.y);
 
 
-	x = ((0.5f * (size.x * base_scale.x)) * cos(rot) - (0.5f * (size.y * base_scale.y)) * sin(rot));
-	y = ((0.5f * (size.x * base_scale.x)) * sin(rot) + (0.5f * (size.y * base_scale.y)) * cos(rot));
+	x = ((0.5f * (size.x * base_scale.x)) * cosine - (0.5f * (size.y * base_scale.y)) * sine);
+	y = ((0.5f * (size.x * base_scale.x)) * sine + (0.5f * (size.y * base_scale.y)) * cosine);
 
 	spriteBuffer[spriteIndex + 2].vertex = glm::vec3(pos.x + (x), pos.y + (y), 0);
 	spriteBuffer[spriteIndex + 2].uv = glm::vec2((1.0f + offset.x) / grid.x, offset.y / grid.y);
 
-	x = ((0.5f * (size.x * base_scale.x)) * cos(rot) - (0.5f * (size.y * base_scale.y)) * sin(rot));
-	y = ((0.5f * (size.x * base_scale.x)) * sin(rot) + (0.5f * (size.y * base_scale.y)) * cos(rot));
+	x = ((0.5f * (size.x * base_scale.x)) * cosine - (0.5f * (size.y * base_scale.y)) * sine);
+	y = ((0.5f * (size.x * base_scale.x)) * sine + (0.5f * (size.y * base_scale.y)) * cosine);
 
 	spriteBuffer[spriteIndex + 3].vertex = glm::vec3(pos.x + (x), pos.y + (y), 0);
 	spriteBuffer[spriteIndex + 3].uv = glm::vec2((1.0f + offset.x) / grid.x, offset.y / grid.y);
 	
-	x = ((0.5f * (size.x * base_scale.x)) * cos(rot) + (0.5f * (size.y * base_scale.y)) * sin(rot));
-	y = ((0.5f * (size.x * base_scale.x)) * sin(rot) - (0.5f * (size.y * base_scale.y)) * cos(rot));
+	x = ((0.5f * (size.x * base_scale.x)) * cosine + (0.5f * (size.y * base_scale.y)) * sine);
+	y = ((0.5f * (size.x * base_scale.x)) * sine - (0.5f * (size.y * base_scale.y)) * cosine);
 
 	spriteBuffer[spriteIndex + 4].vertex = glm::vec3(pos.x + (x), pos.y + (y), 0);
 	spriteBuffer[spriteIndex + 4].uv = glm::vec2((1.0f + offset.x) / grid.x, (1.0f + offset.y) / grid.y);
 	
-	x = ((-0.5f * (size.x * base_scale.x)) * cos(rot) + (0.5f * (size.y * base_scale.y)) * sin(rot));
-	y = ((-0.5f * (size.x * base_scale.x)) * sin(rot) - (0.5f * (size.y * base_scale.y)) * cos(rot));
+	x = ((-0.5f * (size.x * base_scale.x)) * cosine + (0.5f * (size.y * base_scale.y)) * sine);
+	y = ((-0.5f * (size.x * base_scale.x)) * sine - (0.5f * (size.y * base_scale.y)) * cosine);
 
 	spriteBuffer[spriteIndex + 5].vertex = glm::vec3(pos.x + (x), pos.y + (y), 0);
 	spriteBuffer[spriteIndex + 5].uv = glm::vec2((0.0f + offset.x) / grid.x, (1.0f + offset.y) / grid.y);

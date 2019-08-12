@@ -23,7 +23,7 @@ void GameScene::Init()
 	entt->add_Component<Sprite>(4.0f, 8.0f, 16.0f, 16.0f);
 	entt->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sprite"));*/
 
-	for (int i = 0; i < 150000; i++)
+	for (int i = 0; i < 5000; i++)
 	{
 
 		auto weapon = World::CreateEntity();

@@ -55,6 +55,9 @@ public:
 	static void addComponent(EntityHandler* entity, Args... args)
 	{
 		Entity* temp_entity = HandlerToRow(entity);
+		if (T::ID >= m_Components.size()) {
+			m_Components.resize(T::ID + 1);
+		}
 		m_Components[T::ID].addComponent<T>(temp_entity->getID(), args...);
 		temp_entity->addComponent(T::ID);
 		checkEntityToSystems(entity);
@@ -120,7 +123,7 @@ private:
 	static std::vector<System*> m_Game_Systems;
 	static std::vector<System*> m_Engine_Systems;
 
-	static std::map<uint32_t, ComponentPool> m_Components;
+	static std::vector<ComponentPool> m_Components;
 
 
 
