@@ -4,7 +4,7 @@
 
 RenderBuffer::RenderBuffer()
 {
-	size_t RenderBufferSize = ((sizeof(GL_Sprite) * 6) * 150000);
+	/*size_t RenderBufferSize = ((sizeof(GL_Sprite) * 6) * 150000);
 
 	std::cout << sizeof(GL_Sprite) << std::endl;
 	std::cout << (sizeof(GL_Sprite) * 6) << std::endl;
@@ -30,14 +30,14 @@ RenderBuffer::RenderBuffer()
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	index = 0;
+	index = 0;*/
 }
 
 
 
 void RenderBuffer::Begin()
 {
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	//glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	//Buffer = (GL_Sprite*)glMapBufferRange(GL_ARRAY_BUFFER,0,  GL_MAP_WRITE_BIT | GL_MAP_PERSISTENT_BIT | GL_MAP_COHERENT_BIT);
 }
 
@@ -45,11 +45,11 @@ void RenderBuffer::addData()
 {
 }
 
-void RenderBuffer::UpdateData(GL_Sprite* data)
+/*void RenderBuffer::UpdateData(GL_Sprite* data)
 {
 	memcpy(&Buffer[index], data, sizeof(GL_Sprite) * 6);
 	index += 6;
-}
+}*/
 
 
 void RenderBuffer::End()

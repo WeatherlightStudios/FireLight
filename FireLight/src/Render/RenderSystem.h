@@ -14,49 +14,23 @@
 #include "../Core/ECS/Systems/SpriteRenderSystem.h";
 #include "../Core/ECS/World.h";
 
+#include "../Utility/Resource.h"
+
 #include <vector>
 #include <cstdlib>
 #include <algorithm>
 
 
-#include "RenderBuffer.h"
-#include "Material.h"
-
-//struct GL_Sprite
-//{
-//	glm::vec3 vertex;
-//	glm::vec2 uv;
-//};
-
-struct RenderObject
+struct GL_Sprite
 {
-	RenderObject(Material material) : 
-		 m_material(material)
-	{
-
-	}
-	GL_Sprite sprite[6];
-	Material m_material;
+	glm::vec3 vertex;
+	glm::vec2 uv;
 };
 
-
-struct Batch
-{
-	Batch(GLuint begin, GLuint end, Material material) :
-		m_begin(begin), m_end(end), m_material(material)
-	{
-
-	}
-
-	void Use() {
-		m_material.m_texture.Bind();
-		m_material.m_shader.Use();
-	}
-
-	GLuint m_begin;
-	GLuint m_end;
-	Material m_material;
-};
+#define VERTEX_PER_QUAD 6
+#define MAX_SPRITES 160000
+#define BUFFER_SIZE (sizeof(GL_Sprite) * 6) * MAX_SPRITES
+#define MAX_VERTICES MAX_SPRITES * VERTEX_PER_QUAD
 
 
 
@@ -65,47 +39,40 @@ class RenderSystem
 public:
 	RenderSystem();
 
-	static void Init();
+	void Init();
 
+
+	//Need ReWork
 	static void addSprite(Transform* tran, Sprite* sprite, Shader shader, Texture texture);
 
-	static void GenerateBatch();
 
-	static bool compareTexture(const RenderObject &a,const  RenderObject &b);
+	//TODO:: ReWork in AZDO
+	void GenerateBatch();
 
+	//mhe?
+	//static bool compareTexture(const RenderObject &a,const  RenderObject &b);
+
+
+	//Need new CameraManager
 	static void setCamera(EntityHandler* camera);
 
-	static void setTest(EntityHandler* handle) { testHandle = handle; }
-
- 	static void Draw();
-
-
-
-	static uint32_t getNumberOfObjects() { return numberOfObjects; }
-	static uint32_t getNumberOfBatch() { return numberOfBatch; }
+	
+ 	void Draw();
 
 	~RenderSystem();
 
 private:
 	
-	static RenderBuffer* FirstBuffer;
-	static RenderBuffer* SecondBuffer;
-
-	static uint32_t BufferIndex;
-
-	static glm::mat4 projection;
-	static glm::mat4 orientation;
 
 	static EntityHandler* m_camera;
 
 
-	static std::vector<Batch> m_batchs;
-	static std::vector<RenderObject> m_renderObjects;
+	GL_Sprite* renderBuffer;
+	static GL_Sprite* spriteBuffer;
 
-	static EntityHandler* testHandle;
+	static int spriteIndex;
 
 
-	static uint32_t numberOfBatch;
-	static uint32_t numberOfObjects;
 
+	unsigned int VBO, VAO;
 };

@@ -15,7 +15,7 @@ struct MeshRender : public Component<MeshRender>
 
 	}
 	
-	Shader m_shader;
 	Texture m_texture;
+	Shader m_shader;
 
 };

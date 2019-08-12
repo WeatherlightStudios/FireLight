@@ -9,9 +9,11 @@
 #include <GL\gl3w.h>
 #include <GLFW\glfw3.h>
 
+
 #include "SceneManager.h"
 #include "Window.h"
 #include "Time.h"
+
 
 #include "../../imgui/imgui.h"
 #include "../../imgui/imgui_impl_glfw.h"
@@ -62,10 +64,13 @@ namespace FL
 		int frameRate;
 		double Lag;
 
+
 		int	Width;
 		int	Height;
 		std::string Title;
 		std::unique_ptr<FL::Window> newWindow;
+
+		std::unique_ptr<RenderSystem> m_render_system;
 	};
 }
 

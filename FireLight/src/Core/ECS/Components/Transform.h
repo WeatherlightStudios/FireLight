@@ -15,8 +15,8 @@ struct Transform : public Component<Transform>
 
 	}
 
+	float Rotation;
 	glm::vec2 Position;
 	glm::vec2 Scale;
-	float Rotation;
 
 };

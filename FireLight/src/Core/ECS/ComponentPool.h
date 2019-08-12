@@ -22,7 +22,6 @@ public:
 		m_EntitySparset[entityID] = index;
 
 		comp->entityIndex = entityID;
-
 	}
 
 	template<class T>

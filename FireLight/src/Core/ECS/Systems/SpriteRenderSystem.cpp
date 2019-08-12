@@ -17,7 +17,7 @@ void SpriteRenderSystem::Update(uint32_t entity)
 	Sprite* sprite = World::getComponent<Sprite>(entity);
 	MeshRender* meshRender = World::getComponent<MeshRender>(entity);
 
-	RenderSystem::addSprite(transform, sprite, meshRender->m_shader, meshRender->m_texture);
+	//RenderSystem::addSprite(transform, sprite, meshRender->m_shader, meshRender->m_texture);
 }
 
 

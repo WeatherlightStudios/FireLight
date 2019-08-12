@@ -5,11 +5,11 @@
 #include <iostream>
 
 
-struct GL_Sprite
-{
-	glm::vec3 vertex;
-	glm::vec2 uv;
-};
+//struct GL_Sprite
+//{
+//	glm::vec3 vertex;
+//	glm::vec2 uv;
+//};
 
 
 class RenderBuffer
@@ -21,7 +21,7 @@ public:
 
 	void addData();
 
-	void UpdateData(GL_Sprite* data);
+	//void UpdateData(GL_Sprite* data);
 
 	void End();
 
@@ -40,7 +40,7 @@ private:
 
 	uint32_t index = 0;
 
-	GL_Sprite* Buffer;
+	//GL_Sprite* Buffer;
 
 	
 
