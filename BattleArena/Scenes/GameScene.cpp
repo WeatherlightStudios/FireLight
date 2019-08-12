@@ -23,11 +23,11 @@ void GameScene::Init()
 	entt->add_Component<Sprite>(4.0f, 8.0f, 16.0f, 16.0f);
 	entt->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sprite"));*/
 
-	for (int i = 0; i < 5000; i++)
+	for (int i = 0; i < 150000; i++)
 	{
 
 		auto weapon = World::CreateEntity();
-		weapon->add_Component<Transform>(glm::vec2(RandomNumber::Range(-1000,1000), RandomNumber::Range(-1000, 1000)), 0.0f, glm::vec2(1.0f, 1.0f));
+		weapon->add_Component<Transform>(glm::vec2(RandomNumber::Range(-100,100), RandomNumber::Range(-100, 100)), 0.0f, glm::vec2(1.0f, 1.0f));
 		weapon->add_Component<Sprite>(4.0f, 8.0f, 16.0f, 16.0f);
 		weapon->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sprite"));
 	}
