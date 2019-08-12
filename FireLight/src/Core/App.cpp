@@ -3,12 +3,11 @@
 
 FL::App::App()
 {
-
+	m_render_system = std::make_unique<RenderSystem>();
 }
 
 void FL::App::Start() 
 {
-
 	//Init GLFW/GL3W and start MainLoop
 	newWindow = std::make_unique<Window>(Width, Height, Title.c_str());
 	glfwInit();
@@ -28,7 +27,7 @@ void FL::App::MainLoop()
 {
 
 	//init a game
-	RenderSystem::Init();
+	m_render_system->Init();
 	Init();
 	Time::Start();
 
@@ -72,8 +71,11 @@ void FL::App::MainLoop()
 void FL::App::Render()
 {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-	RenderSystem::GenerateBatch();
-	RenderSystem::Draw();
+
+	m_render_system->Draw();
+
+	//RenderSystem::GenerateBatch();
+	//RenderSystem::Draw();
 }
 
 void FL::App::ShutDown()
