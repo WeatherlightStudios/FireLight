@@ -2,6 +2,8 @@
 
 #include "../Systems/Draggable_S.h"
 #include "../Components/Draggable.h"
+#include "../Systems/Grid_S.h"
+#include "../Systems/TestClass.h"
 
 MainGameScene::MainGameScene() {
 
@@ -16,8 +18,13 @@ void MainGameScene::Init() {
 	int space = TILE_WIDTH * 5;
 
 
+	auto grid = World::CreateEntity();
+	grid->add_Component<Transform>(glm::vec2(0, 0), 0.0f, glm::vec2(4.0f, 4.0f));
 
-	//World::addGameSystem(new WeaponSystem(camera, entt));
+	World::addGameSystem(new Grid_S());
+	World::addGameSystem(new TestClass());
+
+	/*
 	auto dirt = World::CreateEntity();
 	dirt->add_Component<Transform>(glm::vec2(0, 0), 0.0f, glm::vec2(4.0f, 4.0f));
 	dirt->add_Component<Sprite>(11.0f, 1.0f, 32.0f, 32.0f);
@@ -47,25 +54,26 @@ void MainGameScene::Init() {
 	skull->add_Component<Transform>(glm::vec2(space*2, space), 0.0f, glm::vec2(4.0f, 4.0f));
 	skull->add_Component<Sprite>(0.0f, 15.0f, 32.0f, 32.0f);
 	skull->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sheet_transp"));
+	*/
 
 
 	auto water = World::CreateEntity();
 	water->add_Component<Transform>(glm::vec2(0, space*2), 0.0f, glm::vec2(4.0f, 4.0f));
 	water->add_Component<Sprite>(14.0f, 18.0f, 32.0f, 32.0f);
 	water->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sheet_transp"));
-	water->add_Component<Draggable>("water");
+	water->add_Component<Draggable>(Draggable::PickUpType::Water, water->get_Component<Transform>()->Position);
 
 	auto sun = World::CreateEntity();
 	sun->add_Component<Transform>(glm::vec2(space*2, space*2), 0.0f, glm::vec2(4.0f, 4.0f));
 	sun->add_Component<Sprite>(16.0f, 22.0f, 32.0f, 32.0f);
 	sun->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sheet_transp"));
-	sun->add_Component<Draggable>("sun");
+	sun->add_Component<Draggable>(Draggable::PickUpType::Sun, sun->get_Component<Transform>()->Position);
 
 	auto seed = World::CreateEntity();
 	seed->add_Component<Transform>(glm::vec2(space, space*2), 0.0f, glm::vec2(4.0f, 4.0f));
 	seed->add_Component<Sprite>(20.0f, 5.0f, 32.0f, 32.0f);
 	seed->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sheet_transp"));
-	seed->add_Component<Draggable>("seed");
+	seed->add_Component<Draggable>(Draggable::PickUpType::Seed, seed->get_Component<Transform>()->Position);
 	
 
 	auto camera = World::CreateEntity();
@@ -78,7 +86,7 @@ void MainGameScene::Init() {
 }
 
 void MainGameScene::Update() {
-
+	
 }
 
 void MainGameScene::Debug() {

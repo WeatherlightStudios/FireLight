@@ -6,8 +6,13 @@
 COMPONENT(Draggable)
 {
 public:
-	Draggable(string name): name(name){ }
+	enum PickUpType { Water, Sun, Seed};
+
+	Draggable(PickUpType type, glm::vec2 homePos): type(type), homePos(homePos){ }
 
 	bool isPicked = false;
-	string name = "";
+	glm::vec2 homePos;
+	float returnSpeed = 6.0f;
+
+	PickUpType type;
 };

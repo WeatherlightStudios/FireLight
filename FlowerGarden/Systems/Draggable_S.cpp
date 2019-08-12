@@ -10,9 +10,9 @@ Draggable_S::Draggable_S(EntityHandler* camera):
 
 void Draggable_S::Update(uint32_t entity) {
 	//TODO: refactor with shared_ptr / weak_ptr
-
 	Transform* transform = World::getComponent<Transform>(entity);
 	Draggable* draggable = World::getComponent<Draggable>(entity);
+
 
 	glm::vec2 mousePos = FL::Window::get_mouse_positions();
 	glm::vec4 viewport = glm::vec4(0.0f, 0.0f, FL::Window::getWidth(), FL::Window::getHeight());
@@ -34,6 +34,12 @@ void Draggable_S::Update(uint32_t entity) {
 	if (draggable->isPicked) {
 		//std::cout << "picking object, value is now " << draggable->isPicked << std::endl;
 		transform->Position = worldMousePos;
+	}
+	else {
+		glm::vec2 diff = draggable->homePos - transform->Position;
+		if (glm::length(diff) >= 1.0f) {
+			transform->Position += diff * draggable->returnSpeed * (float)Time::GetDeltaTime();
+		}
 	}
 
 	//std::cout << "object " << draggable->name << " has value " << draggable->isPicked << std::endl;

@@ -3,8 +3,8 @@
 #include <FireLight.h>
 #include "../Components/Draggable.h"
 
-//SYSTEM(Draggable_S)
-class Draggable_S : public System
+//class Draggable_S : public System
+SYSTEM(Draggable_S)
 {
 public:
 	Draggable_S(EntityHandler* camera);
