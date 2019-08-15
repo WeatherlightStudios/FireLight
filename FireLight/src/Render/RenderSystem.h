@@ -156,5 +156,5 @@ private:
 	std::vector<Batch> batchList;
 
 
-	unsigned int VBO, VAO;
+	unsigned int VBO, VAO, IBO;
 };

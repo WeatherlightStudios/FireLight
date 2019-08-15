@@ -51,11 +51,32 @@ void RenderSystem::Init()
 
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &IBO);
+	
 
 	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferStorage(GL_ARRAY_BUFFER, BUFFER_SIZE, nullptr, fCreate);
+
+	int offset = 0;
+
+	GLuint* indices = new GLuint[MAX_SPRITES * 6];
+
+
+	for(int i = 0; i < (MAX_SPRITES * 6); i += 6)
+	{
+		indices[i] = offset + 0;
+		indices[i + 1] = offset + 1;
+		indices[i + 2 ] = offset + 2;
+		indices[i + 3] = offset + 2;
+		indices[i + 4] = offset + 3;
+		indices[i + 5] = offset + 0;
+	}
+
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, (MAX_SPRITES * 6), indices, GL_STATIC_DRAW);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
@@ -117,13 +138,6 @@ void RenderSystem::Init()
 
 void RenderSystem::addSprite(glm::vec2 pos, glm::vec2 size, float rot, float offX, float offY, float collum, float row, Texture texture)
 {
-	//SpriteObj tempObj(tran->Position, tran->Scale, tran->Rotation, sprite->OffsetX, sprite->OffsetY, sprite->Rows, sprite->Collums, shader, texture);
-	//priteList.push_back(tempObj);
-
-
-
-	//glm::vec2 m_pos = pos;
-	//glm::vec2 m_size = size;
 	float m_rot = rot;
 	float cosine = cos(rot);
 	float sine = sin(rot);
@@ -260,65 +274,14 @@ void RenderSystem::GenerateBatch()
 void RenderSystem::GenerateBuffer()
 {
 
-	for (int i = 0; i < 150000; i++)
+	for (int i = 0; i < 1; i++)
 	{
-		glm::vec2 position(RandomNumber::Range(-100, 100), RandomNumber::Range(-100, 100));
+		//glm::vec2 position(RandomNumber::Range(-100, 100), RandomNumber::Range(-100, 100));
+		glm::vec2 position(0, 0);
 		glm::vec2 size(1, 1);
 		addSprite(position, size, 0.0f, 4.0f, 8.0f, 16.0f, 16.0f, Resource::getTexture("sprite"));
 	}
 
-
-	/*for (uint32_t i = 0; i < spriteList.size(); i++)
-	{
-		SpriteObj& spTemp = spriteList[i];
-
-		float cosine = cos(spTemp.m_rot);
-		float sine = sin(spTemp.m_rot);
-
-
-		glm::vec2 base_scale = glm::vec2(spTemp.m_texture.Width / spTemp.m_Collums, spTemp.m_texture.Height / spTemp.m_Rows);
-
-		float x = ((-0.5f * (spTemp.m_scale.x * base_scale.x)) * cosine + (0.5f * (spTemp.m_scale.y * base_scale.y)) * sine);
-		float y = ((-0.5f * (spTemp.m_scale.x * base_scale.x)) * sine - (0.5f * (spTemp.m_scale.y * base_scale.y)) * cosine);
-
-		spriteBuffer[spriteIndex].vertex = glm::vec3(spTemp.m_position.x + (x), spTemp.m_position.y + (y), 0);
-		spriteBuffer[spriteIndex].uv = glm::vec2(spTemp.m_OffsetX / spTemp.m_Collums, (1.0f + spTemp.m_OffsetY) / spTemp.m_Rows);
-
-
-		x = ((-0.5f * (spTemp.m_scale.x * base_scale.x)) * cosine - (0.5f * (spTemp.m_scale.y * base_scale.y)) * sine);
-		y = ((-0.5f * (spTemp.m_scale.x * base_scale.x)) * sine + (0.5f * (spTemp.m_scale.y * base_scale.y)) * cosine);
-
-		spriteBuffer[spriteIndex + 1].vertex = glm::vec3(spTemp.m_position.x + (x), spTemp.m_position.y + (y), 0);
-		spriteBuffer[spriteIndex + 1].uv = glm::vec2(spTemp.m_OffsetX / spTemp.m_Collums, spTemp.m_OffsetY / spTemp.m_Rows);
-
-
-		x = ((0.5f * (spTemp.m_scale.x * base_scale.x)) * cosine - (0.5f * (spTemp.m_scale.y * base_scale.y)) * sine);
-		y = ((0.5f * (spTemp.m_scale.x * base_scale.x)) * sine + (0.5f * (spTemp.m_scale.y * base_scale.y)) * cosine);
-
-		spriteBuffer[spriteIndex + 2].vertex = glm::vec3(spTemp.m_position.x + (x), spTemp.m_position.y + (y), 0);
-		spriteBuffer[spriteIndex + 2].uv = glm::vec2((1.0f + spTemp.m_OffsetX) / spTemp.m_Collums, spTemp.m_OffsetY / spTemp.m_Rows);
-
-		x = ((0.5f * (spTemp.m_scale.x * base_scale.x)) * cosine - (0.5f * (spTemp.m_scale.y * base_scale.y)) * sine);
-		y = ((0.5f * (spTemp.m_scale.x * base_scale.x)) * sine + (0.5f * (spTemp.m_scale.y * base_scale.y)) * cosine);
-
-		spriteBuffer[spriteIndex + 3].vertex = glm::vec3(spTemp.m_position.x + (x), spTemp.m_position.y + (y), 0);
-		spriteBuffer[spriteIndex + 3].uv = glm::vec2((1.0f + spTemp.m_OffsetX) / spTemp.m_Collums, spTemp.m_OffsetY / spTemp.m_Rows);
-
-		x = ((0.5f * (spTemp.m_scale.x * base_scale.x)) * cosine + (0.5f * (spTemp.m_scale.y * base_scale.y)) * sine);
-		y = ((0.5f * (spTemp.m_scale.x * base_scale.x)) * sine - (0.5f * (spTemp.m_scale.y * base_scale.y)) * cosine);
-
-		spriteBuffer[spriteIndex + 4].vertex = glm::vec3(spTemp.m_position.x + (x), spTemp.m_position.y + (y), 0);
-		spriteBuffer[spriteIndex + 4].uv = glm::vec2((1.0f + spTemp.m_OffsetX) / spTemp.m_Collums, (1.0f + spTemp.m_OffsetY) / spTemp.m_Rows);
-
-		x = ((-0.5f * (spTemp.m_scale.x * base_scale.x)) * cosine + (0.5f * (spTemp.m_scale.y * base_scale.y)) * sine);
-		y = ((-0.5f * (spTemp.m_scale.x * base_scale.x)) * sine - (0.5f * (spTemp.m_scale.y * base_scale.y)) * cosine);
-
-		spriteBuffer[spriteIndex + 5].vertex = glm::vec3(spTemp.m_position.x + (x), spTemp.m_position.y + (y), 0);
-		spriteBuffer[spriteIndex + 5].uv = glm::vec2((0.0f + spTemp.m_OffsetX) / spTemp.m_Collums, (1.0f + spTemp.m_OffsetY) / spTemp.m_Rows);
-
-		//spriteIndex += 6;
-
-	}*/
 }
 
 void RenderSystem::setCamera(EntityHandler* camera)
@@ -331,10 +294,6 @@ void RenderSystem::setCamera(EntityHandler* camera)
 {
 	 glm::mat4 model = glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f)), glm::vec3(1, 1, 1));
 	 model = glm::rotate(model, 0.0f, glm::vec3(0, 0, 1));
-
-
-	 //std::cout << "batch: " << batchList.size() << std::endl;
-	 //std::cout << "sprite: " << spriteList.size() << std::endl;
 		
 	Resource::getTexture("sprite").Bind();
 
@@ -345,56 +304,12 @@ void RenderSystem::setCamera(EntityHandler* camera)
 	Resource::getShader("shader").SetVector2f("row", glm::vec2(1, 1), false);
 	Resource::getShader("shader").SetVector2f("offset", glm::vec2(0, 0), false);
 
-	glDrawArrays(GL_TRIANGLES, 0, spriteIndex);
-	
-
+	glDrawElements(GL_TRIANGLES, spriteIndex, GL_UNSIGNED_INT, NULL);
 	
 	spriteBuffer = renderBuffer;
 	spriteIndex = 0;
 	
 	LockBuffer();
-
-
-	/* Resource::getTexture("sprite").Bind();
-
-
-	 Resource::getShader("shader").Use();
-	 Resource::getShader("shader").SetMatrix4("model", model, false);
-	 Resource::getShader("shader").SetMatrix4("projection", m_camera->get_Component<Camera2D>()->projection, false);
-	 Resource::getShader("shader").SetVector2f("row", glm::vec2(1, 1), false);
-	 Resource::getShader("shader").SetVector2f("offset", glm::vec2(0, 0), false);*/
-
-
-	 ////std::cout << spriteIndex << std::endl;
-
-	 //glDrawArrays(GL_TRIANGLES, 0, (GLsizei)(spriteIndex));
-
-	 //spriteList.clear();
-	 //batchList.clear();
-
-
-	 //***** OLD BATHC SYSTEM *****
-	/*glm::mat4 model = glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f,0.0f,0.0f)), glm::vec3(1, 1, 1));
-	model = glm::rotate(model, 0.0f, glm::vec3(0, 0, 1));
-	
-	 numberOfBatch = m_batchs.size();
-	 numberOfObjects = m_renderObjects.size();
-
-	 for (uint32_t i = 0; i < m_batchs.size(); i++)
-	 {
-		FirstBuffer->beginDraw();
-		m_batchs[i].Use();
-		m_batchs[i].m_material.m_shader.SetMatrix4("model", model, false);
-		m_batchs[i].m_material.m_shader.SetMatrix4("projection", m_camera->get_Component<Camera2D>()->projection, false);
-
-		m_batchs[i].m_material.m_shader.SetVector2f("row", glm::vec2(1, 1), false);
-		m_batchs[i].m_material.m_shader.SetVector2f("offset", glm::vec2(0, 0), false);
-		FirstBuffer->Draw(m_batchs[i].m_begin, m_batchs[i].m_end);
-		FirstBuffer->endDraw();
-	 }
-	 //BufferIndex *= -1;
-	 m_batchs.clear();
-	 m_renderObjects.clear();*/
 }
 
 
