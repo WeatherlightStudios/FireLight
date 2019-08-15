@@ -1,16 +1,16 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v150\Microsoft.CppBuild.targets(376,5): warning MSB8004: la directory Intermediate non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Intermediate.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v150\Microsoft.CppBuild.targets(377,5): warning MSB8004: la directory Output non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Output.
+﻿E:\VisualStudio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(376,5): warning MSB8004: la directory Intermediate non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Intermediate.
+E:\VisualStudio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: la directory Output non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Output.
   RenderSystem.cpp
-c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(12): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
-c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\system.h(30): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\componentpool.h(58): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(106): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(107): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(108): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\core\ecs\world.h(110): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(13): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
-c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(14): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
-c:\users\utente\desktop\projects\gamedev projects\2019\firelight_engine\firelight\src\render\rendersystem.h(15): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
-freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR giÓ definito in opengl32.lib(OPENGL32.dll); seconda definizione ignorata
-freetype.lib(freetype.dll) : warning LNK4221: Questo file oggetto non definisce simboli pubblici non definiti in precedenza, pertanto verrÓ utilizzato da qualsiasi operazione di collegamento che utilizza la libreria
-  FireLight.vcxproj -> C:\Users\Utente\Desktop\Projects\GameDev Projects\2019\Firelight_Engine\libBUILD\FireLight.lib
+e:\git-projects\firelightengine\firelight\src\render\rendersystem.h(12): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+e:\git-projects\firelightengine\firelight\src\core\ecs\system.h(30): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+e:\git-projects\firelightengine\firelight\src\core\ecs\componentpool.h(58): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+e:\git-projects\firelightengine\firelight\src\core\ecs\world.h(106): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+e:\git-projects\firelightengine\firelight\src\core\ecs\world.h(107): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+e:\git-projects\firelightengine\firelight\src\core\ecs\world.h(108): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+e:\git-projects\firelightengine\firelight\src\core\ecs\world.h(110): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+e:\git-projects\firelightengine\firelight\src\render\rendersystem.h(13): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+e:\git-projects\firelightengine\firelight\src\render\rendersystem.h(14): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+e:\git-projects\firelightengine\firelight\src\render\rendersystem.h(15): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
+freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR giα definito in opengl32.lib(OPENGL32.dll); seconda definizione ignorata
+freetype.lib(freetype.dll) : warning LNK4221: Questo file oggetto non definisce simboli pubblici non definiti in precedenza, pertanto verrα utilizzato da qualsiasi operazione di collegamento che utilizza la libreria
+  FireLight.vcxproj -> E:\Git-Projects\FireLightEngine\libBUILD\FireLight.lib

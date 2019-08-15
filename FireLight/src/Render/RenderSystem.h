@@ -13,6 +13,8 @@
 #include "../Core/ECS/Systems/TestSystem.h";
 #include "../Core/ECS/Systems/SpriteRenderSystem.h";
 #include "../Core/ECS/World.h";
+#include "../Utility/RandomNumber.h"
+
 
 #include "../Utility/Resource.h"
 
@@ -76,7 +78,7 @@ struct Batch
 };
 
 #define VERTEX_PER_QUAD 6
-#define MAX_SPRITES 160000
+#define MAX_SPRITES 500000
 #define BUFFER_SIZE (sizeof(GL_Sprite) * 6) * MAX_SPRITES
 #define MAX_VERTICES MAX_SPRITES * VERTEX_PER_QUAD
 
@@ -91,7 +93,7 @@ public:
 
 
 	//Need ReWork
-	static void addSprite(Transform* tran, Sprite* sprite, Shader shader, Texture texture);
+	static void addSprite(glm::vec2 pos, glm::vec2 size, float rot, float offX, float offY, float collum, float row, Texture texture);
 
 
 	void sortSprites()
@@ -99,6 +101,27 @@ public:
 		std::sort(spriteList.begin(), spriteList.end(), compareTexture);
 	};
 
+	void LockBuffer()
+	{
+		if (gSync)
+		{
+			glDeleteSync(gSync);
+		}
+		gSync = glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
+	}
+
+	void Sync()
+	{
+		if (gSync)
+		{
+			while (1)
+			{
+				GLenum waitReturn = glClientWaitSync(gSync, GL_SYNC_FLUSH_COMMANDS_BIT, 1);
+				if (waitReturn == GL_ALREADY_SIGNALED || waitReturn == GL_CONDITION_SATISFIED)
+					return;
+			}
+		}
+	}
 
 	//TODO:: ReWork in AZDO
 	void GenerateBatch();
@@ -127,6 +150,7 @@ private:
 
 	static int spriteIndex;
 
+	GLsync gSync;
 
 	static std::vector<SpriteObj> spriteList;
 	std::vector<Batch> batchList;
