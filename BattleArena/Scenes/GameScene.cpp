@@ -32,13 +32,13 @@ void GameScene::Init()
 		weapon->add_Component<MeshRender>(Resource::getShader("2D_shader"), Resource::getTexture("sprite"));
 	}*/
 
-	auto camera = World::CreateEntity();
-	camera->add_Component<Transform>(glm::vec2(0.0f, 0.0f), 0.0f, glm::vec2(1.0f, 1.0f));
-	camera->add_Component<Camera2D>();
+	//auto camera = World::CreateEntity();
+	//camera->add_Component<Transform>(glm::vec2(0.0f, 0.0f), 0.0f, glm::vec2(1.0f, 1.0f));
+	//camera->add_Component<Camera2D>();
 
 	//World::addGameSystem(new WeaponSystem(camera, entt));
 
-	RenderSystem::setCamera(camera);
+	//RenderSystem::setCamera(camera);
 }
 
 

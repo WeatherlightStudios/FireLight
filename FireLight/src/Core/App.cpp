@@ -17,7 +17,7 @@ void FL::App::Start()
 		std::cout << "OpenGL failde to inizialize" << std::endl;
 	}
 	newWindow->InitIMGUI();
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 	glfwSwapInterval(0);
 
 	MainLoop();
@@ -36,29 +36,29 @@ void FL::App::MainLoop()
 	{
 		Time::Calculate();
 
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
+		//ImGui_ImplOpenGL3_NewFrame();
+		//ImGui_ImplGlfw_NewFrame();
+		//ImGui::NewFrame();
 
 		//FixedFrame Update only GameLogic
-		while(Time::GetLag() >= MS_PER_UPDATE)
+		/*while(Time::GetLag() >= MS_PER_UPDATE)
 		{
 			//FL::Input::Reset();
-			SceneManager::UpdateCurrentScene();
-			World::UpdateGameSystems();
+			//SceneManager::UpdateCurrentScene();
+			//World::UpdateGameSystems();
 			Time::Reset();
-			newWindow->clearKeys();
-		}
+			//newWindow->clearKeys();
+		}*/
 
 
-		World::UpdateEngineSystems();
-		SceneManager::DebugCurrentScene();
+		//World::UpdateEngineSystems();
+		//SceneManager::DebugCurrentScene();
 
-		ImGui::Render();
 
 		Render();
+		//ImGui::Render();
 
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		//ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 			
 		newWindow->Update();
 		newWindow->UpdateInput();
@@ -70,15 +70,12 @@ void FL::App::MainLoop()
 
 void FL::App::Render()
 {
-	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-	//m_render_system->sortSprites();
-	//m_render_system->GenerateBatch();
-	//m_render_system->begin();
-	m_render_system->Sync();
-	m_render_system->GenerateBuffer();
+	glClear(GL_COLOR_BUFFER_BIT);
+	
+	m_render_system->Debug();
+	m_render_system->UpdateBuffer();
 	m_render_system->Draw();
-	//RenderSystem::GenerateBatch();
-	//RenderSystem::Draw();
+
 }
 
 void FL::App::ShutDown()
@@ -87,6 +84,7 @@ void FL::App::ShutDown()
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 	glfwTerminate();
+	m_render_system->Close();
 }
 
 
