@@ -60,10 +60,9 @@ namespace FL
 
 		bool isRunning;
 		double oldTime;
-		double deltaLag;
+		double currentTime;
 		int frameRate;
-		double Lag;
-
+		int currentFPS;
 
 		int	Width;
 		int	Height;

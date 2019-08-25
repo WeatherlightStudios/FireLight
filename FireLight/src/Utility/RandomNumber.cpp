@@ -4,21 +4,6 @@ RandomNumber::RandomNumber()
 {
 }
 
-int RandomNumber::Range(int a, int b) {
-	auto diff = b - a;
-	auto n = rand() % diff;
-	return n + a;
-}
-
-float RandomNumber::Range(float a, float b)
-{
-	float random = ((float)rand()) / (float)RAND_MAX;
-	float range = b - a;
-	float r = range * random;
-	return r + a;
-}
-
-
 
 int RandomNumber::GaussianRange(int a, int b)
 {

@@ -17,7 +17,7 @@ void FL::App::Start()
 		std::cout << "OpenGL failde to inizialize" << std::endl;
 	}
 	newWindow->InitIMGUI();
-	//glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 	glfwSwapInterval(0);
 
 	MainLoop();
@@ -31,35 +31,59 @@ void FL::App::MainLoop()
 	Init();
 	Time::Start();
 
+	frameRate = 0;
+
+	oldTime = glfwGetTime();
+
 	//MainLoop
 	while (!newWindow->isClosed())
 	{
 		Time::Calculate();
 
-		//ImGui_ImplOpenGL3_NewFrame();
-		//ImGui_ImplGlfw_NewFrame();
-		//ImGui::NewFrame();
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
 
 		//FixedFrame Update only GameLogic
-		/*while(Time::GetLag() >= MS_PER_UPDATE)
+		while(Time::GetLag() >= MS_PER_UPDATE)
 		{
 			//FL::Input::Reset();
-			//SceneManager::UpdateCurrentScene();
-			//World::UpdateGameSystems();
+			SceneManager::UpdateCurrentScene();
+			World::UpdateGameSystems();
 			Time::Reset();
-			//newWindow->clearKeys();
-		}*/
+			newWindow->clearKeys();
+		}
 
 
-		//World::UpdateEngineSystems();
-		//SceneManager::DebugCurrentScene();
+
+
+		World::UpdateEngineSystems();
+		SceneManager::DebugCurrentScene();
+
+		//FPS
+		//std::cout << "biscotti" << std::endl;
+
+		ImGui::Text("FPS: %d", currentFPS);
 
 
 		Render();
-		//ImGui::Render();
+		ImGui::Render();
 
-		//ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-			
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+
+		currentTime = glfwGetTime();
+
+		frameRate++;
+
+		if (currentTime - oldTime > 1.0)
+		{
+			currentFPS = frameRate;
+			frameRate = 0;
+			oldTime = currentTime;
+		}
+
 		newWindow->Update();
 		newWindow->UpdateInput();
 
@@ -70,10 +94,11 @@ void FL::App::MainLoop()
 
 void FL::App::Render()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	
 	m_render_system->Debug();
-	m_render_system->UpdateBuffer();
+	m_render_system->SrotSprites();
+	m_render_system->CreateBatches();
 	m_render_system->Draw();
 
 }

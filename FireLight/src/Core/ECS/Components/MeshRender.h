@@ -10,12 +10,12 @@
 
 struct MeshRender : public Component<MeshRender>
 {
-	MeshRender(Shader shader, Texture texture) : m_shader(shader), m_texture(texture)
+	MeshRender(std::string shader, Texture texture) : m_shader(shader), m_texture(texture)
 	{
 
 	}
 	
 	Texture m_texture;
-	Shader m_shader;
+	std::string m_shader;
 
 };

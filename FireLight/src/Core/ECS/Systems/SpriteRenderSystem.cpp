@@ -17,7 +17,21 @@ void SpriteRenderSystem::Update(uint32_t entity)
 	Sprite* sprite = World::getComponent<Sprite>(entity);
 	MeshRender* meshRender = World::getComponent<MeshRender>(entity);
 
-	//RenderSystem::addSprite(transform, sprite, meshRender->m_shader, meshRender->m_texture);
+	GLSprite sp;
+	sp.posX = transform->Position.x;
+	sp.posY = transform->Position.y;
+	sp.rotatin = transform->Rotation;
+	sp.zLayer = 0;
+	sp.scaleX = transform->Scale.x;
+	sp.scaleY = transform->Scale.y;
+	sp.offsetX = sprite->OffsetX;
+	sp.offsetY = sprite->OffsetY;
+	sp.row = sprite->Rows;
+	sp.collum = sprite->Collums;
+	sp.texture = meshRender->m_texture;
+	sp.shader = meshRender->m_shader;
+
+	RenderSystem::addSprite(sp);
 }
 
 
