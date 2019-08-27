@@ -120,7 +120,7 @@ void RenderManager::Debug()
 void RenderManager::Draw()
 {
 
-	model = glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)), glm::vec3(10, 0.5, 10));
+	model = glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)), glm::vec3(10, 0.1, 3));
 
 	Texture texture = Resource::getTexture("texture");
 	Shader shader = Resource::getShader("3D_shader");

@@ -6,6 +6,7 @@ FPSCamera::FPSCamera()
 {
 	registerComponent(Transform::ID);
 	registerComponent(Camera3D::ID);
+	isEnabled = true;
 }
 
 
@@ -14,6 +15,7 @@ void FPSCamera::Update(uint32_t entity)
 	Transform* transform = World::getComponent<Transform>(entity);
 	Camera3D* camera3D = World::getComponent<Camera3D>(entity);
 
+	////CAMERA MOVEMENT
 
 	float velocity = 5.0f;
 	float rotVelocity = 100.0f;
@@ -21,7 +23,6 @@ void FPSCamera::Update(uint32_t entity)
 
 	if (FL::Window::isKeyPress(KEYCODE::KEY_W))
 	{
-
 		transform->Position += camera3D->forward * velocity * (float)Time::GetDeltaTime();
 	}
 
@@ -40,17 +41,25 @@ void FPSCamera::Update(uint32_t entity)
 		transform->Position += camera3D->left * -velocity * (float)Time::GetDeltaTime();
 	}
 
-	glm::vec2 mousePos = FL::Window::get_mouse_positions();
+	////CAMERA ROTATION
+	if (FL::Window::isKeyDown(KEYCODE::KEY_ESCAPE))
+	{
+		isEnabled = !isEnabled;
+	}
 
-	//float offsetX = (mousePos.x - FL::Window::getWidth() / 2);
-	//float offsetY = (FL::Window::getHeight() / 2 - mousePos.y);
+	if (isEnabled) {
+		glm::vec2 mousePos = FL::Window::get_mouse_positions();
 
-	glm::vec2 mouse_delta = glm::vec2(FL::Window::getWidth() / 2, FL::Window::getHeight() / 2) - mousePos;
+		//float offsetX = (mousePos.x - FL::Window::getWidth() / 2);
+		//float offsetY = (FL::Window::getHeight() / 2 - mousePos.y);
+
+		glm::vec2 mouse_delta = glm::vec2(FL::Window::getWidth() / 2, FL::Window::getHeight() / 2) - mousePos;
 
 
-	transform->Rotation += glm::vec3(-mouse_delta.y, -mouse_delta.x,0);
+		transform->Rotation += glm::vec3(-mouse_delta.y, -mouse_delta.x,0);
 
-	FL::Window::setCursorPosition(FL::Window::getWidth() / 2, FL::Window::getHeight() / 2);
+		FL::Window::setCursorPosition(FL::Window::getWidth() / 2, FL::Window::getHeight() / 2);
+	}
 
 
 }

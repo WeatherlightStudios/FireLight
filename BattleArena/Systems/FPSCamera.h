@@ -10,5 +10,8 @@ public:
 	void Update(uint32_t entity);
 
 	~FPSCamera();
+
+private:
+	bool isEnabled = false;
 };
 
