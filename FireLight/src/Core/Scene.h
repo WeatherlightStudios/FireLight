@@ -1,7 +1,6 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include "SceneNode.h"
 
 #include <vector>
 #include <string>

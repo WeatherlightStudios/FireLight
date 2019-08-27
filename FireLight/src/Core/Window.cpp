@@ -5,6 +5,9 @@ int FL::Window::m_width = 0;
 int FL::Window::m_height = 0;
 glm::vec2 FL::Window::mousePosition;
 int FL::Window::m_keys[1024];
+int FL::Window::m_keysPress[1024];
+
+GLFWwindow *FL::Window::m_window;
 
 FL::Window::Window(int width, int height, const char* title)
 {
@@ -78,7 +81,7 @@ bool FL::Window::isKeyDown(int keyCode)
 
 bool FL::Window::isKeyPress(int keyCode)
 {
-	return m_keys[keyCode] == GLFW_REPEAT || m_keys[keyCode] == GLFW_PRESS;
+	return m_keysPress[keyCode] == GLFW_REPEAT || m_keysPress[keyCode] == GLFW_PRESS;
 }
 
 
@@ -101,6 +104,7 @@ bool FL::Window::isClosed() const
 void FL::Window::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	m_keys[key] = action;
+	m_keysPress[key] = action;
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)

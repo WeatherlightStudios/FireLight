@@ -24,10 +24,7 @@
     <ClCompile Include="Scenes\GameScene.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\PlayerMovement_S.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="Systems\WeaponSystem.cpp">
+    <ClCompile Include="Systems\FPSCamera.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,16 +35,7 @@
     <ClInclude Include="Scenes\GameScene.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="Components\PlayerMovement.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\PlayerMovement_S.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Weapon.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\WeaponSystem.h">
+    <ClInclude Include="Systems\FPSCamera.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

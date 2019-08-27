@@ -134,6 +134,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\ECS\Systems\Camera3DSystem.h" />
     <ClInclude Include="GL\khrplatform.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />
@@ -145,6 +146,8 @@
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="imgui\misc\freetype\imgui_freetype.h" />
     <ClInclude Include="imgui\misc\stl\imgui_stl.h" />
+    <ClInclude Include="src\Core\ECS\Components\Camera3D.h" />
+    <ClInclude Include="src\Render\RenderManager.h" />
     <ClInclude Include="src\Core\ECS\Component.h" />
     <ClInclude Include="src\Core\ECS\ComponentPool.h" />
     <ClInclude Include="src\Core\ECS\Components\Camera2D.h" />
@@ -158,30 +161,23 @@
     <ClInclude Include="src\Core\ECS\Systems\SpriteRenderSystem.h" />
     <ClInclude Include="src\Core\ECS\Systems\TestSystem.h" />
     <ClInclude Include="src\Core\Input.h" />
-    <ClInclude Include="src\Render\Material.h" />
-    <ClInclude Include="src\Render\OpenGL\IndexBuffer.h" />
     <ClInclude Include="FireLight.h" />
     <ClInclude Include="GL\gl3w.h" />
     <ClInclude Include="GL\glcorearb.h" />
     <ClInclude Include="src\Core\Scene.h" />
     <ClInclude Include="src\Core\SceneManager.h" />
-    <ClInclude Include="src\Core\SceneNode.h" />
-    <ClInclude Include="src\Render\OpenGL\GLUtility.h" />
     <ClInclude Include="src\Core\App.h" />
-    <ClInclude Include="src\Render\Camera.h" />
     <ClInclude Include="src\Core\Time.h" />
-    <ClInclude Include="src\Render\RenderBuffer.h" />
-    <ClInclude Include="src\Render\RenderSystem.h" />
+    <ClInclude Include="src\Render\2DRenderSystem.h" />
     <ClInclude Include="src\Utility\RandomNumber.h" />
     <ClInclude Include="src\Utility\Resource.h" />
     <ClInclude Include="src\Utility\Resources\Shader.h" />
     <ClInclude Include="src\Core\Window.h" />
     <ClInclude Include="src\Utility\Resources\Texture.h" />
-    <ClInclude Include="src\Render\OpenGL\VertexBuffer.h" />
-    <ClInclude Include="src\Render\OpenGL\VertexArrayBuffer.h" />
     <ClInclude Include="src\Core\ECS\World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\ECS\Systems\Camera3DSystem.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
@@ -191,6 +187,7 @@
     <ClCompile Include="imgui\misc\fonts\binary_to_compressed_c.cpp" />
     <ClCompile Include="imgui\misc\freetype\imgui_freetype.cpp" />
     <ClCompile Include="imgui\misc\stl\imgui_stl.cpp" />
+    <ClCompile Include="src\Render\RenderManager.cpp" />
     <ClCompile Include="src\Core\ECS\Component.cpp" />
     <ClCompile Include="src\Core\ECS\ComponentPool.cpp" />
     <ClCompile Include="src\Core\ECS\Entity.cpp" />
@@ -198,23 +195,17 @@
     <ClCompile Include="src\Core\ECS\Systems\Camera2DSystem.cpp" />
     <ClCompile Include="src\Core\ECS\Systems\SpriteRenderSystem.cpp" />
     <ClCompile Include="src\Core\ECS\Systems\TestSystem.cpp" />
-    <ClCompile Include="src\Render\OpenGL\IndexBuffer.cpp" />
     <ClCompile Include="GL\gl3w.c" />
     <ClCompile Include="src\Core\Scene.cpp" />
     <ClCompile Include="src\Core\SceneManager.cpp" />
-    <ClCompile Include="src\Core\SceneNode.cpp" />
     <ClCompile Include="src\Core\App.cpp" />
-    <ClCompile Include="src\Render\Camera.cpp" />
     <ClCompile Include="src\Core\Time.cpp" />
-    <ClCompile Include="src\Render\RenderBuffer.cpp" />
-    <ClCompile Include="src\Render\RenderSystem.cpp" />
+    <ClCompile Include="src\Render\2DRenderSystem.cpp" />
     <ClCompile Include="src\Utility\RandomNumber.cpp" />
     <ClCompile Include="src\Utility\Resource.cpp" />
     <ClCompile Include="src\Utility\Resources\Shader.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
     <ClCompile Include="src\Utility\Resources\Texture.cpp" />
-    <ClCompile Include="src\Render\OpenGL\VertexBuffer.cpp" />
-    <ClCompile Include="src\Render\OpenGL\VertexArrayBuffer.cpp" />
     <ClCompile Include="src\Core\ECS\World.cpp" />
   </ItemGroup>
   <ItemGroup>

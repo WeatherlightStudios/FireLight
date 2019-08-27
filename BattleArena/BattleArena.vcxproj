@@ -127,19 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Systems\FPSCamera.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Systems\PlayerMovement_S.cpp" />
     <ClCompile Include="Scenes\GameScene.cpp" />
-    <ClCompile Include="Systems\WeaponSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Components\PlayerMovement.h" />
-    <ClInclude Include="Components\Weapon.h" />
+    <ClInclude Include="Systems\FPSCamera.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Systems\PlayerMovement_S.h" />
     <ClInclude Include="Scenes\GameScene.h" />
-    <ClInclude Include="Systems\WeaponSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

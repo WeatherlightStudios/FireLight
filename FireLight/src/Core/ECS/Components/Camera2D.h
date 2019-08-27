@@ -2,7 +2,7 @@
 
 #include "../Component.h"
 #include <glm/glm.hpp>
-#include "../../../Render/RenderSystem.h"
+#include "../../../Render/2DRenderSystem.h"
 
 struct Camera2D : public Component<Camera2D>
 {

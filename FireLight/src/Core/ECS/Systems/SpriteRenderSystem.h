@@ -6,7 +6,7 @@
 
 #include "../System.h"
 
-#include "../../../Render/RenderSystem.h"
+#include "../../../Render/2DRenderSystem.h"
 
 
 class SpriteRenderSystem : public System

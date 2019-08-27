@@ -5,18 +5,18 @@
 
 struct Transform : public Component<Transform>
 {
-	Transform(glm::vec2 pos, float rot, glm::vec2 size) : Position(pos), Rotation(rot), Scale(size)
+	Transform(glm::vec3 pos, glm::vec3 rot, glm::vec3 size) : Position(pos), Rotation(rot), Scale(size)
 	{
 
 	}
 
-	Transform() : Position(glm::vec2(0.0f,0.0f)), Rotation(0.0f), Scale(glm::vec2(1.0f,1.0f))
+	Transform() : Position(glm::vec3(0.0f,0.0f,0.0f)), Rotation(glm::vec3(0.0f, 0.0f, 0.0f)), Scale(glm::vec3(1.0f,1.0f,1.0f))
 	{
 
 	}
 
-	float Rotation;
-	glm::vec2 Position;
-	glm::vec2 Scale;
+	glm::vec3 Rotation;
+	glm::vec3 Position;
+	glm::vec3 Scale;
 
 };

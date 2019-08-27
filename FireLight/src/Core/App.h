@@ -20,7 +20,8 @@
 #include "../../imgui/imgui_impl_opengl3.h"
 
 #include "ECS/World.h"
-#include "../Render/RenderSystem.h"
+#include "../Render/2DRenderSystem.h"
+#include "../Render/RenderManager.h"
 
 
 #include <ft2build.h>
@@ -69,7 +70,8 @@ namespace FL
 		std::string Title;
 		std::unique_ptr<FL::Window> newWindow;
 
-		std::unique_ptr<RenderSystem> m_render_system;
+		//std::unique_ptr<RenderSystem> m_render_system;
+		std::unique_ptr<RenderManager> m_render_manager;
 	};
 }
 

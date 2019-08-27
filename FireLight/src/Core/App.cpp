@@ -3,7 +3,7 @@
 
 FL::App::App()
 {
-	m_render_system = std::make_unique<RenderSystem>();
+	m_render_manager = std::make_unique<RenderManager>();
 }
 
 void FL::App::Start() 
@@ -27,7 +27,8 @@ void FL::App::MainLoop()
 {
 
 	//init a game
-	m_render_system->Init();
+	//m_render_system->Init();
+	m_render_manager->Init();
 	Init();
 	Time::Start();
 
@@ -96,10 +97,13 @@ void FL::App::Render()
 {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	
-	m_render_system->Debug();
+	m_render_manager->Debug();
+	m_render_manager->Draw();
+
+	/*m_render_system->Debug();
 	m_render_system->SrotSprites();
 	m_render_system->CreateBatches();
-	m_render_system->Draw();
+	m_render_system->Draw();*/
 
 }
 
@@ -109,7 +113,8 @@ void FL::App::ShutDown()
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 	glfwTerminate();
-	m_render_system->Close();
+	//m_render_system->Close();
+	m_render_manager->Close();
 }
 
 

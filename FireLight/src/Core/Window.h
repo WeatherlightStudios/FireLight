@@ -39,6 +39,13 @@ namespace FL
 
 		//void UpdateSettings();
 
+
+		static void setCursorPosition(float x, float y)
+		{
+			glfwSetCursorPos(m_window ,x ,y);
+		}
+
+
 		//get Width and height of Window
 		static int getWidth(){ return m_width; }
 		static int getHeight(){ return m_height; }
@@ -78,6 +85,7 @@ namespace FL
 		//static std::unordered_map<int, keyState> m_key;
 
 		static int m_keys[1024];
+		static int m_keysPress[1024];
 		//static bool m_mouse_buttons[32];
 		
 		//static double mx, my;
@@ -92,7 +100,7 @@ namespace FL
 		friend static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 		friend static void window_size_callback(GLFWwindow* window, int width, int height);
 
-		GLFWwindow *m_window;
+		static GLFWwindow *m_window;
 
 	};
 

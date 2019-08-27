@@ -2,11 +2,9 @@
 #define GAMESCENE_HEADER
 
 #include <FireLight.h>
-#include "../Components/PlayerMovement.h"
-#include "../Components/Weapon.h"
-#include "../Systems/PlayerMovement_S.h"
-#include "../Systems/WeaponSystem.h"
 #include <Box2D/Box2D.h>
+
+#include "../Systems/FPSCamera.h"
 
 
 SCENE(GameScene)

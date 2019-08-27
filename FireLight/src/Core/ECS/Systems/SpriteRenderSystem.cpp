@@ -17,7 +17,9 @@ void SpriteRenderSystem::Update(uint32_t entity)
 	Sprite* sprite = World::getComponent<Sprite>(entity);
 	MeshRender* meshRender = World::getComponent<MeshRender>(entity);
 
-	GLSprite sp;
+
+	//need refactoring
+	/*GLSprite sp;
 	sp.posX = transform->Position.x;
 	sp.posY = transform->Position.y;
 	sp.rotatin = transform->Rotation;
@@ -30,8 +32,8 @@ void SpriteRenderSystem::Update(uint32_t entity)
 	sp.collum = sprite->Collums;
 	sp.texture = meshRender->m_texture;
 	sp.shader = meshRender->m_shader;
-
-	RenderSystem::addSprite(sp);
+*/
+	//RenderSystem::addSprite(sp);
 }
 
 
