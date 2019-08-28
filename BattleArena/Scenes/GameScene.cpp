@@ -42,17 +42,37 @@ float GameScene::angleBetween(glm::vec2 A, glm::vec2 B) {
 
 void GameScene::Debug()
 {
-	auto camDirs = camera->get_Component<Camera3D>();
+	auto cam = camera->get_Component<Camera3D>();
+	AxisGizmo(cam);
+	CamGizmo(cam);
+}
 
-	auto projz = projectOnPlane(camDirs->forward, glm::vec3(0, 0, 1));
-	auto projx = projectOnPlane(camDirs->left, glm::vec3(0, 0, 1));
-	auto projy = projectOnPlane(-camDirs->upward, glm::vec3(0, 0, 1));
+// Camera Control Settins
+void GameScene::CamGizmo(Camera3D* cam) {
+	ImGui::Begin("Camera Control Settings", NULL, ImGuiWindowFlags_AlwaysAutoResize);
+	ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.45f);
+
+	ImGui::DragFloat("Camera Speed", &cam->velocity, 0.005f);
+	ImGui::InputFloat("Speed Multiplier", &cam->speedMultiplier);
+	ImGui::SliderFloat("Mouse Sensitivity", &cam->rotVelocity, 0.005f, 2.0f);
+	ImGui::DragFloat2("Clip Planes Distances", cam->planeDist, 0.001f, 0.0f, 10000000.0f);
+
+	ImGui::End();
+}
+
+// Gizmo degli assi del mondo:
+// In alto a destra c'è una finestra che mostra i 3 assi del mondo e dove sono orientati.
+void GameScene::AxisGizmo(Camera3D* cam) {
+
+	auto projz = projectOnPlane(cam->forward, glm::vec3(0, 0, 1));
+	auto projx = projectOnPlane(cam->left, glm::vec3(0, 0, 1));
+	auto projy = projectOnPlane(-cam->upward, glm::vec3(0, 0, 1));
 
 	const uint32_t WIN_SIZE = 210;
 	const uint32_t WIN_BORDER = 20;
 	ImGui::SetNextWindowSize(ImVec2(WIN_SIZE, WIN_SIZE));
 	ImGui::SetNextWindowPos(ImVec2(FL::Window::getWidth() - WIN_BORDER - WIN_SIZE, WIN_BORDER));
-	ImGui::Begin("Axis Gizmo");
+	ImGui::Begin("Axis Gizmo", NULL, ImGuiWindowFlags_NoResize);
 
 	ImDrawList* draw_list = ImGui::GetWindowDrawList();
 
@@ -63,13 +83,13 @@ void GameScene::Debug()
 	const ImVec2 p = ImGui::GetCursorScreenPos();
 	float x = p.x + 4.0f;
 	float y = p.y + 4.0f;
-	
+
 	float lineWidth = 2.0f;
 	float lineLength = 50;
 	float centerSpacer = 90;
 
 	auto centerPos = ImVec2(x + centerSpacer, y + centerSpacer);
-	
+
 	auto zPos = ImVec2(centerPos.x + projz.x * lineLength, centerPos.y + projz.y * lineLength);
 	auto xPos = ImVec2(centerPos.x + projx.x * lineLength, centerPos.y + projx.y * lineLength);
 	auto yPos = ImVec2(centerPos.x + projy.x * lineLength, centerPos.y + projy.y * lineLength);
@@ -79,11 +99,11 @@ void GameScene::Debug()
 	draw_list->AddLine(centerPos, yPos, coly, lineWidth);
 
 	//calculate and draw arrows tips
-	auto right = glm::vec2(100 , 0);
+	auto right = glm::vec2(100, 0);
 	float angleCone = glm::radians(10.0f);
 	float distanceExtra = 10.0f;
-	
-	
+
+
 	auto newX = glm::vec2(xPos.x, xPos.y) - glm::vec2(centerPos.x, centerPos.y);
 	auto angleX = angleBetween(newX, right);
 	auto lengthX = glm::length(newX);
@@ -108,7 +128,7 @@ void GameScene::Debug()
 	auto pointLinedZ = ImVec2(centerPos.x + projz.x * (lineLength + distanceExtra), centerPos.y + projz.y * (lineLength + distanceExtra));
 
 	draw_list->AddLine(ImVec2(centerPos.x + pointAX.x, centerPos.y + pointAX.y), pointLinedX, colx, lineWidth);
-	draw_list->AddLine(pointLinedX,	ImVec2(centerPos.x + pointCX.x, centerPos.y + pointCX.y), colx, lineWidth);
+	draw_list->AddLine(pointLinedX, ImVec2(centerPos.x + pointCX.x, centerPos.y + pointCX.y), colx, lineWidth);
 
 	draw_list->AddLine(ImVec2(centerPos.x + pointAY.x, centerPos.y + pointAY.y), pointLinedY, coly, lineWidth);
 	draw_list->AddLine(pointLinedY, ImVec2(centerPos.x + pointCY.x, centerPos.y + pointCY.y), coly, lineWidth);
@@ -117,7 +137,6 @@ void GameScene::Debug()
 	draw_list->AddLine(pointLinedZ, ImVec2(centerPos.x + pointCZ.x, centerPos.y + pointCZ.y), colz, lineWidth);
 
 	ImGui::End();
-	
 }
 
 glm::vec2 GameScene::polarToEuclidian(float length, float angle) {

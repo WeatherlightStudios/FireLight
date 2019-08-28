@@ -34,6 +34,8 @@ private:
 	glm::vec3 projectOnPlane(glm::vec3 point, glm::vec3 norm);
 	float angleBetween(glm::vec2 A, glm::vec2 B);
 	glm::vec2 polarToEuclidian(float length, float angle);
+	void AxisGizmo(Camera3D* cam);
+	void CamGizmo(Camera3D* cam);
 };
 
 #endif

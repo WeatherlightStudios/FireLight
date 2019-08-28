@@ -14,7 +14,7 @@ void Camera3DSystem::Update(uint32_t entity)
 	Transform* transform = World::getComponent<Transform>(entity);
 	Camera3D* camera3D = World::getComponent<Camera3D>(entity);
 
-	glm::mat4 projection = glm::perspective(glm::radians(camera3D->m_fov), (float)FL::Window::getWidth() / (float)FL::Window::getHeight(), 0.1f, 100.0f);
+	glm::mat4 projection = glm::perspective(glm::radians(camera3D->m_fov), (float)FL::Window::getWidth() / (float)FL::Window::getHeight(), camera3D->planeDist[0], camera3D->planeDist[1]);
 
 	glm::mat4 yaw = glm::mat4(1.0f);
 	glm::mat4 pitch = glm::mat4(1.0f);
