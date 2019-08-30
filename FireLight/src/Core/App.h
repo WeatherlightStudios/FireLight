@@ -19,12 +19,9 @@
 #include "../../imgui/imgui_impl_glfw.h"
 #include "../../imgui/imgui_impl_opengl3.h"
 
-#include "ECS/World.h"
-#include "../Render/2DRenderSystem.h"
 #include "../Render/RenderManager.h"
 
 
-#include <ft2build.h>
 
 #define BG_COLOR(r,g,b) glClearColor((1.0 / 255.0) * r##.0, (1.0 / 255.0) * g##.0, (1 / 255.0) * b##.0, 1)
 
@@ -70,7 +67,6 @@ namespace FL
 		std::string Title;
 		std::unique_ptr<FL::Window> newWindow;
 
-		//std::unique_ptr<RenderSystem> m_render_system;
 		std::unique_ptr<RenderManager> m_render_manager;
 	};
 }

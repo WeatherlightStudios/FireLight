@@ -11,7 +11,6 @@ Scene::Scene()
 
 void Scene::InitScene()
 {
-	
 	Init();
 	isInizialized = true;
 }

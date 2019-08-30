@@ -169,6 +169,7 @@
     <ClInclude Include="src\Core\App.h" />
     <ClInclude Include="src\Core\Time.h" />
     <ClInclude Include="src\Render\2DRenderSystem.h" />
+    <ClInclude Include="src\Utility\FastNoise.h" />
     <ClInclude Include="src\Utility\RandomNumber.h" />
     <ClInclude Include="src\Utility\Resource.h" />
     <ClInclude Include="src\Utility\Resources\Shader.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="src\Core\App.cpp" />
     <ClCompile Include="src\Core\Time.cpp" />
     <ClCompile Include="src\Render\2DRenderSystem.cpp" />
+    <ClCompile Include="src\Utility\FastNoise.cpp" />
     <ClCompile Include="src\Utility\RandomNumber.cpp" />
     <ClCompile Include="src\Utility\Resource.cpp" />
     <ClCompile Include="src\Utility\Resources\Shader.cpp" />
