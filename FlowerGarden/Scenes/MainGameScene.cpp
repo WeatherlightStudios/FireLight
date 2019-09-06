@@ -79,7 +79,7 @@ void MainGameScene::Init() {
 	auto camera = World::CreateEntity();
 	camera->add_Component<Transform>(glm::vec2(0.0f, 0.0f), 0.0f, glm::vec2(1.0f, 1.0f));
 	camera->add_Component<Camera2D>();
-	RenderSystem::setCamera(camera);
+	//RenderSystem::setCamera(camera);
 
 	World::addGameSystem(new Draggable_S(camera));
 

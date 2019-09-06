@@ -1,14 +1,17 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include "SceneNode.h"
 
 #include <vector>
 #include <string>
 
-using namespace std;
+#include <memory>
+
+#include "GameObject.h"
+
 
 #define SCENE(T) class T : public Scene
+
 
 class Scene
 {
@@ -38,11 +41,25 @@ public:
 
 	//funzione richiamata alla chiusura di una scena solitamente accade quando si cambia scena o quando il gioco si chiude
 	virtual void Close(){}
-	
-private:
-	bool isInizialized;
-	//SimpleRenderSystem m_render_system;
 
+
+
+	//SCENE GRAPH
+	std::weak_ptr<GameObject> CreateGameOject();
+
+	void RemoveGameObject(std::weak_ptr<GameObject>  object);
+	std::weak_ptr<GameObject> GetGameObject(uint32_t ID);
+
+	void SetParent(uint32_t parentID , uint32_t childID);
+
+private:
+
+
+	bool isInizialized;
+
+
+	std::vector<std::shared_ptr<GameObject>> m_object;
+	std::vector<std::weak_ptr<GameObject>> m_parents;
 
 };
 

@@ -25,24 +25,7 @@ public:
 
 
 private:
-	float t; 
 
-	//glm::vec3 camPos;
-
-	float speed;
-
-	float posX, posY, posZ;
-
-
-	float lastX ,lastY;
-
-
-	//camera Test
-	double xpos, ypos;
-
-	//EntityHandler* entity;
-
-	int i;
 };
 
 #endif

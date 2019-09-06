@@ -19,14 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Systems\Benchmark.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\Test_Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Systems\Benchmark.h" />
-    <ClInclude Include="Components\Movement.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Scenes\Test_Scene.h" />
   </ItemGroup>
