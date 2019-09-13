@@ -43,13 +43,27 @@ float GameScene::angleBetween(glm::vec2 A, glm::vec2 B) {
 void GameScene::Debug()
 {
 	auto cam = camera->get_Component<Camera3D>();
-	AxisGizmo(cam);
-	CamGizmo(cam);
+	if (ImGui::BeginMainMenuBar())
+	{
+		if (ImGui::BeginMenu("Tools"))
+		{
+			if (ImGui::MenuItem("Axis Gizmo")) { isAxisGizmoEnabled = !isAxisGizmoEnabled; }
+			if (ImGui::MenuItem("Cam Settins")) { isCamGizmoEnabled = !isCamGizmoEnabled; }
+			ImGui::EndMenu();
+		}
+		ImGui::EndMainMenuBar();
+	}
+	if (isAxisGizmoEnabled)
+		AxisGizmo(cam);
+	if(isCamGizmoEnabled)
+		CamGizmo(cam);
 }
 
 // Camera Control Settins
 void GameScene::CamGizmo(Camera3D* cam) {
-	ImGui::Begin("Camera Control Settings", NULL, ImGuiWindowFlags_AlwaysAutoResize);
+	if (!ImGui::Begin("Camera Control Settings", NULL, ImGuiWindowFlags_AlwaysAutoResize)) {
+		return;
+	}
 	ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.45f);
 
 	ImGui::DragFloat("Camera Speed", &cam->velocity, 0.005f);
@@ -64,15 +78,18 @@ void GameScene::CamGizmo(Camera3D* cam) {
 // In alto a destra c'è una finestra che mostra i 3 assi del mondo e dove sono orientati.
 void GameScene::AxisGizmo(Camera3D* cam) {
 
-	auto projz = projectOnPlane(cam->forward, glm::vec3(0, 0, 1));
-	auto projx = projectOnPlane(cam->left, glm::vec3(0, 0, 1));
-	auto projy = projectOnPlane(-cam->upward, glm::vec3(0, 0, 1));
-
 	const uint32_t WIN_SIZE = 210;
 	const uint32_t WIN_BORDER = 20;
 	ImGui::SetNextWindowSize(ImVec2(WIN_SIZE, WIN_SIZE));
 	ImGui::SetNextWindowPos(ImVec2(FL::Window::getWidth() - WIN_BORDER - WIN_SIZE, WIN_BORDER));
-	ImGui::Begin("Axis Gizmo", NULL, ImGuiWindowFlags_NoResize);
+	
+	if (!ImGui::Begin("Axis Gizmo", NULL, ImGuiWindowFlags_NoResize)) {
+		return;
+	}
+
+	auto projz = projectOnPlane(cam->forward, glm::vec3(0, 0, 1));
+	auto projx = projectOnPlane(cam->left, glm::vec3(0, 0, 1));
+	auto projy = projectOnPlane(-cam->upward, glm::vec3(0, 0, 1));
 
 	ImDrawList* draw_list = ImGui::GetWindowDrawList();
 

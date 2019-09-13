@@ -36,6 +36,9 @@ private:
 	glm::vec2 polarToEuclidian(float length, float angle);
 	void AxisGizmo(Camera3D* cam);
 	void CamGizmo(Camera3D* cam);
+
+	bool isAxisGizmoEnabled = false;
+	bool isCamGizmoEnabled = false;
 };
 
 #endif
