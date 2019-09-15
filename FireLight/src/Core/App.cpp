@@ -50,8 +50,6 @@ void FL::App::MainLoop()
 			SceneManager::UpdateCurrentScene();
 			Time::Reset();
 			newWindow->clearKeys();
-
-			ImGui::Text("Hello");
 		}
 
 
@@ -98,6 +96,7 @@ void FL::App::Render()
 
 void FL::App::ShutDown()
 {
+	SceneManager::CloseCurrentScene();
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();

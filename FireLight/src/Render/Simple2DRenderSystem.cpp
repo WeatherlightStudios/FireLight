@@ -10,7 +10,7 @@ void Simple2DRenderSystem::Init()
 {
 
 	Resource::LoadShader("source/Shaders/2D_shader.vert","source/Shaders/2D_shader.frag", NULL, "shader");
-	Resource::LoadTexture("source/Texture/Front.png", true, "sprite");
+	Resource::LoadTexture("source/Texture/Sprite-Test.png", true, "sprite");
 
 
 
@@ -45,7 +45,7 @@ void Simple2DRenderSystem::Init()
 
 
 
-	projection = glm::ortho(-1.0f, 1.0f,-1.0f, 1.0f,0.001f,1000.0f); 
+	projection = glm::ortho(-800.0f, 800.0f,-600.0f, 600.0f,0.001f,1000.0f); 
 	projection = glm::translate(projection, glm::vec3(0, 0, -3));
 								 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(0,0,0));
@@ -54,19 +54,25 @@ void Simple2DRenderSystem::Init()
 
 void Simple2DRenderSystem::Draw(Sprite* sp)
 {
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(sp->GetPosition(), 0));
-	model = glm::scale(model, glm::vec3(sp->GetScale(), 1));
-	model = glm::rotate(model, sp->GetRotation(), glm::vec3(0, 0, 1));
-
-
 	auto shader = Resource::getShader("shader");
 	auto texture = Resource::getTexture("sprite");
+
+	glm::vec2 row = sp->m_row;
+	glm::vec2 offset = sp->m_offset;
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(sp->m_position, 0));
+	model = glm::scale(model, glm::vec3(sp->m_scale + glm::vec2(texture.Width / row.x, texture.Height / row.y), 1));
+	model = glm::rotate(model, sp->m_rotation, glm::vec3(0, 0, 1));
+
+
 
 	texture.Bind();
 	shader.Use();
 
 	shader.SetMatrix4("projection", projection);
 	shader.SetMatrix4("model", model);
+	shader.SetVector2f("row", row);
+	shader.SetVector2f("offset", offset);
 
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 

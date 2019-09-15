@@ -50,6 +50,7 @@ public:
 		for (auto& e : m_object)
 		{
 			e->Debug();
+			e->DebugComponents();
 		}
 	}
 

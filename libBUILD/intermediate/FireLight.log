@@ -1,14 +1,29 @@
 ﻿E:\VisualStudio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(376,5): warning MSB8004: la directory Intermediate non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Intermediate.
 E:\VisualStudio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: la directory Output non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Output.
-  App.cpp
-  Component.cpp
-  GameObject.cpp
-  Scene.cpp
-e:\git-projects\firelightengine\firelight\src\core\scene.cpp(53): warning C4267: 'inizializzazione': conversione da 'size_t' a 'uint32_t'. Possibile perdita di dati.
-  SceneManager.cpp
   Sprite.cpp
-  Simple2DRenderSystem.cpp
-  Generazione del codice in corso...
+e:\git-projects\firelightengine\firelight\src\render\components\sprite.cpp(27): warning C4244: 'inizializzazione': conversione da 'T' a 'int'. Possibile perdita di dati.
+          with
+          [
+              T=float
+          ]
+e:\git-projects\firelightengine\firelight\src\render\components\sprite.cpp(28): warning C4244: 'inizializzazione': conversione da 'T' a 'int'. Possibile perdita di dati.
+          with
+          [
+              T=float
+          ]
+e:\git-projects\firelightengine\firelight\src\render\components\sprite.cpp(30): warning C4244: 'inizializzazione': conversione da 'T' a 'int'. Possibile perdita di dati.
+          with
+          [
+              T=float
+          ]
+e:\git-projects\firelightengine\firelight\src\render\components\sprite.cpp(31): warning C4244: 'inizializzazione': conversione da 'T' a 'int'. Possibile perdita di dati.
+          with
+          [
+              T=float
+          ]
+e:\git-projects\firelightengine\firelight\src\render\components\sprite.cpp(35): warning C4101: 'y': variabile locale senza riferimenti
+e:\git-projects\firelightengine\firelight\src\render\components\sprite.cpp(34): warning C4101: 'x': variabile locale senza riferimenti
+e:\git-projects\firelightengine\firelight\src\render\components\sprite.cpp(37): warning C4101: 'rot': variabile locale senza riferimenti
 freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR giα definito in opengl32.lib(OPENGL32.dll); seconda definizione ignorata
 freetype.lib(freetype.dll) : warning LNK4221: Questo file oggetto non definisce simboli pubblici non definiti in precedenza, pertanto verrα utilizzato da qualsiasi operazione di collegamento che utilizza la libreria
   FireLight.vcxproj -> E:\Git-Projects\FireLightEngine\libBUILD\FireLight.lib

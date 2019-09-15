@@ -37,6 +37,7 @@ void GameObject::DebugComponents()
 void GameObject::AddComponent(std::shared_ptr<Component> component)
 {
 	component->Init();
+	component->setGameObject(this);
 	m_components.push_back(std::move(component));
 }
 void GameObject::RemoveComponent(std::shared_ptr<Component> component)

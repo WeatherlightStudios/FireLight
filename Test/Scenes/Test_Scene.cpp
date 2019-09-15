@@ -25,6 +25,7 @@ void Test_Scene::Init()
 
 void Test_Scene::Update()
 {
+
 }
 
 void Test_Scene::Close()
