@@ -16,14 +16,15 @@ Test_Scene::Test_Scene()
 void Test_Scene::Init()
 {
 	auto player = CreateGameOject();
-	auto player2 = CreateGameOject();
+	player.lock()->AddComponent(std::make_shared<Sprite>());
+
+
 
 
 }
 
 void Test_Scene::Update()
 {
-
 }
 
 void Test_Scene::Close()

@@ -6,8 +6,9 @@ class Component
 public:
 	Component();
 
-	virtual void Init();
-	virtual void Update();
+	virtual void Init() {}
+	virtual void Update() {}
+	virtual void Debug() {}
 
 	~Component();
 

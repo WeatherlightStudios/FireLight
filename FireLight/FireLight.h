@@ -5,6 +5,9 @@
 #include "src\Core\Scene.h"
 #include "src\Core\SceneManager.h"
 #include "src\Utility\Resource.h"
+
+#include "src/Render/Components/Sprite.h"
+
 #include "src\Core\Window.h"
 #include "src\Core\Input.h"
 #include "src\Core\Time.h"

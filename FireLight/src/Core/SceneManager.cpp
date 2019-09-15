@@ -1,21 +1,21 @@
 #include "SceneManager.h"
 
 
-std::map<std::string, Scene*>	SceneManager::m_scenes;
+std::map<std::string, std::unique_ptr<Scene>>	SceneManager::m_scenes;
 Scene* SceneManager::m_current_scene;
 
 SceneManager::SceneManager()
 {
 }
 
-void SceneManager::AddScene(Scene* scene, std::string name)
+void SceneManager::AddScene(std::unique_ptr<Scene> scene, std::string name)
 {
-	m_scenes[name] = scene;
+	m_scenes[name] = std::move(scene);
 }
 
 void SceneManager::setCurrentScene(std::string name)
 {
-	m_current_scene = m_scenes[name];
+	m_current_scene = m_scenes[name].get();
 	m_current_scene->InitScene();
 }
 
@@ -34,7 +34,10 @@ void SceneManager::UpdateCurrentScene()
 void SceneManager::DebugCurrentScene()
 {
 	if (m_current_scene != nullptr)
+	{
 		m_current_scene->Debug();
+		m_current_scene->DebugObjects();
+	}
 }
 
 void SceneManager::CloseCurrentScene()
@@ -43,10 +46,17 @@ void SceneManager::CloseCurrentScene()
 		m_current_scene->Close();
 }
 
+
+void SceneManager::DrawCurrentScene()
+{
+	if (m_current_scene != nullptr)
+		m_current_scene->Render();
+}
+
 void SceneManager::changeCurrentSceneTo(std::string name)
 {
 	SceneManager::CloseCurrentScene();
-	m_current_scene = m_scenes[name];
+	m_current_scene = m_scenes[name].get();
 	SceneManager::InitCurrentScene();
 }
 

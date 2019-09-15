@@ -9,6 +9,8 @@
 
 #include "GameObject.h"
 
+#include "../Render/Simple2DRenderSystem.h"
+
 
 #define SCENE(T) class T : public Scene
 
@@ -43,6 +45,14 @@ public:
 	virtual void Close(){}
 
 
+	void DebugObjects()
+	{
+		for (auto& e : m_object)
+		{
+			e->Debug();
+		}
+	}
+
 
 	//SCENE GRAPH
 	std::weak_ptr<GameObject> CreateGameOject();
@@ -52,7 +62,7 @@ public:
 
 	void SetParent(uint32_t parentID , uint32_t childID);
 
-private:
+protected:
 
 
 	bool isInizialized;
@@ -60,6 +70,9 @@ private:
 
 	std::vector<std::shared_ptr<GameObject>> m_object;
 	std::vector<std::weak_ptr<GameObject>> m_parents;
+
+	std::unique_ptr<Simple2DRenderSystem> m_render;
+
 
 };
 

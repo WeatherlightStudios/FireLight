@@ -50,6 +50,8 @@ void FL::App::MainLoop()
 			SceneManager::UpdateCurrentScene();
 			Time::Reset();
 			newWindow->clearKeys();
+
+			ImGui::Text("Hello");
 		}
 
 
@@ -57,8 +59,6 @@ void FL::App::MainLoop()
 
 		SceneManager::DebugCurrentScene();
 
-		//FPS
-		//std::cout << "biscotti" << std::endl;
 
 		ImGui::Text("FPS: %d", currentFPS);
 
@@ -92,7 +92,7 @@ void FL::App::Render()
 {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	
-	
+	SceneManager::DrawCurrentScene();
 
 }
 

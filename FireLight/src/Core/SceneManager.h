@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include <memory>
 #include "Scene.h"
 
 class SceneManager
@@ -11,14 +12,14 @@ public:
 	SceneManager();
 	~SceneManager();
 
-	static void AddScene(Scene *scene, std::string name);
+	static void AddScene(std::unique_ptr<Scene> scene, std::string name);
 
 	static void setCurrentScene(std::string name);
 
 	static void InitCurrentScene();
 	static void UpdateCurrentScene();
 	static void DebugCurrentScene();
-
+	static void DrawCurrentScene();
 	static void CloseCurrentScene();
 
 	static void changeCurrentSceneTo(std::string name);
@@ -27,7 +28,7 @@ public:
 private:
 
 	static Scene* m_current_scene;
-	static std::map<std::string, Scene*> m_scenes;
+	static std::map<std::string, std::unique_ptr<Scene>> m_scenes;
 
 
 };

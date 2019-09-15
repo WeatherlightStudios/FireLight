@@ -6,22 +6,37 @@
 Scene::Scene()
 {
 	isInizialized = false;
+	m_render = std::make_unique<Simple2DRenderSystem>();
 }
 
 
 void Scene::InitScene()
 {
-	
 	Init();
+	m_render->Init();
 	isInizialized = true;
 }
 void Scene::UpdateScene()
 {
 	Update();
+
+
+	for (auto& e : m_object)
+	{
+		e->UpdateGameObject();
+	}
 }
 
 void Scene::Render()
 {
+	for (auto& e : m_object)
+	{
+		Sprite* component = e->GetComponent<Sprite>();
+		if (component != nullptr)
+		{
+			m_render->Draw(component);
+		}
+	}
 
 }
 

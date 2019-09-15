@@ -18,13 +18,6 @@ void GameObject::UpdateGameObject()
 	UpdateComponents();
 }
 
-void GameObject::InitComponents()
-{
-	for (auto& e : m_components)
-	{
-		//TODO: Init Components
-	}
-}
 void GameObject::UpdateComponents() 
 {
 	for (auto& e : m_components)
@@ -33,10 +26,18 @@ void GameObject::UpdateComponents()
 	}
 }
 
+void GameObject::DebugComponents()
+{
+	for (auto& e : m_components)
+	{
+		e->Debug();
+	}
+}
+
 void GameObject::AddComponent(std::shared_ptr<Component> component)
 {
-	m_components.push_back(std::move(component));
 	component->Init();
+	m_components.push_back(std::move(component));
 }
 void GameObject::RemoveComponent(std::shared_ptr<Component> component)
 {

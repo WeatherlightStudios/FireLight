@@ -4,7 +4,7 @@
 #include <FireLight.h>
 #include <memory>
 
-
+//#include "../Component/TestComponent.h"
 
 
 class Test_Scene : public Scene

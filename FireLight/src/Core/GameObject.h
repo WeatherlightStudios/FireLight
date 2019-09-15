@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <typeinfo> 
 
 #include "Component.h"
 
@@ -15,26 +16,47 @@ class GameObject
 {
 public:
 	GameObject();
+	//Camera
+	//Sprite
+
+public:
+
 
 	virtual void Init() {}
 	virtual void Update() {}
+	virtual void Debug() {}
+
 
 	void InitGameObject();
 	void UpdateGameObject();
 
-	void InitComponents();
 	void UpdateComponents();
+	void DebugComponents();
 
 	void AddComponent(std::shared_ptr<Component> component);
 	void RemoveComponent(std::shared_ptr<Component> component);
 
+	template<class T>
+	T* GetComponent()
+	{
+		for (auto& e : m_components)
+		{
+			if (dynamic_cast<T*>(e.get()) != nullptr)
+			{
+				return (T*)e.get();
+			}
+		}
+
+		return nullptr;
+
+	}
 
 	void SetID(uint32_t id) { ID = id; }
 	uint32_t GetID() { return ID; }
 
 	void SetScene(Scene* scene) { m_scene = scene; }
 
-	//nel caso serva verrai implementato
+	//nel caso serva verra implementato
 	//void GetComponent();
 	//void GetComponents();
 
