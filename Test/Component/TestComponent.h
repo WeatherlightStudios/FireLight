@@ -6,13 +6,7 @@
 class TestComponent : public Component
 {
 public:
-	TestComponent();
-
 	void Init();
 	void Update();
-
-	~TestComponent();
 };
-
-
 #endif 

@@ -7,14 +7,9 @@
 class Game : public FL::App
 {
 public:
-	Game();
-
 	void Init();
 
-	~Game();
-
 private:
-
 	std::unique_ptr<Test_Scene> m_scene;
 };
 
