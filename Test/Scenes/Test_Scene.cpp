@@ -11,10 +11,13 @@ void Test_Scene::Init()
 	FL::LOG_DOUBT_ENGINE("Should this work?");
 	FL::LOG_INFO("Working...");
 	FL::LOG_SUCC_ENGINE("This is working!");
+
+	FL::LOG_ERROR("frase con numero ", 3.14f);
+
 }
 
 void Test_Scene::Update()
-{
+{	
 	if (FL::Window::isKeyDown(KEYCODE::KEY_SPACE)) {
 		FL::LOG_ERROR("This shouldn't work!");
 	}

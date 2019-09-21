@@ -80,9 +80,11 @@ namespace FL {
 		return true;
 	}
 
-
 	void Log::Generic(Raiser raiser, Type type, std::string prefix, ImVec4 col, std::string message) {
 		logs.push_back(std::make_tuple(raiser, type, prefix, col, message));
 	}
+
+
+	
 
 }
