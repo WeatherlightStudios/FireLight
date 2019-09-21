@@ -23,7 +23,7 @@ namespace FL {
 		static std::vector<std::tuple<Raiser, Type, std::string, ImVec4, std::string>> logs;
 		
 		static bool shouldDisplay(Raiser, Type);
-
+		static void ClearLogs();
 		//should show window
 		static bool showLogWindow;
 

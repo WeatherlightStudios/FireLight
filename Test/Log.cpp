@@ -33,6 +33,9 @@ namespace FL {
 				ImGui::Checkbox("Show Info Logs", &showInfoLogs);
 				ImGui::EndMenu();
 			}
+			if (ImGui::Button("Clear")) {
+				ClearLogs();
+			}
 			ImGui::EndMenuBar();
 		}
 
@@ -56,6 +59,10 @@ namespace FL {
 		}
 
 		ImGui::End();
+	}
+
+	void Log::ClearLogs() {
+		logs.clear();
 	}
 
 	//Check to see if it should display this current log line
