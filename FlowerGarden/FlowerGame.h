@@ -8,11 +8,9 @@
 class FlowerGame : public FL::App
 {
 public:
-	FlowerGame();
+	FlowerGame() = default;
 
 	void Init();
-
-	~FlowerGame();
 
 private:
 
