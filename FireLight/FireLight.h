@@ -15,4 +15,6 @@
 
 #include "src\Core\GameObject.h"
 
+#include "imgui/imgui.h"
+
 #endif
