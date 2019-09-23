@@ -15,9 +15,17 @@ Test_Scene::Test_Scene()
 
 void Test_Scene::Init()
 {
+	Resource::LoadTexture("source/Texture/Sprite-Test.png", true, "sprite");
+
+
 	auto player = CreateGameOject();
+	player.lock()->AddComponent(std::make_shared<Transform>(glm::vec2(0,0), glm::vec2(1,1), 0.0f));
+
 	player.lock()->AddComponent(std::make_shared<Sprite>());
 
+	player.lock()->GetComponent<Sprite>()->m_texture = Resource::getTexture("sprite");
+	player.lock()->GetComponent<Sprite>()->m_row = glm::vec2(1, 1);
+	player.lock()->GetComponent<Sprite>()->m_offset = glm::vec2(0,0);
 
 
 

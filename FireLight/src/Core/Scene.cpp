@@ -29,14 +29,21 @@ void Scene::UpdateScene()
 
 void Scene::Render()
 {
+
+	m_render->Begin();
 	for (auto& e : m_object)
 	{
 		Sprite* component = e->GetComponent<Sprite>();
+		Transform* trnasf = e->GetComponent<Transform>();
 		if (component != nullptr)
 		{
-			m_render->Draw(component);
+			m_render->SubmitSprite(trnasf, component);
 		}
 	}
+	m_render->End();
+
+	
+	m_render->Flush();
 
 }
 

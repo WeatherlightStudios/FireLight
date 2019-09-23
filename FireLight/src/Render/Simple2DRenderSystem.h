@@ -8,6 +8,17 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "Components/Sprite.h"
+#include "Components/Transform.h"
+
+
+
+
+
+struct GLSprite
+{
+	glm::vec3 vertex;
+	glm::vec2 uv;
+};
 
 
 class Simple2DRenderSystem
@@ -18,18 +29,23 @@ public:
 
 	void Init();
 
-	void Draw(Sprite* sp);
+	void Begin();
+	void SubmitSprite(Transform* transform, Sprite* sprite);
+	void End();
 
-	void DrawLine();
-	void DrawCircle();
-	void DrawQuad();
-	
-	void DrawFilledQuad();
+	void Flush();
+
+	//void Draw(Sprite* sp);
+
+
 
 
 	~Simple2DRenderSystem();
 
 private:
+
+	GLSprite* m_spriteBuffer;
+
 
 	GLuint VAO, VBO, IBO;
 
@@ -37,6 +53,14 @@ private:
 	glm::mat4 model;
 
 
+	uint32_t m_IndexCounter;
+
+
+	const uint32_t MAX_SPRITES = 100000;
+	const size_t VERTEX_SIZE = sizeof(GLSprite);
+	const size_t SPRITE_SIZE = VERTEX_SIZE * 4;
+	const size_t VERTEX_BUFFER_SIZE = SPRITE_SIZE * MAX_SPRITES;
+	const size_t INDEX_BUFFER_SIZE = MAX_SPRITES * 6;
 
 
 };
