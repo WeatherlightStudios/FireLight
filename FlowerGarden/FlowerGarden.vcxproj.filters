@@ -24,30 +24,12 @@
     <ClCompile Include="Scenes\MainGameScene.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\Draggable_S.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="Systems\Grid_S.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FlowerGame.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\MainGameScene.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Draggable.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\Draggable_S.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Grid.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\Grid_S.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

@@ -127,19 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Systems\Draggable_S.cpp" />
     <ClCompile Include="FlowerGame.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\MainGameScene.cpp" />
-    <ClCompile Include="Systems\Grid_S.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Components\Draggable.h" />
-    <ClInclude Include="Components\Grid.h" />
-    <ClInclude Include="Systems\Draggable_S.h" />
     <ClInclude Include="FlowerGame.h" />
     <ClInclude Include="Scenes\MainGameScene.h" />
-    <ClInclude Include="Systems\Grid_S.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
