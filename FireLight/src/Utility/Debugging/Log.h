@@ -21,16 +21,21 @@ namespace FL {
 		static void Draw();
 		static void Generic(Raiser raiser, Type type, std::string prefix, ImVec4 col, std::string message);
 		
-		template<typename T>
-		static std::string Format(T text) {
-			throw "Type of Data not implemented for formatting, you should implement it yourself";
+		template <typename T, typename... Args>
+		static std::string Format(T t1, Args... args) {
+			std::stringstream s;
+			(s << t1 << Format(args...));
+			return s.str();
 		}
 
-		template<> static std::string Format<int>(int text) { return std::to_string(text); }
-		template<> static std::string Format<float>(float text) { return std::to_string(text); }
-		template<> static std::string Format<double>(double text) { return std::to_string(text); }
-		template<> static std::string Format<std::string>(std::string text) { return text; }
-		template<> static std::string Format<const char*>(const char* text) { return text; }
+		template<typename T>
+		static std::string Format(T t1)
+		{
+			std::stringstream s;
+			s << t1;
+			return s.str();
+		}
+		
 		template<> static std::string Format<glm::vec2>(glm::vec2 text) { return "[" + std::to_string(text.x) + ", " + std::to_string(text.y) + "]"; }
 		template<> static std::string Format<glm::vec3>(glm::vec3 text) { return "[" + std::to_string(text.x) + ", " + std::to_string(text.y) + ", " + std::to_string(text.z) + "]"; }
 		template<> static std::string Format<glm::vec4>(glm::vec4 text) { return "[" + std::to_string(text.x) + ", " + std::to_string(text.y) + ", " + std::to_string(text.z) + ", " + std::to_string(text.w) + "]"; }
@@ -38,20 +43,6 @@ namespace FL {
 			if(text)
 				return "true";
 			return "false";
-		}
-		template<> static std::string Format<const void*>(const void* text) {
-			std::stringstream ss;
-			ss << text;  
-			return ss.str();
-			/*
-			const void * address = static_cast<const void*>(this);
-			std::string name = ss.str(); 
-			*/
-		}
-
-		template<typename T, typename... Args>
-		static std::string Format(T text, Args... args) {
-			return Format(text) + Format(args...);
 		}
 
 	private:

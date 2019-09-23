@@ -2,8 +2,8 @@
 
 void Draggable::Init()
 {
-	FL::LOG_INFO("this gameObject is ", static_cast<const void*>(gameObject));
-	FL::LOG_ERROR("this Object is ", static_cast<const void*>(this));
+	FL::LOG_INFO("this gameObject is ", gameObject);
+	FL::LOG_ERROR("this Object is ", this);
 	homePos = gameObject->GetComponent<Transform>()->GetPosition();
 }
 
