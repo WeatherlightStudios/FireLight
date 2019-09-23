@@ -20,7 +20,7 @@
 #include "../../imgui/imgui_impl_opengl3.h"
 
 
-#include "../Utility/Debug/Log.h"
+#include "../Utility/Debugging/Log.h"
 
 #include <ft2build.h>
 

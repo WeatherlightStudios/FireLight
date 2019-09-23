@@ -158,7 +158,7 @@
     <ClInclude Include="src\Core\SceneManager.h" />
     <ClInclude Include="src\Core\App.h" />
     <ClInclude Include="src\Core\Time.h" />
-    <ClInclude Include="src\Utility\Debug\Log.h" />
+    <ClInclude Include="src\Utility\Debugging\Log.h" />
     <ClInclude Include="src\Utility\RandomNumber.h" />
     <ClInclude Include="src\Utility\Resource.h" />
     <ClInclude Include="src\Utility\Resources\Shader.h" />
@@ -185,7 +185,7 @@
     <ClCompile Include="src\Core\SceneManager.cpp" />
     <ClCompile Include="src\Core\App.cpp" />
     <ClCompile Include="src\Core\Time.cpp" />
-    <ClCompile Include="src\Utility\Debug\Log.cpp" />
+    <ClCompile Include="src\Utility\Debugging\Log.cpp" />
     <ClCompile Include="src\Utility\RandomNumber.cpp" />
     <ClCompile Include="src\Utility\Resource.cpp" />
     <ClCompile Include="src\Utility\Resources\Shader.cpp" />
