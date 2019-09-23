@@ -86,15 +86,15 @@ void Simple2DRenderSystem::SubmitSprite(Transform* transform, Sprite* sprite)
 	m_spriteBuffer->uv = glm::vec2(sprite->m_offset.x / sprite->m_row.x, (1 + sprite->m_offset.y) / sprite->m_row.y);
 	m_spriteBuffer++;
 
-	m_spriteBuffer->vertex = glm::vec3(vertexPos.x - sizeX, sizeY, 1);
+	m_spriteBuffer->vertex = glm::vec3(vertexPos.x - sizeX, vertexPos.y + sizeY, 1);
 	m_spriteBuffer->uv = glm::vec2(sprite->m_offset.x / sprite->m_row.x, sprite->m_offset.y / sprite->m_row.y);
 	m_spriteBuffer++;
 
-	m_spriteBuffer->vertex = glm::vec3(sizeX, sizeY, 1);
+	m_spriteBuffer->vertex = glm::vec3(vertexPos.x + sizeX, vertexPos.y +  sizeY, 1);
 	m_spriteBuffer->uv = glm::vec2((1 + sprite->m_offset.x) / sprite->m_row.x, sprite->m_offset.y / sprite->m_row.y);
 	m_spriteBuffer++;
 
-	m_spriteBuffer->vertex = glm::vec3(sizeX, -sizeY, 1);
+	m_spriteBuffer->vertex = glm::vec3(vertexPos.x + sizeX, vertexPos.y - sizeY, 1);
 	m_spriteBuffer->uv = glm::vec2((1 + sprite->m_offset.x) / sprite->m_row.x, (1 + sprite->m_offset.y) / sprite->m_row.y);
 	m_spriteBuffer++;
 

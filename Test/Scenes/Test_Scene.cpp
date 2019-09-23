@@ -4,7 +4,7 @@
 
 void Test_Scene::Init()
 {
-	Resource::LoadTexture("source/Texture/Sprite-Test.png", true, "sprite");
+	Resource::LoadTexture("Resources/Texture/Sprite-Test.png", true, "sprite");
 
 
 	auto player = CreateGameOject();
