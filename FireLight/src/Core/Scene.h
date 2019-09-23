@@ -56,7 +56,7 @@ public:
 
 
 	//SCENE GRAPH
-	std::weak_ptr<GameObject> CreateGameOject();
+	std::shared_ptr<GameObject> CreateGameOject();
 
 	void RemoveGameObject(std::weak_ptr<GameObject>  object);
 	std::weak_ptr<GameObject> GetGameObject(uint32_t ID);

@@ -55,7 +55,7 @@ void Scene::CloseScene()
 
 //SCENE GRAPH
 
-std::weak_ptr<GameObject> Scene::CreateGameOject()
+std::shared_ptr<GameObject> Scene::CreateGameOject()
 {
 	uint32_t size = m_object.size();
 	m_object.push_back(std::make_shared<GameObject>());

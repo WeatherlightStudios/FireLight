@@ -9,7 +9,10 @@ class Transform : public Component
 {
 public:
 	Transform();
-	Transform(glm::vec2 pos, glm::vec2 scale, float rot);
+	Transform(glm::vec2 pos);
+	Transform(glm::vec2 pos, float rot);
+	Transform(glm::vec2 pos, glm::vec2 scale);
+	Transform(glm::vec2 pos, float rot, glm::vec2 scale);
 
 
 	void SetPosition(glm::vec2 pos) { m_position = pos; }

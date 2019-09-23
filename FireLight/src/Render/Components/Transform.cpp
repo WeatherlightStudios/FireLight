@@ -1,16 +1,29 @@
 #include "Transform.h"
 
 
-Transform::Transform()
+Transform::Transform():
+	m_position(glm::vec2(0,0)), m_rotation(0.0f), m_scale(glm::vec2(1,1))
 {
-
 }
 
-Transform::Transform(glm::vec2 pos, glm::vec2 scale, float rot)
+Transform::Transform(glm::vec2 pos, float rot, glm::vec2 scale) :
+	m_position(pos), m_rotation(rot), m_scale(scale)
 {
-	m_position = pos;
-	m_scale = scale;
-	m_rotation = rot;
+}
+
+Transform::Transform(glm::vec2 pos) :
+	m_position(pos), m_rotation(0.0f), m_scale(glm::vec2(1,1))
+{
+}
+
+Transform::Transform(glm::vec2 pos, float rot) :
+	m_position(pos), m_rotation(rot), m_scale(glm::vec2(1, 1))
+{
+}
+
+Transform::Transform(glm::vec2 pos, glm::vec2 scale) :
+	m_position(pos), m_rotation(0.0f), m_scale(scale)
+{
 }
 
 

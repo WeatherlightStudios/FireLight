@@ -13,6 +13,7 @@ class Sprite : public Component
 {
 public:
 	Sprite();
+	Sprite(Texture tex, glm::vec2 rows, glm::vec2 offset);
 	~Sprite();
 
 	void Debug();

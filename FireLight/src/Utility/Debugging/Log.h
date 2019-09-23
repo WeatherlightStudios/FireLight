@@ -4,11 +4,11 @@
 #include <glm/glm.hpp>
 #include "../../../imgui/imgui.h"
 
-
 #include <string>
 #include <vector>
 #include <tuple>
 #include <memory>
+#include <sstream>
 
 namespace FL {
 	
@@ -34,6 +34,20 @@ namespace FL {
 		template<> static std::string Format<glm::vec2>(glm::vec2 text) { return "[" + std::to_string(text.x) + ", " + std::to_string(text.y) + "]"; }
 		template<> static std::string Format<glm::vec3>(glm::vec3 text) { return "[" + std::to_string(text.x) + ", " + std::to_string(text.y) + ", " + std::to_string(text.z) + "]"; }
 		template<> static std::string Format<glm::vec4>(glm::vec4 text) { return "[" + std::to_string(text.x) + ", " + std::to_string(text.y) + ", " + std::to_string(text.z) + ", " + std::to_string(text.w) + "]"; }
+		template<> static std::string Format<bool>(bool text) {
+			if(text)
+				return "true";
+			return "false";
+		}
+		template<> static std::string Format<const void*>(const void* text) {
+			std::stringstream ss;
+			ss << text;  
+			return ss.str();
+			/*
+			const void * address = static_cast<const void*>(this);
+			std::string name = ss.str(); 
+			*/
+		}
 
 		template<typename T, typename... Args>
 		static std::string Format(T text, Args... args) {
