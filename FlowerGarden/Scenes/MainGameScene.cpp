@@ -4,7 +4,6 @@
 void MainGameScene::Init() {
 	//auto sheet_transp = Resource::LoadTexture("Resources/Sprites/Sprites_Transparent.png", true, "sheet_transp");
 	auto sheet_black  = Resource::LoadTexture("Resources/Sprites/Sprites_BlackBG.png",    true, "sprite");
-	auto shader = Resource::LoadShader("Resources/Shaders/2D_shader.vert", "Resources/Shaders/2D_shader.frag", NULL, "2D_shader");
 
 	auto player = CreateGameOject().lock();
 	player->AddComponent(std::make_shared<Transform>(glm::vec2(0, 0), glm::vec2(1, 1), 0.0f));

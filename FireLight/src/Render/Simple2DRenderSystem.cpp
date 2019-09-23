@@ -9,7 +9,7 @@ Simple2DRenderSystem::Simple2DRenderSystem()
 void Simple2DRenderSystem::Init()
 {
 
-	Resource::LoadShader("source/Shaders/2D_shader.vert","source/Shaders/2D_shader.frag", NULL, "shader");
+	Resource::LoadShader("Resources/Shaders/2D_shader.vert","Resources/Shaders/2D_shader.frag", NULL, "shader");
 
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
