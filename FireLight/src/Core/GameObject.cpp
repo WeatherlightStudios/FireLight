@@ -4,7 +4,7 @@
 
 GameObject::GameObject()
 {
-	std::cout << "Object is Created" << std::endl;
+	FL::LOG_INFO_ENGINE("ObjectIsCreated");
 }
 
 void GameObject::InitGameObject()
@@ -62,5 +62,5 @@ void GameObject::RemoveChildren(std::weak_ptr<GameObject> children)
 
 GameObject::~GameObject()
 {
-	std::cout << "Object is Destroyed" << std::endl;
+	FL::LOG_INFO_ENGINE("ObjectIsDestroyed");
 }

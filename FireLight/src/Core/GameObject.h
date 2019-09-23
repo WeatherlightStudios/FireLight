@@ -9,6 +9,8 @@
 
 #include "Component.h"
 
+#include "../Utility/Debug/Log.h"
+
 class Scene;
 
 

@@ -1,8 +1,7 @@
 #include "Test_Scene.h"
 #include <math.h>
-#include <GLFW\glfw3.h>
 #include <iostream>
-#include "..\Log.h"
+
 void Test_Scene::Init()
 {
 	Resource::LoadTexture("source/Texture/Sprite-Test.png", true, "sprite");
@@ -20,8 +19,6 @@ void Test_Scene::Init()
 	player.lock()->GetComponent<Sprite>()->m_texture = Resource::getTexture("sprite");
 	player.lock()->GetComponent<Sprite>()->m_row = glm::vec2(1, 1);
 	player.lock()->GetComponent<Sprite>()->m_offset = glm::vec2(0,0);
-
-
 
 	FL::LOG_ERROR("frase con numero ", 3.14f);
 
@@ -58,5 +55,4 @@ void Test_Scene::Close()
 
 void Test_Scene::Debug()
 {
-	FL::Log::Draw();
 }

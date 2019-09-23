@@ -5,6 +5,7 @@
 #include "src\Core\Scene.h"
 #include "src\Core\SceneManager.h"
 #include "src\Utility\Resource.h"
+#include "src/Utility/Debug/Log.h"
 
 #include "src/Render/Components/Sprite.h"
 
@@ -16,5 +17,6 @@
 #include "src\Core\GameObject.h"
 
 #include "imgui/imgui.h"
+
 
 #endif

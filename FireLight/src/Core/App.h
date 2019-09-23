@@ -19,6 +19,9 @@
 #include "../../imgui/imgui_impl_glfw.h"
 #include "../../imgui/imgui_impl_opengl3.h"
 
+
+#include "../Utility/Debug/Log.h"
+
 #include <ft2build.h>
 
 #define BG_COLOR(r,g,b) glClearColor((1.0 / 255.0) * r##.0, (1.0 / 255.0) * g##.0, (1 / 255.0) * b##.0, 1)
@@ -38,12 +41,14 @@ namespace FL
 		//Function that initializes all subsystems of the engine
 		void Start();
 
+		void Set_DEBUG_MODE(bool Debug_Mode) { DEBUG_MODE = Debug_Mode; }
 		void SetWindowDimension(int width, int height);
 		void SetWindowName(std::string name);
 	protected:
 
 		//The GameLoop itself
 		void MainLoop();
+
 
 		//This fucnction provides initialization for the user to initialize the Scene of the engine and load Stuff
 		//The function needs to be created when the App class is inherited
@@ -59,6 +64,9 @@ namespace FL
 		double currentTime;
 		int frameRate;
 		int currentFPS;
+
+		bool DEBUG_MODE;
+
 
 		int	Width;
 		int	Height;

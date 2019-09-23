@@ -54,8 +54,11 @@ void FL::App::MainLoop()
 
 
 
-
-		SceneManager::DebugCurrentScene();
+		if (DEBUG_MODE)
+		{
+			SceneManager::DebugCurrentScene();
+			FL::Log::Draw();
+		}
 
 
 		ImGui::Text("FPS: %d", currentFPS);
