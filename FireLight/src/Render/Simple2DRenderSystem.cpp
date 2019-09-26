@@ -114,22 +114,22 @@ void Simple2DRenderSystem::SubmitSprite(Transform* transform, Sprite* sprite)
 	glm::vec3 vertexPos(transform->GetPosition().x, transform->GetPosition().y, 0);
 
 
-	m_spriteBuffer->vertex = glm::vec3(vertexPos.x - sizeX, vertexPos.y - sizeY, 1);
+	m_spriteBuffer->vertex = glm::vec3(vertexPos.x - sizeX, vertexPos.y - sizeY, sprite->ZLayer);
 	m_spriteBuffer->uv = glm::vec2(sprite->m_offset.x / sprite->m_row.x, (1 + sprite->m_offset.y) / sprite->m_row.y);
 	m_spriteBuffer->tuid = ts;
 	m_spriteBuffer++;
 
-	m_spriteBuffer->vertex = glm::vec3(vertexPos.x - sizeX, vertexPos.y + sizeY, 1);
+	m_spriteBuffer->vertex = glm::vec3(vertexPos.x - sizeX, vertexPos.y + sizeY, sprite->ZLayer);
 	m_spriteBuffer->uv = glm::vec2(sprite->m_offset.x / sprite->m_row.x, sprite->m_offset.y / sprite->m_row.y);
 	m_spriteBuffer->tuid = ts;
 	m_spriteBuffer++;
 
-	m_spriteBuffer->vertex = glm::vec3(vertexPos.x + sizeX, vertexPos.y +  sizeY, 1);
+	m_spriteBuffer->vertex = glm::vec3(vertexPos.x + sizeX, vertexPos.y +  sizeY, sprite->ZLayer);
 	m_spriteBuffer->uv = glm::vec2((1 + sprite->m_offset.x) / sprite->m_row.x, sprite->m_offset.y / sprite->m_row.y);
 	m_spriteBuffer->tuid = ts;
 	m_spriteBuffer++;
 
-	m_spriteBuffer->vertex = glm::vec3(vertexPos.x + sizeX, vertexPos.y - sizeY, 1);
+	m_spriteBuffer->vertex = glm::vec3(vertexPos.x + sizeX, vertexPos.y - sizeY, sprite->ZLayer);
 	m_spriteBuffer->uv = glm::vec2((1 + sprite->m_offset.x) / sprite->m_row.x, (1 + sprite->m_offset.y) / sprite->m_row.y);
 	m_spriteBuffer->tuid = ts;
 	m_spriteBuffer++;
@@ -150,8 +150,8 @@ void Simple2DRenderSystem::Flush()
 	auto shader = Resource::getShader("shader");
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(0,0, 0));
-	model = glm::scale(model, glm::vec3(1, 1, 1));
-	model = glm::rotate(model, 0.0f, glm::vec3(0, 0, 1));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, 0.0f, glm::vec3(0.0f, 0, 1));
 
 	for (int i = 0; i < textures.size(); i++)
 	{

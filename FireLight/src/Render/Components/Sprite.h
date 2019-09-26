@@ -13,7 +13,7 @@ class Sprite : public Component
 {
 public:
 	Sprite();
-	Sprite(Texture tex, glm::vec2 rows, glm::vec2 offset);
+	Sprite(Texture tex, glm::vec2 rows, glm::vec2 offset, float zlayer);
 	~Sprite();
 
 	void Debug();
@@ -22,7 +22,7 @@ public:
 
 	glm::vec2 m_row;
 	glm::vec2 m_offset;
-
+	float ZLayer;
 	Texture m_texture;
 
 
