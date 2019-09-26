@@ -9,7 +9,6 @@ void Draggable::Init()
 
 void Draggable::Update()
 {
-	//TODO: refactor with shared_ptr / weak_ptr
 	auto transform = gameObject->GetComponent<Transform>();
 
 	glm::vec2 mousePos = FL::Window::get_mouse_positions();

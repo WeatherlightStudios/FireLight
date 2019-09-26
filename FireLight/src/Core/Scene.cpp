@@ -23,6 +23,7 @@ void Scene::UpdateScene()
 
 	for (auto& e : m_object)
 	{
+		//FL::LOG_INFO_ENGINE("Updating object ", e);
 		e->UpdateGameObject();
 	}
 }

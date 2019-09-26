@@ -1,10 +1,5 @@
 #include "RandomNumber.h"
 
-RandomNumber::RandomNumber()
-{
-}
-
-
 int RandomNumber::GaussianRange(int a, int b)
 {
 	float sum = 0;
@@ -36,6 +31,3 @@ void RandomNumber::SetSeed(int seed)
 	srand(seed);
 }
 
-RandomNumber::~RandomNumber()
-{
-}
