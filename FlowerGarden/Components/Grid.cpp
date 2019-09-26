@@ -34,17 +34,17 @@ void Grid::Init() {
 	skull->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(32, 32), glm::vec2(0, 15)));
 	*/
 
-	const unsigned int GRID_SIZE = 4;
-	const unsigned int TILE_SIZE = 32;
-	const unsigned int TILE_SCALE = 4;
+	float GRID_SIZE = 4.0f;
+	float TILE_SIZE = 32.0f;
+	float TILE_SCALE = 4.0f;
 	RandomNumber::SetSeed(666);
 	for (int x = 0; x < GRID_SIZE; x++) {
 		for (int y = 0; y < GRID_SIZE; y++) {
 			auto pos = glm::vec2(x * TILE_SIZE * TILE_SCALE, y * TILE_SIZE * TILE_SCALE);
-			pos -= glm::vec2((int)(GRID_SIZE * TILE_SIZE * TILE_SCALE / 2), (int)(GRID_SIZE * TILE_SIZE * TILE_SCALE / 2));
+			pos -= glm::vec2((GRID_SIZE * TILE_SIZE * TILE_SCALE / 2.0f), (GRID_SIZE * TILE_SIZE * TILE_SCALE / 2.0f));
 			auto tile = m_scene->CreateGameOject();
 			tile->AddComponent(std::make_shared<Transform>(pos, glm::vec2(TILE_SCALE, TILE_SCALE)));
-			tile->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(32, 32), GetType(RandomNumber::Range(1,6))));
+			tile->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(32.0f, 32.0f), GetType(RandomNumber::Range(1.0f,6.0f))));
 		}
 	}
 }
