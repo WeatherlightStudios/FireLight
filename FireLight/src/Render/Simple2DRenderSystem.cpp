@@ -108,7 +108,7 @@ void Simple2DRenderSystem::SubmitSprite(Transform* transform, Sprite* sprite)
 
 
 	float sizeX = (sprite->m_texture.Width / sprite->m_row.x) * transform->GetScale().x;
-	float sizeY = (sprite->m_texture.Height / sprite->m_row.y) * transform->GetScale().x;
+	float sizeY = (sprite->m_texture.Height / sprite->m_row.y) * transform->GetScale().y;
 
 
 	glm::vec3 vertexPos(transform->GetPosition().x, transform->GetPosition().y, 0);

@@ -5,27 +5,28 @@
 
 void MainGameScene::Init() {
 	//auto sheet_transp = Resource::LoadTexture("Resources/Sprites/Sprites_Transparent.png", true, "sheet_transp");
-	auto sheet_black  = Resource::LoadTexture("Resources/Sprites/Sprites_BlackBG.png", true, "sprite");
-
-	
+	auto sheet  = Resource::LoadTexture("Resources/Sprites/FlowerGarden_Tileset.png", true, "sprite");
 
 	auto grid = CreateGameOject();
 	grid->AddComponent(std::make_shared<Grid>(this));
 
-	/*
-	auto water = CreateGameOject();
-	water->AddComponent(std::make_shared<Transform>(glm::vec2(100, -100), glm::vec2(2, 2)));
-	water->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(32, 32), glm::vec2(14, 18)));
-	water->AddComponent(std::make_shared<Draggable>(Draggable::PickUpType::Water));
+	auto spawnPos = glm::vec2(32, -192*2);
 
+	auto water = CreateGameOject();
+	water->AddComponent(std::make_shared<Transform>(spawnPos, glm::vec2(4, 4)));
+	water->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(3, 3), glm::vec2(0, 2)));
+	water->AddComponent(std::make_shared<Draggable>(Draggable::PickUpType::Water));
+	
+	
+	/*
 	auto sun = CreateGameOject();
-	sun->AddComponent(std::make_shared<Transform>(glm::vec2(-100, 100), glm::vec2(2, 2)));
-	sun->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(32, 32), glm::vec2(16, 22)));
+	sun->AddComponent(std::make_shared<Transform>(glm::vec2(-100, 100), glm::vec2(4, 4)));
+	sun->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(3, 3), glm::vec2(1, 2)));
 	sun->AddComponent(std::make_shared<Draggable>(Draggable::PickUpType::Sun));
 
 	auto seed = CreateGameOject();
-	seed->AddComponent(std::make_shared<Transform>(glm::vec2(-100, -100), glm::vec2(2, 2)));
-	seed->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(32, 32), glm::vec2(20, 5)));
+	seed->AddComponent(std::make_shared<Transform>(glm::vec2(-100, -100), glm::vec2(4, 4)));
+	seed->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(3, 3), glm::vec2(2, 2)));
 	seed->AddComponent(std::make_shared<Draggable>(Draggable::PickUpType::Seed));
 	*/
 }

@@ -7,44 +7,18 @@ Grid::Grid(Scene* scene){
 }
 
 void Grid::Init() {
-	//FL::LOG_SUCC("Started Grid");
-	/*
-	auto dirt = m_scene->CreateGameOject();
-	dirt->AddComponent(std::make_shared<Transform>(glm::vec2(0, 0), glm::vec2(2, 2)));
-	dirt->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(32, 32), glm::vec2(11, 1)));
-
-	auto dirt_dry = m_scene->CreateGameOject();
-	dirt_dry->AddComponent(std::make_shared<Transform>(glm::vec2(100, 0), glm::vec2(2, 2)));
-	dirt_dry->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(32, 32), glm::vec2(2, 0)));
-
-	auto dirt_wet = m_scene->CreateGameOject();
-	dirt_wet->AddComponent(std::make_shared<Transform>(glm::vec2(-100, 0), glm::vec2(2, 2)));
-	dirt_wet->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(32, 32), glm::vec2(14, 5)));
-
-	auto seedling = m_scene->CreateGameOject();
-	seedling->AddComponent(std::make_shared<Transform>(glm::vec2(0, 100), glm::vec2(2, 2)));
-	seedling->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(32, 32), glm::vec2(13, 6)));
-
-	auto tree = m_scene->CreateGameOject();
-	tree->AddComponent(std::make_shared<Transform>(glm::vec2(0, -100), glm::vec2(2, 2)));
-	tree->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(32, 32), glm::vec2(4, 2)));
-
-	auto skull = m_scene->CreateGameOject();
-	skull->AddComponent(std::make_shared<Transform>(glm::vec2(100, 100), glm::vec2(2, 2)));
-	skull->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(32, 32), glm::vec2(0, 15)));
-	*/
-
 	const unsigned int GRID_SIZE = 4;
 	const unsigned int TILE_SIZE = 32;
 	const unsigned int TILE_SCALE = 4;
+	auto offset = glm::vec2(80, 200);
 	RandomNumber::SetSeed(666);
 	for (int x = 0; x < GRID_SIZE; x++) {
 		for (int y = 0; y < GRID_SIZE; y++) {
-			auto pos = glm::vec2(x * TILE_SIZE * TILE_SCALE, y * TILE_SIZE * TILE_SCALE);
+			auto pos = glm::vec2(x * TILE_SIZE * TILE_SCALE, y * TILE_SIZE * TILE_SCALE) + offset;
 			pos -= glm::vec2((int)(GRID_SIZE * TILE_SIZE * TILE_SCALE / 2), (int)(GRID_SIZE * TILE_SIZE * TILE_SCALE / 2));
 			auto tile = m_scene->CreateGameOject();
 			tile->AddComponent(std::make_shared<Transform>(pos, glm::vec2(TILE_SCALE, TILE_SCALE)));
-			tile->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(32, 32), GetType(RandomNumber::Range(1,6))));
+			tile->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(3, 3), GetType(RandomNumber::Range(1,6))));
 		}
 	}
 }
@@ -63,7 +37,7 @@ glm::vec2 Grid::GetType(int index) {
 		break;
 	}
 }
+
 void Grid::Update() {
-	
 
 }
