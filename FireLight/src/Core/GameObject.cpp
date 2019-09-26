@@ -14,23 +14,23 @@ void GameObject::InitGameObject()
 }
 void GameObject::UpdateGameObject()
 {
-	Update();
 	UpdateComponents();
+	Update();
 }
 
-void GameObject::UpdateComponents() 
+void GameObject::UpdateComponents()
 {
-	for (auto& e : m_components)
+	for (int i = 0; i < m_components.size(); i++)
 	{
-		e->Update();
+		m_components[i]->Update();
 	}
 }
 
 void GameObject::DebugComponents()
 {
-	for (auto& e : m_components)
+	for (int i = 0; i < m_components.size(); i++)
 	{
-		e->Debug();
+		m_components[i]->Debug();
 	}
 }
 
