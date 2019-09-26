@@ -19,10 +19,10 @@ void Simple2DRenderSystem::Init()
 	glBindBuffer(GL_ARRAY_BUFFER,VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(GLSprite) * 4, NULL, GL_DYNAMIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
 	glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(5 * sizeof(float)));
@@ -83,30 +83,27 @@ void Simple2DRenderSystem::SubmitSprite(Transform* transform, Sprite* sprite)
 	GLuint tid = sprite->m_texture.ID;
 
 	float ts = 0.0f;
-	if (tid > 0)
+	bool found = false;
+	for (int i = 0; i < textures.size(); i++)
 	{
-		bool found = false;
-		for (int i = 0; i < textures.size(); i++)
+		if (textures[i] == tid)
 		{
-			if (textures[i] == tid)
-			{
-				ts = (float)(i + 1);
-				found = true;
-				break;
-			}
+			ts = (float)(i + 1);
+			found = true;
+			break;
 		}
+	}
 
-		if (!found)
+	if (!found)
+	{
+		if (textures.size() >= 32)
 		{
-			if (textures.size() >= 32)
-			{
-				End();
-				Flush();
-				Begin();
-			}
-			textures.push_back(tid);
-			ts = (float)(textures.size());
+			End();
+			Flush();
+			Begin();
 		}
+		textures.push_back(tid);
+		ts = (float)(textures.size());
 	}
 
 
