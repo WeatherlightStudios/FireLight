@@ -25,9 +25,16 @@ void Simple2DRenderSystem::Init()
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
+	glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(5 * sizeof(float)));
+	glEnableVertexAttribArray(2);
+
+
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	
+	for (int i = 0; i < 32; i++)
+	{
+		tIDs[i] = i;
+	}
 
 	GLuint* indices = new GLuint[INDEX_BUFFER_SIZE];
 
@@ -73,7 +80,35 @@ void Simple2DRenderSystem::Begin()
 //Need optimization
 void Simple2DRenderSystem::SubmitSprite(Transform* transform, Sprite* sprite)
 {
-	//auto texture = Resource::getTexture(sprite->m_texture); //<- this is slow but it work!
+	GLuint tid = sprite->m_texture.ID;
+
+	float ts = 0.0f;
+	if (tid > 0)
+	{
+		bool found = false;
+		for (int i = 0; i < textures.size(); i++)
+		{
+			if (textures[i] == tid)
+			{
+				ts = (float)(i + 1);
+				found = true;
+				break;
+			}
+		}
+
+		if (!found)
+		{
+			if (textures.size() >= 32)
+			{
+				End();
+				Flush();
+				Begin();
+			}
+			textures.push_back(tid);
+			ts = (float)(textures.size());
+		}
+	}
+
 
 	float sizeX = (sprite->m_texture.Width / sprite->m_row.x) * transform->GetScale().x;
 	float sizeY = (sprite->m_texture.Height / sprite->m_row.y) * transform->GetScale().x;
@@ -84,18 +119,22 @@ void Simple2DRenderSystem::SubmitSprite(Transform* transform, Sprite* sprite)
 
 	m_spriteBuffer->vertex = glm::vec3(vertexPos.x - sizeX, vertexPos.y - sizeY, 1);
 	m_spriteBuffer->uv = glm::vec2(sprite->m_offset.x / sprite->m_row.x, (1 + sprite->m_offset.y) / sprite->m_row.y);
+	m_spriteBuffer->tuid = ts;
 	m_spriteBuffer++;
 
 	m_spriteBuffer->vertex = glm::vec3(vertexPos.x - sizeX, vertexPos.y + sizeY, 1);
 	m_spriteBuffer->uv = glm::vec2(sprite->m_offset.x / sprite->m_row.x, sprite->m_offset.y / sprite->m_row.y);
+	m_spriteBuffer->tuid = ts;
 	m_spriteBuffer++;
 
 	m_spriteBuffer->vertex = glm::vec3(vertexPos.x + sizeX, vertexPos.y +  sizeY, 1);
 	m_spriteBuffer->uv = glm::vec2((1 + sprite->m_offset.x) / sprite->m_row.x, sprite->m_offset.y / sprite->m_row.y);
+	m_spriteBuffer->tuid = ts;
 	m_spriteBuffer++;
 
 	m_spriteBuffer->vertex = glm::vec3(vertexPos.x + sizeX, vertexPos.y - sizeY, 1);
 	m_spriteBuffer->uv = glm::vec2((1 + sprite->m_offset.x) / sprite->m_row.x, (1 + sprite->m_offset.y) / sprite->m_row.y);
+	m_spriteBuffer->tuid = ts;
 	m_spriteBuffer++;
 
 	m_IndexCounter += 6;
@@ -112,20 +151,22 @@ void Simple2DRenderSystem::End()
 void Simple2DRenderSystem::Flush()
 {
 	auto shader = Resource::getShader("shader");
-	auto texture = Resource::getTexture("sprite");
-
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(0,0, 0));
 	model = glm::scale(model, glm::vec3(1, 1, 1));
 	model = glm::rotate(model, 0.0f, glm::vec3(0, 0, 1));
 
+	for (int i = 0; i < textures.size(); i++)
+	{
+		glActiveTexture(GL_TEXTURE0 + i);
+		glBindTexture(GL_TEXTURE_2D, textures[i]);
+	}
 
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,IBO);
 
-	texture.Bind();
 	shader.Use();
-
+	shader.SetInteger("textures", tIDs, 32);
 	shader.SetMatrix4("projection", projection);
 	shader.SetMatrix4("model", model);
 

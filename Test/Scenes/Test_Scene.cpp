@@ -8,17 +8,17 @@ void Test_Scene::Init()
 
 
 	auto player = CreateGameOject();
-	player.lock()->AddComponent(std::make_shared<Transform>(glm::vec2(0,0), glm::vec2(1,1), 0.0f));
-	player.lock()->AddComponent(std::make_shared<Sprite>());
+	player->AddComponent(std::make_shared<Transform>(glm::vec2(0,0), glm::vec2(1,1), 0.0f));
+	player->AddComponent(std::make_shared<Sprite>());
 
 	FL::LOG_ERROR_ENGINE("This shouldn't work!");
 	FL::LOG_DOUBT_ENGINE("Should this work?");
 	FL::LOG_INFO("Working...");
 	FL::LOG_SUCC_ENGINE("This is working!");
 
-	player.lock()->GetComponent<Sprite>()->m_texture = Resource::getTexture("sprite");
-	player.lock()->GetComponent<Sprite>()->m_row = glm::vec2(1, 1);
-	player.lock()->GetComponent<Sprite>()->m_offset = glm::vec2(0,0);
+	player->GetComponent<Sprite>()->m_texture = Resource::getTexture("sprite");
+	player->GetComponent<Sprite>()->m_row = glm::vec2(1, 1);
+	player->GetComponent<Sprite>()->m_offset = glm::vec2(0,0);
 
 	FL::LOG_ERROR("frase con numero ", 3.14f);
 

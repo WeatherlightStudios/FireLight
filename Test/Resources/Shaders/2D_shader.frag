@@ -3,12 +3,14 @@
 out vec4 FragColor;
 
 in vec2 TexCoord;
+in float textureID;
 
-uniform sampler2D ourTexture;
+uniform sampler2D ourTexture[32];
 
 void main()
 {
-    vec4 TextureColor = texture(ourTexture , vec2(TexCoord.x, TexCoord.y));
+	int tIDs = int(textureID - 0.5f);
+    vec4 TextureColor = texture(ourTexture[tIDs] , vec2(TexCoord.x, TexCoord.y));
 
     if(TextureColor.a < 0.1)
         discard;

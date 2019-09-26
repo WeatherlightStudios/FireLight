@@ -10,7 +10,7 @@
 #include "Components/Sprite.h"
 #include "Components/Transform.h"
 
-
+#include <vector>
 
 
 
@@ -18,6 +18,7 @@ struct GLSprite
 {
 	glm::vec3 vertex;
 	glm::vec2 uv;
+	float tuid;
 };
 
 
@@ -46,12 +47,14 @@ private:
 
 	GLSprite* m_spriteBuffer;
 
+	std::vector<GLuint> textures;
 
 	GLuint VAO, VBO, IBO;
 
 	glm::mat4 projection;
 	glm::mat4 model;
 
+	GLint tIDs[32];
 
 	uint32_t m_IndexCounter;
 
