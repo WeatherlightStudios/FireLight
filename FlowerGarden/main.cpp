@@ -4,7 +4,8 @@
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char*, int nShowCmd)
 {
-	std::unique_ptr<FlowerGame> newGame(new FlowerGame);
+	//std::unique_ptr<FlowerGame> newGame(new FlowerGame);
+	auto newGame = std::make_unique<FlowerGame>();
 	newGame->Set_DEBUG_MODE(true);
 	newGame->SetWindowDimension(800, 600);
 	newGame->SetWindowName("FireLight engine v1.0.0 alpha");

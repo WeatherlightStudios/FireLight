@@ -58,7 +58,7 @@ public:
 	//SCENE GRAPH
 	std::shared_ptr<GameObject> CreateGameOject();
 
-	void RemoveGameObject(std::weak_ptr<GameObject>  object);
+	void RemoveGameObject(std::shared_ptr<GameObject>  object);
 	std::weak_ptr<GameObject> GetGameObject(uint32_t ID);
 
 	void SetParent(uint32_t parentID , uint32_t childID);

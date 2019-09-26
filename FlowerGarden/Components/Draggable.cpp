@@ -1,4 +1,10 @@
 #include "Draggable.h"
+#include "Grid.h"
+
+Draggable::Draggable(PickUpType type, std::shared_ptr<GameObject> tileManager, std::shared_ptr<GameObject> self): type(type) {
+	Draggable::tileManager = tileManager;
+	Draggable::self = self;
+}
 
 void Draggable::Init()
 {
@@ -31,7 +37,8 @@ void Draggable::Update()
 	}
 	else if (FL::Window::isKeyUp(KEYCODE::KEY_SPACE)) {
 		isPicked = false;
-		FL::LOG_INFO("released an object, value is now ", isPicked);
+		FL::LOG_INFO("released an object");
+		tileManager->GetComponent<Grid>()->CheckTile(self);
 	}
 
 	if (isPicked) {

@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Components\Draggable.cpp" />
     <ClCompile Include="Components\Grid.cpp" />
+    <ClCompile Include="Components\Spawner.cpp" />
     <ClCompile Include="FlowerGame.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\MainGameScene.cpp" />
@@ -136,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="Components\Draggable.h" />
     <ClInclude Include="Components\Grid.h" />
+    <ClInclude Include="Components\Spawner.h" />
     <ClInclude Include="FlowerGame.h" />
     <ClInclude Include="Scenes\MainGameScene.h" />
   </ItemGroup>

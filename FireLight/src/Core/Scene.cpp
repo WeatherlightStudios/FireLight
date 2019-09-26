@@ -66,9 +66,9 @@ std::shared_ptr<GameObject> Scene::CreateGameOject()
 	return m_object.back();
 }
 
-void Scene::RemoveGameObject(std::weak_ptr<GameObject> object)
+void Scene::RemoveGameObject(std::shared_ptr<GameObject> ptr)
 {
-	auto ptr = object.lock();
+	//auto ptr = object.lock();
 
 	if (ptr->GetID() != m_object.size() - 1)
 	{

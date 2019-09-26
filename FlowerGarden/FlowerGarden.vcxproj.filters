@@ -30,6 +30,9 @@
     <ClCompile Include="Components\Grid.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="Components\Spawner.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FlowerGame.h">
@@ -42,6 +45,9 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="Components\Grid.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Spawner.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
