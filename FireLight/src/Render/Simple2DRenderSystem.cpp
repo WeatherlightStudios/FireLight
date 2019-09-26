@@ -17,7 +17,7 @@ void Simple2DRenderSystem::Init()
 	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER,VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(GLSprite) * 4, NULL, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, VERTEX_BUFFER_SIZE, NULL, GL_DYNAMIC_DRAW);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
@@ -159,13 +159,13 @@ void Simple2DRenderSystem::Flush()
 		glBindTexture(GL_TEXTURE_2D, textures[i]);
 	}
 
-	glBindVertexArray(VAO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,IBO);
-
 	shader.Use();
 	shader.SetInteger("textures", tIDs, 32);
 	shader.SetMatrix4("projection", projection);
 	shader.SetMatrix4("model", model);
+
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,IBO);
 
 	glDrawElements(GL_TRIANGLES, m_IndexCounter, GL_UNSIGNED_INT, 0);
 
