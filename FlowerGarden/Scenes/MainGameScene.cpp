@@ -9,18 +9,18 @@ void MainGameScene::Init() {
 	auto sheet  = Resource::LoadTexture("Resources/Sprites/FlowerGarden_Tileset.png", true, "sprite");
 
 	auto grid = CreateGameOject();
-	grid->AddComponent(std::make_shared<Grid>(this));
+	grid->AddComponent(std::make_shared<Grid>(this, grid));
 
-	auto spawnPos = glm::vec2(32, -192*2);
-	/*
+	auto spawnPos = glm::vec2(32, -192 * 2);
 	auto water = CreateGameOject();
 	water->AddComponent(std::make_shared<Transform>(spawnPos, glm::vec2(4, 4)));
 	water->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(3, 3), glm::vec2(0, 2), 1));
 	water->AddComponent(std::make_shared<Draggable>(Draggable::PickUpType::Water, grid, water));
-	*/
 
+	/*
 	auto spawner = CreateGameOject();
-	spawner->AddComponent(std::make_shared<Spawner>());
+	spawner->AddComponent(std::make_shared<Spawner>(this, grid));
+	*/
 	
 	/*
 	auto sun = CreateGameOject();

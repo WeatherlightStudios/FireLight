@@ -3,10 +3,10 @@
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char*, int nShowCmd)
 {
-	auto newGame = Game();
-	newGame.Set_DEBUG_MODE(true);
-	newGame.SetWindowDimension(800, 600);
-	newGame.SetWindowName("FireLight engine v0.0.1 alpha");
-	newGame.Start();
+	std::unique_ptr<Game> newGame(new Game);
+	newGame->Set_DEBUG_MODE(true);
+	newGame->SetWindowDimension(800, 600);
+	newGame->SetWindowName("FireLight engine v1.0.0 alpha");
+	newGame->Start();
 	return 0;
 }

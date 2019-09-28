@@ -57,7 +57,7 @@ public:
 	uint32_t GetID() { return ID; }
 
 	void SetScene(Scene* scene) { m_scene = scene; }
-
+	Scene* getScene() { return m_scene; }
 	//nel caso serva verra implementato
 	//void GetComponent();
 	//void GetComponents();

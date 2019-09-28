@@ -1,9 +1,11 @@
 #include "Grid.h"
+#include "Draggable.h"
 
-Grid::Grid(Scene* scene){
+Grid::Grid(Scene* scene, std::shared_ptr<GameObject> obj){
 	//FL::LOG_SUCC("Constructed Grid Object");
 	//FL::LOG_INFO("Scene is ", scene);
 	m_scene = scene;
+	m_obj = obj;
 }
 
 void Grid::Init() {
@@ -36,11 +38,41 @@ void Grid::CheckTile(std::shared_ptr<GameObject> drag) {
 			auto result = CheckMatrix(tile_offset, drag_offset);
 			groundTile->GetComponent<Sprite>()->m_offset = result;
 			FL::LOG_INFO("Now this should switch to ", result);
-			//break;
+			m_scene->RemoveGameObject(drag);
+			SpawnRandom();
+			break;
 		}
 	}
-	m_scene->RemoveGameObject(drag);
 }
+
+void Grid::SpawnRandom() {
+	auto spawnPos = glm::vec2(32, -192 * 2);
+	auto toSpawn = m_scene->CreateGameOject();
+	auto offset = glm::vec2(0, 0);
+	auto type = Draggable::PickUpType::Water;
+	switch (RandomNumber::Range(0, 3)) {
+	case 0:
+		offset = water;
+		type = Draggable::PickUpType::Water;
+		break;
+	case 1:
+		type = Draggable::PickUpType::Sun;
+		offset = sun;
+		break;
+	case 2:
+		type = Draggable::PickUpType::Seed;
+		offset = seed;
+		break;
+	default:
+		throw "wrong index";
+		break;
+	}
+
+	toSpawn->AddComponent(std::make_shared<Transform>(spawnPos, glm::vec2(4, 4)));
+	toSpawn->AddComponent(std::make_shared<Sprite>(Resource::getTexture("sprite"), glm::vec2(3, 3), offset, 1));
+	toSpawn->AddComponent(std::make_shared<Draggable>(type, m_obj, toSpawn));
+}
+
 
 bool Grid::AABBCheck(glm::vec2 pointPos, glm::vec2 squarePos, glm::vec2 squareSize) {
 	if (pointPos.x > squarePos.x + squareSize.x || pointPos.x < squarePos.x - squareSize.x) {

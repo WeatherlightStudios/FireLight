@@ -20,11 +20,9 @@ void Scene::UpdateScene()
 {
 	Update();
 
-
-	for (auto& e : m_object)
+	for (int i = 0; i < m_object.size(); i++)
 	{
-		//FL::LOG_INFO_ENGINE("Updating object ", e);
-		e->UpdateGameObject();
+		m_object[i]->UpdateGameObject();
 	}
 }
 
@@ -32,10 +30,10 @@ void Scene::Render()
 {
 
 	m_render->Begin();
-	for (auto& e : m_object)
+	for (int i = 0; i < m_object.size(); i++)
 	{
-		Sprite* component = e->GetComponent<Sprite>();
-		Transform* trnasf = e->GetComponent<Transform>();
+		Sprite* component = m_object[i]->GetComponent<Sprite>();
+		Transform* trnasf = m_object[i]->GetComponent<Transform>();
 		if (component != nullptr)
 		{
 			m_render->SubmitSprite(trnasf, component);
