@@ -1,7 +1,8 @@
 #include "Game.h"
-#include <Windows.h>
+//#include <Windows.h>
 
-int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char*, int nShowCmd)
+//int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char*, int nShowCmd)
+int main()
 {
 	std::unique_ptr<Game> newGame(new Game);
 	newGame->Set_DEBUG_MODE(true);

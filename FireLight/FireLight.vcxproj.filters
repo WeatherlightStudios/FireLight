@@ -26,6 +26,7 @@
     <ClCompile Include="src\Render\Components\Sprite.cpp" />
     <ClCompile Include="src\Render\Components\Transform.cpp" />
     <ClCompile Include="src\Utility\Debugging\Log.cpp" />
+    <ClCompile Include="src\Render\RenderSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h" />
@@ -58,6 +59,7 @@
     <ClInclude Include="src\Render\Components\Sprite.h" />
     <ClInclude Include="src\Render\Components\Transform.h" />
     <ClInclude Include="src\Utility\Debugging\Log.h" />
+    <ClInclude Include="src\Render\RenderSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

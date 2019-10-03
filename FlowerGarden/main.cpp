@@ -1,8 +1,8 @@
 #include "FlowerGame.h"
 #include <memory>
-#include <Windows.h>
 
-int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char*, int nShowCmd)
+///int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char*, int nShowCmd)
+int main()
 {
 	//std::unique_ptr<FlowerGame> newGame(new FlowerGame);
 	auto newGame = std::make_unique<FlowerGame>();

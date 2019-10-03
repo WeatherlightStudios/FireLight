@@ -1,8 +1,6 @@
 e:\git-projects\firelightengine\libbuild\intermediate\firelight.pdb
 e:\git-projects\firelightengine\libbuild\intermediate\firelight.idb
-e:\git-projects\firelightengine\libbuild\intermediate\shader.obj
-e:\git-projects\firelightengine\libbuild\intermediate\resource.obj
-e:\git-projects\firelightengine\libbuild\intermediate\randomnumber.obj
+e:\git-projects\firelightengine\libbuild\intermediate\log.obj
 e:\git-projects\firelightengine\libbuild\intermediate\time.obj
 e:\git-projects\firelightengine\libbuild\intermediate\app.obj
 e:\git-projects\firelightengine\libbuild\intermediate\scenemanager.obj
@@ -19,11 +17,15 @@ e:\git-projects\firelightengine\libbuild\intermediate\imgui.obj
 e:\git-projects\firelightengine\libbuild\intermediate\gameobject.obj
 e:\git-projects\firelightengine\libbuild\intermediate\component.obj
 e:\git-projects\firelightengine\libbuild\intermediate\simple2drendersystem.obj
+e:\git-projects\firelightengine\libbuild\intermediate\rendersystem.obj
+e:\git-projects\firelightengine\libbuild\intermediate\transform.obj
 e:\git-projects\firelightengine\libbuild\intermediate\sprite.obj
 e:\git-projects\firelightengine\libbuild\intermediate\texture.obj
 e:\git-projects\firelightengine\libbuild\intermediate\window.obj
+e:\git-projects\firelightengine\libbuild\intermediate\shader.obj
+e:\git-projects\firelightengine\libbuild\intermediate\resource.obj
+e:\git-projects\firelightengine\libbuild\intermediate\randomnumber.obj
 e:\git-projects\firelightengine\libbuild\intermediate\gl3w.obj
-e:\git-projects\firelightengine\libbuild\intermediate\transform.obj
 e:\git-projects\firelightengine\libbuild\firelight.lib
 e:\git-projects\firelightengine\libbuild\firelight.pdb
 e:\git-projects\firelightengine\libbuild\intermediate\firelight.tlog\cl.command.1.tlog

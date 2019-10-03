@@ -4,13 +4,8 @@
 
 void Test_Scene::Init()
 {
-	Resource::LoadTexture("Resources/Texture/Sprite-Test.png", true, "sprite");
-	Resource::LoadTexture("Resources/Texture/Front.png", true, "spr");
-
-
-	auto player = CreateGameOject();
-	player->AddComponent(std::make_shared<TestComponent>());
-
+	Resource::LoadShader("Resources/Shaders/Terrain_shader.vert", "Resources/Shaders/Terrain_shader.frag", NULL, "terrain_shader");
+	Resource::LoadTexture("Resources/Texture/Boxes.png", true, "TestBox");
 }
 
 void Test_Scene::Update()

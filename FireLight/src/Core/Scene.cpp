@@ -6,7 +6,7 @@
 Scene::Scene()
 {
 	isInizialized = false;
-	m_render = std::make_unique<Simple2DRenderSystem>();
+	m_render = std::make_unique<RenderSystem>();
 }
 
 
@@ -29,7 +29,7 @@ void Scene::UpdateScene()
 void Scene::Render()
 {
 
-	m_render->Begin();
+	/*m_render->Begin();
 	for (int i = 0; i < m_object.size(); i++)
 	{
 		Sprite* component = m_object[i]->GetComponent<Sprite>();
@@ -43,7 +43,9 @@ void Scene::Render()
 
 	
 	m_render->Flush();
+*/
 
+	m_render->Render();
 }
 
 void Scene::CloseScene()

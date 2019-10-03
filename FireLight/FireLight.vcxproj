@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClInclude Include="src\Render\Components\Sprite.h" />
     <ClInclude Include="src\Render\Components\Transform.h" />
+    <ClInclude Include="src\Render\RenderSystem.h" />
     <ClInclude Include="src\Render\Simple2DRenderSystem.h" />
     <ClInclude Include="src\Core\Component.h" />
     <ClInclude Include="src\Core\GameObject.h" />
@@ -168,6 +169,7 @@
   <ItemGroup>
     <ClCompile Include="src\Render\Components\Sprite.cpp" />
     <ClCompile Include="src\Render\Components\Transform.cpp" />
+    <ClCompile Include="src\Render\RenderSystem.cpp" />
     <ClCompile Include="src\Render\Simple2DRenderSystem.cpp" />
     <ClCompile Include="src\Core\Component.cpp" />
     <ClCompile Include="src\Core\GameObject.cpp" />

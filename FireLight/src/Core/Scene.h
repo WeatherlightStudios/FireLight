@@ -10,6 +10,7 @@
 #include "GameObject.h"
 
 #include "../Render/Simple2DRenderSystem.h"
+#include "../Render/RenderSystem.h"
 
 
 #define SCENE(T) class T : public Scene
@@ -72,7 +73,7 @@ protected:
 	std::vector<std::shared_ptr<GameObject>> m_object;
 	std::vector<std::weak_ptr<GameObject>> m_parents;
 
-	std::unique_ptr<Simple2DRenderSystem> m_render;
+	std::unique_ptr<RenderSystem> m_render;
 
 
 };
