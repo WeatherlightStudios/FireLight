@@ -9,19 +9,19 @@ class Transform : public Component
 {
 public:
 	Transform();
-	Transform(glm::vec2 pos);
-	Transform(glm::vec2 pos, float rot);
-	Transform(glm::vec2 pos, glm::vec2 scale);
-	Transform(glm::vec2 pos, float rot, glm::vec2 scale);
+	Transform(glm::vec3 pos);
+	Transform(glm::vec3 pos, glm::vec3 rot);
+	Transform(glm::vec3 pos, glm::vec3 scale);
+	Transform(glm::vec3 pos, glm::vec3 rot, glm::vec3 scale);
 
 
-	void SetPosition(glm::vec2 pos) { m_position = pos; }
-	void SetScale(glm::vec2 scale) { m_scale = scale; }
-	void SetRotation(float rot) { m_rotation = rot; }
+	void SetPosition(glm::vec3 pos) { m_position = pos; }
+	void SetScale(glm::vec3 scale) { m_scale = scale; }
+	void SetRotation(glm::vec3 rot) { m_rotation = rot; }
 
-	glm::vec2 GetPosition() { return m_position; }
-	glm::vec2 GetScale() { return m_scale; }
-	float GetRotation() { return m_rotation; }
+	glm::vec3 GetPosition() { return m_position; }
+	glm::vec3 GetScale() { return m_scale; }
+	glm::vec3 GetRotation() { return m_rotation; }
 
 	void Init();
 	void Update();
@@ -31,9 +31,9 @@ public:
 
 private: 
 
-	glm::vec2 m_position;
-	glm::vec2 m_scale;
-	float m_rotation;
+	glm::vec3 m_position;
+	glm::vec3 m_scale;
+	glm::vec3 m_rotation;
 
 
 };

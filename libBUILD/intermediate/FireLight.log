@@ -1,6 +1,36 @@
 ﻿E:\VisualStudio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(376,5): warning MSB8004: la directory Intermediate non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Intermediate.
 E:\VisualStudio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: la directory Output non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Output.
-  RenderSystem.cpp
-freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR giα definito in opengl32.lib(OPENGL32.dll); seconda definizione ignorata
-freetype.lib(freetype.dll) : warning LNK4221: Questo file oggetto non definisce simboli pubblici non definiti in precedenza, pertanto verrα utilizzato da qualsiasi operazione di collegamento che utilizza la libreria
-  FireLight.vcxproj -> E:\Git-Projects\FireLightEngine\libBUILD\FireLight.lib
+  App.cpp
+  Component.cpp
+  GameObject.cpp
+  Message.cpp
+  Scene.cpp
+e:\git-projects\firelightengine\firelight\src\core\scene.cpp(61): warning C4267: 'inizializzazione': conversione da 'size_t' a 'uint32_t'. Possibile perdita di dati.
+  SceneManager.cpp
+  CameraSystem.cpp
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(15): error C2653: 'glm' non è il nome di una classe o di uno spazio dei nomi
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(15): error C3646: 'GetProjection': identificatore di override sconosciuto
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(15): error C2059: errore di sintassi: '('
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(15): error C2334: token imprevisti prima di '{'. Il corpo apparente della funzione verrà ignorato.
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(21): error C2653: 'glm' non è il nome di una classe o di uno spazio dei nomi
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(21): error C3646: 'm_projection': identificatore di override sconosciuto
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(21): error C4430: identificatore di tipo mancante, verrà utilizzato int. Nota: default-int non è più supportato in C++
+e:\git-projects\firelightengine\firelight\src\render\camerasystem.cpp(19): error C2082: ridefinizione del parametro formale 'camera'
+e:\git-projects\firelightengine\firelight\src\render\camerasystem.cpp(25): error C2039: 'GetProjection': non è un membro di 'Camera'
+  e:\git-projects\firelightengine\firelight\src\render\components\camera.h(8): note: vedere la dichiarazione di 'Camera'
+  Camera.cpp
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(15): error C2653: 'glm' non è il nome di una classe o di uno spazio dei nomi
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(15): error C3646: 'GetProjection': identificatore di override sconosciuto
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(15): error C2059: errore di sintassi: '('
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(15): error C2334: token imprevisti prima di '{'. Il corpo apparente della funzione verrà ignorato.
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(21): error C2653: 'glm' non è il nome di una classe o di uno spazio dei nomi
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(21): error C3646: 'm_projection': identificatore di override sconosciuto
+e:\git-projects\firelightengine\firelight\src\render\components\camera.h(21): error C4430: identificatore di tipo mancante, verrà utilizzato int. Nota: default-int non è più supportato in C++
+e:\git-projects\firelightengine\firelight\src\render\components\camera.cpp(12): error C2653: 'glm' non è il nome di una classe o di uno spazio dei nomi
+e:\git-projects\firelightengine\firelight\src\render\components\camera.cpp(12): error C2065: 'mat4': identificatore non dichiarato
+e:\git-projects\firelightengine\firelight\src\render\components\camera.cpp(12): error C2146: errore di sintassi: ';' mancante prima dell'identificatore 'projection'
+e:\git-projects\firelightengine\firelight\src\render\components\camera.cpp(12): error C2065: 'projection': identificatore non dichiarato
+  Sprite.cpp
+  Transform.cpp
+  Simple2DRenderSystem.cpp
+  Generazione del codice in corso...

@@ -5,12 +5,12 @@
 GameObject::GameObject()
 {
 	FL::LOG_INFO_ENGINE("ObjectIsCreated");
+	this->AddComponent(std::make_shared<Transform>());
 }
 
 void GameObject::InitGameObject()
 {
 	Init();
-	//InitComponents();
 }
 void GameObject::UpdateGameObject()
 {

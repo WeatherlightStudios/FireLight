@@ -134,6 +134,12 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Render\Components\Camera.h" />
+    <ClInclude Include="src\Render\CameraSystem.h" />
+    <ClInclude Include="src\Render\Material.h" />
+    <ClInclude Include="src\Render\Components\Mesh.h" />
+    <ClInclude Include="src\Core\MessageSystem\Message.h" />
+    <ClInclude Include="src\Core\MessageSystem\MessageBus.h" />
     <ClInclude Include="src\Render\Components\Sprite.h" />
     <ClInclude Include="src\Render\Components\Transform.h" />
     <ClInclude Include="src\Render\RenderSystem.h" />
@@ -165,8 +171,15 @@
     <ClInclude Include="src\Utility\Resources\Shader.h" />
     <ClInclude Include="src\Core\Window.h" />
     <ClInclude Include="src\Utility\Resources\Texture.h" />
+    <ClInclude Include="src\Core\System.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\MessageSystem\Message.cpp" />
+    <ClCompile Include="src\Core\MessageSystem\MessageBus.cpp" />
+    <ClCompile Include="src\Render\Components\Camera.cpp" />
+    <ClCompile Include="src\Render\CameraSystem.cpp" />
+    <ClCompile Include="src\Render\Material.cpp" />
+    <ClCompile Include="src\Render\Components\Mesh.cpp" />
     <ClCompile Include="src\Render\Components\Sprite.cpp" />
     <ClCompile Include="src\Render\Components\Transform.cpp" />
     <ClCompile Include="src\Render\RenderSystem.cpp" />
@@ -193,6 +206,7 @@
     <ClCompile Include="src\Utility\Resources\Shader.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
     <ClCompile Include="src\Utility\Resources\Texture.cpp" />
+    <ClCompile Include="src\Core\System.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

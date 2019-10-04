@@ -2,27 +2,27 @@
 
 
 Transform::Transform():
-	m_position(glm::vec2(0,0)), m_rotation(0.0f), m_scale(glm::vec2(1,1))
+	m_position(glm::vec3(0,0,0)), m_rotation(glm::vec3(0, 0, 0)), m_scale(glm::vec3(1, 1, 1))
 {
 }
 
-Transform::Transform(glm::vec2 pos, float rot, glm::vec2 scale) :
+Transform::Transform(glm::vec3 pos, glm::vec3 rot, glm::vec3 scale) :
 	m_position(pos), m_rotation(rot), m_scale(scale)
 {
 }
 
-Transform::Transform(glm::vec2 pos) :
-	m_position(pos), m_rotation(0.0f), m_scale(glm::vec2(1,1))
+Transform::Transform(glm::vec3 pos) :
+	m_position(pos), m_rotation(glm::vec3(0, 0, 0)), m_scale(glm::vec3(1, 1, 1))
 {
 }
 
-Transform::Transform(glm::vec2 pos, float rot) :
-	m_position(pos), m_rotation(rot), m_scale(glm::vec2(1, 1))
+Transform::Transform(glm::vec3 pos, glm::vec3 rot) :
+	m_position(pos), m_rotation(rot), m_scale(glm::vec3(1, 1, 1))
 {
 }
 
-Transform::Transform(glm::vec2 pos, glm::vec2 scale) :
-	m_position(pos), m_rotation(0.0f), m_scale(scale)
+Transform::Transform(glm::vec3 pos, glm::vec3 scale) :
+	m_position(pos), m_rotation(glm::vec3(0, 0, 0)), m_scale(scale)
 {
 }
 

@@ -15,16 +15,18 @@ public:
 	virtual void Debug() {}
 
 
-	void setGameObject(GameObject* obj) { gameObject = obj; }
+	void setGameObject(GameObject* obj) { m_Owner = obj; }
+
+	GameObject* GetOwner() { return m_Owner; }
 
 	~Component();
 
 protected:
 
 	//TODO:: serve implementazione
-	bool isActive;
+	bool m_IsActive;
 
-	GameObject* gameObject;
+	GameObject* m_Owner;
 
 };
 

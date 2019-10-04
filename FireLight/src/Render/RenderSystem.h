@@ -43,7 +43,7 @@ private:
 
 	glm::mat4 m_projection;
 private:
-
+	//glm::mat4 model;
 
 	const size_t VERTEX_BUFFER_SIZE = sizeof(float) * 12;
 	

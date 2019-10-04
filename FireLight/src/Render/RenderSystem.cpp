@@ -92,10 +92,11 @@ void RenderSystem::Debug()
 
 void  RenderSystem::Render()
 {
+	glm::mat4 model;
+	model = glm::mat4(1.0f);
 
-	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(0, 0, 0));
-	model = glm::scale(model, glm::vec3(1, 1, 1));
+	//model = glm::rotate(model, 1.0f, glm::vec3(1, 0, 0));
 
 	auto shader = Resource::getShader("terrain_shader");
 	auto texture = Resource::getTexture("TestBox");
@@ -106,13 +107,18 @@ void  RenderSystem::Render()
 	shader.SetMatrix4("projection", m_projection);
 	shader.SetMatrix4("model", model);
 
-
-
 	glBindVertexArray(VAO);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
 
+	model = glm::mat4(1.0f);
+	model = glm::translate(model, glm::vec3(0, -2, 0));
+	model = glm::scale(model, glm::vec3(10, 1, 10));
+	shader.Use();
+	shader.SetMatrix4("projection", m_projection);
+	shader.SetMatrix4("model", model);
 
 	glDrawArrays(GL_TRIANGLES, 0, 36);
-	//glBindVertexArray(0);
+	glBindVertexArray(0);
 }
 
 RenderSystem::~RenderSystem()
