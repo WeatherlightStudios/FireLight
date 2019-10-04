@@ -15,6 +15,10 @@ class CameraSystem : public System
 public:
 	CameraSystem();
 
+	void Init();
+
+	void Debug();
+
 	static void RegisterCamera(Camera* camera);
 
 	static void ChangeTo(Camera* cam);

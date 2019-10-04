@@ -15,9 +15,10 @@
 
 //Resources
 #include "../Utility/Resource.h"
+#include "../Core/System.h"
 //-------------------------------------------
 
-class RenderSystem
+class RenderSystem : public System
 {
 public:
 	RenderSystem();
