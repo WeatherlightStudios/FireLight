@@ -4,6 +4,7 @@
 
 Camera::Camera(Camera_Type type, float fov, float near, float far) : m_type(type), m_Fov(fov), m_Near(near), m_Far(far)
 {
+	MessageBus::SendMessage("CAMERA_REGISTER", { "CAMERA_REGISTER", this });
 }
 
 
@@ -31,6 +32,12 @@ void Camera::Update()
 	glm::mat4 view = rotation * position;
 
 	projection *= view;
+
+
+	forward = glm::normalize(glm::vec3(view[0][2], view[1][2], view[2][2]));
+	left = glm::normalize(glm::vec3(view[0][0], view[1][0], view[2][0]));
+	upward = glm::normalize(glm::vec3(view[0][1], view[1][1], view[2][1]));
+
 	m_projection = projection;
 }
 

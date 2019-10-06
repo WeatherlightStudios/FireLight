@@ -7,11 +7,13 @@ Scene::Scene()
 {
 	isInizialized = false;
 	m_render = std::make_unique<RenderSystem>();
+	m_cameraSyste = new CameraSystem();
 }
 
 
 void Scene::InitScene()
 {
+	m_cameraSyste->Init();
 	Init();
 	m_render->Init();
 	isInizialized = true;

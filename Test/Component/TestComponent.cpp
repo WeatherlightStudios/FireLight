@@ -7,14 +7,24 @@ void TestComponent::Init()
 
 void TestComponent::Update()
 {
-	if (FL::Window::isKeyDown(KEYCODE::KEY_A))
+	auto transform = m_Owner->GetComponent<Transform>();
+	auto camera = m_Owner->GetComponent<Camera>();
+
+	if (FL::Input::isKeyPress(FL::KEYCODE::KEY_W))
 	{
-		auto obj = gameObject->getScene()->CreateGameOject();
-		obj->AddComponent(std::make_shared<Transform>(glm::vec2(RandomNumber::Range(-50, 50), RandomNumber::Range(-50, 50)), 0.0f, glm::vec2(1, 1)));
-		obj->AddComponent(std::make_shared<Sprite>());
-		obj->GetComponent<Sprite>()->m_texture = Resource::getTexture("sprite");
-		obj->GetComponent<Sprite>()->m_row = glm::vec2(18, 13);
-		obj->GetComponent<Sprite>()->m_offset = glm::vec2(0, 0);
-		obj->GetComponent<Sprite>()->ZLayer = 1;
+		transform->SetPosition(transform->GetPosition() + (camera->forward * 1.5f * (float)Time::GetDeltaTime()));
 	}
+
+	if (FL::Input::isKeyPress(FL::KEYCODE::KEY_S))
+	{
+		transform->SetPosition(transform->GetPosition() - (camera->forward * 1.5f * (float)Time::GetDeltaTime()));
+	}
+
+
+
+	glm::vec2 mousePos = FL::Window::get_mouse_positions();
+	glm::vec2 mouse_delta = glm::vec2(FL::Window::getWidth() / 2, FL::Window::getHeight() / 2) - mousePos;
+	transform->SetRotation(transform->GetRotation() + glm::vec3(-mouse_delta.y, -mouse_delta.x, 0));
+	FL::Window::setCursorPosition(FL::Window::getWidth() / 2, FL::Window::getHeight() / 2);
+
 }

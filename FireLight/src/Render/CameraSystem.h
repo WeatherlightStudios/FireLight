@@ -8,7 +8,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "../Core/MessageSystem/MessageBus.h"
 #include "../Core/System.h"
+
+#include "../Utility/Debugging/Log.h"
 
 class CameraSystem : public System
 {
@@ -17,7 +20,9 @@ public:
 
 	void Init();
 
-	void Debug();
+	//void Debug();
+
+	void HandleMessage(Message msg);
 
 	static void RegisterCamera(Camera* camera);
 

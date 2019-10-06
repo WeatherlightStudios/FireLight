@@ -10,6 +10,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "../../Core/MessageSystem/MessageBus.h"
+#include "../../Core/MessageSystem/Message.h"
+
 enum Camera_Type {
 	PERSPECTIVE,
 	ORTHOGRAPHIC
@@ -26,6 +29,10 @@ public:
 	glm::mat4 GetProjection() { return m_projection; }
 
 	~Camera();
+
+	glm::vec3 forward;
+	glm::vec3 upward;
+	glm::vec3 left;
 
 private:
 

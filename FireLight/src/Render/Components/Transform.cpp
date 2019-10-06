@@ -11,21 +11,6 @@ Transform::Transform(glm::vec3 pos, glm::vec3 rot, glm::vec3 scale) :
 {
 }
 
-Transform::Transform(glm::vec3 pos) :
-	m_position(pos), m_rotation(glm::vec3(0, 0, 0)), m_scale(glm::vec3(1, 1, 1))
-{
-}
-
-Transform::Transform(glm::vec3 pos, glm::vec3 rot) :
-	m_position(pos), m_rotation(rot), m_scale(glm::vec3(1, 1, 1))
-{
-}
-
-Transform::Transform(glm::vec3 pos, glm::vec3 scale) :
-	m_position(pos), m_rotation(glm::vec3(0, 0, 0)), m_scale(scale)
-{
-}
-
 
 void Transform::Init()
 {

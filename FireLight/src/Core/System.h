@@ -6,10 +6,9 @@ class System
 {
 public:
 	System();
-	virtual void Init() {}
-	virtual void Debug() {}
 
-	void MesageHandling(Message* msg);
+	virtual void HandleMessage(Message msg) {}
+
 	~System();
 };
 

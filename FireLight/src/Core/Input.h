@@ -4,8 +4,82 @@
 #include <GLFW/glfw3.h>
 #include <map>
 
+namespace FL 
+{
 
-namespace KEYCODE
+	class Input 
+	{
+	public:
+		Input();
+
+		static void Init();
+
+
+
+		static bool isKeyDown(int keyCode);
+		static bool isKeyUp(int keyCode);
+		static bool isKeyPress(int keyCode);
+
+		static bool isMouseButtonDown(int keyCode);
+		static bool isMouseButtonUp(int keyCode);
+		static bool isMouseButtonPress(int keyCode);
+
+
+
+		static void clearKeys()
+		{
+			for (int i = 0; i < (sizeof(m_keys) / sizeof(*m_keys)); i++)
+			{
+				m_keys[i] = -1;
+			}
+		}
+
+		static void clearPressKeys()
+		{
+			for (int i = 0; i < (sizeof(m_Presskeys) / sizeof(*m_Presskeys)); i++)
+			{
+				m_Presskeys[i] = -1;
+			}
+		}
+
+		static void clearMousePressMuttons()
+		{
+			for (int i = 0; i < (sizeof(m_PressMouseButton) / sizeof(*m_PressMouseButton)); i++)
+			{
+				m_PressMouseButton[i] = -1;
+			}
+		}
+
+		static void clearMouseMuttons()
+		{
+			for (int i = 0; i < (sizeof(m_MouseButton) / sizeof(*m_MouseButton)); i++)
+			{
+				m_MouseButton[i] = -1;
+			}
+		}
+
+		static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+		static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
+
+		~Input();
+	private:
+
+
+		static int m_keys[1024];
+		static int m_Presskeys[1024];
+
+		static int m_MouseButton[32];
+		static int m_PressMouseButton[32];
+
+
+
+	};
+
+
+
+
+
+	namespace KEYCODE
 {
 	/* Printable keys */
 	const unsigned int KEY_SPACE  = GLFW_KEY_SPACE;
@@ -164,5 +238,6 @@ namespace KEYCODE
 	const unsigned int KEY_JOYSTICK_15 = GLFW_JOYSTICK_15;
 	const unsigned int KEY_JOYSTICK_16 = GLFW_JOYSTICK_16;
 	const unsigned int KEY_JOYSTICK_LAST = GLFW_JOYSTICK_LAST;
+}
 }
 #endif

@@ -75,7 +75,7 @@ protected:
 
 	std::unique_ptr<RenderSystem> m_render;
 
-
+	CameraSystem* m_cameraSyste;
 };
 
 #endif

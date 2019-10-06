@@ -10,19 +10,19 @@
 #include "Message.h"
 
 
-class MessageBuss
+class MessageBus
 {
 public:
-	MessageBuss();
+	MessageBus();
 
-	void RegisterSystem(std::string type, System* system);
+	static void RegisterSystem(std::string type, System* system);
 
-	void SendMessage(std::string type, Message msg);
+	static void SendMessage(std::string type, Message msg);
 
-	~MessageBuss();
+	~MessageBus();
 private:
 
-	std::unordered_map<std::string, std::vector<System*>> systems;
+	static std::unordered_map<std::string, std::vector<System*>> systems;
 
 
 };

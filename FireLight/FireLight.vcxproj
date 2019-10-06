@@ -174,6 +174,7 @@
     <ClInclude Include="src\Core\System.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Input.cpp" />
     <ClCompile Include="src\Core\MessageSystem\Message.cpp" />
     <ClCompile Include="src\Core\MessageSystem\MessageBus.cpp" />
     <ClCompile Include="src\Render\Components\Camera.cpp" />

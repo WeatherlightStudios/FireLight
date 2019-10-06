@@ -9,9 +9,6 @@ class Transform : public Component
 {
 public:
 	Transform();
-	Transform(glm::vec3 pos);
-	Transform(glm::vec3 pos, glm::vec3 rot);
-	Transform(glm::vec3 pos, glm::vec3 scale);
 	Transform(glm::vec3 pos, glm::vec3 rot, glm::vec3 scale);
 
 

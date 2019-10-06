@@ -15,6 +15,10 @@ public:
 	Message(std::string type, GameObject* data);
 	~Message();
 
+	std::string type() { return m_type; }
+	GameObject* getGameObject() { return m_obj; }
+	Component* getComponent() { return m_component; }
+
 private:
 
 	//The type of the  message

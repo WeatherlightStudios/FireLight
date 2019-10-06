@@ -34,6 +34,7 @@
     <ClCompile Include="src\Core\System.cpp" />
     <ClCompile Include="src\Core\MessageSystem\MessageBus.cpp" />
     <ClCompile Include="src\Core\MessageSystem\Message.cpp" />
+    <ClCompile Include="src\Core\Input.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h" />

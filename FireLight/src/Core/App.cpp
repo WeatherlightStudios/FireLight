@@ -17,6 +17,7 @@ void FL::App::Start()
 	}
 	newWindow->InitIMGUI();
 	glEnable(GL_DEPTH_TEST);
+	//FL::Input::Init();
 	glfwSwapInterval(0);
 
 	MainLoop();
@@ -49,7 +50,8 @@ void FL::App::MainLoop()
 			//FL::Input::Reset();
 			SceneManager::UpdateCurrentScene();
 			Time::Reset();
-			newWindow->clearKeys();
+			FL::Input::clearKeys();
+			FL::Input::clearMouseMuttons();
 		}
 
 

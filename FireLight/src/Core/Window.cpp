@@ -4,7 +4,8 @@
 int FL::Window::m_width = 0;
 int FL::Window::m_height = 0;
 glm::vec2 FL::Window::mousePosition;
-int FL::Window::m_keys[1024];
+GLFWwindow *FL::Window::m_window;
+//int FL::Window::m_keys[1024];
 
 FL::Window::Window(int width, int height, const char* title)
 {
@@ -15,16 +16,16 @@ FL::Window::Window(int width, int height, const char* title)
 
 void FL::Window::Init()
 {
-	for (int i = 0; i < 1024; i++)
+	/*for (int i = 0; i < 1024; i++)
 	{
 		m_keys[i] = -1;
-	}
+	}*/
 
 
 	m_window = glfwCreateWindow(m_width, m_height, m_title, nullptr, nullptr);
 	glfwSetWindowUserPointer(m_window, this);
-	glfwSetKeyCallback(m_window, key_callback);
-	//glfwSetMouseButtonCallback(m_window, FL::Input::mouse_button_callback);
+	glfwSetKeyCallback(m_window, FL::Input::key_callback);
+	glfwSetMouseButtonCallback(m_window, FL::Input::mouse_button_callback);
 	glfwSetCursorPosCallback(m_window, cursor_position_callback);
 	glfwSetWindowSizeCallback(m_window, window_size_callback);
 	glfwMakeContextCurrent(m_window);
@@ -52,34 +53,34 @@ void FL::Window::InitIMGUI()
 	ImGui_ImplOpenGL3_Init(glsl_version);
 }
 
-
-bool FL::Window::isKeyUp(int keyCode)
-{
-	bool currentState = false;
-	if (m_keys[keyCode] == GLFW_RELEASE)
-	{
-		currentState = true;
-		//m_keys[keyCode] = -1;
-	}
-	return currentState;
-}
-
-bool FL::Window::isKeyDown(int keyCode)
-{
-	bool currentState = false;
-	if (m_keys[keyCode] == GLFW_PRESS)
-	{
-		currentState = true;
-		//m_keys[keyCode] = -1;
-	}
-	return currentState;
-}
-
-
-bool FL::Window::isKeyPress(int keyCode)
-{
-	return m_keys[keyCode] == GLFW_REPEAT || m_keys[keyCode] == GLFW_PRESS;
-}
+//
+//bool FL::Window::isKeyUp(int keyCode)
+//{
+//	bool currentState = false;
+//	if (m_keys[keyCode] == GLFW_RELEASE)
+//	{
+//		currentState = true;
+//		//m_keys[keyCode] = -1;
+//	}
+//	return currentState;
+//}
+//
+//bool FL::Window::isKeyDown(int keyCode)
+//{
+//	bool currentState = false;
+//	if (m_keys[keyCode] == GLFW_PRESS)
+//	{
+//		currentState = true;
+//		//m_keys[keyCode] = -1;
+//	}
+//	return currentState;
+//}
+//
+//
+//bool FL::Window::isKeyPress(int keyCode)
+//{
+//	return m_keys[keyCode] == GLFW_REPEAT || m_keys[keyCode] == GLFW_PRESS;
+//}
 
 
 void FL::Window::UpdateInput()
@@ -96,18 +97,6 @@ void FL::Window::Update()
 bool FL::Window::isClosed() const
 {
 	return glfwWindowShouldClose(m_window);
-}
-
-void FL::Window::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-	m_keys[key] = action;
-}
-
-void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
-{
-	FL::Window *win = (FL::Window*)glfwGetWindowUserPointer(window);
-
-	//win->m_mouse_buttons[button] = action != GLFW_RELEASE;
 }
 
 void FL::cursor_position_callback(GLFWwindow* window, double xpos, double ypos)

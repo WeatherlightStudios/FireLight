@@ -74,9 +74,6 @@ void RenderSystem::Init()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
-
-
-
 	m_projection = glm::perspective(glm::radians(60.0f), 800.0f / 600.0f,0.1f, 1000.0f);
 	m_projection = glm::translate(m_projection, glm::vec3(0, 0, -3.0f));
 
@@ -94,6 +91,9 @@ void  RenderSystem::Render()
 {
 	glm::mat4 model;
 	model = glm::mat4(1.0f);
+	glm::mat4 view = glm::mat4(1.0f);
+	view = glm::translate(view, glm::vec3(0,0,-10));
+
 
 	model = glm::translate(model, glm::vec3(0, 0, 0));
 	//model = glm::rotate(model, 1.0f, glm::vec3(1, 0, 0));
@@ -101,10 +101,13 @@ void  RenderSystem::Render()
 	auto shader = Resource::getShader("terrain_shader");
 	auto texture = Resource::getTexture("TestBox");
 
+	m_projection = CameraSystem::GetCurrentCamera();
+
 	texture.Bind();
 	shader.Use();
 	shader.SetInteger("textures", 1);
 	shader.SetMatrix4("projection", m_projection);
+	shader.SetMatrix4("view", view);
 	shader.SetMatrix4("model", model);
 
 	glBindVertexArray(VAO);
@@ -112,9 +115,10 @@ void  RenderSystem::Render()
 
 	model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(0, -2, 0));
-	model = glm::scale(model, glm::vec3(10, 1, 10));
+	model = glm::scale(model, glm::vec3(10, 0.5, 10));
 	shader.Use();
 	shader.SetMatrix4("projection", m_projection);
+	shader.SetMatrix4("view", view);
 	shader.SetMatrix4("model", model);
 
 	glDrawArrays(GL_TRIANGLES, 0, 36);

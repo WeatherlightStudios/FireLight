@@ -13,7 +13,8 @@
 #include "../../imgui/imgui.h"
 #include "../Utility/Debugging/Log.h"
 
-//Resources
+//Engine Stuff
+#include "CameraSystem.h"
 #include "../Utility/Resource.h"
 #include "../Core/System.h"
 //-------------------------------------------
