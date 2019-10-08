@@ -5,8 +5,8 @@
 #include <memory>
 
 #include "../Component/TestComponent.h"
+#include "../Component/TerrainComponent.h"
 
-//#include "../Component/TestComponent.h"
 class Test_Scene : public Scene
 {
 public:

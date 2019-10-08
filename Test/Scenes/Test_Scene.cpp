@@ -13,6 +13,11 @@ void Test_Scene::Init()
 	camera->AddComponent(std::make_shared<Camera>(Camera_Type::PERSPECTIVE, 60.0f, 0.01f, 1000.0f));
 	camera->AddComponent(std::make_shared <TestComponent>());
 
+	auto Terrain = CreateGameOject();
+	Terrain->AddComponent(std::make_shared<Transform>());
+	Terrain->AddComponent(std::make_shared<TerrainComponent>());
+
+
 
 }
 

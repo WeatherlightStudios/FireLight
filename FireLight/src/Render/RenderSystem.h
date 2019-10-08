@@ -16,7 +16,10 @@
 //Engine Stuff
 #include "CameraSystem.h"
 #include "../Utility/Resource.h"
+#include "../Utility/Resources/Shader.h"
+#include "../Utility/Resources/Texture.h"
 #include "../Core/System.h"
+#include "Components/Mesh.h"
 //-------------------------------------------
 
 class RenderSystem : public System
@@ -30,10 +33,17 @@ public:
 
 	void Debug();
 
-
-
+	void HandleMessage(Message msg);
 
 	void Render();
+
+
+	void UpdateBuffer(Mesh* mesh);
+
+	void AddMesh();
+
+	void RemoveMesh();
+
 
 
 
@@ -41,13 +51,13 @@ public:
 
 private:
 
-	GLuint VAO, VBO;
+	GLuint VAO, VBO, IBO;
 
 	glm::mat4 m_projection;
 private:
 	//glm::mat4 model;
 
-	const size_t VERTEX_BUFFER_SIZE = sizeof(float) * 12;
+	std::vector<Mesh*> meshes;
 	
 };
 

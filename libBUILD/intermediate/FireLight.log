@@ -1,15 +1,5 @@
 ﻿E:\VisualStudio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(376,5): warning MSB8004: la directory Intermediate non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Intermediate.
 E:\VisualStudio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: la directory Output non termina con una barra finale. Nell'istanza della compilazione verrà aggiunta la barra poiché è necessaria per consentire la corretta valutazione della directory Output.
-  App.cpp
-  GameObject.cpp
-  Scene.cpp
-e:\git-projects\firelightengine\firelight\src\core\scene.cpp(63): warning C4267: 'inizializzazione': conversione da 'size_t' a 'uint32_t'. Possibile perdita di dati.
-  SceneManager.cpp
-  CameraSystem.cpp
-e:\git-projects\firelightengine\firelight\src\render\camerasystem.cpp(27): warning C4244: 'inizializzazione': conversione da '__int64' a 'int'. Possibile perdita di dati.
-  Camera.cpp
-  RenderSystem.cpp
-  Generazione del codice in corso...
 freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR giα definito in opengl32.lib(OPENGL32.dll); seconda definizione ignorata
 freetype.lib(freetype.dll) : warning LNK4221: Questo file oggetto non definisce simboli pubblici non definiti in precedenza, pertanto verrα utilizzato da qualsiasi operazione di collegamento che utilizza la libreria
   FireLight.vcxproj -> E:\Git-Projects\FireLightEngine\libBUILD\FireLight.lib
