@@ -149,6 +149,7 @@ void TerrainComponent::Draw()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
 	glDrawElements(GL_TRIANGLES, (terrainWidth - 1) * (terrainHeight - 1) * 6, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
+
 }
 
 
