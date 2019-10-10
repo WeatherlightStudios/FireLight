@@ -2,6 +2,9 @@
 
 #include <FireLight.h>
 
+#include <glm/gtx/compatibility.hpp>
+#include <glm/gtx/rotate_vector.hpp>
+
 struct vertex {
 	glm::vec3 pos;
 	glm::vec3 color;
@@ -14,6 +17,9 @@ public:
 
 	void Init();
 	void Update();
+
+	void UpdateMesh();
+
 	void Draw();
 
 
@@ -23,9 +29,12 @@ private:
 
 	GLuint VAO, VBO, IBO;
 
-	vertex* vertices;
-	int* indices;
+	vertex* vertices = nullptr;
+	GLuint* indices = nullptr;
 
-	const int terrainWidth = 10;
-	const int terrainHeight = 10;
+	const int terrainWidth = 100;
+	const int terrainHeight = 100;
+	float* terrain = nullptr;
+
+	FastNoise myNoise;
 };

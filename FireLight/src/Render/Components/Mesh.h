@@ -15,6 +15,7 @@ public:
 
 	virtual void Init() {}
 	virtual void Update() {}
+	virtual void UpdateMesh(){}
 	virtual void Draw() {}
 
 	~Mesh();

@@ -2,7 +2,7 @@
 
 void TestComponent::Init()
 {
-
+	FL::Window::setCursorPosition(FL::Window::getWidth() / 2, FL::Window::getHeight() / 2);
 }
 
 void TestComponent::Update()
@@ -12,14 +12,25 @@ void TestComponent::Update()
 
 	if (FL::Input::isKeyPress(FL::KEYCODE::KEY_W))
 	{
-		transform->SetPosition(transform->GetPosition() + (camera->forward * 1.5f * (float)Time::GetDeltaTime()));
+		transform->SetPosition(transform->GetPosition() + (camera->forward * velocity * (float)Time::GetDeltaTime()));
 	}
 
 	if (FL::Input::isKeyPress(FL::KEYCODE::KEY_S))
 	{
-		transform->SetPosition(transform->GetPosition() - (camera->forward * 1.5f * (float)Time::GetDeltaTime()));
+		transform->SetPosition(transform->GetPosition() - (camera->forward * velocity * (float)Time::GetDeltaTime()));
 	}
 
+
+	if (FL::Input::isKeyPress(FL::KEYCODE::KEY_Q))
+	{
+		transform->SetPosition(transform->GetPosition() - (camera->upward * velocity * (float)Time::GetDeltaTime()));
+	}
+
+
+	if (FL::Input::isKeyPress(FL::KEYCODE::KEY_E))
+	{
+		transform->SetPosition(transform->GetPosition() + (camera->upward * velocity * (float)Time::GetDeltaTime()));
+	}
 
 
 	glm::vec2 mousePos = FL::Window::get_mouse_positions();
