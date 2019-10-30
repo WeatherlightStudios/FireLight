@@ -5,20 +5,17 @@
 void Test_Scene::Init()
 {
 	Resource::LoadShader("Resources/Shaders/Terrain_shader.vert", "Resources/Shaders/Terrain_shader.frag", NULL, "terrain_shader");
+	Resource::LoadShader("Resources/Shaders/3D_default.vert", "Resources/Shaders/3D_default.frag", NULL, "box");
 	Resource::LoadTexture("Resources/Texture/Boxes.png", true, "TestBox");
+
+
 
 
 	auto camera = CreateGameOject();
 	camera->AddComponent(std::make_shared<Transform>(glm::vec3(0, 0, -10), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)));
-	camera->AddComponent(std::make_shared<Camera>(Camera_Type::PERSPECTIVE, 60.0f, 0.01f, 1000.0f));
+	camera->AddComponent(std::make_shared<Camera>(Camera_Type::PERSPECTIVE, 60.0f, 0.01f, 10000.0f));
 	camera->AddComponent(std::make_shared <TestComponent>());
-
-	auto Terrain = CreateGameOject();
-	Terrain->AddComponent(std::make_shared<Transform>());
-	Terrain->AddComponent(std::make_shared<TerrainComponent>());
-
-
-
+	
 }
 
 void Test_Scene::Update()

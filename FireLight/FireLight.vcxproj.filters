@@ -36,6 +36,9 @@
     <ClCompile Include="src\Core\MessageSystem\Message.cpp" />
     <ClCompile Include="src\Core\Input.cpp" />
     <ClCompile Include="src\Utility\FastNoise.cpp" />
+    <ClCompile Include="src\Render\OpenGL\VertexBuffer.cpp" />
+    <ClCompile Include="src\Render\OpenGL\VertexArray.cpp" />
+    <ClCompile Include="src\Render\OpenGL\IndexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h" />
@@ -77,6 +80,9 @@
     <ClInclude Include="src\Render\CameraSystem.h" />
     <ClInclude Include="src\Core\System.h" />
     <ClInclude Include="src\Utility\FastNoise.h" />
+    <ClInclude Include="src\Render\OpenGL\VertexArray.h" />
+    <ClInclude Include="src\Render\OpenGL\VertexBuffer.h" />
+    <ClInclude Include="src\Render\OpenGL\IndexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

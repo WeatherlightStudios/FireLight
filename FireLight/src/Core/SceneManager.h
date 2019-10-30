@@ -12,7 +12,7 @@ public:
 	SceneManager();
 	~SceneManager();
 
-	static void AddScene(std::unique_ptr<Scene> scene, std::string name);
+	static void AddScene(std::unique_ptr<FL::Scene> scene, std::string name);
 
 	static void setCurrentScene(std::string name);
 
@@ -27,8 +27,8 @@ public:
 
 private:
 
-	static Scene* m_current_scene;
-	static std::map<std::string, std::unique_ptr<Scene>> m_scenes;
+	static FL::Scene* m_current_scene;
+	static std::map<std::string, std::unique_ptr<FL::Scene>> m_scenes;
 
 
 };

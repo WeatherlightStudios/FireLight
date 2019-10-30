@@ -5,6 +5,8 @@
 #include "../../../imgui/imgui.h"
 #include <glm/glm.hpp>
 
+#include "../../Utility/Debugging/Log.h"
+
 class Transform : public Component
 {
 public:

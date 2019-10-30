@@ -6,8 +6,9 @@
 
 #include "../Component/TestComponent.h"
 #include "../Component/TerrainComponent.h"
+#include "../Component/Box.h"
 
-class Test_Scene : public Scene
+class Test_Scene : public FL::Scene
 {
 public:
 	void Init();

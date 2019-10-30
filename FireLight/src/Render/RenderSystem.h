@@ -27,9 +27,7 @@ class RenderSystem : public System
 public:
 	RenderSystem();
 
-
 	void Init();
-
 
 	void Debug();
 
@@ -44,9 +42,6 @@ public:
 
 	void RemoveMesh();
 
-
-
-
 	~RenderSystem();
 
 private:
@@ -56,7 +51,6 @@ private:
 	glm::mat4 m_projection;
 private:
 	//glm::mat4 model;
-
 	std::vector<Mesh*> meshes;
 	
 };

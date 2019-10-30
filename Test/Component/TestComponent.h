@@ -10,6 +10,7 @@ public:
 	void Update();
 
 private:
-	float velocity = 10.0f;
+	float velocity = 50.0f;
+	bool isCameraUsed;
 };
 #endif 

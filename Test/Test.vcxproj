@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Component\Box.cpp" />
     <ClCompile Include="Component\TerrainComponent.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
@@ -26,6 +27,7 @@
     <ClCompile Include="Component\TestComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component\Box.h" />
     <ClInclude Include="Component\TerrainComponent.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Scenes\Test_Scene.h" />

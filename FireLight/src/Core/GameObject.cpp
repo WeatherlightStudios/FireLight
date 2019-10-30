@@ -4,8 +4,7 @@
 
 GameObject::GameObject()
 {
-	FL::LOG_INFO_ENGINE("ObjectIsCreated");
-	this->AddComponent(std::make_shared<Transform>());
+	//this->AddComponent(std::make_shared<Transform>());
 }
 
 void GameObject::InitGameObject()
@@ -34,7 +33,7 @@ void GameObject::DebugComponents()
 	}
 }
 
-void GameObject::AddComponent(std::shared_ptr<Component> component)
+void GameObject::AddComponent(const std::shared_ptr<Component>& component)
 {
 	component->setGameObject(this);
 	component->Init();
@@ -62,5 +61,4 @@ void GameObject::RemoveChildren(std::weak_ptr<GameObject> children)
 
 GameObject::~GameObject()
 {
-	FL::LOG_INFO_ENGINE("ObjectIsDestroyed");
 }

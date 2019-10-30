@@ -5,7 +5,7 @@
 int main()
 {
 	std::unique_ptr<Game> newGame(new Game);
-	newGame->Set_DEBUG_MODE(true);
+	newGame->Set_DEBUG_MODE();
 	newGame->SetWindowDimension(800, 600);
 	newGame->SetWindowName("FireLight GameEngine v1.0.0 alpha");
 	newGame->Start();

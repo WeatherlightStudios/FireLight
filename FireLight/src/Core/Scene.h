@@ -15,68 +15,71 @@
 
 #define SCENE(T) class T : public Scene
 
-
-class Scene
+namespace FL
 {
-public:
-	Scene();
-	~Scene();
-
-
-	/*-----------------------------------------Funzioni DEL ENGINE-----------------------------------*/
-	void InitScene();
-	void UpdateScene();
-	void Render();
-	void CloseScene();
-	/*-----------------------------------------FUNZIONI DI GAMELOGIC-----------------------------------*/
-	/*
-	funzioni base della scena 
-	devono essere inizializzate dalla classe che eredita "Scene" per poter essere utilizzate
-	*/
-
-	//e una funzione che viene richiamata all'inizzio quando la scena viene inizializzata
-	//di solito si usa per inizializzare ogetti o caricare materiale nell resource manager
-	//!piu avanti ci sara la possibilita di inizalizzare da file quindi bastare passare al costruttore della scena il percorso di quest'ultimo!
-	virtual void Init(){}
-	//funzione che viene richiamata ogni frame 
-	virtual void Update(){}
-	//funzione che viene richiamata ogni frame con l'ogetto debug che contiene funzioni di disegno e di UI adatti per il debugging (non funziona)
-	virtual void Debug(){}
-
-	//funzione richiamata alla chiusura di una scena solitamente accade quando si cambia scena o quando il gioco si chiude
-	virtual void Close(){}
-
-
-	void DebugObjects()
+	class Scene
 	{
-		for (auto& e : m_object)
+	public:
+		Scene();
+		~Scene();
+
+		//Game Engine Functions
+		//function that inizialize the scene
+		void InitScene();
+		//Function that update the GameLogic and the Engine systems
+		void UpdateScene();
+		//This function is used to update the render system end perform some logic
+		void Render();
+		//this function free the memory clear the systems and close all 
+		void CloseScene();
+
+		/*!###GameLogic Functions
+		* This virtual functions is used for loading the resources and implement the game logic
+		*/
+		//This function is used for inizialize the Scene, Load the resources and inizialize the game objects
+		virtual void Init(){}
+		//Function that is called once per frame and is used for perform some logic on the entire scene
+		virtual void Update(){}
+		//Function that is called once per frame and is used for Debugging purpuse
+		virtual void Debug(){}
+		//This function is called when the scene is close
+		virtual void Close(){}
+
+		//Function that update the debug of the objects
+		void DebugObjects()
 		{
-			e->Debug();
-			e->DebugComponents();
+			for (auto& e : m_object)
+			{
+				e->Debug();
+				e->DebugComponents();
+			}
 		}
-	}
 
+		//SCENE GRAPH
+		//This Function Instantiate a GameObject in the scene and returns it
+		std::shared_ptr<GameObject> CreateGameOject();
+		//Function that search and remove GameObject from the scene
+		void RemoveGameObject(std::shared_ptr<GameObject>  object);
+		//Search and return a GameObject by ID
+		std::weak_ptr<GameObject> GetGameObject(uint32_t ID);
+		//Set a GameObject parent
+		void SetParent(uint32_t parentID , uint32_t childID);
 
-	//SCENE GRAPH
-	std::shared_ptr<GameObject> CreateGameOject();
+	protected:
 
-	void RemoveGameObject(std::shared_ptr<GameObject>  object);
-	std::weak_ptr<GameObject> GetGameObject(uint32_t ID);
+		bool isInizialized;
 
-	void SetParent(uint32_t parentID , uint32_t childID);
+	private:
 
-protected:
+		std::vector<std::shared_ptr<GameObject>> m_object;
 
+		std::vector<std::weak_ptr<GameObject>> m_parents;
 
-	bool isInizialized;
+		std::unique_ptr<RenderSystem> m_render;
 
+		CameraSystem* m_cameraSyste;
+	};
 
-	std::vector<std::shared_ptr<GameObject>> m_object;
-	std::vector<std::weak_ptr<GameObject>> m_parents;
-
-	std::unique_ptr<RenderSystem> m_render;
-
-	CameraSystem* m_cameraSyste;
-};
+}
 
 #endif

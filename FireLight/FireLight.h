@@ -14,6 +14,9 @@
 
 #include "src/Render/Components/Sprite.h"
 
+#include "src/Render/OpenGL/VertexArray.h"
+#include "src/Render/OpenGL/VertexBuffer.h"
+
 #include "src\Core\Window.h"
 #include "src\Core\Input.h"
 #include "src\Core\Time.h"

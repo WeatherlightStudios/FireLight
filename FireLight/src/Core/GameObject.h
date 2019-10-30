@@ -11,9 +11,12 @@
 
 #include "../Utility/Debugging/Log.h"
 
+namespace FL
+{
 
-class Scene;
+	class Scene;
 
+}
 
 class GameObject
 {
@@ -36,7 +39,7 @@ public:
 	void UpdateComponents();
 	void DebugComponents();
 
-	void AddComponent(std::shared_ptr<Component> component);
+	void AddComponent(const std::shared_ptr<Component>& component);
 	void RemoveComponent(std::shared_ptr<Component> component);
 
 	template<class T>
@@ -57,8 +60,8 @@ public:
 	void SetID(uint32_t id) { ID = id; }
 	uint32_t GetID() { return ID; }
 
-	void SetScene(Scene* scene) { m_scene = scene; }
-	Scene* getScene() { return m_scene; }
+	void SetScene(FL::Scene* scene) { m_scene = scene; }
+	FL::Scene* getScene() { return m_scene; }
 	//nel caso serva verra implementato
 	//void GetComponent();
 	//void GetComponents();
@@ -78,7 +81,7 @@ public:
 
 
 private:
-	Scene* m_scene;
+	FL::Scene* m_scene;
 
 	GameObject* m_parent;
 

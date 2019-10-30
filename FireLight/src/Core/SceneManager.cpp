@@ -1,14 +1,14 @@
 #include "SceneManager.h"
 
 
-std::map<std::string, std::unique_ptr<Scene>>	SceneManager::m_scenes;
-Scene* SceneManager::m_current_scene;
+std::map<std::string, std::unique_ptr<FL::Scene>>	SceneManager::m_scenes;
+FL::Scene* SceneManager::m_current_scene;
 
 SceneManager::SceneManager()
 {
 }
 
-void SceneManager::AddScene(std::unique_ptr<Scene> scene, std::string name)
+void SceneManager::AddScene(std::unique_ptr<FL::Scene> scene, std::string name)
 {
 	m_scenes[name] = std::move(scene);
 }

@@ -2,100 +2,102 @@
 #include <iostream>
 
 
-
-Scene::Scene()
+namespace FL
 {
-	isInizialized = false;
-	m_render = std::make_unique<RenderSystem>();
-	m_cameraSyste = new CameraSystem();
-}
-
-
-void Scene::InitScene()
-{
-	m_cameraSyste->Init();
-	Init();
-	m_render->Init();
-	isInizialized = true;
-}
-void Scene::UpdateScene()
-{
-	Update();
-
-	for (int i = 0; i < m_object.size(); i++)
+	Scene::Scene()
 	{
-		m_object[i]->UpdateGameObject();
+		isInizialized = false;
+		m_render = std::make_unique<RenderSystem>();
+		m_cameraSyste = new CameraSystem();
 	}
-}
 
-void Scene::Render()
-{
 
-	/*m_render->Begin();
-	for (int i = 0; i < m_object.size(); i++)
+	void Scene::InitScene()
 	{
-		Sprite* component = m_object[i]->GetComponent<Sprite>();
-		Transform* trnasf = m_object[i]->GetComponent<Transform>();
-		if (component != nullptr)
+		m_cameraSyste->Init();
+		Init();
+		m_render->Init();
+		isInizialized = true;
+	}
+	void Scene::UpdateScene()
+	{
+		Update();
+
+		for (int i = 0; i < m_object.size(); i++)
 		{
-			m_render->SubmitSprite(trnasf, component);
+			m_object[i]->UpdateGameObject();
 		}
 	}
-	m_render->End();
+
+	void Scene::Render()
+	{
+
+		/*m_render->Begin();
+		for (int i = 0; i < m_object.size(); i++)
+		{
+			Sprite* component = m_object[i]->GetComponent<Sprite>();
+			Transform* trnasf = m_object[i]->GetComponent<Transform>();
+			if (component != nullptr)
+			{
+				m_render->SubmitSprite(trnasf, component);
+			}
+		}
+		m_render->End();
 
 	
-	m_render->Flush();
-*/
+		m_render->Flush();
+	*/
 
-	m_render->Render();
-}
-
-void Scene::CloseScene()
-{
-	Close();
-}
-
-
-//SCENE GRAPH
-
-std::shared_ptr<GameObject> Scene::CreateGameOject()
-{
-	uint32_t size = m_object.size();
-	m_object.push_back(std::make_shared<GameObject>());
-	m_object.back()->SetID(size);
-	m_object.back()->SetScene(this);
-	m_parents.resize(m_object.size());
-	return m_object.back();
-}
-
-void Scene::RemoveGameObject(std::shared_ptr<GameObject> ptr)
-{
-	//auto ptr = object.lock();
-
-	if (ptr->GetID() != m_object.size() - 1)
-	{
-		uint32_t tempID = ptr->GetID();
-		m_object.back()->SetID(tempID);
-		m_object[tempID] = m_object.back();
-		m_parents[tempID] = m_parents.back();
-		m_object.pop_back();
-		m_parents.pop_back();
-	}
-	else
-	{
-		m_object.pop_back();
-		m_parents.pop_back();
+		m_render->Render();
 	}
 
-}
+	void Scene::CloseScene()
+	{
+		Close();
+	}
 
 
-void Scene::SetParent(uint32_t parentID, uint32_t childID)
-{
-	m_parents[childID] = m_object[parentID];
-}
+	//SCENE GRAPH
+
+	std::shared_ptr<GameObject> Scene::CreateGameOject()
+	{
+		uint32_t size = m_object.size();
+		m_object.push_back(std::make_shared<GameObject>());
+		m_object.back()->SetID(size);
+		m_object.back()->SetScene(this);
+		m_parents.resize(m_object.size());
+		return m_object.back();
+	}
+
+	void Scene::RemoveGameObject(std::shared_ptr<GameObject> ptr)
+	{
+		//auto ptr = object.lock();
+
+		if (ptr->GetID() != m_object.size() - 1)
+		{
+			uint32_t tempID = ptr->GetID();
+			m_object.back()->SetID(tempID);
+			m_object[tempID] = m_object.back();
+			m_parents[tempID] = m_parents.back();
+			m_object.pop_back();
+			m_parents.pop_back();
+		}
+		else
+		{
+			m_object.pop_back();
+			m_parents.pop_back();
+		}
+
+	}
 
 
-Scene::~Scene()
-{
+	void Scene::SetParent(uint32_t parentID, uint32_t childID)
+	{
+		m_parents[childID] = m_object[parentID];
+	}
+
+
+	Scene::~Scene()
+	{
+	}
 }

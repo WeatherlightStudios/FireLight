@@ -23,6 +23,7 @@ public:
 
 protected:
 
+
 	//TODO:: serve implementazione
 	bool m_IsActive;
 

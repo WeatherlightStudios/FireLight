@@ -7,35 +7,63 @@ FL::App::App()
 
 void FL::App::Start() 
 {
-	//Init GLFW/GL3W and start MainLoop
-	newWindow = std::make_unique<Window>(Width, Height, Title.c_str());
+	m_NewWindow = std::make_unique<Window>(m_Width, m_Height, m_Title.c_str());
+
 	glfwInit();
-	newWindow->Init();
+
+	m_NewWindow->Init();
+
 	if (gl3wInit())
 	{
 		std::cout << "OpenGL failde to inizialize" << std::endl;
 	}
-	newWindow->InitIMGUI();
+
+	m_NewWindow->InitIMGUI();
+
 	glEnable(GL_DEPTH_TEST);
-	//FL::Input::Init();
+
 	glfwSwapInterval(0);
 
 	MainLoop();
 }
 
+void FL::App::FixedUpdate()
+{
+	SceneManager::UpdateCurrentScene();
+	Time::Reset();
+	FL::Input::clearKeys();
+	FL::Input::clearMouseMuttons();
+}
+
+void FL::App::Update()
+{
+	//TODO:: need implement Update Function to Scene and in the SceneManager
+}
+
+void FL::App::UpdateFrameRate()
+{
+	m_CurrentTime = glfwGetTime();
+
+	m_FrameRate++;
+
+	if (m_CurrentTime - m_OldTime > 1.0)
+	{
+		m_CurrentFPS = m_FrameRate;
+		m_FrameRate = 0;
+		m_OldTime = m_CurrentTime;
+	}
+}
+
 void FL::App::MainLoop()
 {
-
-	//init a game
 	Init();
+
 	Time::Start();
 
-	frameRate = 0;
+	m_FrameRate = 0;
+	m_OldTime = glfwGetTime();
 
-	oldTime = glfwGetTime();
-
-	//MainLoop
-	while (!newWindow->isClosed())
+	while (!m_NewWindow->isClosed())
 	{
 		Time::Calculate();
 
@@ -43,50 +71,29 @@ void FL::App::MainLoop()
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
-
-		//FixedFrame Update only GameLogic
 		while(Time::GetLag() >= MS_PER_UPDATE)
 		{
-			//FL::Input::Reset();
-			SceneManager::UpdateCurrentScene();
-			Time::Reset();
-			FL::Input::clearKeys();
-			FL::Input::clearMouseMuttons();
+			FixedUpdate();
 		}
 
-
-
-		if (DEBUG_MODE)
+		if (m_DEBUG_MODE)
 		{
 			SceneManager::DebugCurrentScene();
 			FL::Log::Draw();
 		}
 
-
-		ImGui::Text("FPS: %d", currentFPS);
-
+		//TODO:: Need more complex implemetation for debug and monitoring of performance
+		//ImGui::Text("FPS: %d", m_CurrentFPS);
 
 		Render();
-		ImGui::Render();
 
+		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
+		UpdateFrameRate();
 
-		currentTime = glfwGetTime();
-
-		frameRate++;
-
-		if (currentTime - oldTime > 1.0)
-		{
-			currentFPS = frameRate;
-			frameRate = 0;
-			oldTime = currentTime;
-		}
-
-		newWindow->Update();
-		newWindow->UpdateInput();
-
-
+		m_NewWindow->UpdateInput();
+		m_NewWindow->Update();
 	}
 	ShutDown();
 }
@@ -96,7 +103,6 @@ void FL::App::Render()
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	
 	SceneManager::DrawCurrentScene();
-
 }
 
 void FL::App::ShutDown()
@@ -111,13 +117,13 @@ void FL::App::ShutDown()
 
 void FL::App::SetWindowDimension(int width, int height)
 {
-	Width = width;
-	Height = height;
+	m_Width = width;
+	m_Height = height;
 }
 
 void FL::App::SetWindowName(std::string name)
 {
-	Title = name;
+	m_Title = name;
 }
 
 

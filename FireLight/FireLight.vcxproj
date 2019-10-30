@@ -142,6 +142,9 @@
     <ClInclude Include="src\Core\MessageSystem\MessageBus.h" />
     <ClInclude Include="src\Render\Components\Sprite.h" />
     <ClInclude Include="src\Render\Components\Transform.h" />
+    <ClInclude Include="src\Render\OpenGL\IndexBuffer.h" />
+    <ClInclude Include="src\Render\OpenGL\VertexArray.h" />
+    <ClInclude Include="src\Render\OpenGL\VertexBuffer.h" />
     <ClInclude Include="src\Render\RenderSystem.h" />
     <ClInclude Include="src\Render\Simple2DRenderSystem.h" />
     <ClInclude Include="src\Core\Component.h" />
@@ -169,6 +172,7 @@
     <ClInclude Include="src\Utility\FastNoise.h" />
     <ClInclude Include="src\Utility\RandomNumber.h" />
     <ClInclude Include="src\Utility\Resource.h" />
+    <ClInclude Include="src\Utility\ResourceManager.h" />
     <ClInclude Include="src\Utility\Resources\Shader.h" />
     <ClInclude Include="src\Core\Window.h" />
     <ClInclude Include="src\Utility\Resources\Texture.h" />
@@ -184,6 +188,9 @@
     <ClCompile Include="src\Render\Components\Mesh.cpp" />
     <ClCompile Include="src\Render\Components\Sprite.cpp" />
     <ClCompile Include="src\Render\Components\Transform.cpp" />
+    <ClCompile Include="src\Render\OpenGL\IndexBuffer.cpp" />
+    <ClCompile Include="src\Render\OpenGL\VertexArray.cpp" />
+    <ClCompile Include="src\Render\OpenGL\VertexBuffer.cpp" />
     <ClCompile Include="src\Render\RenderSystem.cpp" />
     <ClCompile Include="src\Render\Simple2DRenderSystem.cpp" />
     <ClCompile Include="src\Core\Component.cpp" />
