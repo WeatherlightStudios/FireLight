@@ -83,6 +83,7 @@
     <ClInclude Include="src\Render\OpenGL\VertexArray.h" />
     <ClInclude Include="src\Render\OpenGL\VertexBuffer.h" />
     <ClInclude Include="src\Render\OpenGL\IndexBuffer.h" />
+    <ClInclude Include="src\Utility\ResourceManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

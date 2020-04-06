@@ -28,6 +28,8 @@
 
 #include <ft2build.h>
 
+#include <toml11/toml.hpp>
+
 
 //TODO:: Need Refactoring
 
@@ -90,7 +92,6 @@ namespace FL
 		std::string m_Title;
 		//The window it self
 		std::unique_ptr<FL::Window> m_NewWindow;
-
 	};
 }
 

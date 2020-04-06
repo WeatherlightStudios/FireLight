@@ -99,7 +99,7 @@ void Box::Draw()
 
 	shader.SetMatrix4("projection", CameraSystem::GetCurrentCamera());
 	shader.SetMatrix4("model", model);
-	shader.SetVector3f("MyColor", glm::uvec3(1.0f,0.9f,0.9f));
+	shader.SetVector3f("MyColor", glm::uvec3(1.0f,0.1f,0.1f));
 
 	shader.Use();
 	m_VAO->Bind();

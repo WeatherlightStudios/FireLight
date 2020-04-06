@@ -9,7 +9,9 @@ void Test_Scene::Init()
 	Resource::LoadTexture("Resources/Texture/Boxes.png", true, "TestBox");
 
 
-
+	auto box = CreateGameOject();
+	box->AddComponent(std::make_shared<Transform>(glm::vec3(0, 0, -10), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)));
+	box->AddComponent(std::make_shared<Box>());
 
 	auto camera = CreateGameOject();
 	camera->AddComponent(std::make_shared<Transform>(glm::vec3(0, 0, -10), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)));

@@ -1,0 +1,10 @@
+
+[FL]
+Debug=1
+MaxFps = 60.0
+
+
+[Window]
+name = "FireLight 1.0.0a"
+width = 800
+height = 600

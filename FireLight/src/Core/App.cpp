@@ -7,6 +7,7 @@ FL::App::App()
 
 void FL::App::Start() 
 {
+
 	m_NewWindow = std::make_unique<Window>(m_Width, m_Height, m_Title.c_str());
 
 	glfwInit();

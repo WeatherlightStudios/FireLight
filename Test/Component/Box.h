@@ -21,8 +21,6 @@ public:
 	~Box();
 private:
 
-	//FL::VertexBuffer m_VBO;
-
 	std::shared_ptr<FL::VertexBuffer> m_VBO;
 	std::shared_ptr<FL::VertexArray> m_VAO;
 	
