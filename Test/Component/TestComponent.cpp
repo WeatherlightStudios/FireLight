@@ -20,6 +20,15 @@ void TestComponent::Update()
 		transform->SetPosition(transform->GetPosition() - (camera->forward * velocity * (float)Time::GetDeltaTime()));
 	}
 
+	if (FL::Input::isKeyPress(FL::KEYCODE::KEY_A))
+	{
+		transform->SetPosition(transform->GetPosition() + (camera->left * velocity * (float)Time::GetDeltaTime()));
+	}
+
+	if (FL::Input::isKeyPress(FL::KEYCODE::KEY_D))
+	{
+		transform->SetPosition(transform->GetPosition() - (camera->left * velocity * (float)Time::GetDeltaTime()));
+	}
 
 	if (FL::Input::isKeyPress(FL::KEYCODE::KEY_Q))
 	{

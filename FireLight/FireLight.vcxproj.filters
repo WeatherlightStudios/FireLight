@@ -39,6 +39,7 @@
     <ClCompile Include="src\Render\OpenGL\VertexBuffer.cpp" />
     <ClCompile Include="src\Render\OpenGL\VertexArray.cpp" />
     <ClCompile Include="src\Render\OpenGL\IndexBuffer.cpp" />
+    <ClCompile Include="src\Utility\ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h" />

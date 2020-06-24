@@ -12,6 +12,9 @@
 #include "../Render/Simple2DRenderSystem.h"
 #include "../Render/RenderSystem.h"
 
+#include "../Utility/ResourceManager.h"
+
+
 
 #define SCENE(T) class T : public Scene
 
@@ -65,6 +68,8 @@ namespace FL
 		//Set a GameObject parent
 		void SetParent(uint32_t parentID , uint32_t childID);
 
+		std::shared_ptr<ResourceManager> GetResourceManager() { return m_resource_manger; }
+
 	protected:
 
 		bool isInizialized;
@@ -76,6 +81,8 @@ namespace FL
 		std::vector<std::weak_ptr<GameObject>> m_parents;
 
 		std::unique_ptr<RenderSystem> m_render;
+
+		std::shared_ptr<ResourceManager> m_resource_manger;
 
 		CameraSystem* m_cameraSyste;
 	};

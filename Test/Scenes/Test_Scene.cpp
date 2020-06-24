@@ -4,24 +4,49 @@
 
 void Test_Scene::Init()
 {
-	Resource::LoadShader("Resources/Shaders/Terrain_shader.vert", "Resources/Shaders/Terrain_shader.frag", NULL, "terrain_shader");
+	ResourceManager::LoadShader("Resources/test.txt", "shader");
+
+	for (int x = 0; x < 50; x++)
+	{
+		for (int y = 0; y < 50; y++)
+		{
+			auto box = CreateGameOject();
+			box->AddComponent(std::make_shared<Transform>(glm::vec3(x, sin(y) + cos(x), y), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)));
+			box->AddComponent(std::make_shared<Box>());
+		}
+	}
+
+	auto camera = CreateGameOject();
+	camera->AddComponent(std::make_shared<Transform>(glm::vec3(0, 0, -10), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)));
+	camera->AddComponent(std::make_shared<Camera>(Camera_Type::PERSPECTIVE, 60.0f, 0.01f, 10000.0f));
+	camera->AddComponent(std::make_shared <TestComponent>());
+
+	//GetResourceManager()->LoadShader("Resources/test.txt", "shader");
+
+	/*Resource::LoadShader("Resources/Shaders/Terrain_shader.vert", "Resources/Shaders/Terrain_shader.frag", NULL, "terrain_shader");
 	Resource::LoadShader("Resources/Shaders/3D_default.vert", "Resources/Shaders/3D_default.frag", NULL, "box");
 	Resource::LoadTexture("Resources/Texture/Boxes.png", true, "TestBox");
 
 
-	auto box = CreateGameOject();
 	box->AddComponent(std::make_shared<Transform>(glm::vec3(0, 0, -10), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)));
 	box->AddComponent(std::make_shared<Box>());
 
 	auto camera = CreateGameOject();
 	camera->AddComponent(std::make_shared<Transform>(glm::vec3(0, 0, -10), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)));
 	camera->AddComponent(std::make_shared<Camera>(Camera_Type::PERSPECTIVE, 60.0f, 0.01f, 10000.0f));
-	camera->AddComponent(std::make_shared <TestComponent>());
-	
+	camera->AddComponent(std::make_shared <TestComponent>());*/
+
+	//ResourceManager rsc;
+	//rsc.LoadInternalShader("Resources/test.txt", "shader");
+
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
 void Test_Scene::Update()
 {	
+
+
+
 	/*if (FL::Window::isKeyDown(KEYCODE::KEY_A))
 	{
 		auto obj = CreateGameOject();

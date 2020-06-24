@@ -47,8 +47,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
-    <WholeProgramOptimization>PGOptimize</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -213,6 +213,7 @@
     <ClCompile Include="src\Utility\FastNoise.cpp" />
     <ClCompile Include="src\Utility\RandomNumber.cpp" />
     <ClCompile Include="src\Utility\Resource.cpp" />
+    <ClCompile Include="src\Utility\ResourceManager.cpp" />
     <ClCompile Include="src\Utility\Resources\Shader.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
     <ClCompile Include="src\Utility\Resources\Texture.cpp" />

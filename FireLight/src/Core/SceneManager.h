@@ -14,6 +14,8 @@ public:
 
 	static void AddScene(std::unique_ptr<FL::Scene> scene, std::string name);
 
+	static FL::Scene* GetCurrentScene() { return m_current_scene; }
+
 	static void setCurrentScene(std::string name);
 
 	static void InitCurrentScene();

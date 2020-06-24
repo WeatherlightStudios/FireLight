@@ -9,6 +9,7 @@ namespace FL
 		isInizialized = false;
 		m_render = std::make_unique<RenderSystem>();
 		m_cameraSyste = new CameraSystem();
+		m_resource_manger = std::make_unique<ResourceManager>();
 	}
 
 
@@ -53,6 +54,7 @@ namespace FL
 
 	void Scene::CloseScene()
 	{
+		m_resource_manger->Clear();
 		Close();
 	}
 

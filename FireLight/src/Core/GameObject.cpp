@@ -39,12 +39,11 @@ void GameObject::AddComponent(const std::shared_ptr<Component>& component)
 	component->Init();
 	m_components.push_back(std::move(component));
 }
+
 void GameObject::RemoveComponent(std::shared_ptr<Component> component)
 {
 	m_components.erase(std::remove(m_components.begin(), m_components.end(), component), m_components.end());
 }
-
-
 
 void GameObject::AddChildren(std::weak_ptr<GameObject> children)
 {

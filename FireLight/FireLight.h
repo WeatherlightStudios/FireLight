@@ -7,6 +7,9 @@
 #include "src\Core\Scene.h"
 #include "src\Core\SceneManager.h"
 #include "src\Utility\Resource.h"
+#include "src\Utility\ResourceManager.h"
+#include "src\Utility\Resources\Shader.h"
+#include "src\Utility\ResourceManager.h"
 #include "src/Utility/Debugging/Log.h"
 
 #include "src/Core/MessageSystem/MessageBus.h"

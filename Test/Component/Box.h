@@ -10,13 +10,12 @@ public:
 	Box();
 
 	void Init();
+
 	void Update();
 
 	void UpdateMesh();
 
 	void Draw();
-
-
 
 	~Box();
 private:
@@ -24,10 +23,6 @@ private:
 	std::shared_ptr<FL::VertexBuffer> m_VBO;
 	std::shared_ptr<FL::VertexArray> m_VAO;
 	
-
 	GLuint VAO, VBO;
-
-
-
 };
 

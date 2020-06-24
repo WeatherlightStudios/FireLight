@@ -9,9 +9,6 @@ Box::Box()
 
 void Box::Init()
 {
-
-
-
 	float vertices[] = {
 		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
@@ -95,13 +92,13 @@ void Box::Draw()
 	model = glm::scale(model, trans->GetScale());
 
 
-	auto shader = Resource::getShader("box");
+	auto shader = ResourceManager::GetShader("shader");
 
-	shader.SetMatrix4("projection", CameraSystem::GetCurrentCamera());
-	shader.SetMatrix4("model", model);
-	shader.SetVector3f("MyColor", glm::uvec3(1.0f,0.1f,0.1f));
+	shader->SetMatrix4("projection", CameraSystem::GetCurrentCamera());
+	shader->SetMatrix4("model", model);
+	shader->SetVector3f("MyColor", glm::uvec3(1.0f,0.1f,0.1f));
 
-	shader.Use();
+	shader->Use();
 	m_VAO->Bind();
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 }

@@ -54,7 +54,6 @@ public:
 		}
 
 		return nullptr;
-
 	}
 
 	void SetID(uint32_t id) { ID = id; }

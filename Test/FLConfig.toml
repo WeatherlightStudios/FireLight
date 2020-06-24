@@ -2,6 +2,7 @@
 [FL]
 Debug=1
 MaxFps = 60.0
+BgColor = [255,255,255]
 
 
 [Window]

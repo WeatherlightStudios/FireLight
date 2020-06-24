@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Component\Chunk.cpp" />
     <ClCompile Include="Component\Box.cpp" />
     <ClCompile Include="Component\TerrainComponent.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -27,6 +28,7 @@
     <ClCompile Include="Component\TestComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component\Chunk.h" />
     <ClInclude Include="Component\Box.h" />
     <ClInclude Include="Component\TerrainComponent.h" />
     <ClInclude Include="Game.h" />
@@ -62,8 +64,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
