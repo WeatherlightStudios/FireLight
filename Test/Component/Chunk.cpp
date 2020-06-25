@@ -8,58 +8,68 @@ Chunk::Chunk()
 
 void Chunk::Init()
 {
-	uint8_t chunk[5][5][5];
+	const int chunkX = 2048;
+	const int chunkY = 256;
+	const int chunkZ = 2048;
+
+	uint8_t* chunk = new uint8_t[chunkX * chunkY * chunkZ];
+
 
 	FastNoise noise;
 
-	noise.SetNoiseType(FastNoise::Perlin);
+	noise.SetFractalOctaves(7);
+	noise.SetFractalGain(0.3f);
 
-	for (int z = 0; z < 5; z++)
+	noise.SetNoiseType(FastNoise::PerlinFractal);
+
+	for (int z = 0; z < chunkZ; z++)
 	{
-		for (int x = 0; x < 5; x++)
+		for (int x = 0; x < chunkX; x++)
 		{
-			for (int y = 0; y < 5; y++)
+			float height01 = noise.GetPerlinFractal(x, z);
+
+			height01 = ((height01 + 1) / 2.0f) * chunkY;
+			for (int y = 0; y < chunkY; y++)
 			{
-				chunk[x][y][z] = 0;
+				if(y < height01)
+					chunk[(y+x* chunkY)+z*chunkX* chunkY] = 1;
+				else
+					chunk[(y + x * chunkY) + z * chunkX * chunkY] = 0;
 			}
 		}
 	}
 
-	chunk[3][2][1] = 1;
-	chunk[2][2][1] = 1;
-	chunk[1][2][1] = 1;
 
 
-
-	for (int z = 0; z < 5; z++)
+	for (int z = 0; z < chunkZ; z++)
 	{
-		for (int x = 0; x < 5; x++)
+		for (int x = 0; x < chunkX; x++)
 		{
-			for (int y = 0; y < 5; y++)
+			for (int y = 0; y < chunkY; y++)
 			{
-				if (chunk[x][y][z] == 1)
+				if (chunk[(y + x * chunkY) + z * chunkX * chunkY] == 1)
 				{
-					if (x < 4 && chunk[x + 1][y][z] == 0)
+					if (x < chunkX-1 && chunk[(y + (x+1) * chunkY) + z * chunkX * chunkY] == 0)
 					{
 						AddVertexFace(glm::vec3(x,y,z), directions[0]);
 					}
-					if (x > 0 && chunk[x - 1][y][z] == 0)
+					if (x > 0 && chunk[(y + (x - 1) * chunkY) + z * chunkX * chunkY] == 0)
 					{
 						AddVertexFace(glm::vec3(x, y, z), directions[1]);
 					}
-					if (y < 4 && chunk[x][y+1][z] == 0)
+					if (y < chunkY-1 && chunk[((y + 1) + x * chunkY) + z * chunkX * chunkY] == 0)
 					{
 						AddVertexFace(glm::vec3(x, y, z), directions[2]);
 					}
-					if (y > 0 && chunk[x][y-1][z] == 0)
+					if (y > 0 && chunk[((y - 1) + x * chunkY) + z * chunkX * chunkY] == 0)
 					{
 						AddVertexFace(glm::vec3(x, y, z), directions[3]);
 					}
-					if (z < 4 && chunk[x][y][z+1] == 0)
+					if (z < chunkZ-1 && chunk[(y + x * chunkY) + (z+1) * chunkX * chunkY] == 0)
 					{
 						AddVertexFace(glm::vec3(x, y, z), directions[4]);
 					}
-					if (z > 0 && chunk[x][y][z-1] == 0)
+					if (z > 0 && chunk[(y + x * chunkY) + (z - 1) * chunkX * chunkY] == 0)
 					{
 						AddVertexFace(glm::vec3(x, y, z), directions[5]);
 					}

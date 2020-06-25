@@ -21,7 +21,6 @@ void FL::Window::Init()
 		m_keys[i] = -1;
 	}*/
 
-
 	m_window = glfwCreateWindow(m_width, m_height, m_title, nullptr, nullptr);
 	glfwSetWindowUserPointer(m_window, this);
 	glfwSetKeyCallback(m_window, FL::Input::key_callback);
@@ -31,6 +30,7 @@ void FL::Window::Init()
 	glfwMakeContextCurrent(m_window);
 
 
+	glfwWindowHint(GLFW_SAMPLES, 8);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 }

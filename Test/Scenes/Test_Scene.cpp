@@ -35,6 +35,10 @@ void Test_Scene::Init()
 	//rsc.LoadInternalShader("Resources/test.txt", "shader");
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+
+	glEnable(GL_MULTISAMPLE);
+
 }
 
 void Test_Scene::Update()

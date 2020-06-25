@@ -42,8 +42,6 @@ private:
 
 	std::vector<vex> vertexChunk;
 
-
-
 	glm::vec3 directions[6]
 	{
 		glm::vec3(1,0,0), // Destra
