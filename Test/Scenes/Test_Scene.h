@@ -7,6 +7,7 @@
 #include "../Component/TestComponent.h"
 #include "../Component/TerrainComponent.h"
 #include "../Component/Box.h"
+#include "../Component/Chunk.h"
 
 class Test_Scene : public FL::Scene
 {

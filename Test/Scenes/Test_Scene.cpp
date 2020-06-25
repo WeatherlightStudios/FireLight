@@ -4,17 +4,12 @@
 
 void Test_Scene::Init()
 {
-	ResourceManager::LoadShader("Resources/test.txt", "shader");
+	ResourceManager::LoadShader("Resources/test.glsl", "shader");
 
-	for (int x = 0; x < 50; x++)
-	{
-		for (int y = 0; y < 50; y++)
-		{
-			auto box = CreateGameOject();
-			box->AddComponent(std::make_shared<Transform>(glm::vec3(x, sin(y) + cos(x), y), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)));
-			box->AddComponent(std::make_shared<Box>());
-		}
-	}
+
+	auto box = CreateGameOject();
+	box->AddComponent(std::make_shared<Transform>(glm::vec3(0,0,0), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)));
+	box->AddComponent(std::make_shared<Chunk>());
 
 	auto camera = CreateGameOject();
 	camera->AddComponent(std::make_shared<Transform>(glm::vec3(0, 0, -10), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)));
