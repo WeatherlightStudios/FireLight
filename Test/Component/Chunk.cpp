@@ -8,12 +8,11 @@ Chunk::Chunk()
 
 void Chunk::Init()
 {
-	const int chunkX = 2048;
-	const int chunkY = 256;
-	const int chunkZ = 2048;
 
-	uint8_t* chunk = new uint8_t[chunkX * chunkY * chunkZ];
+	chunk = new uint8_t[chunkX * chunkY * chunkZ];
 
+
+	const float aoStrenght = 0.0f;
 
 	FastNoise noise;
 
@@ -28,7 +27,9 @@ void Chunk::Init()
 		{
 			float height01 = noise.GetPerlinFractal(x, z);
 
+		
 			height01 = ((height01 + 1) / 2.0f) * chunkY;
+
 			for (int y = 0; y < chunkY; y++)
 			{
 				if(y < height01)
@@ -82,7 +83,8 @@ void Chunk::Init()
 
 	FL::BufferLayout layout({
 		{ FL::DataType::Vec3 },
-		{ FL::DataType::Vec3 }
+		{ FL::DataType::Vec3 },
+		{ FL::DataType::Float }
 		});
 
 	ArraySize = vertexChunk.size();
@@ -95,6 +97,9 @@ void Chunk::Init()
 	m_VAO = std::make_shared<FL::VertexArray>();
 
 	m_VAO->AddVertexBuffer(m_VBO);
+
+
+	delete(chunk);
 
 }
 
@@ -138,22 +143,138 @@ void Chunk::AddVertexFace(glm::vec3 pos, glm::vec3 dir)
 
 	vex v;
 	v.pos = postionZero + j / 2.0f - i / 2.0f;
-	v.normal = dir;
+	v.normal = (dir);
+
+
+	glm::vec3 cubePos;
+	uint8_t s_1;
+	uint8_t s_2;
+	uint8_t	corner;
+
+	if (pos.y < chunkY - 1 && pos.y > 0 && pos.x < chunkX - 1 && pos.x > 0 && pos.z < chunkZ - 1 && pos.z > 0)
+	{
+		cubePos = pos + dir - i;
+		s_1 = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+		cubePos = pos + dir + j;
+		s_2 = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+		cubePos = pos + dir + j - i;
+		corner = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+	}
+	else
+	{
+		s_1 = 0;
+		s_2 = 0;
+		corner = 0;
+	}
+
+
+	v.AO = aoStrenght[vertexAO(s_1, s_2, corner)];
 	vertexChunk.push_back(v);
 
 	v.pos = postionZero + j / 2.0f + i / 2.0f;
+
+	if (pos.y < chunkY - 1 && pos.y > 0 && pos.x < chunkX - 1 && pos.x > 0 && pos.z < chunkZ - 1 && pos.z > 0)
+	{
+		cubePos = pos + dir + j;
+		s_1 = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+		cubePos = pos + dir + i;
+		s_2 = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+		cubePos = pos + dir + j + i;
+		corner = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+	}
+	else
+	{
+		s_1 = 0;
+		s_2 = 0;
+		corner = 0;
+	}
+
+	v.AO = aoStrenght[vertexAO(s_1, s_2, corner)];
 	vertexChunk.push_back(v);
 
 	v.pos = postionZero - j / 2.0f + i / 2.0f;
+
+
+	if (pos.y < chunkY - 1 && pos.y > 0 && pos.x < chunkX - 1 && pos.x > 0 && pos.z < chunkZ - 1 && pos.z > 0)
+	{
+		cubePos = pos + dir - j;
+		s_1 = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+		cubePos = pos + dir + i;
+		s_2 = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+		cubePos = pos + dir - j + i;
+		corner = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+	}
+	else
+	{
+		s_1 = 0;
+		s_2 = 0;
+		corner = 0;
+	}
+
+	v.AO = aoStrenght[vertexAO(s_1, s_2, corner)];
 	vertexChunk.push_back(v);
 
 	v.pos = postionZero - j / 2.0f + i / 2.0f;
+
+	if (pos.y < chunkY - 1 && pos.y > 0 && pos.x < chunkX - 1 && pos.x > 0 && pos.z < chunkZ - 1 && pos.z > 0)
+	{
+		cubePos = pos + dir - j;
+		s_1 = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+		cubePos = pos + dir + i;
+		s_2 = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+		cubePos = pos + dir - j + i;
+		corner = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+	}
+	else
+	{
+		s_1 = 0;
+		s_2 = 0;
+		corner = 0;
+	}
+
+	v.AO = aoStrenght[vertexAO(s_1, s_2, corner)];
 	vertexChunk.push_back(v);
 
 	v.pos = postionZero - j / 2.0f - i / 2.0f;
+
+	if (pos.y < chunkY - 1 && pos.y > 0 && pos.x < chunkX - 1 && pos.x > 0 && pos.z < chunkZ - 1 && pos.z > 0)
+	{
+		cubePos = pos + dir - j;
+		s_1 = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+		cubePos = pos + dir - i;
+		s_2 = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+		cubePos = pos + dir - j - i;
+		corner = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+	}
+	else
+	{
+		s_1 = 0;
+		s_2 = 0;
+		corner = 0;
+	}
+
+	v.AO = aoStrenght[vertexAO(s_1, s_2, corner)];
 	vertexChunk.push_back(v);
 
 	v.pos = postionZero + j / 2.0f - i / 2.0f;
+
+	if (pos.y < chunkY - 1 && pos.y > 0 && pos.x < chunkX - 1 && pos.x > 0 && pos.z < chunkZ - 1 && pos.z > 0)
+	{
+		cubePos = pos + dir + j;
+		s_1 = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+		cubePos = pos + dir - i;
+		s_2 = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+		cubePos = pos + dir + j - i;
+		corner = chunk[((int)cubePos.y + (int)cubePos.x * chunkY) + (int)cubePos.z * chunkX * chunkY];
+	}
+	else
+	{
+		s_1 = 0;
+		s_2 = 0;
+		corner = 0;
+	}
+
+	v.AO = aoStrenght[vertexAO(s_1, s_2, corner)];
 	vertexChunk.push_back(v);
 }
 

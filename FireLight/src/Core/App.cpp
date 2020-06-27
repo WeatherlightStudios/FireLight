@@ -22,6 +22,7 @@ void FL::App::Start()
 	m_NewWindow->InitIMGUI();
 
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_MULTISAMPLE);
 
 	glfwSwapInterval(0);
 
