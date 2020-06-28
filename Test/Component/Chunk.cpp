@@ -16,7 +16,10 @@ void Chunk::Init()
 
 	FastNoise noise;
 
+
+	noise.SetFrequency(0.005f);
 	noise.SetFractalOctaves(7);
+	noise.SetFractalLacunarity(2);
 	noise.SetFractalGain(0.3f);
 
 	noise.SetNoiseType(FastNoise::PerlinFractal);
@@ -85,7 +88,7 @@ void Chunk::Init()
 		{ FL::DataType::Vec3 },
 		{ FL::DataType::Vec3 },
 		{ FL::DataType::Float }
-		});
+	});
 
 	ArraySize = vertexChunk.size();
 
@@ -289,7 +292,7 @@ void Chunk::Draw()
 	model = glm::scale(model, trans->GetScale());
 
 
-	auto shader = ResourceManager::GetShader("shader");
+	auto shader = ResourceManager::GetShader("voxel");
 
 	shader->SetMatrix4("projection", CameraSystem::GetCurrentCamera());
 	shader->SetMatrix4("model", model);

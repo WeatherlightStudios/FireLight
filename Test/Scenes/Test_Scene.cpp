@@ -4,16 +4,17 @@
 
 void Test_Scene::Init()
 {
-	ResourceManager::LoadShader("Resources/test.glsl", "shader");
+	ResourceManager::LoadShader("Resources/test.glsl", "voxel");
+	ResourceManager::LoadShader("Resources/defaultTest.glsl", "shader");
 
 
-	/*auto box = CreateGameOject();
-	box->AddComponent(std::make_shared<Transform>(glm::vec3(0,1,0), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)));
-	box->AddComponent(std::make_shared<Box>());
+	//auto box = CreateGameOject();
+	//box->AddComponent(std::make_shared<Transform>(glm::vec3(0,1,0), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)));
+	//box->AddComponent(std::make_shared<Box>());
 
-	auto box2 = CreateGameOject();
-	box2->AddComponent(std::make_shared<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(5, 1, 5)));
-	box2->AddComponent(std::make_shared<Box>());*/
+	//auto box2 = CreateGameOject();
+	//box2->AddComponent(std::make_shared<Transform>(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(5, 1, 5)));
+	//box2->AddComponent(std::make_shared<Box>());
 
 	auto box = CreateGameOject();
 	box->AddComponent(std::make_shared<Transform>(glm::vec3(0, 1, 0), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1)));
