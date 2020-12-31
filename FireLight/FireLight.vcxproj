@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClInclude Include="src\Render\Components\Camera.h" />
     <ClInclude Include="src\Render\CameraSystem.h" />
+    <ClInclude Include="src\Render\DebugDraw.h" />
     <ClInclude Include="src\Render\Material.h" />
     <ClInclude Include="src\Render\Components\Mesh.h" />
     <ClInclude Include="src\Core\MessageSystem\Message.h" />

@@ -7,8 +7,17 @@ FL::App::App()
 
 void FL::App::Start() 
 {
+	m_Width = 800;
+	m_Height = 600;
 
-	m_NewWindow = std::make_unique<Window>(m_Width, m_Height, m_Title.c_str());
+	m_Title = "FireLight Enigne v1.0.0a";
+
+	LoadConfigFile();
+
+
+	m_NewWindow = std::make_unique<Window>(m_configData.screenWidth, m_configData.screenHeigth, m_configData.screenTitle.c_str());
+
+
 
 	glfwInit();
 
@@ -21,8 +30,10 @@ void FL::App::Start()
 
 	m_NewWindow->InitIMGUI();
 
+
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_MULTISAMPLE);
+
 
 	glfwSwapInterval(0);
 
@@ -107,6 +118,16 @@ void FL::App::Render()
 	SceneManager::DrawCurrentScene();
 }
 
+void FL::App::LoadConfigFile()
+{
+	const auto data = toml::parse("Resources/config.toml");
+
+	const auto ScreenSettings = toml::find(data, "Screen_Settings");
+	m_configData.screenTitle = (std::string)toml::find<std::string>(ScreenSettings, "name");
+	m_configData.screenWidth = (int)toml::find<int>(ScreenSettings, "width");
+	m_configData.screenHeigth = (int)toml::find<int>(ScreenSettings, "heigth");
+}
+
 void FL::App::ShutDown()
 {
 	SceneManager::CloseCurrentScene();
@@ -115,19 +136,6 @@ void FL::App::ShutDown()
 	ImGui::DestroyContext();
 	glfwTerminate();
 }
-
-
-void FL::App::SetWindowDimension(int width, int height)
-{
-	m_Width = width;
-	m_Height = height;
-}
-
-void FL::App::SetWindowName(std::string name)
-{
-	m_Title = name;
-}
-
 
 FL::App::~App()
 {

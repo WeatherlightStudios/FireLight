@@ -49,33 +49,34 @@ void Chunk::Init()
 	{
 		for (int x = 0; x < chunkX; x++)
 		{
+			glm::vec3 normal =  CalculateNormal(x, z, noise);
 			for (int y = 0; y < chunkY; y++)
 			{
 				if (chunk[(y + x * chunkY) + z * chunkX * chunkY] == 1)
 				{
 					if (x < chunkX-1 && chunk[(y + (x+1) * chunkY) + z * chunkX * chunkY] == 0)
 					{
-						AddVertexFace(glm::vec3(x,y,z), directions[0]);
+						AddVertexFace(glm::vec3(x,y,z), directions[0], normal);
 					}
 					if (x > 0 && chunk[(y + (x - 1) * chunkY) + z * chunkX * chunkY] == 0)
 					{
-						AddVertexFace(glm::vec3(x, y, z), directions[1]);
+						AddVertexFace(glm::vec3(x, y, z), directions[1], normal);
 					}
 					if (y < chunkY-1 && chunk[((y + 1) + x * chunkY) + z * chunkX * chunkY] == 0)
 					{
-						AddVertexFace(glm::vec3(x, y, z), directions[2]);
+						AddVertexFace(glm::vec3(x, y, z), directions[2], normal);
 					}
 					if (y > 0 && chunk[((y - 1) + x * chunkY) + z * chunkX * chunkY] == 0)
 					{
-						AddVertexFace(glm::vec3(x, y, z), directions[3]);
+						AddVertexFace(glm::vec3(x, y, z), directions[3], normal);
 					}
 					if (z < chunkZ-1 && chunk[(y + x * chunkY) + (z+1) * chunkX * chunkY] == 0)
 					{
-						AddVertexFace(glm::vec3(x, y, z), directions[4]);
+						AddVertexFace(glm::vec3(x, y, z), directions[4], normal);
 					}
 					if (z > 0 && chunk[(y + x * chunkY) + (z - 1) * chunkX * chunkY] == 0)
 					{
-						AddVertexFace(glm::vec3(x, y, z), directions[5]);
+						AddVertexFace(glm::vec3(x, y, z), directions[5], normal);
 					}
 
 				}
@@ -116,12 +117,20 @@ void Chunk::UpdateMesh()
 
 }
 
-int Chunk::checkNeighbor(int x, int y, int z)
+glm::vec3 Chunk::CalculateNormal(int x, int z, FastNoise& map)
 {
-	return 0;
+	float heightL = map.GetPerlinFractal(x - 1, z) * chunkY;
+	float heightR = map.GetPerlinFractal(x + 1, z)  * chunkY;
+	float heightD = map.GetPerlinFractal(x, z-1)  * chunkY;
+	float heightU = map.GetPerlinFractal(x, z+1) * chunkY;
+
+
+	glm::vec3 normal(heightL - heightR, 2.f, heightD - heightU);
+	glm::normalize(normal);
+	return normal;
 }
 
-void Chunk::AddVertexFace(glm::vec3 pos, glm::vec3 dir)
+void Chunk::AddVertexFace(glm::vec3 pos, glm::vec3 dir, glm::vec3 normal)
 {
 	glm::vec3 postionZero = pos + (dir / 2.0f);
 
@@ -146,7 +155,7 @@ void Chunk::AddVertexFace(glm::vec3 pos, glm::vec3 dir)
 
 	vex v;
 	v.pos = postionZero + j / 2.0f - i / 2.0f;
-	v.normal = (dir);
+	v.normal = dir;
 
 
 	glm::vec3 cubePos;

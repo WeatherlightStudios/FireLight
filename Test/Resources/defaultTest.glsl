@@ -15,7 +15,6 @@
 
     layout (location = 0) in vec3 aPos;
     layout (location = 1) in vec3 aNormal;
-    layout (location = 2) in float aAO;
 
     uniform mat4 model;
     uniform mat4 projection;
@@ -26,9 +25,6 @@
     out vec3 Normal;
     out vec3 FragPos;
     out vec3 DiffuseColor;
-
-    vec3 finalOBJColor;
-    vec3 finalAOColor;
     
     vec3 cvColor(int r, int g, int b)
     {
@@ -40,12 +36,8 @@
     {
         gl_Position = projection * model * vec4(aPos, 1.0f);
         FragPos = vec3(model * vec4(aPos, 1.0f));
-       Normal = mat3(transpose(inverse(model))) * aNormal; 
-
-
-
-
-        objColor = cvColor(1,1,1);
+        Normal = aNormal; 
+        objColor = cvColor(255,255,255);
     }
 
 }
@@ -59,7 +51,6 @@
     in vec3 Normal;  
     in vec3 objColor;
     in vec3 FragPos;
-    in vec3 DiffuseColor;
 
 
     void main()
@@ -69,9 +60,10 @@
         vec3 lightColor = vec3(1,1,1);
         vec3 lightDirection = vec3(-0.2f, -1.0f, -0.3f);
         vec3 lightPos = vec3(1,5,1);
-        float ambientStrenght = 0.5f;
+        float ambientStrenght = 0.2f;
 
         vec3 ambient = ambientStrenght * lightColor ;
+
 
 
         // diffuse

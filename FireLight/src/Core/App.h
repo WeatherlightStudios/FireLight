@@ -23,6 +23,8 @@
 #include "../../imgui/imgui_impl_glfw.h"
 #include "../../imgui/imgui_impl_opengl3.h"
 
+//TOML
+
 
 #include "../Utility/Debugging/Log.h"
 
@@ -40,6 +42,14 @@
 
 namespace FL
 {
+	struct ConfigData
+	{
+		int screenWidth;
+		int screenHeigth;
+
+		std::string screenTitle;
+	};
+
 	//App is the core class of the Engine. It's used to initialize all systems and load the resources of the game.
 	class App
 	{
@@ -58,9 +68,9 @@ namespace FL
 		//This function is used for enalbe the Debug mode of the engine
 		void Set_DEBUG_MODE() { m_DEBUG_MODE = true; }
 		//This function is used for set The Window Size
-		void SetWindowDimension(int width, int height);
+		//void SetWindowDimension(int width, int height);
 		//This function is used to set the Window name
-		void SetWindowName(std::string name);
+		//void SetWindowName(std::string name);
 	protected:
 		//The GameLoop itself
 		void MainLoop();
@@ -71,9 +81,12 @@ namespace FL
 		void Render();
 		//This function free the memory and close the render contex
 		void ShutDown();
+	private:
+		void LoadConfigFile();
+
+
 
 	private:
-
 		bool m_IsRunning;
 
 		double m_OldTime;
@@ -83,6 +96,8 @@ namespace FL
 		int m_CurrentFPS;
 
 		bool m_DEBUG_MODE = false;
+
+		ConfigData m_configData;
 
 		//Window Width
 		int	m_Width;

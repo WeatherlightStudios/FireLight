@@ -24,9 +24,9 @@ public:
 	void UpdateMesh();
 
 
-	int checkNeighbor(int x, int y, int z);
+	glm::vec3 CalculateNormal(int x, int z, FastNoise& map);
 
-	void AddVertexFace(glm::vec3 pos, glm::vec3 dir);
+	void AddVertexFace(glm::vec3 pos, glm::vec3 dir, glm::vec3 normal);
 
 	int vertexAO(int side1, int side2, int corner) {
 		if (side1 && side2) {

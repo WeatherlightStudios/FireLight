@@ -45,7 +45,7 @@
      
         if(aPos.y > 0)
         {
-            finalOBJColor = cvColor(14, 237, 2);
+            finalOBJColor = cvColor(97, 185, 48);
             finalAOColor = cvColor(31, 70, 71);
         }
      
@@ -68,6 +68,7 @@
 
 
         objColor = mix(finalAOColor,finalOBJColor, aAO);
+        //objColor = finalOBJColor;
     }
 
 }
@@ -82,6 +83,7 @@
     in vec3 objColor;
     in vec3 FragPos;
     in vec3 DiffuseColor;
+
 
 
     void main()

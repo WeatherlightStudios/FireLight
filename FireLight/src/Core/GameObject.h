@@ -27,11 +27,9 @@ public:
 
 public:
 
-
 	virtual void Init() {}
 	virtual void Update() {}
 	virtual void Debug() {}
-
 
 	void InitGameObject();
 	void UpdateGameObject();
@@ -41,6 +39,8 @@ public:
 
 	void AddComponent(const std::shared_ptr<Component>& component);
 	void RemoveComponent(std::shared_ptr<Component> component);
+
+	void ClearComponents();
 
 	template<class T>
 	T* GetComponent()
@@ -61,38 +61,30 @@ public:
 
 	void SetScene(FL::Scene* scene) { m_scene = scene; }
 	FL::Scene* getScene() { return m_scene; }
+
 	//nel caso serva verra implementato
 	//void GetComponent();
 	//void GetComponents();
 
-	void AddChildren(std::weak_ptr<GameObject> children);
-	void RemoveChildren(std::weak_ptr<GameObject> children);
-
+	void AddChildren(std::shared_ptr<GameObject> children);
+	void RemoveChildren(std::shared_ptr<GameObject> children);
 
 	void SetParent(GameObject* parent)
 	{
 		m_parent = parent;
 	}
 
-
-
 	~GameObject();
-
 
 private:
 	FL::Scene* m_scene;
 
 	GameObject* m_parent;
 
-	std::vector<std::weak_ptr<GameObject>> m_children;
+	std::vector<std::shared_ptr<GameObject>> m_children;
 	std::vector<std::shared_ptr<Component>> m_components;
 
-
-
-
 	uint32_t ID;
-
-
 };
 
 #endif

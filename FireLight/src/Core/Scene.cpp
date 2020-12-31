@@ -12,7 +12,6 @@ namespace FL
 		m_resource_manger = std::make_unique<ResourceManager>();
 	}
 
-
 	void Scene::InitScene()
 	{
 		m_cameraSyste->Init();

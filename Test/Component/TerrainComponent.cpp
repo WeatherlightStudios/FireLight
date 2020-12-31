@@ -39,7 +39,7 @@ void TerrainComponent::Init()
 
 
 			vertices[vertexIndex].pos = glm::vec3(x, height, y);
-			vertices[vertexIndex].normal = CalculateNormal(x, y);
+			vertices[vertexIndex].normal = glm::vec3(0,0,0);
 
 
 			if (x < terrainWidth - 1 && y < terrainHeight - 1)
