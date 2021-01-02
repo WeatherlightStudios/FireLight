@@ -51,7 +51,7 @@ void TestComponent::Update()
 	{
 		glm::vec2 mousePos = FL::Window::get_mouse_positions();
 		glm::vec2 mouse_delta = glm::vec2(FL::Window::getWidth() / 2, FL::Window::getHeight() / 2) - mousePos;
-		transform->SetRotation(transform->GetRotation() + glm::vec3(-mouse_delta.y, -mouse_delta.x, 0));
+		transform->SetRotation(transform->GetRotation() + glm::vec3(-mouse_delta.y * Time::GetDeltaTime() * mouse_velocity, -mouse_delta.x * Time::GetDeltaTime() * mouse_velocity, 0));
 		FL::Window::setCursorPosition(FL::Window::getWidth() / 2, FL::Window::getHeight() / 2);
 	}
 

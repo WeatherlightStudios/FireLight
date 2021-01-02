@@ -11,6 +11,7 @@ public:
 
 private:
 	float velocity = 25.0f;
+	float mouse_velocity = 70.0f;
 	bool isCameraUsed;
 };
 #endif 

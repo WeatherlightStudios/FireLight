@@ -1,10 +1,11 @@
 #include "Time.h"
+#include <algorithm>
 
 
 double Time::m_current_time = 0;
 double Time::m_previus_time = 0;
-double Time::m_lag = 0.0;
-double Time::delta_time = 1.0 / 60.0;
+double Time::m_elapsed		= 0.0;
+const double Time::DELTA_TIME = 1.0 / 60.0;
 
 Time::Time()
 {
@@ -13,7 +14,6 @@ Time::Time()
 void Time::Start()
 {
 	m_previus_time = glfwGetTime();
-	m_lag = 0.0;
 }
 
 double Time::GetTime()
@@ -23,31 +23,31 @@ double Time::GetTime()
 
 double Time::GetDeltaTime()
 {
-	return delta_time;
+	return std::min(m_elapsed, DELTA_TIME);
 }
 
-double Time::GetLag()
+double Time::GetElapsed()
 {
-	return m_lag;
+	return m_elapsed;
 }
 
 void Time::Calculate()
 {
 	double current = glfwGetTime();
-	double elapsed = current - m_previus_time;
+	m_elapsed = current - m_previus_time;
 	m_previus_time = current;
-	m_lag += elapsed;
-
 	m_current_time = glfwGetTime();
+}
+
+float Time::GetFrameTime()
+{
+	return 0.0f;
 }
 
 void Time::Reset()
 {
-	m_lag -= delta_time;
+	m_elapsed -= DELTA_TIME;
 }
-
-
-
 
 Time::~Time()
 {

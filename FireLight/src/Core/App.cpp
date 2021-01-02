@@ -5,38 +5,25 @@ FL::App::App()
 {
 }
 
-void FL::App::Start() 
+void FL::App::Start()
 {
-	m_Width = 800;
-	m_Height = 600;
-
-	m_Title = "FireLight Enigne v1.0.0a";
-
 	LoadConfigFile();
-
-
-	m_NewWindow = std::make_unique<Window>(m_configData.screenWidth, m_configData.screenHeigth, m_configData.screenTitle.c_str());
-
-
-
 	glfwInit();
 
-	m_NewWindow->Init();
+	m_new_window = std::make_unique<Window>(m_config_data.screen_width, m_config_data.screen_height, m_config_data.screen_title.c_str());
+	m_new_window->Init();
 
 	if (gl3wInit())
 	{
 		std::cout << "OpenGL failde to inizialize" << std::endl;
 	}
 
-	m_NewWindow->InitIMGUI();
-
+	m_new_window->InitIMGUI();
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_MULTISAMPLE);
 
-
 	glfwSwapInterval(0);
-
 	MainLoop();
 }
 
@@ -59,24 +46,22 @@ void FL::App::UpdateFrameRate()
 
 	m_FrameRate++;
 
-	if (m_CurrentTime - m_OldTime > 1.0)
+	if (m_CurrentTime - m_old_time > 1.0)
 	{
 		m_CurrentFPS = m_FrameRate;
 		m_FrameRate = 0;
-		m_OldTime = m_CurrentTime;
+		m_old_time = m_CurrentTime;
 	}
 }
 
 void FL::App::MainLoop()
 {
 	Init();
-
 	Time::Start();
 
-	m_FrameRate = 0;
-	m_OldTime = glfwGetTime();
+	//m_FrameRate = 0;
 
-	while (!m_NewWindow->isClosed())
+	while (!m_new_window->isClosed())
 	{
 		Time::Calculate();
 
@@ -84,19 +69,21 @@ void FL::App::MainLoop()
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
-		while(Time::GetLag() >= MS_PER_UPDATE)
+		while (Time::GetElapsed() > 0.0)
 		{
 			FixedUpdate();
+			Time::Reset();
 		}
 
-		if (m_DEBUG_MODE)
+		if (m_debug_mode)
 		{
 			SceneManager::DebugCurrentScene();
 			FL::Log::Draw();
 		}
 
 		//TODO:: Need more complex implemetation for debug and monitoring of performance
-		//ImGui::Text("FPS: %d", m_CurrentFPS);
+		ImGui::Text("FPS: %d", m_CurrentFPS);
+		ImGui::Text("CalculatedFPS: %d", Time::GetFrameTime());
 
 		Render();
 
@@ -105,8 +92,8 @@ void FL::App::MainLoop()
 
 		UpdateFrameRate();
 
-		m_NewWindow->UpdateInput();
-		m_NewWindow->Update();
+		m_new_window->UpdateInput();
+		m_new_window->Update();
 	}
 	ShutDown();
 }
@@ -114,7 +101,7 @@ void FL::App::MainLoop()
 void FL::App::Render()
 {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-	
+
 	SceneManager::DrawCurrentScene();
 }
 
@@ -122,10 +109,10 @@ void FL::App::LoadConfigFile()
 {
 	const auto data = toml::parse("Resources/config.toml");
 
-	const auto ScreenSettings = toml::find(data, "Screen_Settings");
-	m_configData.screenTitle = (std::string)toml::find<std::string>(ScreenSettings, "name");
-	m_configData.screenWidth = (int)toml::find<int>(ScreenSettings, "width");
-	m_configData.screenHeigth = (int)toml::find<int>(ScreenSettings, "heigth");
+	const auto screen_settings  = toml::find(data, "Screen_Settings");
+	m_config_data.screen_title  = toml::find<std::string>(screen_settings, "name");
+	m_config_data.screen_width  = toml::find<int>(screen_settings, "width");
+	m_config_data.screen_height = toml::find<int>(screen_settings, "heigth");
 }
 
 void FL::App::ShutDown()

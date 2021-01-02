@@ -40,14 +40,16 @@
 //TEST
 #define MS_PER_UPDATE 1 / 60.0
 
+
+
 namespace FL
 {
 	struct ConfigData
 	{
-		int screenWidth;
-		int screenHeigth;
+		int screen_width;
+		int screen_height;
 
-		std::string screenTitle;
+		std::string screen_title;
 	};
 
 	//App is the core class of the Engine. It's used to initialize all systems and load the resources of the game.
@@ -66,11 +68,8 @@ namespace FL
 		//Fuction that Updates the frame rate parameter
 		void UpdateFrameRate();
 		//This function is used for enalbe the Debug mode of the engine
-		void Set_DEBUG_MODE() { m_DEBUG_MODE = true; }
-		//This function is used for set The Window Size
-		//void SetWindowDimension(int width, int height);
-		//This function is used to set the Window name
-		//void SetWindowName(std::string name);
+		void Set_DEBUG_MODE() { m_debug_mode = true; }
+
 	protected:
 		//The GameLoop itself
 		void MainLoop();
@@ -84,30 +83,19 @@ namespace FL
 	private:
 		void LoadConfigFile();
 
-
-
 	private:
-		bool m_IsRunning;
+		bool m_is_running;
+		bool m_debug_mode = false;
+		ConfigData m_config_data;
+		std::unique_ptr<FL::Window> m_new_window;
 
-		double m_OldTime;
+		double m_old_time;
 		double m_CurrentTime;
 
 		int m_FrameRate;
 		int m_CurrentFPS;
-
-		bool m_DEBUG_MODE = false;
-
-		ConfigData m_configData;
-
-		//Window Width
-		int	m_Width;
-		//Window Height
-		int	m_Height;
-		//Window Title
-		std::string m_Title;
-		//The window it self
-		std::unique_ptr<FL::Window> m_NewWindow;
 	};
-}
 
+
+}
 #endif
