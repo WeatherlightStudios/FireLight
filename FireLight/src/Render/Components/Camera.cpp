@@ -13,9 +13,9 @@ void Camera::Update()
 	auto transform = GetOwner()->GetComponent<Transform>();
 	glm::mat4 projection;
 	if(m_type == Camera_Type::PERSPECTIVE)
-		projection = glm::perspective(glm::radians(m_Fov), (float)FL::Window::getWidth() / (float)FL::Window::getHeight(), m_Near, m_Far);
+		projection = glm::perspective(glm::radians(m_Fov), (float)FL::Window::GetWidth() / (float)FL::Window::GetHeight(), m_Near, m_Far);
 	if(m_type == Camera_Type::ORTHOGRAPHIC)
-		projection = glm::ortho(-(float)FL::Window::getWidth() / 2.0f, (float)FL::Window::getWidth() / 2.0f, -(float)FL::Window::getHeight() / 2.0f, (float)FL::Window::getHeight() / 2.0f, m_Near, m_Far);
+		projection = glm::ortho(-(float)FL::Window::GetWidth() / 2.0f, (float)FL::Window::GetWidth() / 2.0f, -(float)FL::Window::GetHeight() / 2.0f, (float)FL::Window::GetHeight() / 2.0f, m_Near, m_Far);
 
 	glm::mat4 yaw = glm::mat4(1.0f);
 	glm::mat4 pitch = glm::mat4(1.0f);

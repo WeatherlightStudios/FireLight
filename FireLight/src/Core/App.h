@@ -65,10 +65,8 @@ namespace FL
 		void FixedUpdate();
 		//Fucntion that Update the systems and the logic at free framerate
 		void Update();
-		//Fuction that Updates the frame rate parameter
-		void UpdateFrameRate();
 		//This function is used for enalbe the Debug mode of the engine
-		void Set_DEBUG_MODE() { m_debug_mode = true; }
+		void SetDebugMode() { m_debug_mode = true; }
 
 	protected:
 		//The GameLoop itself
@@ -80,6 +78,7 @@ namespace FL
 		void Render();
 		//This function free the memory and close the render contex
 		void ShutDown();
+
 	private:
 		void LoadConfigFile();
 
@@ -88,12 +87,6 @@ namespace FL
 		bool m_debug_mode = false;
 		ConfigData m_config_data;
 		std::unique_ptr<FL::Window> m_new_window;
-
-		double m_old_time;
-		double m_CurrentTime;
-
-		int m_FrameRate;
-		int m_CurrentFPS;
 	};
 
 

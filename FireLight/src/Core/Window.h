@@ -31,7 +31,7 @@ namespace FL
 		//update Window
 		void Update();
 		// controll if Window is Closed
-		bool isClosed() const;
+		bool IsClosed() const;
 
 		void InitIMGUI();
 
@@ -40,12 +40,12 @@ namespace FL
 		//void UpdateSettings();
 
 		//get Width and height of Window
-		static int getWidth(){ return m_width; }
-		static int getHeight(){ return m_height; }
+		static int GetWidth(){ return m_width; }
+		static int GetHeight(){ return m_height; }
 
 		static glm::vec2 get_mouse_positions();
 
-		static void setCursorPosition(float x, float y)
+		static void SetCursorPosition(float x, float y)
 		{
 			glfwSetCursorPos(m_window, x, y);
 		}
@@ -65,7 +65,7 @@ namespace FL
 		
 		//static double mx, my;
 
-		static glm::vec2 mousePosition;
+		static glm::vec2 m_mouse_position;
 
 		//static int m_isKeyPress;
 		friend static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);

@@ -3,7 +3,7 @@
 
 int FL::Window::m_width = 0;
 int FL::Window::m_height = 0;
-glm::vec2 FL::Window::mousePosition;
+glm::vec2 FL::Window::m_mouse_position;
 GLFWwindow *FL::Window::m_window;
 //int FL::Window::m_keys[1024];
 
@@ -55,7 +55,7 @@ void FL::Window::Update()
 	glfwSwapBuffers(m_window);
 }
 
-bool FL::Window::isClosed() const
+bool FL::Window::IsClosed() const
 {
 	return glfwWindowShouldClose(m_window);
 }
@@ -64,19 +64,22 @@ void FL::cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	FL::Window *win = (FL::Window*)glfwGetWindowUserPointer(window);
 
-	win->mousePosition = glm::vec2(xpos, ypos);
+	win->m_mouse_position = glm::vec2(xpos, ypos);
 }
 
 void FL::window_size_callback(GLFWwindow* window, int width, int height)
 {
 	FL::Window *win = (FL::Window*)glfwGetWindowUserPointer(window);
 
+	win->m_width = width;
+	win->m_height = height;
+
 	glViewport(0, 0, width, height);
 }
 
 glm::vec2 FL::Window::get_mouse_positions()
 {
-	return mousePosition;
+	return m_mouse_position;
 }
 
 FL::Window::~Window()

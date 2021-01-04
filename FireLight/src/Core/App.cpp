@@ -31,8 +31,8 @@ void FL::App::FixedUpdate()
 {
 	SceneManager::UpdateCurrentScene();
 	Time::Reset();
-	FL::Input::clearKeys();
-	FL::Input::clearMouseMuttons();
+	FL::Input::ClearKeys();
+	FL::Input::ClearMouseMuttons();
 }
 
 void FL::App::Update()
@@ -40,28 +40,12 @@ void FL::App::Update()
 	//TODO:: need implement Update Function to Scene and in the SceneManager
 }
 
-void FL::App::UpdateFrameRate()
-{
-	m_CurrentTime = glfwGetTime();
-
-	m_FrameRate++;
-
-	if (m_CurrentTime - m_old_time > 1.0)
-	{
-		m_CurrentFPS = m_FrameRate;
-		m_FrameRate = 0;
-		m_old_time = m_CurrentTime;
-	}
-}
-
 void FL::App::MainLoop()
 {
 	Init();
 	Time::Start();
 
-	//m_FrameRate = 0;
-
-	while (!m_new_window->isClosed())
+	while (!m_new_window->IsClosed())
 	{
 		Time::Calculate();
 
@@ -82,15 +66,12 @@ void FL::App::MainLoop()
 		}
 
 		//TODO:: Need more complex implemetation for debug and monitoring of performance
-		ImGui::Text("FPS: %d", m_CurrentFPS);
-		ImGui::Text("CalculatedFPS: %d", Time::GetFrameTime());
+		ImGui::Text("FPS: %f", Time::GetFrameRate());
 
 		Render();
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-		UpdateFrameRate();
 
 		m_new_window->UpdateInput();
 		m_new_window->Update();

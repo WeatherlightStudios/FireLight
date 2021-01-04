@@ -8,6 +8,7 @@
 #include "../Component/TerrainComponent.h"
 #include "../Component/Box.h"
 #include "../Component/Chunk.h"
+#include "../Component/Moviment.h"
 
 class Test_Scene : public FL::Scene
 {
