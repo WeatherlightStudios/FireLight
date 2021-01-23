@@ -4,10 +4,8 @@
 #include <FireLight.h>
 #include <memory>
 
-#include "../Component/TestComponent.h"
-#include "../Component/TerrainComponent.h"
+#include "../Component/camera_moviment.h"
 #include "../Component/Box.h"
-#include "../Component/Chunk.h"
 #include "../Component/Moviment.h"
 
 class Test_Scene : public FL::Scene
@@ -19,8 +17,6 @@ public:
 	void Close();
 
 private:
-
-
 };
 
 #endif

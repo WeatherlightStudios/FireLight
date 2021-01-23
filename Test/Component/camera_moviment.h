@@ -1,0 +1,17 @@
+#ifndef TESTCOMPONENT_H
+#define TESTCOMPONENT_H
+
+#include <FireLight.h>
+
+class CameraMoviment : public Component
+{
+public:
+	void Init();
+	void Update();
+
+private:
+	float velocity = 25.0f;
+	float mouse_velocity = 70.0f;
+	bool isCameraUsed;
+};
+#endif 

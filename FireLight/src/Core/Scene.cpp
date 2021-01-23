@@ -8,13 +8,13 @@ namespace FL
 	{
 		isInizialized = false;
 		m_render = std::make_unique<RenderSystem>();
-		m_cameraSyste = new CameraSystem();
+		m_camera_system = new CameraSystem();
 		m_resource_manger = std::make_unique<ResourceManager>();
 	}
 
 	void Scene::InitScene()
 	{
-		m_cameraSyste->Init();
+		m_camera_system->Init();
 		Init();
 		m_render->Init();
 		isInizialized = true;
@@ -57,9 +57,7 @@ namespace FL
 		Close();
 	}
 
-
 	//SCENE GRAPH
-
 	std::shared_ptr<GameObject> Scene::CreateGameOject()
 	{
 		uint32_t size = m_object.size();
@@ -91,12 +89,10 @@ namespace FL
 
 	}
 
-
 	void Scene::SetParent(uint32_t parentID, uint32_t childID)
 	{
 		m_parents[childID] = m_object[parentID];
 	}
-
 
 	Scene::~Scene()
 	{

@@ -19,23 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Component\Chunk.cpp" />
     <ClCompile Include="Component\Box.cpp" />
-    <ClCompile Include="Component\TerrainComponent.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Component\Moviment.cpp" />
     <ClCompile Include="Scenes\Test_Scene.cpp" />
-    <ClCompile Include="Component\TestComponent.cpp" />
+    <ClCompile Include="Component\camera_moviment.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Component\Chunk.h" />
     <ClInclude Include="Component\Box.h" />
-    <ClInclude Include="Component\TerrainComponent.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Component\Moviment.h" />
     <ClInclude Include="Scenes\Test_Scene.h" />
-    <ClInclude Include="Component\TestComponent.h" />
+    <ClInclude Include="Component\camera_moviment.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

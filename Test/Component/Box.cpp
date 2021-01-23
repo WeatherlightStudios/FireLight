@@ -6,7 +6,6 @@ Box::Box()
 {
 }
 
-
 void Box::Init()
 {
 	float vertices[] = {
@@ -66,21 +65,17 @@ void Box::Init()
 	m_VAO = std::make_shared<FL::VertexArray>();
 
 	m_VAO->AddVertexBuffer(m_VBO);
-
 }
-
 
 void Box::Update()
 {
 
 }
 
-
 void Box::UpdateMesh()
 {
 
 }
-
 
 void Box::Draw()
 {
@@ -102,8 +97,6 @@ void Box::Draw()
 	m_VAO->Bind();
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 }
-
-
 
 Box::~Box()
 {

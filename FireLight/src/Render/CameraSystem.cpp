@@ -39,10 +39,7 @@ void CameraSystem::HandleMessage(Message msg)
 	{
 		RegisterCamera((Camera*)msg.getComponent());
 	}
-
 }
-
-
 
 CameraSystem::~CameraSystem()
 {

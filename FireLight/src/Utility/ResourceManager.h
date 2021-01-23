@@ -19,6 +19,8 @@ public:
 	ResourceManager();
 
 	static std::shared_ptr<Shader> LoadShader(std::string path, std::string id);
+	static std::shared_ptr<Shader> LoadShader(const GLchar* vShaderFile, const GLchar* fShaderFile, const GLchar* gShaderFile, std::string name);
+
 	//static void LoadTexture(std::string path, std::string id, bool alpha, );
 
 	static std::shared_ptr<Shader> GetShader(std::string id);
@@ -35,6 +37,7 @@ public:
 
 private:
 	std::shared_ptr<Shader> LoadInternalShader(std::string path, std::string id);
+	std::shared_ptr<Shader> LoadInternalShader(const GLchar* vShaderFile, const GLchar* fShaderFile, const GLchar* gShaderFile, std::string name);
 
 	std::unordered_map<std::string, std::shared_ptr<Shader>> m_shaders;
 	//std::unordered_map<std::string, std::shared_ptr<Texture>> m_shaders;

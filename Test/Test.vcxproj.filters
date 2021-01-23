@@ -24,19 +24,13 @@
     <ClCompile Include="Scenes\Test_Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Component\TestComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component\TerrainComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Component\Box.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Component\Chunk.cpp">
+    <ClCompile Include="Component\Moviment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Component\Moviment.cpp">
+    <ClCompile Include="Component\camera_moviment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,19 +41,13 @@
     <ClInclude Include="Scenes\Test_Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Component\TestComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component\TerrainComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Component\Box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Component\Chunk.h">
+    <ClInclude Include="Component\Moviment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Component\Moviment.h">
+    <ClInclude Include="Component\camera_moviment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

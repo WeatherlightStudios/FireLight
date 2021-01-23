@@ -1,6 +1,8 @@
 #ifndef RENDER_SYSTEM_H
 #define RENDER_SYSTEM_H
 //------------------Includes------------------
+#include <memory>
+
 //GLM stuffs
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -15,11 +17,20 @@
 
 //Engine Stuff
 #include "CameraSystem.h"
+#include "../Utility/ResourceManager.h"
 #include "../Utility/Resource.h"
 #include "../Utility/Resources/Shader.h"
 #include "../Utility/Resources/Texture.h"
 #include "../Core/System.h"
 #include "Components/Mesh.h"
+
+
+//new system
+
+#include "OpenGL/IndexBuffer.h"
+#include "OpenGL/VertexArray.h"
+#include "OpenGL/VertexBuffer.h"
+
 //-------------------------------------------
 
 class RenderSystem : public System
@@ -35,7 +46,6 @@ public:
 
 	void Render();
 
-
 	void UpdateBuffer(Mesh* mesh);
 
 	void AddMesh();
@@ -45,14 +55,13 @@ public:
 	~RenderSystem();
 
 private:
+	std::shared_ptr<FL::VertexArray>  m_vao;
+	std::shared_ptr<FL::VertexBuffer> m_vbo;
+	std::shared_ptr<FL::IndexBuffer>  m_ibo;
 
-	GLuint VAO, VBO, IBO;
 
 	glm::mat4 m_projection;
-private:
-	//glm::mat4 model;
 	std::vector<Mesh*> meshes;
-	
 };
 
 #endif // ! RENDER_SYSTEM_H

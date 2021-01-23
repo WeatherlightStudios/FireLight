@@ -77,14 +77,11 @@ namespace FL
 	private:
 
 		std::vector<std::shared_ptr<GameObject>> m_object;
-
 		std::vector<std::weak_ptr<GameObject>> m_parents;
 
 		std::unique_ptr<RenderSystem> m_render;
-
 		std::shared_ptr<ResourceManager> m_resource_manger;
-
-		CameraSystem* m_cameraSyste;
+		CameraSystem* m_camera_system;
 	};
 
 }
