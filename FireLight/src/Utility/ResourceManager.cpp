@@ -2,6 +2,9 @@
 #include "../Core/SceneManager.h"
 #include <iostream>
 
+std::unordered_map<std::string, std::shared_ptr<Shader>> ResourceManager::m_shaders;
+
+
 ResourceManager::ResourceManager()
 {
 
@@ -66,7 +69,7 @@ std::shared_ptr<Shader> ResourceManager::LoadInternalShader(std::string path, st
 	std::shared_ptr<Shader> GLShader = std::make_shared<Shader>();
 	GLShader->Compile(vertex.c_str(), fragment.c_str(), nullptr);
 	m_shaders[id] = std::move(GLShader);
-	return nullptr;
+	return m_shaders[id];
 }
 
 std::shared_ptr<Shader> ResourceManager::GetShader(std::string id)

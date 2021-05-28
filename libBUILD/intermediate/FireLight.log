@@ -1,5 +1,28 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(453,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  App.cpp
+F:\C++GitProjects\FireLight\FireLight\src\Core\GameObject.h(43,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  GameObject.cpp
+F:\C++GitProjects\FireLight\FireLight\src\Core\GameObject.h(43,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Scene.cpp
+F:\C++GitProjects\FireLight\FireLight\src\Core\GameObject.h(43,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+F:\C++GitProjects\FireLight\FireLight\src\Core\Scene.cpp(75,34): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
+  SceneManager.cpp
+F:\C++GitProjects\FireLight\FireLight\src\Core\GameObject.h(43,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  CameraSystem.cpp
+F:\C++GitProjects\FireLight\FireLight\src\Core\GameObject.h(43,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+F:\C++GitProjects\FireLight\FireLight\src\Render\CameraSystem.cpp(27,12): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+  Camera.cpp
+F:\C++GitProjects\FireLight\FireLight\src\Core\GameObject.h(43,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  MeshFilter.cpp
+F:\C++GitProjects\FireLight\FireLight\src\Core\GameObject.h(43,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+F:\C++GitProjects\FireLight\FireLight\src\Render\Components\MeshFilter.cpp(77,38): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Transform.cpp
   RenderSystem.cpp
+F:\C++GitProjects\FireLight\FireLight\src\Core\GameObject.h(43,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Simple2DRenderSystem.cpp
+  ResourceManager.cpp
+F:\C++GitProjects\FireLight\FireLight\src\Core\GameObject.h(43,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
 freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
   FireLight.vcxproj -> F:\C++GitProjects\FireLight\libBUILD\FireLight.lib

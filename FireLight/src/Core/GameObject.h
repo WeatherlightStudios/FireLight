@@ -40,6 +40,8 @@ public:
 	void AddComponent(const std::shared_ptr<Component>& component);
 	void RemoveComponent(std::shared_ptr<Component> component);
 
+	int GetComponentCount() { return m_components.size(); }
+
 	void ClearComponents();
 
 	template<class T>
@@ -53,6 +55,7 @@ public:
 			}
 		}
 
+		std::cout << "Component Not Find" << std::endl;
 		return nullptr;
 	}
 

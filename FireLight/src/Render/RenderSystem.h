@@ -2,7 +2,7 @@
 #define RENDER_SYSTEM_H
 //------------------Includes------------------
 #include <memory>
-
+#include <vector>
 //GLM stuffs
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -12,56 +12,64 @@
 #include <GL/gl3w.h>
 
 //Imgui
-#include "../../imgui/imgui.h"
-#include "../Utility/Debugging/Log.h"
 
 //Engine Stuff
 #include "CameraSystem.h"
 #include "../Utility/ResourceManager.h"
-#include "../Utility/Resource.h"
 #include "../Utility/Resources/Shader.h"
-#include "../Utility/Resources/Texture.h"
-#include "../Core/System.h"
-#include "Components/Mesh.h"
 
+#include "Components/MeshFilter.h"
 
 //new system
-
 #include "OpenGL/IndexBuffer.h"
 #include "OpenGL/VertexArray.h"
 #include "OpenGL/VertexBuffer.h"
 
 //-------------------------------------------
 
-class RenderSystem : public System
+struct MeshBuffer {
+	glm::mat4 model;
+
+	int index = 0;
+	std::shared_ptr<Shader> shader;
+	std::shared_ptr<FL::VertexArray>  m_vao;
+};
+
+class RenderSystem
 {
 public:
 	RenderSystem();
 
-	void Init();
+	static void Init();
+	static void Debug();
+	static void Render();
 
-	void Debug();
-
-	void HandleMessage(Message msg);
-
-	void Render();
-
-	void UpdateBuffer(Mesh* mesh);
-
-	void AddMesh();
-
-	void RemoveMesh();
+	static void AddMesh(GameObject* obj, std::shared_ptr<Shader> shader);
+	static void AddMesh(MeshFilter* mesh, Transform* transform, std::shared_ptr<Shader> shader);
+	//static void AddSprite(Sprite sp);
 
 	~RenderSystem();
 
 private:
+
+	
+	/*GLuint VBO, VAO;
+	GLuint VBO2, EBO;
+
 	std::shared_ptr<FL::VertexArray>  m_vao;
 	std::shared_ptr<FL::VertexBuffer> m_vbo;
+	std::shared_ptr<FL::VertexBuffer> m_vbo2;
 	std::shared_ptr<FL::IndexBuffer>  m_ibo;
 
+	glm::mat4 m_projection;*/
 
-	glm::mat4 m_projection;
-	std::vector<Mesh*> meshes;
+	static std::shared_ptr<FL::VertexArray> m_vao;
+	static std::shared_ptr<FL::VertexBuffer> m_vbo_vertices;
+	static std::shared_ptr<FL::VertexBuffer> m_vbo_color;
+	static std::shared_ptr<FL::IndexBuffer> m_ibo;
+
+	static std::vector<MeshBuffer> m_mesh_buffers;
+
 };
 
 #endif // ! RENDER_SYSTEM_H

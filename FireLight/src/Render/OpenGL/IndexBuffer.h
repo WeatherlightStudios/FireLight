@@ -17,6 +17,7 @@ namespace FL
 
 		void BuildBuffer(GLsizeiptr size, GLbitfield BufferUsage);
 		void BuildBuffer(GLsizeiptr size, void* data ,GLbitfield BufferUsage);
+		void AddData(GLsizeiptr size, void* data);
 
 	private:
 		GLuint m_bufferID;

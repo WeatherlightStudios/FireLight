@@ -4,10 +4,10 @@
 #include <memory>
 
 
-class Box : public Mesh
+class Box //: public Mesh
 {
 public:
-	Box();
+	/*Box();
 
 	void Init();
 
@@ -23,6 +23,6 @@ private:
 	std::shared_ptr<FL::VertexBuffer> m_VBO;
 	std::shared_ptr<FL::VertexArray> m_VAO;
 	
-	GLuint VAO, VBO;
+	GLuint VAO, VBO;*/
 };
 

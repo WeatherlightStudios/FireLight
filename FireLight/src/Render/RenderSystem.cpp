@@ -1,5 +1,13 @@
 #include "RenderSystem.h"
 
+
+std::vector<MeshBuffer> RenderSystem::m_mesh_buffers;
+
+std::shared_ptr<FL::VertexArray>  RenderSystem::m_vao;
+std::shared_ptr<FL::VertexBuffer> RenderSystem::m_vbo_vertices;
+std::shared_ptr<FL::VertexBuffer> RenderSystem::m_vbo_color;
+std::shared_ptr<FL::IndexBuffer>  RenderSystem::m_ibo;
+
 RenderSystem::RenderSystem()
 {
 	/*MessageBus::RegisterSystem("REGISTER_MESH", this);
@@ -9,37 +17,36 @@ RenderSystem::RenderSystem()
 
 void RenderSystem::Init()
 {
-	ResourceManager::LoadShader("Resources/ShaderTest.glsl", "ShaderTest");
-	//ResourceManager::LoadShader("Resources/ShaderTest.vert", "Resources/ShaderTest.frag", nullptr, "ShaderTest");
+	//ResourceManager::LoadShader("Resources/ShaderTest.glsl", "ShaderTest");
 
-	//Resource::LoadShader("Resources/ShaderTest.vert", "Resources/ShaderTest.frag", nullptr, "ShaderTest");
-
-
-	float vertices[] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.f,
-		 0.0f, 0.5f, 0.f
-	};
-
-	int index[] = 
-	{
-		0,1,2
-	};
-
-	FL::BufferLayout layout({
-		{FL::DataType::Vec3}
-	});
-
-	m_vbo = std::make_shared<FL::VertexBuffer>();
-	m_vao = std::make_shared<FL::VertexArray>();
-	m_ibo = std::make_shared<FL::IndexBuffer>();
-
-	m_vbo->BuilBuffer(sizeof(vertices), vertices, GL_STATIC_DRAW);
-	m_vbo->SetBufferLayout(layout);
-
-
-	m_vao->AddVertexBuffer(m_vbo);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_MULTISAMPLE);
 }
+
+void RenderSystem::AddMesh(GameObject* obj, std::shared_ptr<Shader> shader)
+{
+	MeshBuffer buffer;
+
+	MeshFilter* mesh = obj->GetComponent<MeshFilter>();
+	Transform* transform = obj->GetComponent<Transform>();
+
+	buffer.shader = shader;
+	buffer.index = mesh->GetIndex();
+	buffer.m_vao = mesh->GetVAO();
+	buffer.model = transform->GetMatrix();
+	m_mesh_buffers.push_back(buffer);
+}
+
+void RenderSystem::AddMesh(MeshFilter* mesh, Transform* transform, std::shared_ptr<Shader> shader)
+{
+	MeshBuffer buffer;
+
+	buffer.shader = shader;
+	buffer.index = mesh->GetIndex();
+	buffer.m_vao = mesh->GetVAO();
+	buffer.model = transform->GetMatrix();
+	m_mesh_buffers.push_back(buffer);
+} 
 
 void RenderSystem::Debug()
 {
@@ -48,36 +55,19 @@ void RenderSystem::Debug()
 
 void  RenderSystem::Render()
 {
-	glm::mat4 model = glm::mat4(1.0f);
-
-	model = glm::translate(model, glm::vec3(0, 0, 0));
-	model = glm::scale(model, glm::vec3(1, 1, 1));
-
-
-	auto shader = ResourceManager::GetShader("ShaderTest");
-
-	shader->SetMatrix4("projection", CameraSystem::GetCurrentCamera());
-	shader->SetMatrix4("model", model);
-
-
-	shader->Use();
-	m_vao->Bind();
-
-	glDrawArrays(GL_TRIANGLES, 0, 3);
-}
-
-void RenderSystem::HandleMessage(Message msg)
-{
-	/*if (msg.type() == "REGISTER_MESH")
+	for (int i = 0; i < m_mesh_buffers.size(); i++)
 	{
-		FL::LOG_INFO_ENGINE("Mesh is added");
-		meshes.push_back((Mesh*)msg.getComponent());
+		auto shader = m_mesh_buffers[i].shader;
+		shader->SetMatrix4("projection", CameraSystem::GetCurrentCamera());
+		shader->SetMatrix4("model", m_mesh_buffers[i].model);
+
+		shader->Use();
+		m_mesh_buffers[i].m_vao->Bind();
+
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 
-	if (msg.type() == "REMOVE_MESH")
-	{
-		//need implementation!
-	}*/
+	m_mesh_buffers.clear();
 }
 
 RenderSystem::~RenderSystem()

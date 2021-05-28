@@ -2,7 +2,7 @@
 
 
 
-Box::Box()
+/*Box::Box()
 {
 }
 
@@ -100,4 +100,4 @@ void Box::Draw()
 
 Box::~Box()
 {
-}
+}*/

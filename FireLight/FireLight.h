@@ -16,6 +16,7 @@
 #include "src/Core/MessageSystem/Message.h"
 
 #include "src/Render/Components/Sprite.h"
+#include "src/Render/Components/MeshFilter.h"
 
 #include "src/Render/OpenGL/VertexArray.h"
 #include "src/Render/OpenGL/VertexBuffer.h"
@@ -31,7 +32,7 @@
 #include "src\Core\Component.h"
 
 #include "src/Render/Components/Camera.h"
-#include "src/Render/Components/Mesh.h"
+
 
 #include "imgui/imgui.h"
 

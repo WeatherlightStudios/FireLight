@@ -7,6 +7,7 @@
 #include "../Component/camera_moviment.h"
 #include "../Component/Box.h"
 #include "../Component/Moviment.h"
+#include "../Component/RotComp.h"
 
 class Test_Scene : public FL::Scene
 {

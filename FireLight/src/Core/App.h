@@ -14,6 +14,8 @@
 #include <GLFW\glfw3.h>
 
 //Core Engine
+#include "../Utility/ResourceManager.h"
+#include "../Render/RenderSystem.h"
 #include "SceneManager.h"
 #include "Window.h"
 #include "Time.h"
@@ -39,6 +41,8 @@
 
 //TEST
 #define MS_PER_UPDATE 1 / 60.0
+
+
 
 
 

@@ -7,7 +7,6 @@ namespace FL
 	Scene::Scene()
 	{
 		isInizialized = false;
-		m_render = std::make_unique<RenderSystem>();
 		m_camera_system = new CameraSystem();
 		m_resource_manger = std::make_unique<ResourceManager>();
 	}
@@ -16,7 +15,6 @@ namespace FL
 	{
 		m_camera_system->Init();
 		Init();
-		m_render->Init();
 		isInizialized = true;
 	}
 	void Scene::UpdateScene()
@@ -32,6 +30,20 @@ namespace FL
 	void Scene::Render()
 	{
 
+
+		//Culling
+
+
+		//Batching
+
+
+		//DRAW
+
+
+		//clear map
+
+
+
 		/*m_render->Begin();
 		for (int i = 0; i < m_object.size(); i++)
 		{
@@ -46,9 +58,9 @@ namespace FL
 
 	
 		m_render->Flush();
-	*/
+		*/
 
-		m_render->Render();
+		//m_render->Render();
 	}
 
 	void Scene::CloseScene()
@@ -86,7 +98,6 @@ namespace FL
 			m_object.pop_back();
 			m_parents.pop_back();
 		}
-
 	}
 
 	void Scene::SetParent(uint32_t parentID, uint32_t childID)

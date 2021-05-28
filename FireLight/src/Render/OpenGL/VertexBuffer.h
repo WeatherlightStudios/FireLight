@@ -38,14 +38,13 @@ namespace FL
 		{
 			switch (Type)
 			{
-
-			case FL::DataType::Float:	return 1;
-			case FL::DataType::Vec2:	return 2;
-			case FL::DataType::Vec3:	return 3;
-			case FL::DataType::Vec4:	return 4;
-			case FL::DataType::Mat3:	return 3*3;
-			case FL::DataType::Mat4:	return 4*4;
-			case FL::DataType::Int:		return 1;
+				case FL::DataType::Float:	return 1;
+				case FL::DataType::Vec2:	return 2;
+				case FL::DataType::Vec3:	return 3;
+				case FL::DataType::Vec4:	return 4;
+				case FL::DataType::Mat3:	return 3*3;
+				case FL::DataType::Mat4:	return 4*4;
+				case FL::DataType::Int:		return 1;
 			}
 
 			return 0;
@@ -93,9 +92,6 @@ namespace FL
 	};
 
 
-
-
-
 	class VertexBuffer
 	{
 	public:
@@ -112,7 +108,7 @@ namespace FL
 
 		inline const BufferLayout& GetBufferLayout() const { return m_layout; }
 
-		void AddData(void* data);
+		void AddData(GLsizeiptr size, void* data);
 
 	private:
 		GLuint m_bufferID;

@@ -27,14 +27,36 @@ namespace FL {
 	{
 		glBindVertexArray(bufferID);
 	}
+
 	void VertexArray::UnBind()
 	{
 		glBindVertexArray(0);
 	}
 
-	void VertexArray::AddVertexBuffer(std::shared_ptr<VertexBuffer>& buffer)
+	void VertexArray::Init()
 	{
 		Bind();
+
+		uint32_t index = 0;
+		for (auto buffer : m_vertex_buffer_objects)
+		{
+			buffer->Bind();
+			for (auto& element : buffer->GetBufferLayout().GetElements())
+			{
+				glVertexAttribPointer(index, element.GetTypeSyze(), DataTypeToOpenGLType(element.Type), GL_FALSE, buffer->GetBufferLayout().GetStride(), (void*)element.Offset);
+				glEnableVertexAttribArray(index);
+				index++;
+			}
+		}
+	}
+
+	void VertexArray::AddVertexBuffer(std::shared_ptr<VertexBuffer>& buffer)
+	{
+		m_vertex_buffer_objects.push_back(buffer);
+
+		// Old Stuff
+
+		/*Bind();
 		buffer->Bind();
 
 		uint32_t index = 0;
@@ -43,7 +65,7 @@ namespace FL {
 			glVertexAttribPointer(index, element.GetTypeSyze(), DataTypeToOpenGLType(element.Type), GL_FALSE, buffer->GetBufferLayout().GetStride(), (void*)element.Offset);
 			glEnableVertexAttribArray(index);
 			index++;
-		}
+		}*/
 	}
 
 	void VertexArray::AddIndexBuffer(std::shared_ptr<IndexBuffer>& buffer)

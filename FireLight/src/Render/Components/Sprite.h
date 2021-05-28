@@ -25,7 +25,6 @@ public:
 	float ZLayer;
 	Texture m_texture;
 
-
 };
 
 #endif

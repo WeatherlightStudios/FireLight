@@ -9,15 +9,15 @@ namespace FL {
 		glGenBuffers(1, &m_bufferID);
 	}
 
-
 	void VertexBuffer::Bind()
 	{
 		glBindBuffer(GL_ARRAY_BUFFER,m_bufferID);
 	}
 
-	void VertexBuffer::AddData(void* data)
+	void VertexBuffer::AddData(GLsizeiptr size, void* data)
 	{
-		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(data), data);
+		Bind();
+		glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
 	}
 
 	void VertexBuffer::BuilBuffer(GLsizeiptr size, GLbitfield BufferUsage)
@@ -41,7 +41,5 @@ namespace FL {
 	{
 		glDeleteBuffers(1, &m_bufferID);
 	}
-
-
 
 }

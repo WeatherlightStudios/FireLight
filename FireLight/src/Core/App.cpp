@@ -7,6 +7,7 @@ FL::App::App()
 
 void FL::App::Start()
 {
+
 	LoadConfigFile();
 	glfwInit();
 
@@ -20,8 +21,9 @@ void FL::App::Start()
 
 	m_new_window->InitIMGUI();
 
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_MULTISAMPLE);
+	//glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_MULTISAMPLE);
+
 
 	glfwSwapInterval(0);
 	MainLoop();
@@ -44,6 +46,7 @@ void FL::App::MainLoop()
 {
 	Init();
 	Time::Start();
+	RenderSystem::Init();
 
 	while (!m_new_window->IsClosed())
 	{
@@ -82,8 +85,8 @@ void FL::App::MainLoop()
 void FL::App::Render()
 {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-
-	SceneManager::DrawCurrentScene();
+	RenderSystem::Render();
+	//SceneManager::DrawCurrentScene();
 }
 
 void FL::App::LoadConfigFile()

@@ -27,7 +27,6 @@
     <ClCompile Include="src\Render\Components\Transform.cpp" />
     <ClCompile Include="src\Utility\Debugging\Log.cpp" />
     <ClCompile Include="src\Render\RenderSystem.cpp" />
-    <ClCompile Include="src\Render\Components\Mesh.cpp" />
     <ClCompile Include="src\Render\Material.cpp" />
     <ClCompile Include="src\Render\Components\Camera.cpp" />
     <ClCompile Include="src\Render\CameraSystem.cpp" />
@@ -40,6 +39,7 @@
     <ClCompile Include="src\Render\OpenGL\VertexArray.cpp" />
     <ClCompile Include="src\Render\OpenGL\IndexBuffer.cpp" />
     <ClCompile Include="src\Utility\ResourceManager.cpp" />
+    <ClCompile Include="src\Render\Components\MeshFilter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h" />
@@ -75,7 +75,6 @@
     <ClInclude Include="src\Render\RenderSystem.h" />
     <ClInclude Include="src\Core\MessageSystem\Message.h" />
     <ClInclude Include="src\Core\MessageSystem\MessageBus.h" />
-    <ClInclude Include="src\Render\Components\Mesh.h" />
     <ClInclude Include="src\Render\Material.h" />
     <ClInclude Include="src\Render\Components\Camera.h" />
     <ClInclude Include="src\Render\CameraSystem.h" />
@@ -86,6 +85,7 @@
     <ClInclude Include="src\Render\OpenGL\IndexBuffer.h" />
     <ClInclude Include="src\Utility\ResourceManager.h" />
     <ClInclude Include="src\Render\DebugDraw.h" />
+    <ClInclude Include="src\Render\Components\MeshFilter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
