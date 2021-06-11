@@ -3,6 +3,7 @@
 #include <iostream>
 
 std::unordered_map<std::string, std::shared_ptr<Shader>> ResourceManager::m_shaders;
+std::unordered_map<std::string, std::shared_ptr<Texture>> ResourceManager::m_textures;
 
 
 ResourceManager::ResourceManager()
@@ -18,6 +19,16 @@ std::shared_ptr<Shader> ResourceManager::LoadShader(std::string path, std::strin
 std::shared_ptr<Shader> ResourceManager::LoadShader(const GLchar* vShaderFile, const GLchar* fShaderFile, const GLchar* gShaderFile, std::string name)
 {
 	return SceneManager::GetCurrentScene()->GetResourceManager()->LoadInternalShader(vShaderFile, fShaderFile, gShaderFile, name);
+}
+
+std::shared_ptr<Texture> ResourceManager::LoadTexture(std::string path, std::string id)
+{
+	return SceneManager::GetCurrentScene()->GetResourceManager()->LoadInternalTexture(path, id);
+}
+
+std::shared_ptr<Texture> ResourceManager::GetTexture(std::string id)
+{
+	return  SceneManager::GetCurrentScene()->GetResourceManager()->GetInternalTexture(id);
 }
 
 std::shared_ptr<Shader> ResourceManager::LoadInternalShader(std::string path, std::string id)
@@ -60,7 +71,6 @@ std::shared_ptr<Shader> ResourceManager::LoadInternalShader(std::string path, st
 			{
 				fragment = matches[i + 1];
 			}
-
 
 		}
 		shader = matches.suffix();
@@ -124,11 +134,27 @@ std::shared_ptr<Shader> ResourceManager::LoadInternalShader(const GLchar* vShade
 	shader->Compile(vShaderCode, fShaderCode, gShaderFile != nullptr ? gShaderCode : nullptr);
 	m_shaders[name] = shader;
 	return shader;
-}
+}	
 
 void ResourceManager::Clear()
 {
 	m_shaders.clear(); //TODO:: im not sure, need to be check if this clear the memory
+}
+
+
+std::shared_ptr<Texture> ResourceManager::LoadInternalTexture(std::string path, std::string id)
+{
+	int width, height, nrChannels;
+	std::shared_ptr<Texture> texture = std::make_shared<Texture>();
+	unsigned char* data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+	texture->Generate(width, height, data);
+	m_textures[id] = std::move(texture);
+	return texture;
+}
+
+std::shared_ptr<Texture> ResourceManager::GetInternalTexture(std::string id)
+{
+	return m_textures[id];
 }
 
 ResourceManager::~ResourceManager()

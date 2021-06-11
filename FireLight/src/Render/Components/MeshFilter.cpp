@@ -15,13 +15,13 @@ MeshFilter::MeshFilter()
 
 MeshFilter::MeshFilter(Mesh mesh)
 {
+	m_mesh = mesh;
 	m_vao = std::make_shared<FL::VertexArray>();
 	m_vbo_vertices = std::make_shared<FL::VertexBuffer>();
 	m_vbo_uv = std::make_shared<FL::VertexBuffer>();
 	m_vbo_normals = std::make_shared<FL::VertexBuffer>();
 	m_ibo = std::make_shared<FL::IndexBuffer>();
 	m_shader = ResourceManager::LoadShader("Resources/ShaderTest.glsl", "ShaderTest");
-	m_mesh = mesh;
 	CalculateBuffer();
 }
 
@@ -34,18 +34,9 @@ void MeshFilter::CalculateBuffer()
 	GLsizeiptr vertices_size = sizeof(std::vector<glm::vec3>) + (sizeof(glm::vec3) * MAX_VERTICES);
 	GLsizeiptr index_size = sizeof(std::vector<int>) + (sizeof(int) * m_max_index);
 
-	if (m_mesh.vertices.size() == 0)
-	{
-		m_vbo_vertices->BuilBuffer(vertices_size, nullptr, GL_DYNAMIC_DRAW);
-		m_vbo_normals->BuilBuffer(vertices_size, nullptr, GL_DYNAMIC_DRAW);
-		m_ibo->BuildBuffer(index_size, nullptr, GL_DYNAMIC_DRAW);
-	}
-	else
-	{
-		m_vbo_vertices->BuilBuffer(vertices_size, &m_mesh.vertices[0], GL_DYNAMIC_DRAW);
-		m_vbo_normals->BuilBuffer(vertices_size, &m_mesh.normals[0], GL_DYNAMIC_DRAW);
-		m_ibo->BuildBuffer(index_size, &m_mesh.indices[0], GL_DYNAMIC_DRAW);
-	}
+	m_vbo_vertices->BuilBuffer(vertices_size, nullptr, GL_DYNAMIC_DRAW);
+	m_vbo_normals->BuilBuffer(vertices_size, nullptr, GL_DYNAMIC_DRAW);
+	m_ibo->BuildBuffer(index_size, nullptr, GL_DYNAMIC_DRAW);
 
 
 	m_vbo_vertices->SetBufferLayout(layout);

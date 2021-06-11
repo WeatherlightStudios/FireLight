@@ -9,6 +9,11 @@
 #include "../Component/Moviment.h"
 #include "../Component/RotComp.h"
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
+
 class Test_Scene : public FL::Scene
 {
 public:
@@ -17,7 +22,14 @@ public:
 	void Debug();
 	void Close();
 
+	void LoadModel(std::string path);
+	void ProcessNode(aiNode* node, const aiScene* scene);
+	void ProcessMesh(aiMesh* mesh, const aiScene* scene);
+
 private:
+
+	std::vector<Mesh> meshes;
+
 };
 
 #endif
